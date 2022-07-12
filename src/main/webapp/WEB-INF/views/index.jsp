@@ -18,8 +18,7 @@ img {
 </head>
 <body> 
 	<div class="container">
-	<p><a href="/contents/mainlist/1" >SHOP NOW</a></p>
-	<img src="/images/tree.jpg" alt="Tree">   
+	<p><a href="#" >SHOP NOW</a></p>
 	</div>
 </body> 
 </html>

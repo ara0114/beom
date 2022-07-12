@@ -15,8 +15,12 @@
 <!DOCTYPE html> 
 <html> 
 <head>
-  <title>memo</title>
+<script src="https://kit.fontawesome.com/320c5e3232.js" crossorigin="anonymous"></script>
+  <title>hair</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/style2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -31,57 +35,38 @@
 </head>
 <body> 
 <!--상단메뉴-->
-<div class="container-fluid">
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="${root}/">Shop</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="${root}/">Home</a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu"  id="pmenu">
-          
-        </ul>
-      </li>
-            <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">community
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="${root}/member/mypage">Mypage</a></li>
-          <li><a href="${root}/contents/detail">Review</a></li>
-          <li><a href="${root}/notice/list">Notice</a></li>
-          <li><a href="${root}/qna/chat">Q&A</a></li>
-        </ul>
-      </li>
-    <li><a id="grade"><span class="glyphicon glyphicon-grain"></span> ${str}</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-     <c:choose>
-    <c:when test="${empty sessionScope.id }"> <!-- 로그인안했을때 -->
-      <li><a href="${root}/member/agree"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="${root}/member/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </c:when>
-    <c:when test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> <!-- 로그인했을때 -->
-    <li><a href="${root}/admin/contents/create"><span class="glyphicon glyphicon-plus-sign"></span> 상품등록</a></li>
-    <li><a href="${root}/contents/list"><span class="glyphicon glyphicon-list"></span> 상품목록</a></li>
-    <li><a href="${root}/admin/member/list"><span class="glyphicon glyphicon-list"></span> 회원목록</a></li>
-    <li><a href="${root}/admin/order/list"><span class="glyphicon glyphicon-list"></span> 주문목록</a></li>
-    <li><a href="${root}/member/logout"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
-    </c:when>
-    <c:otherwise>
-    <li><a href="${root}/cart/list"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-    <li><a href="${root}/member/update"><span class="glyphicon glyphicon-edit"></span> 회원수정</a></li>
-    <li><a href="${root}/member/logout"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
-        </c:otherwise>
-    </c:choose> 
-    
-    </ul>
-  </div>
-</nav>
- 
-</div>
+<header class="section">
+            <div class="inner clearfix">
+
+                <div class="menu-group float--left">
+                    <div class="logo">
+                        <a href="#">GitHub</a>
+                    </div>
+                    <ul class="main-menu">
+                        <li><a href="#">TeamBUM</a></li>
+                        <li><a href="#">Story</a></li>
+                        <li><a href="#">Developer</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="sign-group float--right">
+                    <div class="btn-group">
+                        <a href="#" class="btn sign-in">Sign in</a>
+                        <a href="#" class="btn sign-up">Sign up</a>
+                    </div>
+                    <form id="search-form" action="" method="POST">
+                        <input type="text" id="search" class="search-text" placeholder="search designer">
+                        <button value="Submit" id="search-btn">Find</button>
+                    </form>
+                    <ul class="sub-menu">
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">Designer</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </header>
 </body>
 </html>
