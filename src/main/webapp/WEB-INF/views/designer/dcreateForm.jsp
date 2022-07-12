@@ -226,7 +226,7 @@
 											<div class="mb-4 pb-2">
 												<div class="form-outline">
 													<label class="form-label" for="name">이름</label> <input
-														type="password" id="name" name="name"
+														type="text" id="name" name="name"
 														class="form-control form-control-lg" />
 
 												</div>
@@ -297,32 +297,32 @@
 
 											<div class="mb-4 pb-3" id="div1">
 												<div class="form-outline form-white">
-													<label class="form-label" for="form3Examplea2">자격증
-														번호 (예:12345678901A)</label> <input type="text" id="form3Examplea2"
+													<label class="form-label" for="licenseno">자격증
+														번호 (예:12345678901A)</label> <input type="text" id="licenseno" name = "licenseno"
 														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<div class="mb-4 pb-3" id="div2">
 												<div class="form-outline form-white">
-													<label class="form-label" for="form3Examplea3">발급(등록)연월일
-														(예:20050101)</label> <input type="text" id="form3Examplea3"
+													<label class="form-label" for="licensedate">발급(등록)연월일
+														(예:20050101)</label> <input type="text" id="licensedate" name = "licensedate"
 														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<div class="mb-4 pb-3" id="div3">
 												<div class="form-outline form-white">
-													<label class="form-label" for="form3Examplea3">자격증
-														내지번호 (예:0901234567)</label> <input type="text" id="form3Examplea3"
+													<label class="form-label" for="uniquecode1">자격증
+														내지번호 (예:0901234567)</label> <input type="text" id="uniquecode1" name = "uniquecode1"
 														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<div class="mb-4 pb-4" id="div4" style="display: none;">
 												<div class="form-outline form-white">
-													<label class="form-label" for="form3Examplea3">자격증
-														관리번호</label> <input type="text" id="form3Examplea3"
+													<label class="form-label" for="uniquecode2">자격증
+														관리번호</label> <input type="text" id="uniquecode2" name = "uniquecode1"
 														class="form-control form-control-lg" />
 												</div>
 											</div>
