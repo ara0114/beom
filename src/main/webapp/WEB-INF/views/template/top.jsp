@@ -53,7 +53,7 @@
                 <div class="sign-group float--right">
                     <div class="btn-group">
                         <a href="#" class="btn sign-in">Sign in</a>
-                        <a href="#" class="btn sign-up">Sign up</a>
+                        <a href="${root }/user/agree" class="btn sign-up">Sign up</a>
                     </div>
                     <form id="search-form" action="" method="POST">
                         <input type="text" id="search" class="search-text" placeholder="search designer">

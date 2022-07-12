@@ -56,7 +56,7 @@ header .logo{
 }
 
 header .logo a{
-    background: url("tiger.svg");
+    background: url("/svg/tiger.svg");
     background-repeat: no-repeat;
     width: 32px;
     height: 32px;
