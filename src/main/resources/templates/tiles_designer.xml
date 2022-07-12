@@ -10,9 +10,9 @@
     <put-attribute name="header"
       value="/WEB-INF/views/template/top.jsp" />
   </definition>
-  <definition name="/create" extends="main">
+  <definition name="/dcreate" extends="main">
     <put-attribute name="title" value="기본페이지"></put-attribute>
     <put-attribute name="body"
-      value="/WEB-INF/views/designer/createForm.jsp" />
+      value="/WEB-INF/views/designer/dcreateForm.jsp" />
   </definition>
 </tiles-definitions>
