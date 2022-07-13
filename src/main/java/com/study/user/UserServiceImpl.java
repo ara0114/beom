@@ -1,5 +1,7 @@
 package com.study.user;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,18 @@ public class UserServiceImpl implements UserService {
   public int duplicatedEmail(String email) {
     // TODO Auto-generated method stub
     return mapper.duplicatedEmail(email);
+  }
+
+  @Override
+  public int loginCheck(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.loginCheck(map);
+  }
+
+  @Override
+  public Map getGrade(String id) {
+    // TODO Auto-generated method stub
+    return mapper.getGrade(id);
   }
   
 }

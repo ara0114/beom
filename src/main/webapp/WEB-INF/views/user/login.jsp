@@ -76,22 +76,27 @@
             color: #111;
         }
     </style>
+    <script>
+    	function moveForm(){
+    		alert("디자이너 로그인페이지로 이동합니다.");
+    		//location.href="/ooo/ooo";
+    	}
+    </script>
 </head>
 <body>
-    <form class="login">
+    <form class="login" action="/user/login" method="post">
         <h2>로그인</h2>
         <ul>
-            <div><input type="radio" name="selectuser" value="1" checked><label>고객</label>
-                <input type="radio" name="selectuser" value="2"><label>디자이너</label></div>
-            <li><input type="text" placeholder="아이디"></li>
-            <li><input type="password" placeholder="비밀번호"></li>
+            <div><input type="radio" name="selectuser" checked><label>고객</label>
+                <input type="radio" name="selectuser" onclick="javascript:moveForm()"><label>디자이너</label></div>
+            <li><input type="text" id="uid" name="uid" placeholder="아이디"></li>
+            <li><input type="password" id="upw" name="upw" placeholder="비밀번호"></li>
             <div><input type="checkbox" id="chk_id"><label for="chk_id">아이디저장</label></div>
-            <li><button onclick="">로그인</button></li>
-            
+            <li><button type="submit">로그인</button></li>         
         </ul>
         <div>
             <ul>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="/user/userchoice">회원가입</a></li>
                 <li><a href="#">아이디찾기</a></li>
                 <li><a href="#">비밀번호찾기</a></li>
             </ul>        

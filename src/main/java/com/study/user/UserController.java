@@ -3,13 +3,18 @@ package com.study.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -53,6 +58,7 @@ public class UserController {
       }
       return map;
     }
+    
     @GetMapping(value="/user/emailcheck", produces = "application/json;charset=utf-8")
     @ResponseBody
     public Map<String,String> emailcheck(String uemail){
@@ -64,6 +70,29 @@ public class UserController {
         map.put("str", uemail + "는 사용가능한 이메일입니다.");
       }
       return map;
+    }
+    
+    @GetMapping("/user/login")
+    public String login(HttpServletRequest request) {
+      return "/user/login";
+    }
+    @PostMapping("/user/login")
+    public String login(@RequestParam Map<String,String> map, HttpSession session, 
+        HttpServletResponse response, HttpServletRequest request, Model model) {
+      
+      int cnt = service.loginCheck(map);
+      if(cnt>0) {//회원일경우
+        Map gmap = service.getGrade(map.get("uid"));
+        session.setAttribute("uid", map.get("uid"));
+        session.setAttribute("uname", gmap.get("uname"));
+        session.setAttribute("grade", gmap.get("grade"));//세션저장
+        
+        return "redirect:/";
+      
+      }else {
+        model.addAttribute("msg","아이디 또는 비밀번호를 잘못 입력했거나<br>회원이 아닙니다. 회원가입하세요");
+        return "/user/errorMsg";
+      }
     }
     
 }

@@ -1,5 +1,7 @@
 package com.study.user;
 
+import java.util.Map;
+
 public interface UserMapper {
 
   int create(UserDTO dto);
@@ -7,4 +9,8 @@ public interface UserMapper {
   int duplicatedId(String id);
   
   int duplicatedEmail(String email);
+  
+  int loginCheck(Map<String, String> map);
+  
+  Map getGrade(String id);
 }
