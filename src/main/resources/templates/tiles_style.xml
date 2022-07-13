@@ -11,8 +11,13 @@
       value="/WEB-INF/views/template/top.jsp" />
   </definition>
   <definition name="/style/designer" extends="main">
-    <put-attribute name="title" value="기본페이지"></put-attribute>
+    <put-attribute name="title" value="이미지업로드페이지"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/style/designer.jsp" />
+  </definition>
+  <definition name="/style/list" extends="main">
+    <put-attribute name="title" value="list페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/style/list.jsp" />
   </definition>
 </tiles-definitions>

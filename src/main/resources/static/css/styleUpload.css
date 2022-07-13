@@ -1,29 +1,32 @@
 @import
 	url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Serif+KR&family=Poppins:wght@200;300;400;500&display=swap");
 
-
 .container {
 	margin:10px auto;
 	display: flex;
+	width:90%;
+	min-width:1024px;
 	align-items: center;
 	justify-content: center;
 	background: #e0eafc;
 	background: -webkit-linear-gradient(to right, #cfdef3, #e0eafc);
-	background: linear-gradient(to right, #cfdef3, #e0eafc);
+	background: linear-gradient(to right, #6299e5, #e0eafc);
 	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
 	padding: 10px;
 	
 }
-
+/*파일업로드 박스*/
 .upload-box {
-	margin-right: 20px;
-	flex-grow: 1;
-	max-width: 300px;
-	max-height:500px;
-	padding: 30px;
+	flex:1;
+	max-width:330px;
+	min-width:300px;
+	margin:auto;
+	margin-right:10px;
+	width: 270px;
+	padding: 15px;
 	background: #fff;
-	border-radius: 40px;
+	border-radius: 20px;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -31,7 +34,7 @@
 	border: none;
 	border-radius: 5px;
 	padding: 10px;
-	width: 80%;
+	width: 100%;
 	font-weight: bold;
 	font-size: 1.2rem;
 	display: flex;
@@ -46,30 +49,43 @@
 	color: #1683ff;
 	margin-left: 10px;
 }
-
+/*사진 박스*/
 .img-box {
-	flex-grow: 2;
-	padding: 30px;
+	min-width:685px; /*최소크기*/
+	margin-right:10px;
+	width:920px;
+	height:700px;
+	padding: 20px;
 	background: #fff;
 	border-radius: 20px;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .img-area {
+	min-width:700px;
 	border: 3px dashed #e0eafc;
-	display: flex;
-	flex-wrap: wrap;
-	margin: 10px auto;
+	margin: 15px auto;
+	padding:10px;
+	display:flex;
+	flex-wrap:wrap;
 }
-
+#styleBox{
+	display:flex;
+	min-width:700px;
+	flex-wrap:wrap;
+	justify-content:center;
+	align-items:center;
+}
+#styleBox > img{
+	flex-basis:200px;
+	cursor:pointer;
+}
 .img-area img {
-	width: 200px;
-	height: 200px;
+	width:200px;
+	height: 150px;
 	margin: 5px 5px 5px 5px;
 }
-
 .drag-area {
-	height:240px;
 	border: 3px dashed #e0eafc;
 	display: flex;
 	align-items: center;
@@ -103,14 +119,6 @@ h3 {
 	color: grey;
 	margin: 5px 0 3px 0;
 }
-
-.drag-area .button {
-	font-size: 20px;
-	font-weight: 500;
-	color: #1683ff;
-	cursor: pointer;
-}
-
 .drag-area.active {
 	border: 2px solid #1683ff;
 }
@@ -119,4 +127,44 @@ h3 {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+.radio-box{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	text-align:center;
+	
+}
+.select-btn{
+  flex-grow:1;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight:bold;
+  margin: 5px auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px;
+  cursor: pointer;
+  background-color:#1683ff;
+  color:white;
+}
+.select-btn > input{
+	padding:5px;
+}
+.form-radio{
+	display:flex;
+	margin:3px auto;
+	justify-content:center;
+	align-items:center;
+}
+.ilabel{
+	margin-left:5px;
+	margin-right:5px;
+}
+.hidden-btn{
+	width:20px;
+	height:20px;
+	background-color:red;
 }
