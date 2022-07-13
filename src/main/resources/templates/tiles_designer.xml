@@ -15,4 +15,14 @@
     <put-attribute name="body"
       value="/WEB-INF/views/designer/dcreateForm.jsp" />
   </definition>
+  <definition name="/dmypage" extends="main">
+    <put-attribute name="title" value="기본페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/designer_mypage.jsp" />
+  </definition>
+  <definition name="/dlogin" extends="main">
+    <put-attribute name="title" value="기본페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/dloginForm.jsp" />
+  </definition>
 </tiles-definitions>

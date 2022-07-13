@@ -7,12 +7,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/designer_createForm.css">
-<style>
-#idcheck, #emailcheck {
-	color: red;
-	width: 400px;
-}
-</style>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -45,7 +39,7 @@
 	function idCheck(id) {
 		if (id == '') {
 			alert("아이디를 입력하세요");
-			document.frm.did.focus();
+			document.frm.id.focus();
 		} else {
 			var url = "idcheck";
 			var param = "id=" + id;
@@ -60,7 +54,7 @@
 	function emailCheck(email) {
 		if (email == '') {
 			alert("email를 입력하세요");
-			document.frm.demail.focus();
+			document.frm.email.focus();
 		} else {
 			var url = "emailcheck";
 			url += "?email=" + email;
@@ -133,12 +127,12 @@
 			return false;
 		}
 		if (f.dpw.value.length == 0) {
-			alert("비밀번호을 입력하세요");
+			alert("비번을 입력하세요");
 			f.dpw.focus();
 			return false;
 		}
 		if (f.repw.value.length == 0) {
-			alert("비밀번호 확인을 입력하세요");
+			alert("비번확인을 입력하세요");
 			f.repw.focus();
 			return false;
 		}
@@ -154,13 +148,13 @@
 			f.dname.focus();
 			return false;
 		}
-
+		
 		if (f.demail.value.length == 0) {
 			alert("이메일을 입력하세요");
 			f.demail.focus();
 			return false;
 		}
-
+		
 		if (f.dphone.value.length == 0) {
 			alert("전화번호를 입력하세요");
 			f.dphone.focus();
@@ -176,7 +170,7 @@
 			f.dzipcode.focus();
 			return false;
 		}
-
+		
 	}
 </script>
 <title>회원가입</title>
@@ -206,9 +200,7 @@
 															type="text" id="did" name="did"
 															class="form-control form-control-lg" />
 														<button type="button" class="btn btn-default col-sm-5"
-															onclick="idCheck(document.frm.did.value)">ID
-															중복확인</button>
-														<div id="idcheck"></div>
+															onclick="idCheck(document.frm.id.value)">ID 중복확인</button>
 													</div>
 												</div>
 											</div>
@@ -221,7 +213,7 @@
 
 												</div>
 											</div>
-
+											
 											<div class="mb-4 pb-2">
 												<div class="form-outline">
 													<label class="form-label" for="repw">비밀번호 확인</label> <input
@@ -238,34 +230,28 @@
 														class="form-control form-control-lg" />
 
 												</div>
-											</div>
-
-											<div class="row">
-												<div class="mb-4">
-													<div class="form-outline form-white">
-														<label class="form-label" for="demail">이메일</label> <input
-															type="email" id="demail" name="demail"
-															class="form-control form-control-lg" />
-														<button type="button" class="btn btn-default col-sm-3"
-															onclick="emailCheck(document.frm.demail.value)">email
-															중복확인</button>
-														<div id="emailcheck"></div>
-													</div>
-												</div>
-											</div>
-
+											</div>	
+											
 											<div class="mb-4">
 												<div class="form-outline form-white">
-													<label class="form-label" for="dphone">전화번호</label> <input
-														type="text" id="dphone" name="dphone"
+													<label class="form-label" for="demail">이메일</label>
+													<input type="email" id="demail" name = "demail"
 														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<div class="mb-4">
 												<div class="form-outline form-white">
-													<label class="form-label" for="birth">생년월일 (예 :
-														901225)</label> <input type="text" id="birth" name="birth"
+													<label class="form-label" for="dphone">전화번호</label>
+													<input type="text" id="dphone" name = "dphone"
+														class="form-control form-control-lg" />
+												</div>
+											</div>
+
+											<div class="mb-4">
+												<div class="form-outline form-white">
+													<label class="form-label" for="birth">생년월일
+														(예 : 901225)</label> <input type="text" id="birth" name = "birth"
 														class="form-control form-control-lg" />
 												</div>
 											</div>
@@ -273,17 +259,16 @@
 											<div class="mb-4">
 												<div class="form-outline form-white">
 													<label class="form-label" for="sample6_postcode">우편번호</label>
-													<input type="text" id="sample6_postcode" name="dzipcode"
-														class="form-control form-control-lg" />
-													<button type="button" class="btn btn-default col-sm-2"
-														onclick="sample6_execDaumPostcode()">주소 검색</button>
+													<input type="text" id="sample6_postcode" name = "dzipcode"
+														class="form-control form-control-lg"/>
+													<button type = "button" class="btn btn-default col-sm-2" onclick="sample6_execDaumPostcode()">주소 검색</button>
 												</div>
 											</div>
 											<br>
 											<div class="mb-4">
 												<div class="form-outline form-white">
-													<label class="form-label" for="sample6_address">주소</label>
-													<input type="text" id="sample6_address" name="address1"
+													<label class="form-label" for="sample6_address">주소</label> <input
+														type="text" id="sample6_address" name = "address1"
 														class="form-control form-control-lg" />
 												</div>
 											</div>
@@ -291,8 +276,8 @@
 											<div class="mb-4">
 												<div class="form-outline form-white">
 													<label class="form-label" for="sample6_detailAddress">상세주소</label>
-													<input type="text" id="sample6_detailAddress"
-														name="address2" class="form-control form-control-lg" />
+													<input type="text" id="sample6_detailAddress" name = "address2"
+														class="form-control form-control-lg" />
 												</div>
 											</div>
 
@@ -312,38 +297,38 @@
 
 											<div class="mb-4 pb-3" id="div1">
 												<div class="form-outline form-white">
-													<label class="form-label" for="licenseno">자격증 번호
-														(예:12345678901A)</label> <input type="text" id="licenseno"
-														name="licenseno" class="form-control form-control-lg" />
+													<label class="form-label" for="licenseno">자격증
+														번호 (예:12345678901A)</label> <input type="text" id="licenseno" name = "licenseno"
+														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<div class="mb-4 pb-3" id="div2">
 												<div class="form-outline form-white">
 													<label class="form-label" for="licensedate">발급(등록)연월일
-														(예:20050101)</label> <input type="text" id="licensedate"
-														name="licensedate" class="form-control form-control-lg" />
+														(예:20050101)</label> <input type="text" id="licensedate" name = "licensedate"
+														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<div class="mb-4 pb-3" id="div3">
 												<div class="form-outline form-white">
 													<label class="form-label" for="uniquecode1">자격증
-														내지번호 (예:0901234567)</label> <input type="text" id="uniquecode1"
-														name="uniquecode1" class="form-control form-control-lg" />
+														내지번호 (예:0901234567)</label> <input type="text" id="uniquecode1" name = "uniquecode1"
+														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<div class="mb-4 pb-4" id="div4" style="display: none;">
 												<div class="form-outline form-white">
 													<label class="form-label" for="uniquecode2">자격증
-														관리번호</label> <input type="text" id="uniquecode2"
-														name="uniquecode2" class="form-control form-control-lg" />
+														관리번호</label> <input type="text" id="uniquecode2" name = "uniquecode1"
+														class="form-control form-control-lg" />
 												</div>
 											</div>
 
 											<button type="submit" class="btn btn-light btn-lg"
-												data-mdb-ripple-color="dark">등록</button>
+												data-mdb-ripple-color="dark">수정</button>
 											<button type="reset" class="btn btn-light btn-lg"
 												data-mdb-ripple-color="dark">취소</button>
 
