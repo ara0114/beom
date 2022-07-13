@@ -72,8 +72,36 @@ public class UserController {
       return map;
     }
     
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+      session.invalidate();
+      return "redirect:/";
+    }
+    
     @GetMapping("/user/login")
     public String login(HttpServletRequest request) {
+      
+      String chk_id = "";
+      String cookie_id_val = "";
+      
+      Cookie[] cookies = request.getCookies();
+      Cookie cookie = null;
+      
+      if(cookies != null) {
+        for(int i=0; i<cookies.length; i++) {
+          cookie = cookies[i];
+          
+          if(cookie.getName().equals("chk_id")) {
+            chk_id = cookie.getValue();
+          }else if(cookie.getName().equals("cookie_id_val")) {
+            cookie_id_val = cookie.getValue();
+          }
+        }
+      }
+      
+      request.setAttribute("chk_id", chk_id);
+      request.setAttribute("cookie_id_val", cookie_id_val);
+      
       return "/user/login";
     }
     @PostMapping("/user/login")
@@ -87,11 +115,38 @@ public class UserController {
         session.setAttribute("uname", gmap.get("uname"));
         session.setAttribute("grade", gmap.get("grade"));//세션저장
         
+        Cookie cookie = null;
+        String chk_id = request.getParameter("chk_id");
+        
+        if(chk_id != null) {
+          
+          cookie = new Cookie("chk_id",chk_id);
+          cookie.setMaxAge(60*60*24*90);
+          response.addCookie(cookie);
+          
+          cookie = new Cookie("cookie_id_val",map.get("uid"));
+          cookie.setMaxAge(60*60*24*90);
+          response.addCookie(cookie);
+          
+        }else {
+          
+          cookie = new Cookie("chk_id","");
+          cookie.setMaxAge(0);
+          response.addCookie(cookie);
+          
+          cookie = new Cookie("cookie_id_val","");
+          cookie.setMaxAge(0);
+          response.addCookie(cookie);
+          
+        }
+        
         return "redirect:/";
       
       }else {
+        
         model.addAttribute("msg","아이디 또는 비밀번호를 잘못 입력했거나<br>회원이 아닙니다. 회원가입하세요");
-        return "/user/errorMsg";
+        
+        return "/user/errorMsg";   
       }
     }
     

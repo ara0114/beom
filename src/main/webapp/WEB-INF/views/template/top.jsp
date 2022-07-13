@@ -52,12 +52,19 @@
 
                 <div class="sign-group float--right">
                 <li><a id="grade">${str }</a></li>
-                <c:if test="${empty sessionScope.uid }">
+                <c:choose>
+                <c:when test="${empty sessionScope.uid }">
                     <div class="btn-group">
                         <a href="${root }/user/login" class="btn sign-in">Sign in</a>
                         <a href="${root }/user/agree" class="btn sign-up">Sign up</a>
                     </div>
-                </c:if>
+                </c:when>
+                <c:when test="${not empty sessionScope.uid}">
+                	<div class="btn-group">
+                	<a href="${root }/logout" class="btn sign-in">Logout</a></li>
+                	</div>
+                </c:when>
+                </c:choose>
                     <form id="search-form" action="" method="POST">
                         <input type="text" id="search" class="search-text" placeholder="search designer">
                         <button value="Submit" id="search-btn">Find</button>
