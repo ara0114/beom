@@ -10,22 +10,21 @@
 
 .container {
 	width: 500px;
-	height: 720px;
+	height: 760px;
 	margin: 50px auto;
 	padding: 20px;
-	background:
-		url("https://t1.daumcdn.net/cfile/tistory/244D52405215D6BD0C");
+	/*background:
+		url("http://kkoma.net/web/product/big/201908/7b4b84e97175177414b6df250fdc4aab.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	opacity: 0.7;
+	opacity: 0.7;*/
 	border-radius: 20px;
-	box-shadow: 0px 0px 18px 0px;
+	box-shadow: 0px 0px 14px 0px;
 }
 
 .container h1 { 
 	text-align : center;
-	color:red;
 	font-family: "Nanum Gothic", sans-serif;
 	text-align: center;
 }
@@ -216,7 +215,6 @@ input[type="time"]::-webkit-clear-button {
 
 .ui-datepicker-trigger {
 	width: 40px;
-	opacity: 0.5;
 	position: relative;
 	top: 12px;
 	left: 12px;
@@ -224,4 +222,6 @@ input[type="time"]::-webkit-clear-button {
 
 #startDate.ui-corner-all.ui-button.hasDatepicker {
 	width: 250px;
+	background-color: white;
+	
 }
