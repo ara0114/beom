@@ -47,7 +47,11 @@ public class StyleDesigner {
     dto.setImagetype(fileType);
 
     int cnt = service.create(dto);
-    return "NULL";
+    if(cnt == 1) {
+      return "redirect:/style/designer";
+    }else {
+      return "error";
+    }
   }
 
   // 사진전체 리스트 or 성별 로 구분해서보여주기

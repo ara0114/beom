@@ -26,13 +26,12 @@
 				<div class="icon">
 					<i class="fas fa-images"> </i>
 				</div>
-				<span class="header">Drag & Drop</span>
-				<p>or</p>
+				<span class="header">Click Me</span>
 				<span class="support">Supports:JPEG,JPG,PNG</span>
 
 			</div>
 			<form action="/style/designer" method="post"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" onsubmit="return formCheck()">
 				<input type="file" name="file" id="input-file">
 				<div class="form-radio">
 				<label for="iwoman" class="ilabel"> <input type="radio" name="uploadgender" value="여자" id="iwoman"/>여자</label>
@@ -65,6 +64,7 @@
 				</div>
 				
 			</div>
+			<button class="add-btn">더보기</button>
 		</div>
 	</div>
 

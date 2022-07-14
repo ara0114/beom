@@ -19,6 +19,28 @@ $(function() {
 	$('.woman-img').empty();
 	$('.man-img').empty();
 })
+//사진더보기 button 이벤트 css 변경 함수
+
+$('.add-btn').click(function() {
+	$('.img-area').css('overflow','auto');
+	$('.img-area').css('overflowX','hidden');
+	$(".add-btn").css("background-color","#0155b4");
+	$(".img-area").animate({scrollTop:$(".img-area")[0].scrollHeight},1500);
+})
+
+
+
+//form submit check 함수
+function formCheck() {
+	let bool = $('input:radio[name="uploadgender"]').is(":checked");
+	if (bool) {
+		$('.all-img').empty(); //all-img 영역 비워주고
+		fetchAPI(allImg, "all"); //list 비동기재요청
+		return true;
+	} else {
+		return false;
+	}
+}
 
 //input radio 변경될때마다 val 체크
 $('input:radio[name="gender"]').change(function() {
@@ -54,8 +76,9 @@ function fetchAPI(genderTag, gender) {
 				console.log(imageno);
 				if (confirm("사진을 삭제하시겠습니까?")) {
 					let text = deleteStyle(imageno);
-					text.then(res=>alert(res));
-				} 
+					text.then(res => alert(res));
+					location.reload(); // 새로고침
+				}
 			}
 			genderTag.append(img);
 		}
@@ -65,8 +88,8 @@ function fetchAPI(genderTag, gender) {
 function styleGet(gender) {
 	return fetch(`/style/list/${gender}`).then((res) => res.json()).catch((error) => console.log(error));
 }
-function deleteStyle(imgno){
-	return fetch(`/style/delete/${imgno}`).then(res=>res.text()).catch(error=>console.log(error));
+function deleteStyle(imgno) {
+	return fetch(`/style/delete/${imgno}`).then(res => res.text()).catch(error => console.log(error));
 }
 //드래그영역 클릭시 숨어있는 input 클릭
 dragArea.onclick = () => {
