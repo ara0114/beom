@@ -25,6 +25,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         
         registry.addResourceHandler("/hairReview/storage/**")
                  .addResourceLocations("file:///" + UploadReview.getUploadDir());
+      
+      
+//        
+//        registry.addResourceHandler("/member/storage/**")
+//                 .addResourceLocations("file:///" + UploadMem.getUploadDir());
     }
  
 }

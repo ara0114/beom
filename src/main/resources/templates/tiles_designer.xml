@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+  <!-- main -->
+  <definition name="/dcreate" extends="main">
+    <put-attribute name="title" value="디자이너회원가입"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/dcreateForm.jsp" />
+  </definition>
+  <definition name="/dmypage" extends="main">
+    <put-attribute name="title" value="디자이너마이페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/designer_mypage.jsp" />
+  </definition>
+  <definition name="/dlogin" extends="main">
+    <put-attribute name="title" value="디자이너로그인"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/dloginForm.jsp" />
+  </definition>
+</tiles-definitions>
