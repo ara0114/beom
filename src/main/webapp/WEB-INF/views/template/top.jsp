@@ -1,16 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
- <c:choose>
-    <c:when test="${not empty sessionScope.id && sessionScope.grade == 'A'}">
-        <c:set var="str">관리자 페이지 입니다.</c:set>
-    </c:when>
-    <c:when test="${not empty sessionScope.id && sessionScope.grade != 'A'}">
-        <c:set var='str'>안녕하세요  ${sessionScope.id } 님!</c:set>
-    </c:when>
-    <c:otherwise>
-        <c:set var="str">기본 페이지 입니다.</c:set>
-    </c:otherwise>
+<c:choose>
+	<c:when test="${not empty sessionScope.dname}">
+		<c:set var='str'>안녕하세요  ${sessionScope.dname } 님!</c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="str">기본 페이지 입니다.</c:set>
+	</c:otherwise>
 </c:choose>
 <!DOCTYPE html> 
 <html> 
@@ -54,6 +51,7 @@
                     <div class="btn-group">
                         <a href="#" class="btn sign-in">Sign in</a>
                         <a href="#" class="btn sign-up">Sign up</a>
+                        <a href="/logout" class="btn sign-up">Logout</a>
                     </div>
                     <form id="search-form" action="" method="POST">
                         <input type="text" id="search" class="search-text" placeholder="search designer">

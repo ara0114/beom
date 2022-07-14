@@ -110,17 +110,22 @@ public class DesignerController {
     int flag = dservice.dlogin(map);
     
     if(flag > 0) {
-      session.setAttribute("did", map.get("did"));
-      
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
-//      if(ddto.isValidation() == false){
-//        session.invalidate();
-//      }
+      session.setAttribute("did", ddto.getDid());
+      session.setAttribute("dname", ddto.getDname());
+      session.setAttribute("validation", ddto.isValidation());
+
       model.addAttribute("ddto", ddto);
       return "redirect:/";
     }else {
       return "error";
     }
+  }
+  
+  @GetMapping("/logout")
+  public String logout(HttpSession session) {
+    session.invalidate();
+    return "redirect:/";
   }
   
   @GetMapping("/dmypage")
