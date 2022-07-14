@@ -18,30 +18,38 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-	function dmypage_update(){
+	function dmypage_update() {
 		let url = "/dmypage_update";
 		location.href = url;
 	}
 </script>
+<style>
+	button {
+		border : 1px solid;
+	}
+</style>
 <title>My page</title>
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
 			style="width: 50%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<img src="/images/designer.jpg" alt="" style="width: 100%; height: 80%;">
+			<img src="/images/designer.jpg" alt=""
+				style="width: 100%; height: 80%;">
 			<div>
-				<button class="btn btn-outline-success" style="width: 100%; border : 1px solid;">❤️좋아요(195)</button>
-				<button class="btn btn-outline-success" style="width: 48%; border : 1px solid;">예약하기</button>
-				<button class="btn btn-outline-success" style="width: 48%; border : 1px solid;">1:1
-					문의</button>
+				<button class="btn btn-outline-success"
+					style="width: 100%; border: 1px solid;">❤️좋아요(195)</button>
+				<button class="btn btn-outline-success"
+					style="width: 48%; border: 1px solid;">예약하기</button>
+				<button class="btn btn-outline-success"
+					style="width: 48%; border: 1px solid;">1:1 문의</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold;">홍길동 헤어 디자이너</div>
-			<div>미용사(일반) 자격증 보유 
-			-레이어드컷 / 단발 레이어드컷 / 태슬컷 
-			-레이어드컷 / 단발 레이어드컷 / 태슬컷</div>
+			<div>미용사(일반) 자격증 보유 -레이어드컷 / 단발 레이어드컷 / 태슬컷 -레이어드컷 / 단발 레이어드컷 /
+				태슬컷</div>
 			<div style="float: right">
-				<button class="btn btn-outline-success" style = "border : 1px solid;" onclick = "dmypage_update()">디자이너 정보 수정</button>
+				<button class="btn btn-outline-success" style="border: 1px solid;"
+					onclick="dmypage_update()">디자이너 정보 수정</button>
 			</div>
 		</div>
 
@@ -50,17 +58,18 @@
 			<div style="height: 6%;"></div>
 
 			<div class="container">
-				<div>
-					<label style="font-weight: 700;">자기소개</label>
-					<p style="font-size: large; color: cadetblue">미용사(일반) 자격증 보유
-						-레이어드컷 / 단발 레이어드컷 / 태슬컷 -레이어드컷 / 단발 레이어드컷 / 태슬컷</p>
-					<div style="float: right">
-						<button class="btn btn-outline-success">수정</button>
-					</div>
-				</div>
+
 
 				<section class="vh-100">
 					<div class="container py-5 h-150">
+						<div style = "margin-left : 9%; margin-right : 20%;">
+							<label style="font-weight: 700;">자기소개</label>
+							<p style="font-size: large; color: cadetblue">미용사(일반) 자격증 보유
+								-레이어드컷 / 단발 레이어드컷 / 태슬컷 -레이어드컷 / 단발 레이어드컷 / 태슬컷</p>
+							
+							<button class="btn btn-outline-success" style = "border : 1px solid">수정</button>
+							
+						</div>
 						<div
 							class="row d-flex justify-content-center align-items-center h-100">
 							<div class="col col-lg-10 col-xl-9">
@@ -137,7 +146,7 @@
 					<div class="container py-5 h-150">
 						<div
 							class="row d-flex justify-content-center align-items-center h-100">
-							<div class="col col-lg-9 col-xl-12">
+							<div class="col col-lg-10 col-xl-9">
 								<p style="font-weight: 700;">예약 신청 내역</p>
 								<div class="card rounded-3">
 									<div class="card-body p-1">

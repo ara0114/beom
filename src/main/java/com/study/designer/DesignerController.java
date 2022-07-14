@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,22 +128,49 @@ public class DesignerController {
   }
   
   @PostMapping("/dlogin")
-  public String dlogin(@RequestParam Map map, HttpSession session, Model model) {
+  public String dlogin(@RequestParam Map map, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
     int flag = dservice.dlogin(map);
     
     if(flag > 0) {
-      session.setAttribute("did", map.get("did"));
-      
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
-//      if(ddto.isValidation() == false){
-//        session.invalidate();
-//      }
+      session.setAttribute("did", ddto.getDid());
+      session.setAttribute("dname", ddto.getDname());
+      session.setAttribute("validation", ddto.isValidation());
+
       model.addAttribute("ddto", ddto);
+      
+      Cookie cookie = null;
+      String chk_id = request.getParameter("chk_id");
+      
+      if(chk_id != null) {
+        
+        cookie = new Cookie("chk_id",chk_id);
+        cookie.setMaxAge(60*60*24*90);
+        response.addCookie(cookie);
+        
+        cookie = new Cookie("cookie_id_val",(String) map.get("did"));
+        cookie.setMaxAge(60*60*24*90);
+        response.addCookie(cookie);
+        
+      }else {
+        
+        cookie = new Cookie("chk_id","");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        
+        cookie = new Cookie("cookie_id_val","");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        
+      }
+      
       return "redirect:/";
     }else {
       return "error";
     }
   }
+  
+ 
   
   @GetMapping("/dmypage")
   public String designer_mypage() {

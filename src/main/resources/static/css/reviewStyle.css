@@ -1,0 +1,48 @@
+hr {
+	background-color: rgb(226, 226, 226);
+	width: 95%;
+	border: 0;
+	height: 1px;
+}
+
+img {
+	width: 150px;
+	height: 150px;
+}
+
+.hair-review-img {
+	display: flex;
+}
+
+.view-more {
+	text-align: center;
+	position: relative;
+	margin-left: 2%;
+	margin-top: 7%;
+}
+
+.view-more a {
+	text-decoration: none;
+	color: black;
+}
+
+.view-more a:hover {
+	color: blue;
+}
+
+.sub-row {
+	display: flex;
+}
+
+.customer-review {
+	margin-left: 1%;
+}
+
+.customer-review a {
+	text-decoration: none;
+	color: black;
+}
+
+.customer-review a:hover {
+	color: blue;
+}

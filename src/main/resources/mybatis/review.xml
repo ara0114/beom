@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.review.ReviewMapper">
+
+	<select id="read" parameterType="int" resultType="com.study.review.ReviewDTO">
+	    select * from review
+	    where rno = #{rno}
+	</select>
+
+	<select id="list" parameterType="Map"
+		resultType="com.study.review.ReviewDTO">
+		select rtitle, rcontent, rdate, uid, star, rfilename
+		from review
+		<where>
+			<choose>
+				<when test="col=='rtitle'">
+					rtitle like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='rcontent'">
+					rcontent like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='uid'">
+					uid like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='title_content'">
+					rtitle like CONCAT('%',#{word},'%')
+					or
+					rcontent like CONCAT('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+		order by rno desc
+		limit #{sno} , #{cnt}
+	</select>
+	<select id="total" resultType="int" parameterType="Map">
+		select count(*) from review
+		<where>
+			<choose>
+				<when test="col=='rtitle'">
+					rtitle like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='rcontent'">
+					rcontent like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='uid'">
+					uid like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='title_content'">
+					rtitle like CONCAT('%',#{word},'%')
+					or
+					rcontent like CONCAT('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+	</select>
+</mapper>
