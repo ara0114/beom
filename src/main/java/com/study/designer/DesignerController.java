@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,34 +80,55 @@ public class DesignerController {
   
   @GetMapping("/dlogin")
   public String dlogin(HttpServletRequest request) {
-//    /*----쿠키설정 내용시작----------------------------*/
-//    String c_id = ""; // ID 저장 여부를 저장하는 변수, Y
-//    String c_id_val = ""; // ID 값
+//  /*----쿠키설정 내용시작----------------------------*/
+//  String c_id = ""; // ID 저장 여부를 저장하는 변수, Y
+//  String c_id_val = ""; // ID 값
 //
-//    Cookie[] cookies = request.getCookies();
-//    Cookie cookie = null;
+//  Cookie[] cookies = request.getCookies();
+//  Cookie cookie = null;
 //
-//    if (cookies != null) {
-//      for (int i = 0; i < cookies.length; i++) {
-//        cookie = cookies[i];
+//  if (cookies != null) {
+//    for (int i = 0; i < cookies.length; i++) {
+//      cookie = cookies[i];
 //
-//        if (cookie.getName().equals("c_id")) {
-//          c_id = cookie.getValue(); // Y
-//        } else if (cookie.getName().equals("c_id_val")) {
-//          c_id_val = cookie.getValue(); // user1...
-//        }
+//      if (cookie.getName().equals("c_id")) {
+//        c_id = cookie.getValue(); // Y
+//      } else if (cookie.getName().equals("c_id_val")) {
+//        c_id_val = cookie.getValue(); // user1...
 //      }
 //    }
-//    /*----쿠키설정 내용 끝----------------------------*/
+//  }
+//  /*----쿠키설정 내용 끝----------------------------*/
 //
-//    request.setAttribute("c_id", c_id);
-//    request.setAttribute("c_id_val", c_id_val);
+//  request.setAttribute("c_id", c_id);
+//  request.setAttribute("c_id_val", c_id_val);
+    
+    String chk_id = "";
+    String cookie_id_val = "";
+    
+    Cookie[] cookies = request.getCookies();
+    Cookie cookie = null;
+    
+    if(cookies != null) {
+      for(int i=0; i<cookies.length; i++) {
+        cookie = cookies[i];
+        
+        if(cookie.getName().equals("chk_id")) {
+          chk_id = cookie.getValue();
+        }else if(cookie.getName().equals("cookie_id_val")) {
+          cookie_id_val = cookie.getValue();
+        }
+      }
+    }
+
+    request.setAttribute("chk_id", chk_id);
+    request.setAttribute("cookie_id_val", cookie_id_val);
     
     return "/dlogin";
   }
   
   @PostMapping("/dlogin")
-  public String dlogin(@RequestParam Map map, HttpSession session, Model model) {
+  public String dlogin(@RequestParam Map map, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
     int flag = dservice.dlogin(map);
     
     if(flag > 0) {
@@ -116,17 +138,39 @@ public class DesignerController {
       session.setAttribute("validation", ddto.isValidation());
 
       model.addAttribute("ddto", ddto);
+      
+      Cookie cookie = null;
+      String chk_id = request.getParameter("chk_id");
+      
+      if(chk_id != null) {
+        
+        cookie = new Cookie("chk_id",chk_id);
+        cookie.setMaxAge(60*60*24*90);
+        response.addCookie(cookie);
+        
+        cookie = new Cookie("cookie_id_val",(String) map.get("did"));
+        cookie.setMaxAge(60*60*24*90);
+        response.addCookie(cookie);
+        
+      }else {
+        
+        cookie = new Cookie("chk_id","");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        
+        cookie = new Cookie("cookie_id_val","");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        
+      }
+      
       return "redirect:/";
     }else {
       return "error";
     }
   }
   
-  @GetMapping("/logout")
-  public String logout(HttpSession session) {
-    session.invalidate();
-    return "redirect:/";
-  }
+ 
   
   @GetMapping("/dmypage")
   public String designer_mypage() {

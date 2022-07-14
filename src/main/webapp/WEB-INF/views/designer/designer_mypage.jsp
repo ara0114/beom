@@ -62,15 +62,13 @@
 
 				<section class="vh-100">
 					<div class="container py-5 h-150">
-
-
-						<div>
+						<div style = "margin-left : 9%; margin-right : 20%;">
 							<label style="font-weight: 700;">자기소개</label>
 							<p style="font-size: large; color: cadetblue">미용사(일반) 자격증 보유
 								-레이어드컷 / 단발 레이어드컷 / 태슬컷 -레이어드컷 / 단발 레이어드컷 / 태슬컷</p>
-							<div style="float: right">
-								<button class="btn btn-outline-success" style = "border : 1px solid">수정</button>
-							</div>
+							
+							<button class="btn btn-outline-success" style = "border : 1px solid">수정</button>
+							
 						</div>
 						<div
 							class="row d-flex justify-content-center align-items-center h-100">
@@ -148,7 +146,7 @@
 					<div class="container py-5 h-150">
 						<div
 							class="row d-flex justify-content-center align-items-center h-100">
-							<div class="col col-lg-9 col-xl-12">
+							<div class="col col-lg-10 col-xl-9">
 								<p style="font-weight: 700;">예약 신청 내역</p>
 								<div class="card rounded-3">
 									<div class="card-body p-1">

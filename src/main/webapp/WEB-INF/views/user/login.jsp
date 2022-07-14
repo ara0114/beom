@@ -59,6 +59,7 @@
             position: relative;
             padding: 0 18px;
         }
+
         .login > div ul li ~ li:after {
             content:"";
             position: absolute;
@@ -75,39 +76,24 @@
             color: #111;
         }
     </style>
-    	
-    <script>
-    function inCheck(f) {
-		if (f.did.value.length == 0) {
-			alert("아이디를 입력하세요");
-			f.did.focus();
-			return false;
-		}
-		if (f.dpw.value.length == 0) {
-			alert("비밀번호를 입력하세요");
-			f.dpw.focus();
-			return false;
-		}
-    }
-    </script>
     <script>
     	function moveForm(){
-    		alert("고객 로그인페이지로 이동합니다.");
-    		location.href="/user/login";
+    		alert("디자이너 로그인페이지로 이동합니다.");
+    		location.href="/dlogin";
     	}
     </script>
 </head>
 <body>
-    <form class="login" action = "/dlogin" method = "post" onsubmit="return inCheck(this)">
-        <h2>디자이너 로그인</h2>
+    <form class="login" action="/user/login" method="post">
+        <h2>로그인</h2>
         <ul>
             <div>
-            	<input type="radio" name="selectuser" onclick="javascript:moveForm()"><label>고객</label>
-                <input type="radio" name="selectuser" checked><label>디자이너</label>
+            	<input type="radio" name="selectuser" checked><label>고객</label>
+                <input type="radio" name="selectuser" onclick="javascript:moveForm()"><label>디자이너</label>
             </div>
-            <li><input type="text" id="did" name="did" placeholder="아이디" 
+            <li><input type="text" id="uid" name="uid" placeholder="아이디" 
             		   required="required" value="${cookie_id_val }"></li>
-            <li><input type="password" id="dpw" name="dpw" placeholder="비밀번호" required="required"></li>
+            <li><input type="password" id="upw" name="upw" placeholder="비밀번호" required="required"></li>
             <div>
             	<input type="checkbox" name="chk_id" id="chk_id" value="Y" checked="checked">
             	<label for="chk_id">아이디 저장</label>
