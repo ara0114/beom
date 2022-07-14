@@ -2,11 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
  <c:choose>
-    <c:when test="${not empty sessionScope.id && sessionScope.grade == 'A'}">
+    <c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A'}">
         <c:set var="str">관리자 페이지 입니다.</c:set>
     </c:when>
-    <c:when test="${not empty sessionScope.id && sessionScope.grade != 'A'}">
-        <c:set var='str'>안녕하세요  ${sessionScope.id } 님!</c:set>
+    <c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
+        <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>
+    </c:when>
+    <c:when test="${not empty sessionScope.did }">
+        <c:set var='str'>안녕하세요  ${sessionScope.did} 님!</c:set>
     </c:when>
     <c:otherwise>
         <c:set var="str">기본 페이지 입니다.</c:set>
@@ -28,7 +31,7 @@
   <style type="text/css">
   #grade{
   
-   color :white;
+   color :black;
   }  
   </style>
 
@@ -46,15 +49,25 @@
                         <li><a href="#">TeamBUM</a></li>
                         <li><a href="#">Story</a></li>
                         <li><a href="#">Developer</a></li>
-                        <li><a href="#">Support</a></li>
+                        <li><a href="${root }/notice/list">Notice</a></li>
                     </ul>
                 </div>
 
                 <div class="sign-group float--right">
+                <li><a id="grade">${str }</a></li>
+                <c:choose>
+                <c:when test="${empty sessionScope.uid}">
                     <div class="btn-group">
-                        <a href="#" class="btn sign-in">Sign in</a>
-                        <a href="#" class="btn sign-up">Sign up</a>
+                        <a href="${root }/user/login" class="btn sign-in">Sign in</a>
+                        <a href="${root }/user/agree" class="btn sign-up">Sign up</a>
                     </div>
+                </c:when>
+                <c:when test="${not empty sessionScope.uid}">
+                	<div class="btn-group">
+                	<a href="${root }/logout" class="btn sign-in">Logout</a></li>
+                	</div>
+                </c:when>
+                </c:choose>
                     <form id="search-form" action="" method="POST">
                         <input type="text" id="search" class="search-text" placeholder="search designer">
                         <button value="Submit" id="search-btn">Find</button>
