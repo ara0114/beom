@@ -8,9 +8,9 @@
     <c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
         <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>
     </c:when>
-    <c:when test="${not empty sessionScope.did }">
-        <c:set var='str'>안녕하세요  ${sessionScope.did} 님!</c:set>
-    </c:when>
+    <c:when test="${not empty sessionScope.dname}">
+		<c:set var='str'>안녕하세요  ${sessionScope.dname } 디자이너 님!</c:set>
+	</c:when>
     <c:otherwise>
         <c:set var="str">기본 페이지 입니다.</c:set>
     </c:otherwise>
@@ -52,7 +52,7 @@
                         <li><a href="#">Developer</a></li>
                         <li><a href="#">Support</a></li> 
                         									-->
-                        <li><a href="#">Home</a></li>									
+                        <li><a href="${root}/">Home</a></li>									
                         <li><a href="${root }/notice/list">Notice</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
@@ -61,13 +61,13 @@
                 <div class="sign-group float--right">
                 <li><a id="grade">${str }</a></li>
                 <c:choose>
-                <c:when test="${empty sessionScope.uid}"> <!-- 로그인안했을때 -->
+                <c:when test="${empty sessionScope.uid && empty sessionScope.did}"> <!-- 로그인안했을때 -->
                     <div class="btn-group">
                         <a href="${root }/user/login" class="btn sign-in">Sign in</a>
                         <a href="${root }/user/agree" class="btn sign-up">Sign up</a>
                     </div>
                 </c:when>
-                <c:when test="${not empty sessionScope.uid}"> <!-- 로그인했을때 -->
+                <c:when test="${not empty sessionScope.uid || not empty sessionScope.did}"> <!-- 로그인했을때 -->
                 	<div class="btn-group">
                 	<a href="${root }/logout" class="btn sign-in">Logout</a></li>
                 	</div>
@@ -86,6 +86,9 @@
                     	<c:when test="${not empty sessionScope.uid }"> <!-- 고객 로그인했을때 -->
                     		<li><a href="#">Mypage</a></li>
                     		<li><a href="#">Reservation</a></li>
+                    	</c:when>
+                    	<c:when test="${not empty sessionScope.did }"> <!-- 고객(디자이너) 로그인했을때 -->
+                    		<li><a href="#">Mypage</a></li>
                     	</c:when>
                     </c:choose>             
                     </ul>
