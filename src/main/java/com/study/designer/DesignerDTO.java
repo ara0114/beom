@@ -16,5 +16,6 @@ public class DesignerDTO {
   private String dfilename;
   private boolean validation;
   private int likecnt;
+  private String introduction;
   
 }

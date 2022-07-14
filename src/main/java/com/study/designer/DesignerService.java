@@ -18,4 +18,6 @@ public interface DesignerService {
 
   DesignerDTO dread(String did);
 
+  DesignerDTO dmypage(String did);
+
 }

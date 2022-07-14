@@ -43,7 +43,7 @@
 
                 <div class="menu-group float--left">
                     <div class="logo">
-                        <a href="#">GitHub</a>
+                        <a href="/">GitHub</a>
                     </div>
                     <ul class="main-menu">
                         <li><a href="#">TeamBEOM</a></li>
@@ -88,7 +88,7 @@
                     		<li><a href="#">Reservation</a></li>
                     	</c:when>
                     	<c:when test="${not empty sessionScope.did }"> <!-- 고객 로그인했을때 -->
-                    		<li><a href="#">Mypage</a></li>
+                    		<li><a href="/dmypage">Mypage</a></li>
                     	</c:when>
                     </c:choose>             
                     </ul>

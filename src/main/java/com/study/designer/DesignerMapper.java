@@ -18,4 +18,6 @@ public interface DesignerMapper {
 
   DesignerDTO dread(String did);
 
+  DesignerDTO dmypage(String did);
+
 }

@@ -173,7 +173,11 @@ public class DesignerController {
  
   
   @GetMapping("/dmypage")
-  public String designer_mypage() {
+  public String designer_mypage(HttpSession session, Model model) {
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    
+    System.out.println(ddto.getDfilename());
+    model.addAttribute("ddto", ddto);
     return "/dmypage";
   }
 }

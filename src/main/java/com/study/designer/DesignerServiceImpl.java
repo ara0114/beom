@@ -54,4 +54,10 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.dread(did);
   }
 
+  @Override
+  public DesignerDTO dmypage(String did) {
+    // TODO Auto-generated method stub
+    return mapper.dmypage(did);
+  }
+
 }
