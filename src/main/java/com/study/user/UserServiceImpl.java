@@ -40,5 +40,11 @@ public class UserServiceImpl implements UserService {
     // TODO Auto-generated method stub
     return mapper.getGrade(id);
   }
+
+  @Override
+  public String findId(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.findId(map);
+  }
   
 }

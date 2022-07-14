@@ -47,7 +47,34 @@
         div {
             padding-bottom: 10px;
         }
-    </style>    
+    </style>
+    <script>
+	  	$(function(){
+	  		$("#okbtn").click(function(){
+	  			
+	  			if($("#uname").val()==''){
+	  				alert("이름을 입력하세요");
+	  				$("#uname").focus();
+	  				return;	
+	  			}else if($("#uemail").val()==""){
+	  				alert("이메일을 입력하세요");
+	  				$("#uemail").focus();
+	  				return;
+	  			}
+
+	  			findid($("#uname").val(),$("#uemail").val())
+	  				//.then(text => $("#msg").text(text))
+	  				.then(text => alert(text))
+	  				.catch(console.log);
+	  		});
+	  	});
+	  	
+	   function findid(uname,uemail){
+		  return fetch(`/user/findid?uname=\${uname}&uemail=\${uemail}`) 
+		  			.then(response => response.text())
+		  			.catch(console.log);
+	   }    	
+    </script>
 </head>
 <body>
     <form class="find">
@@ -58,12 +85,12 @@
         <div>
             <input type="email" id="uemail" class="uemail" name="uemail" placeholder="이메일">
         </div>
+        <!--  <div>
+            <p id="msg"></p>
+        </div> -->
         <div>
-            <span id="msg"></span>
-        </div>
-        <div>
-            <button onclick="">확인</button><br>
-            <button onclick="">취소</button><br>
+            <button id="okbtn">확인</button><br>
+            <button onclick="history.back()">취소</button><br>
             <button onclick="location.href='#'">PW찾기</button>
         </div>
     </form>

@@ -150,4 +150,21 @@ public class UserController {
       }
     }
     
+    @GetMapping("/user/findidForm")
+    public String findid() {
+      return "/user/findidForm";
+    }
+    @GetMapping("/user/findid")
+    @ResponseBody
+    public String findid(@RequestParam Map<String,String> map) {
+      
+      String uid = service.findId(map);
+      
+      if(uid != null && !uid.equals("")) {
+        return "해당 정보와 일치하는 아이디는 "+ uid + "입니다.";
+      }else {
+        return "해당 정보로 등록된 아이디는 존재하지 않습니다.";
+      }
+      
+    }
 }
