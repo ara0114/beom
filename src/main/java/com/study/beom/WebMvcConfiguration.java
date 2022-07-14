@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.study.review.UploadReview;
+
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
   /*
@@ -20,9 +22,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         // JSP 인식되는 경로: http://localhost:8000/contents/storage";
 //        registry.addResourceHandler("/contents/storage/**")
 //        .addResourceLocations("file:///" + UploadCon.getUploadDir());
-//        
-//        registry.addResourceHandler("/member/storage/**")
-//                 .addResourceLocations("file:///" + UploadMem.getUploadDir());
+        
+        registry.addResourceHandler("/hairReview/storage/**")
+                 .addResourceLocations("file:///" + UploadReview.getUploadDir());
     }
  
 }

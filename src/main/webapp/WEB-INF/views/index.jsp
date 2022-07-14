@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
- 
 <!DOCTYPE html> 
 <html> 
 <head>
@@ -18,7 +17,6 @@ img {
 </head>
 <body> 
 	<div class="container">
-	<p><a href="/contents/mainlist/1" >SHOP NOW</a></p>
 	<img src="/images/tree.jpg" alt="Tree">   
 	</div>
 </body> 
