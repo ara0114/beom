@@ -90,22 +90,33 @@
 		}
     }
     </script>
+    <script>
+    	function moveForm(){
+    		alert("고객 로그인페이지로 이동합니다.");
+    		location.href="/user/login";
+    	}
+    </script>
 </head>
 <body>
     <form class="login" action = "/dlogin" method = "post" onsubmit="return inCheck(this)">
         <h2>디자이너 로그인</h2>
         <ul>
-            <div><input type="radio" name="selectuser" value="1" onclick = ""><label>고객</label>
-                <input type="radio" name="selectuser" value="2" checked><label>디자이너</label></div>
-            <li><input type="text" name = "did" placeholder="아이디"></li>
-            <li><input type="password" name = "dpw" placeholder="비밀번호"></li>
-            <div><input type="checkbox" id="chk_id"><label for="chk_id">아이디저장</label></div>
-            <li><button>로그인</button></li>
-            
+            <div>
+            	<input type="radio" name="selectuser" onclick="javascript:moveForm()"><label>고객</label>
+                <input type="radio" name="selectuser" checked><label>디자이너</label>
+            </div>
+            <li><input type="text" id="did" name="did" placeholder="아이디" 
+            		   required="required" value="${cookie_id_val }"></li>
+            <li><input type="password" id="dpw" name="dpw" placeholder="비밀번호" required="required"></li>
+            <div>
+            	<input type="checkbox" name="chk_id" id="chk_id" value="Y" checked="checked">
+            	<label for="chk_id">아이디 저장</label>
+            </div>
+            <li><button type="submit">로그인</button></li>         
         </ul>
         <div>
             <ul>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="/user/agree">회원가입</a></li>
                 <li><a href="#">아이디찾기</a></li>
                 <li><a href="#">비밀번호찾기</a></li>
             </ul>        

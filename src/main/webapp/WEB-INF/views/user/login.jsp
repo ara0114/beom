@@ -79,7 +79,7 @@
     <script>
     	function moveForm(){
     		alert("디자이너 로그인페이지로 이동합니다.");
-    		//location.href="/ooo/ooo";
+    		location.href="/dlogin";
     	}
     </script>
 </head>
@@ -102,7 +102,7 @@
         </ul>
         <div>
             <ul>
-                <li><a href="/user/userchoice">회원가입</a></li>
+                <li><a href="/user/agree">회원가입</a></li>
                 <li><a href="#">아이디찾기</a></li>
                 <li><a href="#">비밀번호찾기</a></li>
             </ul>        

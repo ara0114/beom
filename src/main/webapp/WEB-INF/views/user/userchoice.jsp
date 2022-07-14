@@ -37,7 +37,7 @@
 	<section class="userchoice">
 	    <h2>가입유형선택</h2>
 	    <button onclick="location.href='/user/joinForm'">고객으로 회원가입</button><br>
-	    <button onclick="location.href='#'">디자이너로 회원가입</button>
+	    <button onclick="location.href='/dcreate'">디자이너로 회원가입</button>
     </section>
 </body>
 </html>

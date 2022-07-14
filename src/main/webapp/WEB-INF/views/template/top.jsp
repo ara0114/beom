@@ -6,7 +6,10 @@
         <c:set var="str">관리자 페이지 입니다.</c:set>
     </c:when>
     <c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
-        <c:set var='str'>안녕하세요  ${sessionScope.uid } 님!</c:set>
+        <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>
+    </c:when>
+    <c:when test="${not empty sessionScope.did }">
+        <c:set var='str'>안녕하세요  ${sessionScope.did} 님!</c:set>
     </c:when>
     <c:otherwise>
         <c:set var="str">기본 페이지 입니다.</c:set>
@@ -43,23 +46,28 @@
                         <a href="#">GitHub</a>
                     </div>
                     <ul class="main-menu">
-                        <li><a href="#">TeamBUM</a></li>
-                        <li><a href="#">Story</a></li>
+                        <li><a href="#">TeamBEOM</a></li>
+                  <!-- 드롭다운 예정  
+                  		<li><a href="#">Story</a></li>
                         <li><a href="#">Developer</a></li>
-                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Support</a></li> 
+                        									-->
+                        <li><a href="#">Home</a></li>									
+                        <li><a href="${root }/notice/list">Notice</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
 
                 <div class="sign-group float--right">
                 <li><a id="grade">${str }</a></li>
                 <c:choose>
-                <c:when test="${empty sessionScope.uid }">
+                <c:when test="${empty sessionScope.uid}"> <!-- 로그인안했을때 -->
                     <div class="btn-group">
                         <a href="${root }/user/login" class="btn sign-in">Sign in</a>
                         <a href="${root }/user/agree" class="btn sign-up">Sign up</a>
                     </div>
                 </c:when>
-                <c:when test="${not empty sessionScope.uid}">
+                <c:when test="${not empty sessionScope.uid}"> <!-- 로그인했을때 -->
                 	<div class="btn-group">
                 	<a href="${root }/logout" class="btn sign-in">Logout</a></li>
                 	</div>
@@ -70,9 +78,16 @@
                         <button value="Submit" id="search-btn">Find</button>
                     </form>
                     <ul class="sub-menu">
-                        <li><a href="#">Menu</a></li>
-                        <li><a href="#">Designer</a></li>
-                        <li><a href="#">FAQ</a></li>
+                    <c:choose>
+                    	<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }"> <!-- 관리자 로그인했을때 -->
+                    		<li><a href="#">고객 목록</a></li>
+                    		<li><a href="#">디자이너 목록</a></li>
+                    	</c:when>
+                    	<c:when test="${not empty sessionScope.uid }"> <!-- 고객 로그인했을때 -->
+                    		<li><a href="#">Mypage</a></li>
+                    		<li><a href="#">Reservation</a></li>
+                    	</c:when>
+                    </c:choose>             
                     </ul>
                 </div>
                 

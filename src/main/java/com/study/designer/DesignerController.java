@@ -79,28 +79,49 @@ public class DesignerController {
   
   @GetMapping("/dlogin")
   public String dlogin(HttpServletRequest request) {
-//    /*----쿠키설정 내용시작----------------------------*/
-//    String c_id = ""; // ID 저장 여부를 저장하는 변수, Y
-//    String c_id_val = ""; // ID 값
+//  /*----쿠키설정 내용시작----------------------------*/
+//  String c_id = ""; // ID 저장 여부를 저장하는 변수, Y
+//  String c_id_val = ""; // ID 값
 //
-//    Cookie[] cookies = request.getCookies();
-//    Cookie cookie = null;
+//  Cookie[] cookies = request.getCookies();
+//  Cookie cookie = null;
 //
-//    if (cookies != null) {
-//      for (int i = 0; i < cookies.length; i++) {
-//        cookie = cookies[i];
+//  if (cookies != null) {
+//    for (int i = 0; i < cookies.length; i++) {
+//      cookie = cookies[i];
 //
-//        if (cookie.getName().equals("c_id")) {
-//          c_id = cookie.getValue(); // Y
-//        } else if (cookie.getName().equals("c_id_val")) {
-//          c_id_val = cookie.getValue(); // user1...
-//        }
+//      if (cookie.getName().equals("c_id")) {
+//        c_id = cookie.getValue(); // Y
+//      } else if (cookie.getName().equals("c_id_val")) {
+//        c_id_val = cookie.getValue(); // user1...
 //      }
 //    }
-//    /*----쿠키설정 내용 끝----------------------------*/
+//  }
+//  /*----쿠키설정 내용 끝----------------------------*/
 //
-//    request.setAttribute("c_id", c_id);
-//    request.setAttribute("c_id_val", c_id_val);
+//  request.setAttribute("c_id", c_id);
+//  request.setAttribute("c_id_val", c_id_val);
+    
+    String chk_id = "";
+    String cookie_id_val = "";
+    
+    Cookie[] cookies = request.getCookies();
+    Cookie cookie = null;
+    
+    if(cookies != null) {
+      for(int i=0; i<cookies.length; i++) {
+        cookie = cookies[i];
+        
+        if(cookie.getName().equals("chk_id")) {
+          chk_id = cookie.getValue();
+        }else if(cookie.getName().equals("cookie_id_val")) {
+          cookie_id_val = cookie.getValue();
+        }
+      }
+    }
+
+    request.setAttribute("chk_id", chk_id);
+    request.setAttribute("cookie_id_val", cookie_id_val);
     
     return "/dlogin";
   }
