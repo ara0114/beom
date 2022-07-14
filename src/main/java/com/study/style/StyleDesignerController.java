@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class StyleDesigner {
+public class StyleDesignerController {
 
   @Autowired
   @Qualifier("com.study.style.StyleServiceImpl")

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.reservation.ReservationMapper">
+	
+	<resultMap type="com.study.reservation.HairmenuDTO" id="hairmenuInfo">
+		<result property="menu" column="menu"/>
+		<result property="price" column="price"/>
+		<result property="did" column="did"/>
+		<collection property="category" resultMap="categoryInfo"/>
+	</resultMap>
+	
+	<resultMap type="com.study.reservation.CategoryDTO" id="categoryInfo">
+		<result property="cateno" column="cateno"/>
+		<result property="catename" column="catename"/>
+	</resultMap>
+
+	<select id="list" parameterType="String"
+		resultMap="hairmenuInfo">
+		
+		SELECT
+		h.menu,
+		h.price,
+		h.did,
+		c.cateno,
+		c.catename
+		FROM hairmenu h LEFT JOIN category c 
+		ON h.cateno = c.cateno where h.did = #{id}
+
+	</select>
+
+
+</mapper>
