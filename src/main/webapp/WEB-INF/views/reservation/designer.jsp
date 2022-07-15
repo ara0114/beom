@@ -35,7 +35,7 @@
 						</c:forEach>
 					</select>
 				</div>
-	${fn:length(menuPriceList) }
+	
 
 
 				<div class="ui-widget">
