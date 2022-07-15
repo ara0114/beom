@@ -30,13 +30,12 @@
 					<label for="category">시술 선택</label> <select id="category"
 						name="category">
 						<option>시술 선택</option>
-						<option value="cut">${list[0].category[0].catename}</option>
-						<option value="perm">${list[1].category[0].catename}</option>
-						<option value="color">${list[2].category[0].catename}</option>
-						<option value="dry">${list[6].category[0].catename}</option>
+						<c:forEach var="clist" items="${cateNameList}">
+						<option value="cut"> ${clist.catename}</option>
+						</c:forEach>
 					</select>
 				</div>
-
+	${fn:length(menuPriceList) }
 
 
 				<div class="ui-widget">

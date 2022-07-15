@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="menu" column="menu"/>
 		<result property="price" column="price"/>
 		<result property="did" column="did"/>
+		<result property="hgender" column="hgender"/>
 		<collection property="category" resultMap="categoryInfo"/>
 	</resultMap>
 	
 	<resultMap type="com.study.reservation.CategoryDTO" id="categoryInfo">
-		<result property="cateno" column="cateno"/>
 		<result property="catename" column="catename"/>
 	</resultMap>
 
@@ -25,11 +25,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		h.menu,
 		h.price,
 		h.did,
-		c.cateno,
+		h.hgender,
 		c.catename
 		FROM hairmenu h LEFT JOIN category c 
 		ON h.cateno = c.cateno where h.did = #{id}
 
+	</select>
+	
+	<select id="catenameList" parameterType="String" resultType="com.study.reservation.CategoryDTO">
+		SELECT c.catename 
+		FROM hairmenu h LEFT JOIN category c 
+		ON h.cateno = c.cateno
+		WHERE h.did = #{id}
+	</select>
+	
+	<select id="menuPriceList" parameterType="String" resultType="com.study.reservation.HairmenuDTO">
+		SELECT menu,price,hgender
+		FROM hairmenu 
+		WHERE did = #{id}
+		 
 	</select>
 
 

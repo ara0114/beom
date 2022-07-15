@@ -10,6 +10,7 @@ public class HairmenuDTO {
   private int price;
   private String menu;
   private String did;
+  private String hgender;
   private int cateno;
   
   private List<CategoryDTO> category;
