@@ -6,6 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.study.reservation.ReservationMapper">
 	
+	
+	
+	<select id="menuInfo" parameterType="Map" resultType="com.study.reservation.HairmenuDTO">
+		SELECT
+		h.menu,
+		h.price
+		FROM hairmenu h LEFT JOIN category c
+		ON h.cateno = c.cateno
+		WHERE h.did = #{id} and c.catename = #{catename} and h.hgender = #{hgender}
+		
+		
+	</select>
+	
 	<resultMap type="com.study.reservation.HairmenuDTO" id="hairmenuInfo">
 		<result property="menu" column="menu"/>
 		<result property="price" column="price"/>
@@ -45,6 +58,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE did = #{id}
 		 
 	</select>
+	
+	
+	
 
 
 </mapper>

@@ -1,8 +1,10 @@
 package com.study.beom;
  
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
@@ -11,6 +13,12 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
   - Spring Boot가 OS의 특정 폴더에 접근 가능하도록 설정
    - list, read view 페이지 에서 볼수 없음: 보안 문제로 인하여 이미지에 접근 할 수 없음
    */
+    @Bean(name="/reservation/designer")
+    MappingJackson2JsonView jsonView() {
+      
+      return new MappingJackson2JsonView();
+    }
+  
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Windows: path = "C:/aistudy/deploy/shopping/contents/storage";

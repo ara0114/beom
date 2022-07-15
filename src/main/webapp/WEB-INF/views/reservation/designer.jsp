@@ -12,10 +12,6 @@
 <link rel="stylesheet" href="/css/reservationD.css">
 </head>
 <body>
-	<!--<c:forEach var="dto" items="${list}" varStatus="index">
-	${list[index.index].category[index.index].cateno}
-	</c:forEach>-->
-
 	<div class="container">
 			<form>
 				<!-- 진행율 -->
@@ -31,76 +27,30 @@
 						name="category">
 						<option>시술 선택</option>
 						<c:forEach var="clist" items="${cateNameList}">
-						<option value="cut"> ${clist.catename}</option>
+						<option value="${clist.catename}"> ${clist.catename}</option>
 						</c:forEach>
 					</select>
 				</div>
-	
 
 
 				<div class="ui-widget">
-					<label for="gender">성별 선택</label> <select id="gender" name="gender">
+					<label for="gender">성별 선택</label> 
+					<select id="gender" name="gender">
 						<option>성별 선택</option>
-						<option value="woman">여성</option>
-						<option value="man">남성</option>
+						<option value="여자">여성</option>
+						<option value="남자">남성</option>
 					</select>
 				</div>
 				<div id="service_price">
 					<h4>시술 가격</h4>
 				</div>
-				<!-- 커트 선택 시 div -->
+				
 				<div class="ui-widget">
-					<select name="woman_cut_price" id="price"
-						class="woman_cut_price" name="price">
+					<select id="price" name="price">
 						<option>시술 선택</option>
-						<option value="woman_cut">${list[3].menu }: ${list[3].price}</option>
-					</select> 
-					
-					<select name="man_cut_price" id="price"
-						class="man_cut_price" name="price">
-						<option>시술 선택</option>
-						<option value="man_cut">${list[0].menu} : ${list[0].price}</option>
 					</select>
 				</div>
-				<!-- 펌 선택 시 div -->
-				<div class="ui-widget">
-					<select name="woman_perm_price" id="price"
-						class="woman_perm_price" name="price">
-						<option>시술 선택</option>
-						<option value="default_perm">${list[4].menu} : ${list[4].price}</option>
-					</select> <select name="man_perm_price" id="price"
-						class="man_perm_price" name="price">
-						<option>시술 선택</option>
-						<option value="default_perm">${list[1].menu} : ${list[1].price}</option>
-					</select>
-				</div>
-				<!-- 염색 선택 시 div -->
-				<div class="ui-widget">
-					<select name="woman_color_price" id="price"
-						class="woman_color_price" name="price">
-						<option>시술 선택</option>
-						<option value="default_color">${list[5].menu }: ${list[5].price}</option>
-					</select> <select name="man_color_price" id="price"
-						class="man_color_price" name="price">
-						<option>시술 선택</option>
-						<option value="default_color">${list[2].menu} : ${list[2].price}</option>
-					</select>
-				</div>
-				<!-- 드라이 선택 시 div -->
-				<div class="ui-widget">
-					<select name="woman_dry_price" id="price"
-						class="woman_dry_price" name="price">
-						<option>시술 선택</option>
-						<option value="default_dry">${list[6].menu} : ${list[6].price}</option>
-					</select> 
-					<select name="man_dry_price" id="price"
-						class="man_dry_price" name="price">
-						<option>시술 선택</option>
-						<option value="hot_dry">${list[7].menu} : ${list[7].price}</option>
-					</select>
-				</div>
-
-
+				
 	<div class="ui-widget">
 		<label for="time" id="time_label">예약시간</label> 
 		<input type="time"	autocomplete="off" id="time" name="time">
@@ -120,6 +70,8 @@
 		class="ui-button ui-corner-all ui-widget">뒤로가기</button>
 	</form>
 	</div>
+
+
 
 
 	<script
