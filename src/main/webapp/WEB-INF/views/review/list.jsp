@@ -56,7 +56,9 @@
 					name="word" value="${word}">
 			</div>
 			<button type="submit" class="btn btn-default">검색</button>
+			<c:if test="${not empty sessionScope.uid}">
 			<button type="button" class="btn btn-default" id="reviewCreate">등록</button>
+			</c:if>
 		</form>
 		<hr>
 
@@ -65,7 +67,7 @@
 				<div class="row">
 					<c:if test="${dto.rfilename != null }">
 						<div class="review-img">
-							<img class='chat'
+							<img class='chat' data-rno="${dto.rno }"
 								src="/hairReview/storage/${dto.rfilename}">
 						</div>
 					</c:if>
@@ -74,13 +76,18 @@
 							${dto.uid } &nbsp &nbsp <i class="fa-solid fa-star"></i> <i
 								class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
 								class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-							${dto.star }
+							${dto.star } &nbsp &nbsp
+							<div style = "float: right;">
+			                  ${dto.rdate }
+			                </div>
 						</div>
+						
 
 						<h3>${dto.rtitle }</h3>
-							<p class='chat'>${dto.rcontent }</p>
+							<p data-rno="${dto.rno }" class='chat'>${dto.rcontent }</p>
 					</div>
 				</div>
+
 				<!-- row end -->
 				<hr>
 			</c:forEach>
@@ -117,11 +124,24 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label>아이디</label>
-						<input class="form-control" name='uid'  disabled>
+						<input class="form-control" name='uid' id="uid" disabled>
+						<label>담당디자이너</label>
+						<input class="form-control" name='did' id="did">  <!-- 나중에 disabled -->
+						<label>별점</label>
+						<div id="star">
+						별5개
+						</div>
+						<label class="modal-img">이미지 </label>
+						<div class="review-img">
+							<img class='modal-img' src="" name="rfilename">
+							<input type="file" name="addfile">
+						</div>
 						<label>제목</label>
-						<input class="form-control" name='title'>
+						<input class="form-control" name='rtitle' id="rtitle">
 						<label>내용</label>
-						<textarea cols="10" rows="10" class="form-control" name='rcontent' id="rcontent"></textarea>
+						<textarea cols="10" rows="10" class="form-control" name='rcontent' id="rcontent" ></textarea>
+						<!--  <label class="rdate" id="rdate">작성날짜</label>
+						<input class="form-control" name='rdate' id="rdate" disabled>-->
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -136,9 +156,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	<script>
-	let uid = "${sessionScope.uid}";
-	</script>
+    <script> let uid = '${sessionScope.uid}'</script>
 	<script src="/js/reviewProducer.js"></script>
 	<script src="/js/reviewConsumer.js"></script>
 </body>

@@ -6,6 +6,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.study.review.ReviewMapper">
 
+	<delete id="delete" parameterType="int">
+		delete FROM review
+		WHERE rno = #{rno}
+	</delete>
+
+	<update id="update" parameterType="com.study.review.ReviewDTO">
+		update review
+		set rtitle = #{rtitle},
+			rcontent = #{rcontent}
+			<!--  rfilename = #{rfilename},
+			star = #{star}-->
+		where rno = #{rno}
+	</update>
+
+	<insert id="create" parameterType="com.study.review.ReviewDTO">
+		insert into review(uid, rtitle, rcontent, rdate, rno,  rfilename, did)
+    	values(#{uid},#{rtitle}, #{rcontent}, sysdate(), #{rno}, #{rfilename}, #{did})
+	</insert>
+
 	<select id="read" parameterType="int" resultType="com.study.review.ReviewDTO">
 	    select * from review
 	    where rno = #{rno}
@@ -13,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="list" parameterType="Map"
 		resultType="com.study.review.ReviewDTO">
-		select rtitle, rcontent, rdate, uid, star, rfilename
+		select rno, rtitle, rcontent, rdate, uid, star, rfilename, did
 		from review
 		<where>
 			<choose>

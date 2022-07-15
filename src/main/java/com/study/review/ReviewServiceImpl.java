@@ -29,5 +29,23 @@ public class ReviewServiceImpl implements ReviewService {
     return mapper.read(rno);
   }
 
+  @Override
+  public int create(ReviewDTO vo) {
+    // TODO Auto-generated method stub
+    return mapper.create(vo);
+  }
+
+  @Override
+  public int update(ReviewDTO vo) {
+    // TODO Auto-generated method stub
+    return mapper.update(vo);
+  }
+
+  @Override
+  public int delete(int rno) {
+    // TODO Auto-generated method stub
+    return mapper.delete(rno);
+  }
+
 
 }
