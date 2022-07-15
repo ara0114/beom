@@ -4,6 +4,12 @@
 	<c:when test="${not empty sessionScope.did}">
 		<c:set var='str'>안녕하세요  ${sessionScope.did } 님!</c:set>
 	</c:when>
+	<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A'}">
+        <c:set var="str">안녕하세요 관리자님!</c:set>
+    </c:when>
+	<c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
+        <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>
+    </c:when>
 	<c:otherwise>
 		<c:set var="str">기본 페이지 입니다.</c:set>
 	</c:otherwise>

@@ -3,7 +3,7 @@
 <c:set var="root" value="${pageContext.request.contextPath }"/>
  <c:choose>
     <c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A'}">
-        <c:set var="str">관리자 페이지 입니다.</c:set>
+        <c:set var="str">안녕하세요 관리자님!</c:set>
     </c:when>
     <c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
         <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>

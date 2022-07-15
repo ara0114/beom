@@ -16,4 +16,6 @@ public interface UserService {
 
   String findId(Map<String, String> map);
 
+  String findPw(Map<String, String> map);
+
 }

@@ -150,11 +150,11 @@ public class UserController {
       }
     }
     
-    @GetMapping("/user/findidForm")
-    public String findid() {
-      return "/user/findidForm";
-    }
     @GetMapping("/user/findid")
+    public String findid() {
+      return "/user/findid";
+    }
+    @GetMapping("/user/idfind")
     @ResponseBody
     public String findid(@RequestParam Map<String,String> map) {
       
@@ -162,9 +162,27 @@ public class UserController {
       
       if(uid != null && !uid.equals("")) {
         return "해당 정보와 일치하는 아이디는 "+ uid + "입니다.";
+        
       }else {
         return "해당 정보로 등록된 아이디는 존재하지 않습니다.";
       }
+    }
+    
+    @GetMapping("/user/findpw")
+    public String findpw() {
+      return "/user/findpw";
+    }
+    @GetMapping("/user/pwfind")
+    @ResponseBody
+    public String findpw(@RequestParam Map<String,String> map) {
       
+      String upw = service.findPw(map);
+      
+      if(upw != null && !upw.equals("")) {
+        return "해당 정보와 일치하는 비밀번호는 "+ upw + "입니다.";
+        
+      }else {
+        return "해당 정보로 찾는 비밀번호는 존재하지 않습니다.";
+      }
     }
 }
