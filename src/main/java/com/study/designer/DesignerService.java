@@ -20,4 +20,12 @@ public interface DesignerService {
 
   DesignerDTO dmypage(String did);
 
+  int intro_update(Map map);
+
+  LicenseDTO license(String did);
+
+  int dupdate(DesignerDTO ddto);
+
+  //Object list(String did);
+
 }

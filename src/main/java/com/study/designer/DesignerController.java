@@ -80,29 +80,6 @@ public class DesignerController {
   
   @GetMapping("/dlogin")
   public String dlogin(HttpServletRequest request) {
-//  /*----쿠키설정 내용시작----------------------------*/
-//  String c_id = ""; // ID 저장 여부를 저장하는 변수, Y
-//  String c_id_val = ""; // ID 값
-//
-//  Cookie[] cookies = request.getCookies();
-//  Cookie cookie = null;
-//
-//  if (cookies != null) {
-//    for (int i = 0; i < cookies.length; i++) {
-//      cookie = cookies[i];
-//
-//      if (cookie.getName().equals("c_id")) {
-//        c_id = cookie.getValue(); // Y
-//      } else if (cookie.getName().equals("c_id_val")) {
-//        c_id_val = cookie.getValue(); // user1...
-//      }
-//    }
-//  }
-//  /*----쿠키설정 내용 끝----------------------------*/
-//
-//  request.setAttribute("c_id", c_id);
-//  request.setAttribute("c_id_val", c_id_val);
-    
     String chk_id = "";
     String cookie_id_val = "";
     
@@ -176,8 +153,88 @@ public class DesignerController {
   public String designer_mypage(HttpSession session, Model model) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
     
+    
     System.out.println(ddto.getDfilename());
     model.addAttribute("ddto", ddto);
+    //model.addAttribute("list",dservice.list((String)session.getAttribute("did")));
     return "/dmypage";
   }
+  
+  @GetMapping("/dmypage_intro_update")
+  public String designer_introduction_update(Model model, HttpSession session) {
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    model.addAttribute("ddto", ddto);
+    return "/dmypage_intro_update";
+  }
+  
+  @PostMapping("/dmypage_intro_update")
+  public String designer_introduction_update(HttpServletRequest request, HttpSession session, Model model) {
+    String introduction = request.getParameter("introduction").replaceAll("\r\n", "<br>");
+    //System.out.println(text);
+    
+    Map map = new HashMap();
+    map.put("introduction", introduction);
+    map.put("did", (String)session.getAttribute("did"));
+    
+    int flag = dservice.intro_update(map);
+    if(flag > 0) {
+      DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
+      model.addAttribute("ddto", ddto);
+      return "redirect:/dmypage";
+    }else {
+      return "error";
+    }
+    
+  }
+  
+  @GetMapping("/dmypage_update")
+  public String dmypage_update(HttpSession session, Model model) {
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    LicenseDTO cdto = dservice.license((String)session.getAttribute("did"));
+    //System.out.println(cdto.getDid());
+    model.addAttribute("ddto", ddto);
+    model.addAttribute("cdto", cdto);
+    return "/dmypage_update";
+  }
+  
+  @PostMapping("/dupdate")
+  public String dupdate(DesignerDTO ddto, Model model, HttpSession session) {
+    ddto.setDid((String)session.getAttribute("did"));
+    int flag = dservice.dupdate(ddto);
+    System.out.println(ddto.getAddress1());
+    
+    if(flag > 0) {
+      DesignerDTO new_ddto = dservice.dmypage((String)session.getAttribute("did"));
+      model.addAttribute("ddto", new_ddto);
+    }
+    
+    return "/dmypage";
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }

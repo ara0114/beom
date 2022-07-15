@@ -23,7 +23,7 @@ img {
 <body>
 	<div class="container">
 		<p>
-			<a href="/contents/mainlist/1">SHOP NOW</a> ${str }
+			<a href="/contents/mainlist/1">SHOP NOW</a>
 		</p>
 		<img src="/images/tree.jpg" alt="Tree"> 
 	</div>

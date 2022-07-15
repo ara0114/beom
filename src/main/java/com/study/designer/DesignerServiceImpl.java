@@ -60,4 +60,22 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.dmypage(did);
   }
 
+  @Override
+  public int intro_update(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.intro_update(map);
+  }
+
+  @Override
+  public LicenseDTO license(String did) {
+    // TODO Auto-generated method stub
+    return mapper.license(did);
+  }
+
+  @Override
+  public int dupdate(DesignerDTO ddto) {
+    // TODO Auto-generated method stub
+    return mapper.dupdate(ddto);
+  }
+
 }
