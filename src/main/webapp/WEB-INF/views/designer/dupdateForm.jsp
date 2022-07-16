@@ -288,8 +288,8 @@
 
 											<button type="submit" class="btn btn-light btn-lg"
 												data-mdb-ripple-color="dark">수정</button>
-											<button type="reset" class="btn btn-light btn-lg"
-												data-mdb-ripple-color="dark">취소</button>
+											<button type="button" class="btn btn-light btn-lg"
+												data-mdb-ripple-color="dark" onclick = "history.back()">취소</button>
 
 										</div>
 									</div>

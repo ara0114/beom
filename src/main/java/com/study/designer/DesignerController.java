@@ -163,6 +163,7 @@ public class DesignerController {
   @GetMapping("/dmypage_intro_update")
   public String designer_introduction_update(Model model, HttpSession session) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    ddto.setIntroduction(ddto.getIntroduction().replaceAll("<br>", "\r\n"));
     model.addAttribute("ddto", ddto);
     return "/dmypage_intro_update";
   }

@@ -54,20 +54,12 @@ td button {
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
-				<button class="btn btn-outline-success"
-					style="width: 50%; border: 1px solid;" onclick="">예약하기</button>
-				<button class="btn btn-outline-success"
-					style="width: 50%; border: 1px solid;">1:1 문의</button>
+				
 			</div>
 			<div style="font-size: 20px; font-weight: bold;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
-			<div style="float: right">
-				<button class="btn btn-outline-success" style="border: 1px solid;"
-					onclick="dmypage_update()">디자이너 정보 수정</button>
-				<button class="btn btn-outline-success" style="border: 1px solid;"
-					onclick="dmypage_update()">디자이너 사진 수정</button>
-			</div>
+			
 		</div>
 
 		<div style="width: 80%; float: right;">
@@ -98,7 +90,7 @@ td button {
 								<th scope="col">시술명</th>
 								<th scope="col">성별</th>
 								<th scope="col">가격</th>
-								<th scope="col"></th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -109,8 +101,7 @@ td button {
 								<td>일반컷</td>
 								<td>남자</td>
 								<td>20000</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
+								
 							</tr>
 							<tr>
 
@@ -119,8 +110,7 @@ td button {
 								<td>일반컷</td>
 								<td>여자</td>
 								<td>20000</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
+								
 							</tr>
 							<tr>
 
@@ -129,8 +119,7 @@ td button {
 								<td>디자인 펌</td>
 								<td>남자</td>
 								<td>100000</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
+								
 
 							</tr>
 							<tr>
@@ -140,13 +129,11 @@ td button {
 								<td>디자인 펌</td>
 								<td>여자</td>
 								<td>150000</td>
-								<td><button class="btn btn-outline-success">삭제</button></td>
+								
 							</tr>
 						</tbody>
 					</table>
-					<div style="height: 50px;">
-						<button class="btn btn-outline-success">예약 등록</button>
-					</div>
+					
 				</div>
 
 

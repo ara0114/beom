@@ -121,8 +121,7 @@ td button{
 								<td>일반컷</td>
 								<td>남자</td>
 								<td>20000</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
+								<td><button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 							<tr>
 
@@ -131,8 +130,7 @@ td button{
 								<td>일반컷</td>
 								<td>여자</td>
 								<td>20000</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
+								<td><button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 							<tr>
 
@@ -141,8 +139,7 @@ td button{
 								<td>디자인 펌</td>
 								<td>남자</td>
 								<td>100000</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
+								<td><button class="btn btn-outline-success">삭제</button></td>
 
 							</tr>
 							<tr>
@@ -171,6 +168,7 @@ td button{
 								<th scope="col">First</th>
 								<th scope="col">Last</th>
 								<th scope="col">Handle</th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -179,18 +177,23 @@ td button{
 								<td>Mark</td>
 								<td>Otto</td>
 								<td>@mdo</td>
+								<td><button class="btn btn-outline-success">확인</button>
+									<button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 							<tr>
 								<th scope="row">2</th>
 								<td>Jacob</td>
 								<td>Thornton</td>
 								<td>@fat</td>
+								<td><button class="btn btn-outline-success">확인</button>
+									<button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 							<tr>
 								<th scope="row">3</th>
 								<td>Larry</td>
 								<td>the Bird</td>
 								<td>@twitter</td>
+								<td><button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 						</tbody>
 					</table>
