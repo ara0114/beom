@@ -54,12 +54,12 @@ td button {
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
-				
+
 			</div>
 			<div style="font-size: 20px; font-weight: bold;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
-			
+
 		</div>
 
 		<div style="width: 80%; float: right;">
@@ -67,13 +67,16 @@ td button {
 			<div style="height: 6%;"></div>
 
 			<div class="container">
-				<form action = "/dmypage_intro_update" method = "post">
+				<form action="/dmypage_intro_update" method="post">
 					<div>
 						<label style="font-weight: 700;">디자이너 소개</label>
 						<textarea rows="12" cols="7" id="introduction" name="introduction"
 							class="form-control">${ddto.introduction }</textarea>
 						<div style="height: 50px;">
+							<button class="btn btn-outline-success" style="border: 1px solid"
+								onclick="history.back();">취소</button>
 							<button class="btn btn-outline-success" style="border: 1px solid">수정</button>
+							
 						</div>
 					</div>
 				</form>
@@ -90,7 +93,7 @@ td button {
 								<th scope="col">시술명</th>
 								<th scope="col">성별</th>
 								<th scope="col">가격</th>
-								
+
 							</tr>
 						</thead>
 						<tbody>
@@ -101,7 +104,7 @@ td button {
 								<td>일반컷</td>
 								<td>남자</td>
 								<td>20000</td>
-								
+
 							</tr>
 							<tr>
 
@@ -110,7 +113,7 @@ td button {
 								<td>일반컷</td>
 								<td>여자</td>
 								<td>20000</td>
-								
+
 							</tr>
 							<tr>
 
@@ -119,7 +122,7 @@ td button {
 								<td>디자인 펌</td>
 								<td>남자</td>
 								<td>100000</td>
-								
+
 
 							</tr>
 							<tr>
@@ -129,11 +132,11 @@ td button {
 								<td>디자인 펌</td>
 								<td>여자</td>
 								<td>150000</td>
-								
+
 							</tr>
 						</tbody>
 					</table>
-					
+
 				</div>
 
 

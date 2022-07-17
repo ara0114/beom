@@ -26,7 +26,7 @@
 	}
 	
 	function dmypage_photo_update() {
-		let url = "/dmypage_photo_update";
+		let url = "/dupdateFileForm";
 		location.href = url;
 	}
 	
@@ -59,10 +59,6 @@ td button{
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
-				<button class="btn btn-outline-success"
-					style="width: 50%; border: 1px solid;" onclick = "">예약하기</button>
-				<button class="btn btn-outline-success"
-					style="width: 50%; border: 1px solid;">1:1 문의</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold;">${ddto.dname } 헤어 디자이너</div>
 			<div>${ddto.introduction }</div>

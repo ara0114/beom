@@ -143,7 +143,8 @@ public class DesignerController {
       
       return "redirect:/";
     }else {
-      return "error";
+      model.addAttribute("msg", "아이디 또는 비밀번호를 잘못 입력 했거나 <br>회원이 아닙니다. 회원가입 하세요");
+      return "/designer/errorMsg";
     }
   }
   
@@ -210,6 +211,12 @@ public class DesignerController {
     }
     
     return "/dmypage";
+  }
+  
+  @GetMapping("/dupdateFileForm")
+  public String dupdateFile() {
+    
+    return "/dupdateFileForm";
   }
   
   

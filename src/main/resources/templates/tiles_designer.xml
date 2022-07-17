@@ -30,6 +30,11 @@
     <put-attribute name="body"
       value="/WEB-INF/views/designer/dupdateForm.jsp" />
   </definition>
+  <definition name="/dupdateFileForm" extends="main">
+    <put-attribute name="title" value="디자이너소개수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/dupdateFileForm.jsp" />
+  </definition>
   
   
   
