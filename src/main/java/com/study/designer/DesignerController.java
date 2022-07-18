@@ -166,7 +166,9 @@ public class DesignerController {
       
       return "redirect:/";
     }else {
-      return "error";
+      model.addAttribute("msg","아이디 또는 비밀번호를 잘못 입력했거나<br>회원이 아닙니다. 회원가입하세요");
+      
+      return "/errorMsg"; 
     }
   }
   

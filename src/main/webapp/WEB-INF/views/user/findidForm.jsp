@@ -51,46 +51,40 @@
     <script>
 	  	$(function(){
 	  		$("#okbtn").click(function(){
-	  			
-	  			if($("#uname").val()==""){
+	  			let uname = document.getElementById("uname").value;
+	  			let uemail = document.getElementById("uemail").value;
+	  			if(uname==null || uname==""){
 	  				alert("이름을 입력하세요");
 	  				$("#uname").focus();
 	  				return;	
-	  			}else if($("#uemail").val()==""){
+	  			}else if(uemail==null || uemail==""){
 	  				alert("이메일을 입력하세요");
 	  				$("#uemail").focus();
 	  				return;
 	  			}
+				console.log(uname+uemail);
 
-	  			findid($("#uname").val(),$("#uemail").val())
-//1.	  			.then(text => $("#msg").text(text))
-	  				.then(text => alert(text))							 
-	  				.catch(console.log);
+		  		return fetch(`/findidmail?uname=\${uname}&uemail=\${uemail}`)
+					.then(response => response.text())
+		  			.then(text=> alert(text))//알림창 속도 느림
+		  			.catch(console.log);
 	  		});
 	  	});
 	  	
-	   function findid(uname,uemail){
-		  return fetch(`/user/idfind?uname=\${uname}&uemail=\${uemail}`) 
-		  			.then(response => response.text())
-		  			.catch(console.log);
-	   }    	
+		  
     </script>
 </head>
 <body>
     <form class="find">
         <h2>ID찾기</h2>
         <div>
-            <input type="text" id="uname" class="uname" name="uname" placeholder="이름">
+            <input type="text" id="uname" name="uname" placeholder="이름">
         </div>
         <div>
-            <input type="email" id="uemail" class="uemail" name="uemail" placeholder="이메일">
+            <input type="email" id="uemail" name="uemail" placeholder="이메일">
         </div>
-        <!--1  <div>
-            <p id="msg"></p>
-        </div> -->
         <div>
             <button type="button" id="okbtn">확인</button><br>
-<!--        <button type="button" onclick="history.back()">취소</button><br> -->
             <button type="button" onclick="location.href='/user/findpw'">PW찾기</button><br>
         	<button type="button" onclick="location.href='/user/login'">로그인으로 이동</button>     
         </div>
