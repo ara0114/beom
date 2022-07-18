@@ -1,6 +1,6 @@
-package com.study.hairmenu;
+package com.study.reservation;
 
-
+import java.util.List;
 
 import lombok.Data;
 
@@ -10,9 +10,9 @@ public class HairmenuDTO {
   private int price;
   private String menu;
   private String did;
-  private int cateno;
   private String hgender;
+  private int cateno;
   
-  
+  private List<CategoryDTO> category;
   
 }

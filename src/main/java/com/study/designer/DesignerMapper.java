@@ -1,6 +1,9 @@
 package com.study.designer;
 
+import java.util.List;
 import java.util.Map;
+
+import com.study.hairmenu.HairmenuDTO;
 
 public interface DesignerMapper {
 
@@ -25,5 +28,7 @@ public interface DesignerMapper {
   LicenseDTO license(String did);
 
   int dupdate(DesignerDTO ddto);
+
+  List<HairmenuDTO> enroll_list(String did);
 
 }

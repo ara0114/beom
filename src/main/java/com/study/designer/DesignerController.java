@@ -157,7 +157,7 @@ public class DesignerController {
     
     System.out.println(ddto.getDfilename());
     model.addAttribute("ddto", ddto);
-    //model.addAttribute("list",dservice.list((String)session.getAttribute("did")));
+    model.addAttribute("enroll_list",dservice.enroll_list((String)session.getAttribute("did")));
     return "/dmypage";
   }
   

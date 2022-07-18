@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-	
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +24,13 @@
 		let url = "/dmypage_update";
 		location.href = url;
 	}
-	
+
 	function dmypage_photo_update() {
 		let url = "/dupdateFileForm";
 		location.href = url;
 	}
-	
-	function dmypage_intro_update(){
+
+	function dmypage_intro_update() {
 		let url = "/dmypage_intro_update";
 		location.href = url;
 	}
@@ -44,8 +44,9 @@ button {
 	border: 1px solid;
 	float: right;
 }
-td button{
-	border : 1px solid;
+
+td button {
+	border: 1px solid;
 }
 </style>
 <title>My page</title>
@@ -60,18 +61,20 @@ td button{
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
-			<div style="font-size: 20px; font-weight: bold;">${ddto.dname } 헤어 디자이너</div>
+			<div style="font-size: 20px; font-weight: bold;">${ddto.dname }
+				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
-				<button class="btn btn-outline-success" style="border: 1px solid; margin-bottom : 2px;"
+				<button class="btn btn-outline-success"
+					style="border: 1px solid; margin-bottom: 2px;"
 					onclick="dmypage_update()">디자이너 정보 수정</button>
-					<button class="btn btn-outline-success" style="border: 1px solid;"
+				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 			</div>
 		</div>
 
 
-		
+
 
 		<div style="width: 80%; float: right;">
 
@@ -82,15 +85,18 @@ td button{
 				<div>
 					<label style="font-weight: 700;">디자이너 소개</label>
 					<p style="font-size: large; color: cadetblue">${ddto.introduction }</p>
-					<div style = "height : 50px;">
-					<c:choose>
-						<c:when test="${ddto.introduction == '' || empty ddto.introduction }">
-							<button class="btn btn-outline-success" style="border: 1px solid" onclick = "dmypage_intro_update()">등록</button>
-						</c:when>
-						<c:otherwise>
-							<button class="btn btn-outline-success" style="border: 1px solid" onclick = "dmypage_intro_update()">수정</button>
-						</c:otherwise>
-					</c:choose>
+					<div style="height: 50px;">
+						<c:choose>
+							<c:when
+								test="${ddto.introduction == '' || empty ddto.introduction }">
+								<button class="btn btn-outline-success"
+									style="border: 1px solid" onclick="dmypage_intro_update()">등록</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn btn-outline-success"
+									style="border: 1px solid" onclick="dmypage_intro_update()">수정</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 
@@ -108,44 +114,30 @@ td button{
 							</tr>
 						</thead>
 						<tbody>
+							<c:choose>
+								<c:when test="${empty enroll_list}">
+									<tr>
+										<td colspan="6">등록된 상품이 없습니다.</td>
+									</tr>
+								</c:when>
+
+								<c:otherwise>
+									<c:forEach var="dto" items="${enroll_list}">
+										<tr>
+											<td>${dto.enrolldate }</td>
+											<td>${dto.enrolltime }</td>
+											<td>${dto.emenu }</td>
+											<td>${dto.hgender }</td>
+											<td>${dto.eprice }</td>
+											<td><button class="btn btn-outline-success">삭제</button></td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+
+
+
 							
-						
-							<tr>
-								<td>2022.07.06</td>
-								<td>15:51</td>
-								<td>일반컷</td>
-								<td>남자</td>
-								<td>20000</td>
-								<td><button class="btn btn-outline-success">삭제</button></td>
-							</tr>
-							<tr>
-
-								<td>2022.07.06</td>
-								<td>16:30</td>
-								<td>일반컷</td>
-								<td>여자</td>
-								<td>20000</td>
-								<td><button class="btn btn-outline-success">삭제</button></td>
-							</tr>
-							<tr>
-
-								<td>2022.07.06</td>
-								<td>17:51</td>
-								<td>디자인 펌</td>
-								<td>남자</td>
-								<td>100000</td>
-								<td><button class="btn btn-outline-success">삭제</button></td>
-
-							</tr>
-							<tr>
-
-								<td>2022.07.06</td>
-								<td>18:51</td>
-								<td>디자인 펌</td>
-								<td>여자</td>
-								<td>150000</td>
-								<td><button class="btn btn-outline-success">삭제</button></td>
-							</tr>
 						</tbody>
 					</table>
 					<div style="height: 50px;">

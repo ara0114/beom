@@ -1,6 +1,9 @@
 package com.study.designer;
 
+import java.util.List;
 import java.util.Map;
+
+import com.study.hairmenu.HairmenuDTO;
 
 public interface DesignerService {
 
@@ -26,6 +29,6 @@ public interface DesignerService {
 
   int dupdate(DesignerDTO ddto);
 
-  //Object list(String did);
+  List<HairmenuDTO> enroll_list(String did);
 
 }

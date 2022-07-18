@@ -64,31 +64,60 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from designer
 		where did = #{did}
 	</select>
-	
+
 	<update id="intro_update" parameterType="Map">
 		update designer
-		set introduction = #{introduction}
+		set
+		introduction = #{introduction}
 		where did = #{did}
 	</update>
-	
-	<select id="license" parameterType="String" resultType="com.study.designer.LicenseDTO">
+
+	<select id="license" parameterType="String"
+		resultType="com.study.designer.LicenseDTO">
 		select *
 		from certification
 		where did = #{did}
 	</select>
-	
-	<update id="dupdate" parameterType="com.study.designer.DesignerDTO">
+
+	<update id="dupdate"
+		parameterType="com.study.designer.DesignerDTO">
 		update designer
 		set dname = #{dname},
-			demail = #{demail},
-			dphone = #{dphone},
-			dzipcode = #{dzipcode},
-			address1 = #{address1},
-			address2 = #{address2}
+		demail = #{demail},
+		dphone = #{dphone},
+		dzipcode = #{dzipcode},
+		address1 = #{address1},
+		address2 = #{address2}
 		where did = #{did}
 	</update>
 
+
+	<resultMap type="com.study.enroll.EnrollDTO" id="enrolllist">
+		<result property="enrolldate" column="enrolldate" />
+		<result property="enrolltime" column="enrolltime" />
+		<result property="emenu" column="emenu" />
+		<result property="eprice" column="eprice" />
+		<result property="menuno" column="menuno" />
+		<collection property="hdto" column="menuno"
+			ofType="com.study.hairmenu.HairmenuDTO" resultMap="hairmenulist">	
+		</collection>
+	</resultMap>
 	
+	<resultMap type="com.study.hairmenu.HairmenuDTO" id="hairmenulist">
+		<result property="hgender" column="hgender" />
+	</resultMap>
+
+	<select id="enroll_list" parameterType="String"
+		resultMap="enrolllist">
+		select e.enrolldate, e.enrolltime, e.emenu, h.hgender,e.eprice
+		from enroll e
+		left join hairmenu h
+		on e.menuno = h.menuno
+		where
+		e.did = #{did}
+
+	</select>
+
 
 
 </mapper>

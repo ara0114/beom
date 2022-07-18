@@ -1,9 +1,12 @@
 package com.study.designer;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.study.hairmenu.HairmenuDTO;
 
 @Service("com.study.designer.DesignerServiceImpl")
 public class DesignerServiceImpl implements DesignerService {
@@ -76,6 +79,12 @@ public class DesignerServiceImpl implements DesignerService {
   public int dupdate(DesignerDTO ddto) {
     // TODO Auto-generated method stub
     return mapper.dupdate(ddto);
+  }
+
+  @Override
+  public List<HairmenuDTO> enroll_list(String did) {
+    // TODO Auto-generated method stub
+    return mapper.enroll_list(did);
   }
 
 }
