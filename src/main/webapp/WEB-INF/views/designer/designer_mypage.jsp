@@ -115,21 +115,21 @@ td button {
 						</thead>
 						<tbody>
 							<c:choose>
-								<c:when test="${empty enrollList}">
+								<c:when test="${empty enrollList2}">
 									<tr>
 										<td colspan="6">등록된 상품이 없습니다.</td>
 									</tr>
 								</c:when>
 
 								<c:otherwise>
-									<c:forEach var="dto" items="${enrollList}">
-										<c:forEach var = "edto" items="${dto.edto}">
+									<c:forEach var="dto" items="${enrollList2}">
+										<c:forEach var = "hairmenu" items="${dto.hairmenu}">
 											<tr>
-											<td>${edto.enrolldate }</td>
-											<td>${edto.enrolltime }</td>
-											<td>${edto.emenu }</td>
-											<td>${dto.hgender }</td>
-											<td>${edto.eprice }</td>
+											<td>${dto.enrolldate }</td>
+											<td>${dto.enrolltime }</td>
+											<td>${dto.emenu }</td>
+											<td>${hairmenu.hgender }</td>
+											<td>${dto.eprice }</td>
 											<td><button class="btn btn-outline-success">삭제</button></td>
 										</tr>	
 										</c:forEach>

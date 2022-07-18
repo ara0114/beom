@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.hairmenu.HairmenuDTO;
+import com.study.reservation.EnrollDTO;
+import com.study.reserve.ReserveDTO;
 
 @Service("com.study.designer.DesignerServiceImpl")
 public class DesignerServiceImpl implements DesignerService {
@@ -85,6 +87,18 @@ public class DesignerServiceImpl implements DesignerService {
   public List<HairmenuDTO> enroll_list(String did) {
     // TODO Auto-generated method stub
     return mapper.enroll_list(did);
+  }
+
+  @Override
+  public List<ReserveDTO> reserve_list(String did) {
+    // TODO Auto-generated method stub
+    return mapper.reserve_list(did);
+  }
+
+  @Override
+  public List<EnrollDTO> enrollList(String did) {
+    // TODO Auto-generated method stub
+    return mapper.enrollList(did);
   }
 
 }

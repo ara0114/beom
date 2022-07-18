@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.study.hairmenu.HairmenuDTO;
+import com.study.reservation.EnrollDTO;
 
 @Controller
 public class DesignerController {
@@ -156,12 +156,13 @@ public class DesignerController {
   @GetMapping("/dmypage")
   public String designer_mypage(HttpSession session, Model model) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
-    //List<HairmenuDTO> enrollList = dservice.enroll_list((String)session.getAttribute("did"));
+    List<EnrollDTO> enrollList2 = dservice.enrollList((String)session.getAttribute("did"));
     
     System.out.println(ddto.getDfilename());
     model.addAttribute("ddto", ddto);
     model.addAttribute("enrollList",dservice.enroll_list((String)session.getAttribute("did")));
-    //System.out.println(enrollList.get(0).getEdto().get(0).getEnrolldate());
+    model.addAttribute("enrollList2",dservice.enrollList((String)session.getAttribute("did")));
+   System.out.println(enrollList2);
     return "/dmypage";
   }
   
