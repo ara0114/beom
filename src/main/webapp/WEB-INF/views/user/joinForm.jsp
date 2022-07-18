@@ -159,7 +159,7 @@
                 <td><input type="text" id="uphone" name="uphone" placeholder="전화번호입력"></td>
             </tr>
         </table>
-        <div>
+        <div> 
             <button type="submit" class="btn">등록</button>
             <button class="btn" onclick="history.back()">뒤로가기</button>
         </div>
