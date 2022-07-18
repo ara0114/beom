@@ -10,7 +10,7 @@
 
 .container {
 	width: 500px;
-	height: 760px;
+	height: 780px;
 	margin: 50px auto;
 	padding: 20px;
 	/*background:
@@ -224,4 +224,12 @@ input[type="time"]::-webkit-clear-button {
 	width: 250px;
 	background-color: white;
 	
+}
+#designer{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+#designer span{
+	font-size:1.5rem;
 }

@@ -12,4 +12,10 @@ public interface ReservationMapper {
   List<HairmenuDTO> menuPriceList(String did);
 
   List<HairmenuDTO> menuInfo(Map map);
+  
+  int enrollInput(Map map);
+  
+  HairmenuDTO menunoGet(Map map);
+  
+  List<EnrollDTO> enrollList(String did);
 }

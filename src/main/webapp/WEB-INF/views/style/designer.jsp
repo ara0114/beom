@@ -48,9 +48,9 @@
 		<div class="img-box">
 			<h3>your styles</h3>
 			<div class="radio-box">
-			<label for="all" class="select-btn"><input type="radio" value="all" name="gender" id="all"/>전체사진 </label>
+			<label for="all" class="select-btn"><input type="radio" value="all" name="gender" id="all"/>전체 사진 </label>
 			<label for="woman" class="select-btn"><input type="radio" value="여자" name="gender" id="woman"/>여성 사진모음</label>
-			<label for="man" class="select-btn"><input type="radio" value="남자" name="gender" id="man"/>남성 모사진음</label>
+			<label for="man" class="select-btn"><input type="radio" value="남자" name="gender" id="man"/>남성 사진모음</label>
 			</div>
 			<div class="img-area">
 				<div class="all-img" id="styleBox">

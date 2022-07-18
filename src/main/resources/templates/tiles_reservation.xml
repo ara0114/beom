@@ -15,4 +15,9 @@
     <put-attribute name="body"
       value="/WEB-INF/views/reservation/designer.jsp" />
   </definition>
+  <definition name="/reservationlist" extends="main">
+    <put-attribute name="title" value="디자이너예약페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/reservation/reservationlist.jsp" />
+  </definition>
 </tiles-definitions>

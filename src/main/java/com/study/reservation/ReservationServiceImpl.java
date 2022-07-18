@@ -31,14 +31,30 @@ public class ReservationServiceImpl implements ReservationService {
 
     return mapper.menuPriceList(did);
   }
-
+ 
   @Override
   public List<HairmenuDTO> menuInfo(Map map) {
-    // TODO Auto-generated method stub
     return mapper.menuInfo(map);
   }
+  
+  //예약테이블에 예약등록
+  @Override
+  public int enrollInput(Map map) {
+    return mapper.enrollInput(map);
+  }
+  //enroll 에insert 하기전에 시술명으로  해당 hairmenu 에 menuno 를 갖고온다
+  @Override
+  public HairmenuDTO menunoGet(Map map) {
+    
+    return mapper.menunoGet(map);
+  }
 
-  // 디자이너의 성별에 맞는 메뉴와 가격을 가지고옵니다.
- 
+  @Override
+  public List<EnrollDTO> enrollList(String did) {
+    
+    return mapper.enrollList(did);
+  }
+
+
 
 }

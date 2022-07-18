@@ -1,8 +1,45 @@
 // 바로실행
 $(function() {
 	updateProgress();
-	
 });
+$("#submit").click(function(){
+	formSubmit();
+})
+function formSubmit(){
+	let category = $("#category option:selected").val();
+	let gender = $("#gender").val();
+	let menuprice = $("#price option:selected").val();
+	let time = $("#time").val();
+	let date = $("#startDate").val();
+	let splitJoin = menuprice.split(' ').join('');
+	let twoData = splitJoin.split(':');
+	let menu = twoData[0];
+	let price = twoData[1];
+	let did = $("#did").text();
+	
+	
+	//form 을 생성해서 submit
+	let form = document.createElement("form");
+	form.setAttribute("method","post");
+	form.setAttribute("action","/designerMypage/reservationList");
+	document.charset ="utf-8";
+	
+	
+	let values = [category,gender,menu,price,time,date,did];
+	let names = ["category","gender","menu","price","time","date","did"];
+	console.log(values[0]);
+	for(let i = 0 ; i < values.length; i++){
+		let input = document.createElement("input");
+		input.setAttribute('type','hidden');
+		input.setAttribute('name',names[i]);
+		input.setAttribute('value',values[i]);
+		form.appendChild(input);
+	}
+	
+    document.body.appendChild(form);
+	form.submit();
+	
+}
 
 function CategoryGender(gender, category) {
 	return fetch(`/datareq/${gender}/${category}`)
@@ -13,11 +50,11 @@ $("#gender").change(function() {
 	updateProgress();
 	let gender = $("#gender").val();
 	let category = $("#category option:selected").val();
-	//let selectTag = document.getElementById("price");
+	
 	CategoryGender(gender, category).then(list => {
 		let str = ""
-		for (let i = 0; i < list.length; i++) {
 			str += "<option>시술 선택</option>";
+		for (let i = 0; i < list.length; i++) {
 			str += "<option>" + list[i].menu + " : " + list[i].price + "</option>"
 			selectTag.html(str);
 			console.log(str);

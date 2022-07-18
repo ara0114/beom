@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="price" column="price"/>
 		<result property="did" column="did"/>
 		<result property="hgender" column="hgender"/>
+		<result property="menuno" column="menuno"/>
 		<collection property="category" resultMap="categoryInfo"/>
 	</resultMap>
 	
@@ -36,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		SELECT
 		h.menu,
+		h.menuno,
 		h.price,
 		h.did,
 		h.hgender,
@@ -57,6 +59,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM hairmenu 
 		WHERE did = #{id}
 		 
+	</select>
+	
+	<select id="menunoGet" parameterType="Map" resultType="com.study.reservation.HairmenuDTO">
+		SELECT menuno 
+		FROM hairmenu
+		WHERE did = #{did} and menu = #{menu}	
+	</select>
+	
+	<insert id="enrollInput" parameterType="Map">
+	 	INSERT INTO 
+	 	enroll (enrolldate,enrolltime,emenu,menuno,eprice,did) 
+	 	values(#{date},#{time},#{emenu},#{menuno},#{eprice},#{did})
+	</insert>
+	
+	<select id="enrollList" parameterType="String" resultType="com.study.reservation.EnrollDTO">
+		SELECT enrollno,menuno,enrolldate,enrolltime,eprice,emenu
+		FROM enroll
+		WHERE did = #{did}
 	</select>
 	
 	

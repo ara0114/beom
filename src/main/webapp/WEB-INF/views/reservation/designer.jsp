@@ -17,10 +17,13 @@
 				<!-- 진행율 -->
 				<div id="progress">
 					<div class="pct">
-						<span>0</span>% complated
+						 예약등록 <span>0</span>%
 					</div>
 				</div>
-				<h1>${list[0].did} 님 예약등록</h1>
+				<div id="designer">
+				<h1 id="did">${list[0].did}</h1> 
+				<span>님 예약등록</span>
+				</div>
 
 				<div class="ui-widget">
 					<label for="category">시술 선택</label> <select id="category"
@@ -65,7 +68,7 @@
 		<label for="10">10분미만</label> <input type="radio" id="10" name="rd">
 		<label for="0">바로가능합니다.</label> <input type="radio" id="0" name="rd">
 	</fieldset>
-	<button id="submit">예약등록</button>
+	<button type="button"id="submit">예약등록</button>
 	<button id="goback" onclick="javascript:history.back()"
 		class="ui-button ui-corner-all ui-widget">뒤로가기</button>
 	</form>
