@@ -1,6 +1,6 @@
 package com.study.reservation;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,7 +87,7 @@ public class reservationController {
     System.out.println("예약등록");
     //예약등록테이블에 예약이완료되면 해당디자이너의 예약리스트를 갖고와야한다 , 중복이있을수도있으니 List 보다는 Set 으로 중복제거를 허용치않는다 
     List<EnrollDTO> enrollSet = service.enrollList(did);
-    System.out.println(enrollSet.get(0));
+    System.out.println(enrollSet);
     
     
     //List<EnrollDTO> enrollList = new ArrayList(enrollSet);
