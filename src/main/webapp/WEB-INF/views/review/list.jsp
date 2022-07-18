@@ -76,7 +76,7 @@
 							${dto.uid } &nbsp &nbsp <i class="fa-solid fa-star"></i> <i
 								class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
 								class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-							${dto.star } &nbsp &nbsp
+							${dto.star } &nbsp &nbsp | &nbsp
 							<div style = "float: right;">
 			                  ${dto.rdate }
 			                </div>
@@ -156,7 +156,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-    <script> let uid = '${sessionScope.uid}'</script>
+    <script>let uid = '${sessionScope.uid}'</script>
 	<script src="/js/reviewProducer.js"></script>
 	<script src="/js/reviewConsumer.js"></script>
 </body>

@@ -18,10 +18,10 @@ function add(review) {  //추가
 		.catch(console.log);
 }
 
-function update(reply) {  //수정
+function update(review) {  //수정
 	return fetch(`/review/`, {
 		method: 'put',
-		body: JSON.stringify(reply),
+		body: JSON.stringify(review),
 		headers: { 'Content-Type': "application/json; charset=utf-8" }
 	})
 		.then(response => response.text())

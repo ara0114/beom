@@ -86,8 +86,9 @@ modalRegisterBtn.on("click", function(e) {
 		//rstar: modalInputRstar.val(),
 		//rfilename: modalInputRfilename.val(),
 		rtitle: modalInputRtitle.val(),
-		rcontent: modalInputRcontent.val(),
+		rcontent: modalInputRcontent.val()
 		//rdate: modalInputRdate.val(),
+		
 		
 	};
 	
@@ -97,7 +98,7 @@ modalRegisterBtn.on("click", function(e) {
 			modal.find("input[name='uid']").val("");
 			modal.find("input[name='did']").val("");
 			modal.find("div[name='rstar']").val("");
-			modal.find("img[name='rfilename']").val("");    //파일 초기화
+			//modal.find("img[name='rfilename']").val("");    //파일 초기화 잘 안됌...
 			modal.find("input[name='rtitle']").val("");
 			modal.find("textarea[name='rcontent']").val("");
 			modal.find("input[name='rdate']").val("");

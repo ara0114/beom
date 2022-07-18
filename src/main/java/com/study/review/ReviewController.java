@@ -56,7 +56,7 @@ public class ReviewController {
  
   }
   
-  @PostMapping("/review/list/create")
+  @PostMapping("/review/create")
   public ResponseEntity<String> create(@RequestBody ReviewDTO vo) {
  
    // log.info("ReplyDTO1: " + vo.getRcontent());
