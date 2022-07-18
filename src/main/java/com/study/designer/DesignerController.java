@@ -1,6 +1,7 @@
 package com.study.designer;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.study.hairmenu.HairmenuDTO;
 
 @Controller
 public class DesignerController {
@@ -153,11 +156,12 @@ public class DesignerController {
   @GetMapping("/dmypage")
   public String designer_mypage(HttpSession session, Model model) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
-    
+    //List<HairmenuDTO> enrollList = dservice.enroll_list((String)session.getAttribute("did"));
     
     System.out.println(ddto.getDfilename());
     model.addAttribute("ddto", ddto);
-    model.addAttribute("enroll_list",dservice.enroll_list((String)session.getAttribute("did")));
+    model.addAttribute("enrollList",dservice.enroll_list((String)session.getAttribute("did")));
+    //System.out.println(enrollList.get(0).getEdto().get(0).getEnrolldate());
     return "/dmypage";
   }
   

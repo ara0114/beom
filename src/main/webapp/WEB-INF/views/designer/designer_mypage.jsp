@@ -115,22 +115,25 @@ td button {
 						</thead>
 						<tbody>
 							<c:choose>
-								<c:when test="${empty enroll_list}">
+								<c:when test="${empty enrollList}">
 									<tr>
 										<td colspan="6">등록된 상품이 없습니다.</td>
 									</tr>
 								</c:when>
 
 								<c:otherwise>
-									<c:forEach var="dto" items="${enroll_list}">
-										<tr>
-											<td>${dto.enrolldate }</td>
-											<td>${dto.enrolltime }</td>
-											<td>${dto.emenu }</td>
+									<c:forEach var="dto" items="${enrollList}">
+										<c:forEach var = "edto" items="${dto.edto}">
+											<tr>
+											<td>${edto.enrolldate }</td>
+											<td>${edto.enrolltime }</td>
+											<td>${edto.emenu }</td>
 											<td>${dto.hgender }</td>
-											<td>${dto.eprice }</td>
+											<td>${edto.eprice }</td>
 											<td><button class="btn btn-outline-success">삭제</button></td>
-										</tr>
+										</tr>	
+										</c:forEach>
+										
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -151,35 +154,38 @@ td button {
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
+								<th scope="col">고객이름</th>
+								<th scope="col">성별</th>
+								<th scope="col">시술명</th>
+								<th scope="col">가격</th>
 								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">1</th>
+								
 								<td>Mark</td>
 								<td>Otto</td>
+								<td>@mdo</td>
 								<td>@mdo</td>
 								<td><button class="btn btn-outline-success">확인</button>
 									<button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 							<tr>
-								<th scope="row">2</th>
+								
 								<td>Jacob</td>
 								<td>Thornton</td>
 								<td>@fat</td>
+								<td>@mdo</td>
 								<td><button class="btn btn-outline-success">확인</button>
 									<button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 							<tr>
-								<th scope="row">3</th>
+								
 								<td>Larry</td>
 								<td>the Bird</td>
 								<td>@twitter</td>
+								<td>@mdo</td>
 								<td><button class="btn btn-outline-success">삭제</button></td>
 							</tr>
 						</tbody>

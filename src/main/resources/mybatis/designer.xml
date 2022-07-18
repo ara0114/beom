@@ -92,29 +92,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 
-	<resultMap type="com.study.enroll.EnrollDTO" id="enrolllist">
-		<result property="enrolldate" column="enrolldate" />
-		<result property="enrolltime" column="enrolltime" />
-		<result property="emenu" column="emenu" />
-		<result property="eprice" column="eprice" />
+	<resultMap type="com.study.hairmenu.HairmenuDTO"
+		id="enrolllist">
+		<result property="hgender" column="hgender" />
 		<result property="menuno" column="menuno" />
-		<collection property="hdto" column="menuno"
-			ofType="com.study.hairmenu.HairmenuDTO" resultMap="hairmenulist">	
+		<collection property="edto" column="menuno" javaType="List"
+			ofType="com.study.enroll.EnrollDTO">
+			<result property="enrolldate" column="enrolldate" />
+			<result property="enrolltime" column="enrolltime" />
+			<result property="emenu" column="emenu" />
+			<result property="eprice" column="eprice" />
 		</collection>
 	</resultMap>
-	
-	<resultMap type="com.study.hairmenu.HairmenuDTO" id="hairmenulist">
-		<result property="hgender" column="hgender" />
-	</resultMap>
 
-	<select id="enroll_list" parameterType="String"
-		resultMap="enrolllist">
-		select e.enrolldate, e.enrolltime, e.emenu, h.hgender,e.eprice
-		from enroll e
-		left join hairmenu h
+	<select id="enroll_list" parameterType="String" resultMap="enrolllist">
+		select e.enrolldate, e.enrolltime, e.emenu,
+		h.hgender,e.eprice
+		from hairmenu h
+		left join enroll e
 		on e.menuno = h.menuno
-		where
-		e.did = #{did}
+		where e.did = #{did}
 
 	</select>
 
