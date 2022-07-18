@@ -1,4 +1,5 @@
 
+
 function replaceAll(str, searchStr, replaceStr) { // replaceAll 함수 
 	return str.split(searchStr).join(replaceStr); // split으로 나눠서 배열로 만들고 join으로 하나의 문자열로 만듦
 }
@@ -13,8 +14,8 @@ let modalInputRcontent = modal.find("textarea[name='rcontent']");
 let modalInputRtitle = modal.find("input[name='rtitle']");
 let modalInputUid = modal.find("input[name='uid']");
 let modalInputDid = modal.find("input[name='did']");
-let modalInputRdate = modal.find("input[name='rdate']");
 let modalInputRfilename = modal.find("img[name='rfilename']");
+
 
 let addFile = modal.find("input[name='addfile']");  // 모달 이미지부분
 let labelImg = $(".modal-img");
@@ -31,6 +32,7 @@ modalRemoveBtn.on("click", function(e) {
 	remove(rno)
 		.then(result => {
 			modal.modal("hide");
+			window.location.reload();
 		});
 });//remove
 
@@ -41,11 +43,12 @@ modalModBtn.on("click", function(e) {
 	let review = { 
 		rno: modal.data("rno"),
 		rtitle: modalInputRtitle.val(),
-		rcontent: modalInputRcontent.val() };
+		rcontent: modalInputRcontent.val(),
+		rfilename: modalInputRfilename.val() };
 	update(review)
 		.then(result => {
 			modal.modal("hide");
-
+            window.location.reload();
 		});
 
 });//modify
@@ -57,7 +60,6 @@ $("#reviewCreate").on("click", function(e) {
 	modalInputDid.val("");
 	modalInputRtitle.val("");
 	modalInputRcontent.val("");
-	modalInputRfilename.val("");
 	modal.find("button[id !='modalCloseBtn']").hide();
 
 	modalRegisterBtn.show();
@@ -68,8 +70,6 @@ $("#reviewCreate").on("click", function(e) {
 
 // 리뷰 등록
 modalRegisterBtn.on("click", function(e) { 
-     
-
 	if (modalInputRtitle.val() == '') {
 		alert("제목을 입력하세요");
 		return;
@@ -78,6 +78,7 @@ modalRegisterBtn.on("click", function(e) {
 		alert("내용을 입력하세요")
 		return;
 	}
+	
 
 
 	let review = {   // json 객체로 만듦
@@ -86,13 +87,20 @@ modalRegisterBtn.on("click", function(e) {
 		//rstar: modalInputRstar.val(),
 		//rfilename: modalInputRfilename.val(),
 		rtitle: modalInputRtitle.val(),
-		rcontent: modalInputRcontent.val()
-		//rdate: modalInputRdate.val(),
-		
+		rcontent: modalInputRcontent.val(),
 		
 	};
 	
-	add(review)
+	const formData = new FormData();
+	const rfilename = document.querySelector('input[type="file"]');
+	
+	formData.append('uid', modalInputUid.val());
+	formData.append('did', modalInputDid.val());
+	formData.append('rtitle', modalInputRtitle.val());
+	formData.append('rcontent', modalInputRcontent.val());
+	formData.append('addfile', rfilename.files[0]);
+	
+	add(formData)
 		.then(result => {
 			
 			modal.find("input[name='uid']").val("");
@@ -104,6 +112,7 @@ modalRegisterBtn.on("click", function(e) {
 			modal.find("input[name='rdate']").val("");
 			
 			modal.modal("hide");
+			window.location.reload();
 
 		}); //end add
 
@@ -112,7 +121,9 @@ modalRegisterBtn.on("click", function(e) {
 
 //리뷰 조회
 $(".chat").on("click", function (e) {
- 
+	
+ //modal.modal({backdrop: 'static', keyboard: false})    //모달 외부 클릭 방지하는거
+  
   let rno = $(this).data("rno");
   //alert(rno);
   
@@ -125,7 +136,6 @@ $(".chat").on("click", function (e) {
 			modalInputUid.val(review.uid);
 			modalInputDid.val(review.did);
 			modalInputRfilename.attr('src',`/hairReview/storage/${review.rfilename}`);
-			modalInputRdate.val(review.rdate);
 			
 			modal.data("rno", review.rno);
 			modal.find("button[id !='modalCloseBtn']").hide();
@@ -153,5 +163,6 @@ $(".chat").on("click", function (e) {
 //close버튼 눌렀을 때
 $("#modalCloseBtn").on("click", function (e) {
    modal.modal('hide'); //모달숨기기
+   window.location.reload();
 });
 

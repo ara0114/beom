@@ -8,11 +8,10 @@ function get(rno) {  //조회
                .catch(console.log);
 }
 
-function add(review) {  //추가
-	return fetch('/review/list/create', {
+function add(formData) {  //추가
+	return fetch('/review/create', {
 		method: 'post',
-		body: JSON.stringify(review),
-		headers: { 'Content-Type': "application/json; charset=utf-8" }
+		body: formData
 	})
 		.then(response => response.json())
 		.catch(console.log);
@@ -31,7 +30,7 @@ function update(review) {  //수정
 // 삭제
 // 요청 uri이 같아도 reply 방식이 다르기 때문에 괜찮다(method=delete)
 function remove(rno) {
-	return fetch(`/review/list/${rno}`, { method: 'delete' })
+	return fetch(`/review/${rno}`, { method: 'delete' })
 		.then(response => response.text())
 		.catch(console.log);
 }

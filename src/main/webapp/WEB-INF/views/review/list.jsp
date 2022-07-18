@@ -127,7 +127,7 @@
 						<input class="form-control" name='uid' id="uid" disabled>
 						<label>담당디자이너</label>
 						<input class="form-control" name='did' id="did">  <!-- 나중에 disabled -->
-						<label>별점</label>
+						<label>평점</label>
 						<div id="star">
 						별5개
 						</div>
