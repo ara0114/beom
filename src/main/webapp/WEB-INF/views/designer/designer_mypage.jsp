@@ -99,8 +99,6 @@ td button{
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
-
-								
 								<th scope="col">예약 날짜</th>
 								<th scope="col">예약 시간</th>
 								<th scope="col">시술명</th>
@@ -110,8 +108,9 @@ td button{
 							</tr>
 						</thead>
 						<tbody>
+							
+						
 							<tr>
-
 								<td>2022.07.06</td>
 								<td>15:51</td>
 								<td>일반컷</td>
