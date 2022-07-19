@@ -170,6 +170,7 @@ public class DesignerController {
   
   @GetMapping("/dmypage")
   public String designer_mypage(HttpSession session, Model model) {
+    if(session.getAttribute("did") == null) return "redirect:/";
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
     //List<EnrollDTO> enrollList2 = dservice.enrollList((String)session.getAttribute("did"));
     //List<ReserveDTO> reserveList = dservice.reserve_list((String)session.getAttribute("did"));

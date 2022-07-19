@@ -38,6 +38,10 @@
 		let url = "/designer/deleteEnroll/" + enrollno;
 		location.href = url;
 	}
+	function enroll(){
+		let url = "/enroll/designer";
+		location.href = url;
+	}
 	
 	function modal(){
 		$("#staticBackdrop").modal("show");
@@ -158,7 +162,7 @@ td button {
 						</tbody>
 					</table>
 					<div style="height: 50px;">
-						<button class="btn btn-outline-success">예약 등록</button>
+						<button class="btn btn-outline-success" onclick = "enroll()">예약 등록</button>
 					</div>
 				</div>
 

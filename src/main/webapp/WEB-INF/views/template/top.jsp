@@ -43,10 +43,10 @@
 
                 <div class="menu-group float--left">
                     <div class="logo">
-                        <a href="#">GitHub</a>
+                        <a href="/">GitHub</a>
                     </div>
                     <ul class="main-menu">
-                        <li><a href="#">TeamBEOM</a></li>
+                        <li><a href="/">TeamBEOM</a></li>
                   <!-- 드롭다운 예정  
                   		<li><a href="#">Story</a></li>
                         <li><a href="#">Developer</a></li>

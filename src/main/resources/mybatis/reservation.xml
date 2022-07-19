@@ -73,11 +73,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	values(#{date},#{time},#{emenu},#{menuno},#{eprice},#{did})
 	</insert>
 	
-	<select id="enrollList" parameterType="String" resultType="com.study.reservation.EnrollDTO">
-		SELECT enrollno,menuno,enrolldate,enrolltime,eprice,emenu
-		FROM enroll
-		WHERE did = #{did}
+	<resultMap type="com.study.reservation.EnrollDTO" id="enrollListDTO">
+		<result property="enrollno" column="enrollno"/>
+		<result property="enrolldate" column="enrolldate"/>
+		<result property="enrolltime" column="enrolltime"/>
+		<result property="eprice" column="eprice"/>
+		<result property="emenu" column="emenu"/>
+		<result property="did" column="did"/>
+		<collection property ="hairmenu"  resultMap="hairmenuGengerDTO" />
+	</resultMap>
+	
+	<resultMap type="com.study.reservation.HairmenuDTO" id="hairmenuGengerDTO">
+		<result property="hgender" column="hgender"/>
+	</resultMap>
+	
+	<select id="enrollList" parameterType="String" resultMap="enrollListDTO">
+		SELECT e.enrollno,e.did,e.menuno,e.enrolldate,e.enrolltime,e.eprice,e.emenu,h.hgender
+		FROM enroll e LEFT JOIN hairmenu h
+		ON e.menuno = h.menuno
+		WHERE e.did = #{did}
 	</select>
+	
+	<delete id="enrollDelete" parameterType="int">
+		DELETE FROM enroll
+		WHERE enrollno = #{deleteNo}
+	</delete>
 	
 	
 	

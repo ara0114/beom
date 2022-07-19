@@ -18,5 +18,7 @@ public interface ReservationService {
 
   HairmenuDTO menunoGet(Map map);
 
-  List<EnrollDTO> enrollList(String did);
+  Set<EnrollDTO> enrollList(String did);
+  
+  int enrollDelete(int enrollno);
 }

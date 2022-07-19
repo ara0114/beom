@@ -16,5 +16,5 @@ public class EnrollDTO {
   
   private List<HairmenuDTO> hairmenu;
 
-  
+
 }

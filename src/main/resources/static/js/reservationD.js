@@ -5,6 +5,7 @@ $(function() {
 $("#submit").click(function(){
 	formSubmit();
 })
+
 function formSubmit(){
 	let category = $("#category option:selected").val();
 	let gender = $("#gender").val();
@@ -38,6 +39,7 @@ function formSubmit(){
 	
     document.body.appendChild(form);
 	form.submit();
+	form.remove();
 	
 }
 
