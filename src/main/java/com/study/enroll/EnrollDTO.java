@@ -13,4 +13,6 @@ public class EnrollDTO {
   private String did;
   private String emenu;
   private String eprice;
+  
+  private HairmenuDTO hdto;
 }

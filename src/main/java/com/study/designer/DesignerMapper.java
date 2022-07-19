@@ -37,4 +37,6 @@ public interface DesignerMapper {
 
   List<EnrollDTO> enrollList(String did);
 
+  int dupdateFile(Map map);
+
 }

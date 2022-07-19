@@ -31,10 +31,13 @@ public interface DesignerService {
 
   int dupdate(DesignerDTO ddto);
 
-  List<HairmenuDTO> enroll_list(String did);
-
+  List<HairmenuDTO> enroll_list(String did); //예약 등록 리스트(hairmenu가 기준인 쿼리)
+  List<EnrollDTO> enrollList(String did); //예약 등록 리스트(enroll이 기준인 쿼리)
+  
   List<ReserveDTO> reserve_list(String did);
 
-  List<EnrollDTO> enrollList(String did);
+  int dupdateFile(Map map);
+
+  
 
 }

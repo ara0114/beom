@@ -26,12 +26,16 @@
 	}
 
 	function dmypage_photo_update() {
-		let url = "/dupdateFileForm";
+		let url = "/designer/dupdateFileForm/";
 		location.href = url;
 	}
 
 	function dmypage_intro_update() {
 		let url = "/dmypage_intro_update";
+		location.href = url;
+	}
+	function delete_enroll(enrollno){
+		let url = "/designer/deleteEnroll/" + enrollno;
 		location.href = url;
 	}
 </script>
@@ -55,13 +59,14 @@ td button {
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
 			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<img src="/images/designer.jpg" alt=""
+			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
-			<div style="font-size: 20px; font-weight: bold;">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align : center;">${ddto.hairshop }</div>
+			<div style="font-size: 20px; font-weight: bold; text-align : center;"">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
@@ -115,32 +120,33 @@ td button {
 						</thead>
 						<tbody>
 							<c:choose>
-								<c:when test="${empty enrollList2}">
+								<c:when test="${empty enrollList}">
 									<tr>
 										<td colspan="6">등록된 상품이 없습니다.</td>
 									</tr>
 								</c:when>
 
 								<c:otherwise>
-									<c:forEach var="dto" items="${enrollList2}">
-										<c:forEach var = "hairmenu" items="${dto.hairmenu}">
+									<c:forEach var="dto" items="${enrollList}">
+										<c:forEach var="edto" items="${dto.edto}">
 											<tr>
-											<td>${dto.enrolldate }</td>
-											<td>${dto.enrolltime }</td>
-											<td>${dto.emenu }</td>
-											<td>${hairmenu.hgender }</td>
-											<td>${dto.eprice }</td>
-											<td><button class="btn btn-outline-success">삭제</button></td>
-										</tr>	
+												<td>${edto.enrolldate }</td>
+												<td>${edto.enrolltime }</td>
+												<td>${edto.emenu }</td>
+												<td>${dto.hgender }</td>
+												<td>${edto.eprice }</td>
+												<td><button class="btn btn-outline-success"
+												onclick = "deleteEnroll(${edto.enrollno})">삭제</button></td>
+											</tr>
 										</c:forEach>
-										
+
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
 
 
 
-							
+
 						</tbody>
 					</table>
 					<div style="height: 50px;">
@@ -156,38 +162,40 @@ td button {
 							<tr>
 								<th scope="col">고객이름</th>
 								<th scope="col">성별</th>
+								<th scope="col">예약 날짜</th>
+								<th scope="col">예약 시간</th>
 								<th scope="col">시술명</th>
 								<th scope="col">가격</th>
 								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>@mdo</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
-							</tr>
-							<tr>
-								
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-								<td>@mdo</td>
-								<td><button class="btn btn-outline-success">확인</button>
-									<button class="btn btn-outline-success">삭제</button></td>
-							</tr>
-							<tr>
-								
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-								<td>@mdo</td>
-								<td><button class="btn btn-outline-success">삭제</button></td>
-							</tr>
+							<c:choose>
+								<c:when test="${empty enrollList}">
+									<tr>
+										<td colspan="6">등록된 상품이 없습니다.</td>
+									</tr>
+								</c:when>
+
+								<c:otherwise>
+									<c:forEach var="dto" items="${reserveList}">
+
+										<tr>
+											<td>${dto.udto.uname }</td>
+											<td>${dto.edto.hdto.hgender }</td>
+											<td>${dto.edto.enrolldate }</td>
+											<td>${dto.edto.enrolltime }</td>
+											<td>${dto.edto.emenu }</td>
+											<td>${dto.edto.eprice }</td>
+											<td style = "display:none">${dto.message }</td>
+											<td><button class="btn btn-outline-success">확인</button>
+												<button class="btn btn-outline-success">삭제</button></td>
+										</tr>
+
+
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 

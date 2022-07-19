@@ -49,14 +49,15 @@ td button {
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
 			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<img src="/images/designer.jpg" alt=""
+			<img src="/designer/${ddto.dfilename }" alt=""
 				style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 
 			</div>
-			<div style="font-size: 20px; font-weight: bold;">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align : center;">${ddto.hairshop }</div>
+			<div style="font-size: 20px; font-weight: bold; text-align : center;"">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 

@@ -14,7 +14,6 @@ public class ReserveDTO {
   private int enrollno;
   
   private EnrollDTO edto;
-  private HairmenuDTO hdto;
   private UserDTO udto;
   
 }

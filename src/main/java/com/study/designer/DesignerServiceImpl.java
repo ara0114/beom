@@ -101,4 +101,10 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.enrollList(did);
   }
 
+  @Override
+  public int dupdateFile(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.dupdateFile(map);
+  }
+
 }

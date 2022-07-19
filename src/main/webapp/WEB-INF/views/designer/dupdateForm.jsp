@@ -203,6 +203,15 @@
 
 											<div class="mb-4">
 												<div class="form-outline form-white">
+													<label class="form-label" for="hairshop">헤어샵</label> <input
+														type="text" id="hairshop" name="hairshop"
+														class="form-control form-control-lg"
+														value="${ddto.hairshop }"/>
+												</div>
+											</div>
+
+											<div class="mb-4">
+												<div class="form-outline form-white">
 													<label class="form-label" for="sample6_postcode">우편번호</label>
 													<input type="text" id="sample6_postcode" name="dzipcode"
 														class="form-control form-control-lg"
@@ -289,7 +298,7 @@
 											<button type="submit" class="btn btn-light btn-lg"
 												data-mdb-ripple-color="dark">수정</button>
 											<button type="button" class="btn btn-light btn-lg"
-												data-mdb-ripple-color="dark" onclick = "history.back()">취소</button>
+												data-mdb-ripple-color="dark" onclick="history.back()">취소</button>
 
 										</div>
 									</div>

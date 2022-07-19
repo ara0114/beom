@@ -1,5 +1,6 @@
 package com.study.designer;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +15,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.study.reservation.EnrollDTO;
+import com.study.reserve.ReserveDTO;
+import com.study.utility.Utility;
 
 @Controller
 public class DesignerController {
@@ -156,19 +160,22 @@ public class DesignerController {
   @GetMapping("/dmypage")
   public String designer_mypage(HttpSession session, Model model) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
-    List<EnrollDTO> enrollList2 = dservice.enrollList((String)session.getAttribute("did"));
-    
-    System.out.println(ddto.getDfilename());
+    //List<EnrollDTO> enrollList2 = dservice.enrollList((String)session.getAttribute("did"));
+    //List<ReserveDTO> reserveList = dservice.reserve_list((String)session.getAttribute("did"));
+    //System.out.println(ddto.getDfilename());
     model.addAttribute("ddto", ddto);
     model.addAttribute("enrollList",dservice.enroll_list((String)session.getAttribute("did")));
-    model.addAttribute("enrollList2",dservice.enrollList((String)session.getAttribute("did")));
-   System.out.println(enrollList2);
+    model.addAttribute("reserveList", dservice.reserve_list((String)session.getAttribute("did")));
+    //System.out.println(reserveList);
+    //model.addAttribute("enrollList2",dservice.enrollList((String)session.getAttribute("did")));
+   //System.out.println(enrollList2);
     return "/dmypage";
   }
   
   @GetMapping("/dmypage_intro_update")
   public String designer_introduction_update(Model model, HttpSession session) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    if(ddto.getIntroduction() == null) ddto.setIntroduction("");
     ddto.setIntroduction(ddto.getIntroduction().replaceAll("<br>", "\r\n"));
     model.addAttribute("ddto", ddto);
     return "/dmypage_intro_update";
@@ -215,15 +222,38 @@ public class DesignerController {
       model.addAttribute("ddto", new_ddto);
     }
     
-    return "/dmypage";
+    return "redirect:/dmypage";
   }
   
-  @GetMapping("/dupdateFileForm")
-  public String dupdateFile() {
+  @GetMapping("/designer/dupdateFileForm")
+  public String dupdateFile(Model model, HttpSession session) {
+    model.addAttribute("ddto", dservice.dmypage((String)session.getAttribute("did")));
+    return "/designer/dupdateFileForm";
+  }
+  
+  
+  @PostMapping("/designer/dupdateFile")
+  public String updateFile(MultipartFile dfilenameMF, String oldfile, HttpSession session) throws IOException {
+    String basePath = UploadDesignerFile.getUploadDir();
     
-    return "/dupdateFileForm";
+    if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
+      Utility.deleteFile(basePath, oldfile);
+    }
+
+    // pstorage에 변경 파일 저장
+    Map map = new HashMap();
+    map.put("did", (String)session.getAttribute("did"));
+    map.put("dfilename", Utility.saveFileSpring(dfilenameMF, basePath));
+
+    // 디비에 파일명 변경
+    int cnt = dservice.dupdateFile(map);
+
+    if (cnt == 1) {
+      return "redirect:/dmypage";
+    } else {
+      return "./error";
+    }
   }
-  
   
   
   

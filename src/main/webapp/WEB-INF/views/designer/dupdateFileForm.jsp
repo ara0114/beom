@@ -11,16 +11,16 @@
 
 <h1 class="col-sm-offset-2 col-sm-10">사진수정</h1>
   <form class="form-horizontal" 
-        action="updateFile"
+        action="/designer/dupdateFile"
         method="post"
         enctype="multipart/form-data"
         >   
-    <input type="hidden" name="oldfile" value="${dto.dfilename}">    
+    <input type="hidden" name="oldfile" value="${ddto.dfilename}">    
         
     <div class="form-group">
       <label class="control-label col-sm-2" for="oldfile">원본파일</label>
       <div class="col-sm-6">
-        <img src="/member/${dto.dfilename }" 
+        <img src="/designer/${ddto.dfilename }" 
         class="img-rounded" width="200px" height="200px">
       </div>
     </div>
