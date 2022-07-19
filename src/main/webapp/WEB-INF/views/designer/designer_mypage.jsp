@@ -38,6 +38,14 @@
 		let url = "/designer/deleteEnroll/" + enrollno;
 		location.href = url;
 	}
+	
+	function modal(){
+		$("#staticBackdrop").modal("show");
+	}
+	
+	$("#Closebtn").on("click", function (e) {
+		$(".modal").modal('hide');
+		});
 </script>
 <style>
 label {
@@ -65,8 +73,8 @@ td button {
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
-			<div style="font-size: 20px; font-weight: bold; text-align : center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align : center;"">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
+			<div style="font-size: 20px; font-weight: bold; text-align: center;"">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
@@ -136,7 +144,7 @@ td button {
 												<td>${dto.hgender }</td>
 												<td>${edto.eprice }</td>
 												<td><button class="btn btn-outline-success"
-												onclick = "deleteEnroll(${edto.enrollno})">삭제</button></td>
+														onclick="deleteEnroll(${edto.enrollno})">삭제</button></td>
 											</tr>
 										</c:forEach>
 
@@ -180,17 +188,19 @@ td button {
 								<c:otherwise>
 									<c:forEach var="dto" items="${reserveList}">
 
-										<tr>
+										<tr onclick="modal()">
 											<td>${dto.udto.uname }</td>
 											<td>${dto.edto.hdto.hgender }</td>
 											<td>${dto.edto.enrolldate }</td>
 											<td>${dto.edto.enrolltime }</td>
 											<td>${dto.edto.emenu }</td>
 											<td>${dto.edto.eprice }</td>
-											<td style = "display:none">${dto.message }</td>
+											<td style="display: none">${dto.reserveno }</td>
+											<td style="display: none">${dto.message }</td>
 											<td><button class="btn btn-outline-success">확인</button>
 												<button class="btn btn-outline-success">삭제</button></td>
 										</tr>
+
 
 
 									</c:forEach>
@@ -210,5 +220,30 @@ td button {
 
 		<div style="width: 20%; float: right;"></div>
 	</div>
+
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">예약 신청 내역</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					
+					<h5>메세지</h5>
+					<p id = "message"></p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" id = "Closebtn">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 </html>

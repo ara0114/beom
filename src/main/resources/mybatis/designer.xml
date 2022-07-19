@@ -145,6 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="com.study.reserve.ReserveDTO" id="reserveList">
 		<result property = "message" column = "message"/>
+		<result property = "reserveno" column = "reserveno"/>
 		<association property="udto" javaType = "com.study.user.UserDTO">
 			<result property = "uname" column = "uname" />
 		</association>
@@ -160,7 +161,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<select id="reserve_list" parameterType="String" resultMap="reserveList">
-		select u.uname, h.hgender, e.enrolldate, e.enrolltime, e.emenu, e.eprice, r.message
+		select u.uname, h.hgender, e.enrolldate, e.enrolltime, e.emenu, e.eprice, r.reserveno, r.message
 		from reserve r
 		left join user u
 		on r.uid = u.uid
