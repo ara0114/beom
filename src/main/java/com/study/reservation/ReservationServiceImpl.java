@@ -50,9 +50,15 @@ public class ReservationServiceImpl implements ReservationService {
   }
 
   @Override
-  public List<EnrollDTO> enrollList(String did) {
+  public Set<EnrollDTO> enrollList(String did) {
     
     return mapper.enrollList(did);
+  }
+
+  @Override
+  public int enrollDelete(int enrollno) {
+    
+    return mapper.enrollDelete(enrollno);
   }
 
 

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/css/reservationD.css">
 </head>
 <body>
+
 	<div class="container">
 			<form>
 				<!-- 진행율 -->

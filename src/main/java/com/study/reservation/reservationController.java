@@ -1,6 +1,5 @@
 package com.study.reservation;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class reservationController {
   @Qualifier("com.study.reservation.ReservationServiceImpl")
   private ReservationService service;
 
-  @GetMapping("/reservation/designer")
+  @GetMapping("/enroll/designer")
   public String reservation(String did, Model model) {
     //아래 id 는 디자이너페이지에서 받을 디자이너아이디
     String id = "designer1";
@@ -42,7 +42,7 @@ public class reservationController {
     List<HairmenuDTO> menuPriceList = service.menuPriceList(id);
     model.addAttribute("menuPriceList", menuPriceList);
 
-    return "/reservation/designer";
+    return "/enroll/designer";
   }
 
   @GetMapping("/datareq/{gender}/{category}")
@@ -58,6 +58,20 @@ public class reservationController {
     System.out.println(list);
     return list;
   }
+  
+  @DeleteMapping("/enrollList/{enrollno}/{did}")
+  @ResponseBody
+  public String enrollList(
+      @PathVariable("enrollno") String enrollno,
+      @PathVariable("did") String did,
+      Model model) {
+    System.out.println(did);
+    int deleteNo = Integer.parseInt(enrollno);
+    int cnt = service.enrollDelete(deleteNo);
+    
+    return "삭제 성공";
+  }
+  
   //예약 입력 후 sumbit 버튼 클릭시 입력데이터 를 받는컨트롤러
   @RequestMapping("/designerMypage/reservationList")
   public String reservationList(
@@ -84,19 +98,13 @@ public class reservationController {
     //예약등록
     int cnt = service.enrollInput(map);
     if(cnt == 1) {
-    System.out.println("예약등록");
-    //예약등록테이블에 예약이완료되면 해당디자이너의 예약리스트를 갖고와야한다 , 중복이있을수도있으니 List 보다는 Set 으로 중복제거를 허용치않는다 
-    List<EnrollDTO> enrollSet = service.enrollList(did);
-    System.out.println(enrollSet);
-    
-    
-    //List<EnrollDTO> enrollList = new ArrayList(enrollSet);
-    //for(int i = 0 ; i<enrollList.size(); i++) {
-     // System.out.println(enrollList.get(i));
-    //}
-    //model.addAttribute("enrollList", enrollList);
+    Set<EnrollDTO> enrollList = service.enrollList(did);
+    System.out.println(enrollList);
+    model.addAttribute("list", enrollList);
     }
     
-    return "/reservationlist";
+    return "/enrollList";
   }
+  
+  
 }

@@ -10,14 +10,14 @@
     <put-attribute name="header"
       value="/WEB-INF/views/template/top.jsp" />
   </definition>
-  <definition name="/reservation/designer" extends="main">
+  <definition name="/enroll/designer" extends="main">
     <put-attribute name="title" value="디자이너예약페이지"></put-attribute>
     <put-attribute name="body"
-      value="/WEB-INF/views/reservation/designer.jsp" />
+      value="/WEB-INF/views/enroll/designer.jsp" />
   </definition>
-  <definition name="/reservationlist" extends="main">
+  <definition name="/enrollList" extends="main">
     <put-attribute name="title" value="디자이너예약페이지"></put-attribute>
     <put-attribute name="body"
-      value="/WEB-INF/views/reservation/reservationlist.jsp" />
+      value="/WEB-INF/views/enroll/enrollList.jsp" />
   </definition>
 </tiles-definitions>

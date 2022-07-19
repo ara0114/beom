@@ -1,16 +1,18 @@
 package com.study.reservation;
 
+import java.util.List;
+
+import lombok.Data;
+@Data
 public class EnrollDTO {
   private int enrollno;
-  private String date;
-  private String time;
+  private String enrolldate;
+  private String enrolltime;
   private int menuno;
   private int eprice;
   private String emenu;
   private String did;
-  @Override
-  public String toString() {
-    return "EnrollDTO [enrollno=" + enrollno + ", date=" + date + ", time=" + time + ", menuno=" + menuno + ", eprice="
-        + eprice + ", emenu=" + emenu + ", did=" + did + "]";
-  }
+  
+  private List<HairmenuDTO> hairmenu;
+
 }
