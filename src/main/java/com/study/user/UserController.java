@@ -10,12 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -157,35 +154,10 @@ public class UserController {
     public String findid() {
       return "/user/findid";
     }
-//    @GetMapping("/user/idfind")
-//    @ResponseBody
-//    public String findid(@RequestParam Map<String,String> map) {
-//      
-//      String uid = service.findId(map);
-//      
-//      if(uid != null && !uid.equals("")) {
-//        return "해당 정보와 일치하는 아이디는 "+ uid + "입니다.";
-//        
-//      }else {
-//        return "해당 정보로 등록된 아이디는 존재하지 않습니다.";
-//      }
-//    }
-    
+
     @GetMapping("/user/findpw")
     public String findpw() {
       return "/user/findpw";
     }
-    @GetMapping("/user/pwfind")
-    @ResponseBody
-    public String findpw(@RequestParam Map<String,String> map) {
-      
-      String upw = service.findPw(map);
-      
-      if(upw != null && !upw.equals("")) {
-        return "해당 정보와 일치하는 비밀번호는 "+ upw + "입니다.";
-        
-      }else {
-        return "해당 정보로 찾는 비밀번호는 존재하지 않습니다.";
-      }
-    }
+
 }

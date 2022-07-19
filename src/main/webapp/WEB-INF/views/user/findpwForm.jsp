@@ -48,49 +48,42 @@
             padding-bottom: 10px;
         }
     </style>
-        <script>
+    <script>
 	  	$(function(){
 	  		$("#okbtn").click(function(){
 	  			
-	  			if($("#uid").val()==""){
+	  			let uid = document.getElementById("uid").value;
+	  			let uemail = document.getElementById("uemail").value;
+	  			
+	  			if(uid == null || uid == ""){
 	  				alert("아이디를 입력하세요");
 	  				$("#uid").focus();
-	  				return;	
-	  			}else if($("#uemail").val()==""){
+	  				return;
+	  			}else if(uemail == null || uemail == ""){
 	  				alert("이메일을 입력하세요");
 	  				$("#uemail").focus();
 	  				return;
 	  			}
 
-	  			findpw($("#uid").val(),$("#uemail").val())
-	  			.then(text => $("#msg").text(text))
-//	  				.then(text => alert(text))		
+	  			return fetch(`/findpwmail?uid=\${uid}&uemail=\${uemail}`) 
+	  				.then(response => response.text())
+	  				.then(text => alert(text))		
 	  				.catch(console.log);
 	  		});
-	  	});
-	  	
-	   function findpw(uid,uemail){
-		  return fetch(`/user/pwfind?uid=\${uid}&uemail=\${uemail}`) 
-		  			.then(response => response.text())
-		  			.catch(console.log);
-	   }    	
+	  	});	
     </script>
 </head>
 <body>
     <form class="find">
         <h2>PW찾기</h2>
         <div>
-            <input type="text" id="uid" class="uid" name="uid" placeholder="아이디">
+            <input type="text" id="uid" name="uid" placeholder="아이디">
         </div>
         <div>
-            <input type="email" id="uemail" class="uemail" name="uemail" placeholder="이메일">
-        </div>
-          <div>
-            <p id="msg"></p>
+            <input type="email" id="uemail" name="uemail" placeholder="이메일">
         </div>
         <div>
             <button type="button" id="okbtn">확인</button><br>
-<!--        <button type="button" onclick="history.back()">취소</button><br> -->
             <button type="button" onclick="location.href='/user/findid'">ID찾기</button><br>
             <button type="button" onclick="location.href='/user/login'">로그인으로 이동</button> 
         </div>

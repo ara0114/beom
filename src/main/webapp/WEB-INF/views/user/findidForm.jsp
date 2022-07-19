@@ -51,8 +51,10 @@
     <script>
 	  	$(function(){
 	  		$("#okbtn").click(function(){
+	  			
 	  			let uname = document.getElementById("uname").value;
 	  			let uemail = document.getElementById("uemail").value;
+	  			
 	  			if(uname==null || uname==""){
 	  				alert("이름을 입력하세요");
 	  				$("#uname").focus();
@@ -62,16 +64,13 @@
 	  				$("#uemail").focus();
 	  				return;
 	  			}
-				console.log(uname+uemail);
 
 		  		return fetch(`/findidmail?uname=\${uname}&uemail=\${uemail}`)
 					.then(response => response.text())
 		  			.then(text=> alert(text))//알림창 속도 느림
 		  			.catch(console.log);
 	  		});
-	  	});
-	  	
-		  
+	  	});	  
     </script>
 </head>
 <body>
