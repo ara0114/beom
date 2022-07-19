@@ -156,10 +156,18 @@ public class DesignerController {
     }
   }
   
- 
-  
   @GetMapping("/dmypage")
   public String designer_mypage() {
     return "/dmypage";
   }
+  
+  @GetMapping("/dfindid")
+  public String findid() {
+    return "/dfindid";
+  }
+  @GetMapping("/dfindpw")
+  public String findpw() {
+    return "/dfindpw";
+  }
+  
 }

@@ -54,4 +54,16 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.dread(did);
   }
 
+  @Override
+  public String findId(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.findId(map);
+  }
+
+  @Override
+  public String findPw(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.findPw(map);
+  }
+
 }

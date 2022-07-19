@@ -18,4 +18,8 @@ public interface DesignerMapper {
 
   DesignerDTO dread(String did);
 
+  String findId(Map<String, String> map);
+
+  String findPw(Map<String, String> map);
+
 }
