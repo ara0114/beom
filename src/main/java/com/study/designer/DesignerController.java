@@ -109,8 +109,14 @@ public class DesignerController {
   public String dlogin(@RequestParam Map map, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
     int flag = dservice.dlogin(map);
     
+    
     if(flag > 0) {
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
+      boolean validation = ddto.isValidation();
+      if(!validation) {
+        model.addAttribute("msg","관리자의 자격승인이 필요합니다.");
+        return "/errorMsg";
+      }
       session.setAttribute("did", ddto.getDid());
       session.setAttribute("dname", ddto.getDname());
       session.setAttribute("validation", ddto.isValidation());
