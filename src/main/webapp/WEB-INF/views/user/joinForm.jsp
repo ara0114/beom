@@ -83,6 +83,14 @@
     		}
     	}
     	function inCheck(f){
+    		if($("#idcheck").text()==""){
+    			alert("아이디 중복체크를 해주세요");
+    			return false;
+    		}
+    		if($("#emailcheck").text()==""){
+    			alert("이메일 중복체크를 해주세요");
+    			return false;
+    		}
     		if(f.uid.value.length==0){
     			alert("아이디를 입력하세요");
     			f.uid.focus();
@@ -120,6 +128,7 @@
     			f.uphone.focus();
     			return false;
     		}
+
     	}
     </script>
 </head>
