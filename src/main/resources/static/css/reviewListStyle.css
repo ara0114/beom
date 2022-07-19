@@ -50,8 +50,9 @@ hr {
 
 .customer-review a:hover {
 	text-decoration: none;
-	color: rgb(63, 63, 246);
+	color: black;
 }
+
 
 .customer-review {
 	margin-left: 1%;
@@ -61,6 +62,7 @@ hr {
 	display: flex;
 	margin-right: 4px;
 }
+
 
 #register-btn {
 	margin-right: 4px;
@@ -76,3 +78,12 @@ hr {
 	background-color: rgb(245, 245, 245);
 	text-align: center;
 }
+
+
+  #star a{
+   text-decoration: none;
+   color: gray;
+  }
+  #star a.on{
+   color: red;
+  }

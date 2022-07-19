@@ -14,15 +14,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="com.study.review.ReviewDTO">
 		update review
 		set rtitle = #{rtitle},
-			rcontent = #{rcontent}
-			<!--  rfilename = #{rfilename},
-			star = #{star}-->
+			rcontent = #{rcontent},
+			rfilename = #{rfilename}
+			<!-- star = #{star}-->
 		where rno = #{rno}
 	</update>
 
 	<insert id="create" parameterType="com.study.review.ReviewDTO">
-		insert into review(uid, rtitle, rcontent, rdate, rno,  rfilename, did)
-    	values(#{uid},#{rtitle}, #{rcontent}, sysdate(), #{rno}, #{rfilename}, #{did})
+		insert into review(uid, rtitle, rcontent, rdate, rno, star, rfilename, did)
+    	values(#{uid},#{rtitle}, #{rcontent}, sysdate(), #{rno}, #{star}, #{rfilename}, #{did})
 	</insert>
 
 	<select id="read" parameterType="int" resultType="com.study.review.ReviewDTO">

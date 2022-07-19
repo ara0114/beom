@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,10 +48,28 @@ public class ReviewController {
   }
   
   @PutMapping("/review/")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-  public ResponseEntity<String> modify(@RequestBody ReviewDTO vo) {
+  public ResponseEntity<String> modify( ReviewDTO vo, String oldfile) {
  
     //System.out.println("modify: " + vo);
- 
+    
+    // 파일 업데이트 START
+    String basePath = UploadReview.getUploadDir();
+
+    if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
+      Utility.deleteFile(basePath, oldfile);
+    }
+
+    String upDir = UploadReview.getUploadDir();
+    String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
+    int size = (int) vo.getAddfile().getSize();
+    if (size > 0) {
+      vo.setRfilename(fname);
+    }
+    else {
+      vo.setRfilename("no.jpg");
+    }
+    
+    //기존 수정만
     return service.update(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
         : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
  
@@ -58,12 +77,9 @@ public class ReviewController {
   
   @PostMapping("/review/create")
   public ResponseEntity<String> create(ReviewDTO vo) {
- 
 //    log.info("title: " + vo.getRtitle());
-//    log.info("content: " + vo.getRcontent());
-//    log.info("uid: " + vo.getUid());
-//    log.info("addfile: " + vo.getAddfile());
-//    log.info("did: " + vo.getDid());
+
+    System.out.println("create: " + vo);
     
     String upDir = UploadReview.getUploadDir();
     String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
@@ -72,7 +88,7 @@ public class ReviewController {
       vo.setRfilename(fname);
     }
     else {
-      vo.setRfilename("no.png");
+      vo.setRfilename("no.jpg");
     }
    
  
@@ -80,7 +96,7 @@ public class ReviewController {
  
     int flag = service.create(vo);
  
-    log.info("Review INSERT flag: " + flag);
+    //log.info("Review INSERT flag: " + flag);
  
     return flag == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
         : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -91,7 +107,7 @@ public class ReviewController {
   @GetMapping("/review/list/{rno}")
   public ResponseEntity<ReviewDTO> get(@PathVariable("rno") int rno) {  //조회
  
-    log.info("get: " + rno);
+    //log.info("get: " + rno);
  
     return new ResponseEntity<>(service.read(rno), HttpStatus.OK);
   }

@@ -17,11 +17,11 @@ function add(formData) {  //추가
 		.catch(console.log);
 }
 
-function update(review) {  //수정
+function update(formData) {  //수정
 	return fetch(`/review/`, {
 		method: 'put',
-		body: JSON.stringify(review),
-		headers: { 'Content-Type': "application/json; charset=utf-8" }
+		body: formData,
+		//headers: { 'Content-Type': "application/json; charset=utf-8" }
 	})
 		.then(response => response.text())
 		.catch(console.log);
