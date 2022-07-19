@@ -28,12 +28,7 @@
 				<a href="/review/list" id="h2"><h2>전체 리뷰</h2></a>
 			</div>
 			<div class="star-row">
-				<div class="star">
-					<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-						class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-						class="fa-solid fa-star"></i>
-				</div>
-				<div class="starsum">4.8</div>
+				<div class="starsum"><h3>&nbsp ⭐4.8</h3></div>
 			</div>
 		</div>
 		<!-- head end -->
@@ -67,15 +62,38 @@
 				<div class="row">
 					<c:if test="${dto.rfilename != null }">
 						<div class="review-img">
-							<img class='chat' data-rno="${dto.rno }"
-								src="/hairReview/storage/${dto.rfilename}">
+							<a><img class='chat' data-rno="${dto.rno }"
+								src="/hairReview/storage/${dto.rfilename}"></a>
 						</div>
 					</c:if>
 					<div class="customer-review">
 						<div class="star">
-							${dto.uid } &nbsp &nbsp <i class="fa-solid fa-star"></i> <i
-								class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-								class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+							${dto.uid } &nbsp &nbsp 
+							<c:if test="${dto.star == 1}">
+							<i class="fa-solid fa-star"></i>
+							</c:if>
+							<c:if test="${dto.star == 2}">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							</c:if>
+							<c:if test="${dto.star == 3}">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							</c:if>
+							<c:if test="${dto.star == 4}">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							</c:if>
+							<c:if test="${dto.star == 5}">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							</c:if>
 							${dto.star } &nbsp &nbsp | &nbsp
 							<div style = "float: right;">
 			                  ${dto.rdate }
@@ -126,18 +144,29 @@
 						<label>아이디</label>
 						<input class="form-control" name='uid' id="uid" disabled>
 						<label>담당디자이너</label>
-						<input class="form-control" name='did' id="did">  <!-- 나중에 disabled -->
-						<label>별점</label>
-						<div id="star">
-						별5개
+						<input class="form-control" name='did' id="did"><br>  <!-- 나중에 disabled -->
+					<div id="rating">
+						<label>평점</label>&nbsp&nbsp
+							<select name="star">
+								<option value="5">아주 좋아요 &nbsp  ★★★★★</option>
+								<option value="4">맘에 들어요 &nbsp ★★★★☆</option>
+								<option value="3">보통이에요 &nbsp&nbsp ★★★☆☆</option>
+								<option value="2">그냥 그래요 &nbsp ★★☆☆☆</option>
+								<option value="1">별로에요 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ★☆☆☆☆</option>
+							</select>
 						</div>
+						
+						<!--  <div id="star">
+						별5개
+						</div>-->
+						
 						<label class="modal-img">이미지 </label>
 						<div class="review-img">
 							<img class='modal-img' src="" name="rfilename">
-							<input type="file" name="addfile">
+							<input type="file" name="addfile" >
 						</div>
 						<label>제목</label>
-						<input class="form-control" name='rtitle' id="rtitle">
+						<input class="form-control" name='rtitle' id="rtitle" >
 						<label>내용</label>
 						<textarea cols="10" rows="10" class="form-control" name='rcontent' id="rcontent" ></textarea>
 						<!--  <label class="rdate" id="rdate">작성날짜</label>

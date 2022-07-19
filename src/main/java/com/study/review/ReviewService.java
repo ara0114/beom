@@ -12,4 +12,5 @@ public interface ReviewService {
   int update(ReviewDTO vo);
   int delete(int rno);
 
+
 }

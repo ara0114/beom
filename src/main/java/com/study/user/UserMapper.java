@@ -13,4 +13,9 @@ public interface UserMapper {
   int loginCheck(Map<String, String> map);
   
   Map getGrade(String id);
+  
+  String findId(Map<String, String> map);
+  
+  String findPw(Map<String, String> map);
+  
 }

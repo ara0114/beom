@@ -11,7 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-  
+   
 <script type="text/javascript">
 $(document).ready(function(){
  var msg = '${msg}'; //Controller에서 가져온 데이터
@@ -40,7 +40,7 @@ $(document).ready(function(){
       <div class="modal-content">
         <div class="modal-header">
       
-          <h4 class="modal-title">오류 메세지!</h4>
+          <h4 class="modal-title">Error Message</h4>
         </div>
         <div class="modal-body">
           <p>This is a small modal.</p>

@@ -14,4 +14,8 @@ public interface UserService {
 
   Map getGrade(String id);
 
+  String findId(Map<String, String> map);
+
+  String findPw(Map<String, String> map);
+
 }

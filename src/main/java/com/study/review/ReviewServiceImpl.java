@@ -29,6 +29,7 @@ public class ReviewServiceImpl implements ReviewService {
     return mapper.read(rno);
   }
 
+
   @Override
   public int create(ReviewDTO vo) {
     // TODO Auto-generated method stub
@@ -46,6 +47,7 @@ public class ReviewServiceImpl implements ReviewService {
     // TODO Auto-generated method stub
     return mapper.delete(rno);
   }
+
 
 
 }

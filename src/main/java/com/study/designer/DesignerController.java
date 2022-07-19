@@ -115,8 +115,16 @@ public class DesignerController {
   public String dlogin(@RequestParam Map map, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
     int flag = dservice.dlogin(map);
     
+    
     if(flag > 0) {
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
+
+      boolean validation = ddto.isValidation();
+      if(!validation) {
+        model.addAttribute("msg","관리자의 자격승인이 필요합니다.");
+        return "/errorMsg";
+      }
+
       session.setAttribute("did", ddto.getDid());
       session.setAttribute("dname", ddto.getDname());
       session.setAttribute("validation", ddto.isValidation());
@@ -150,8 +158,11 @@ public class DesignerController {
       
       return "redirect:/";
     }else {
-      model.addAttribute("msg", "아이디 또는 비밀번호를 잘못 입력 했거나 <br>회원이 아닙니다. 회원가입 하세요");
-      return "/designer/errorMsg";
+
+      model.addAttribute("msg","아이디 또는 비밀번호를 잘못 입력했거나<br>회원이 아닙니다. 회원가입하세요");
+      
+      return "/errorMsg"; 
+
     }
   }
   

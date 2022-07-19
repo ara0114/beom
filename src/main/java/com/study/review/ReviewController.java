@@ -13,11 +13,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,6 +38,7 @@ public class ReviewController {
 //    return "/review/reviewForm";
 //  }
   
+
   @DeleteMapping("/review/list/{rno}")
   public ResponseEntity<String> remove(@PathVariable("rno") int rno) {
  
@@ -73,6 +76,7 @@ public class ReviewController {
         : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
   }
   
+
   @GetMapping("/review/list/{rno}")
   public ResponseEntity<ReviewDTO> get(@PathVariable("rno") int rno) {  //조회
  

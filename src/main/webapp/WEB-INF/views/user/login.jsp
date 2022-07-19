@@ -103,9 +103,9 @@
         <div>
             <ul>
                 <li><a href="/user/agree">회원가입</a></li>
-                <li><a href="#">아이디찾기</a></li>
-                <li><a href="#">비밀번호찾기</a></li>
-            </ul>        
+                <li><a href="/user/findid">아이디찾기</a></li>
+                <li><a href="/user/findpw">비밀번호찾기</a></li>
+            </ul>         
         </div>
     </form>
 </body>
