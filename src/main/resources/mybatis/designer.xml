@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.designer.DesignerMapper">
+	<insert id="dcreate" parameterType="com.study.designer.DesignerDTO">
+		insert into designer( did,dpw,dname,birth,demail,dphone,address1,address2,dzipcode ) 
+		values( #{did},#{dpw},#{dname},#{birth},#{demail},#{dphone},#{address1},#{address2},#{dzipcode} )
+		
+	</insert>
+
+	<insert id="lcreate1" parameterType="com.study.designer.LicenseDTO">
+		insert into certification( did, licenseno, licensedate,uniquecode1 ) 
+		values( #{did},#{licenseno},#{licensedate},#{uniquecode1} )
+	</insert>
+	
+	<insert id="lcreate2" parameterType="com.study.designer.LicenseDTO">
+		insert into certification( did, uniquecode2 ) 
+		values( #{did},#{uniquecode2} )
+	</insert>
+	
+	<select id="duplicatedId" parameterType="String"
+		resultType="int">
+		SELECT COUNT(did)
+		FROM designer
+		WHERE did=#{did}
+	</select>
+	
+	<select id="duplicatedEmail" parameterType="String"
+		resultType="int">
+		SELECT COUNT(demail)
+		FROM designer
+		WHERE demail=#{demail}
+	</select>
+	
+	<select id="dlogin" parameterType="Map" resultType="int">
+		select count(did)
+		from designer
+		where did = #{did} and dpw = #{dpw}
+	</select>
+	
+	<select id="dread" parameterType="String" resultType="com.study.designer.DesignerDTO">
+		select did, dname, validation
+		from designer
+		where did = #{did}
+	
+	</select>
+</mapper>

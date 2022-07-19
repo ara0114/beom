@@ -15,7 +15,10 @@ public class TilesConfiguration {
       configurer.setDefinitions(new String[]{"classpath:/templates/tiles_main.xml",
                                               "classpath:/templates/tiles_main.xml",
                                               "classpath:/templates/tiles_user.xml",
-                                              "classpath:/templates/tiles_notice.xml"
+                                              "classpath:/templates/tiles_notice.xml",
+                                             "classpath:/templates/tiles_review.xml",
+                                             "classpath:/templates/tiles_user.xml",
+                                             "classpath:/templates/tiles_designer.xml"
                                              });
       configurer.setCheckRefresh(true);
       return configurer;

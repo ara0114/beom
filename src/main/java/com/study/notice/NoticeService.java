@@ -5,4 +5,18 @@ import java.util.Map;
  
 public interface NoticeService {
 
+  int total(Map map);
+
+  List<NoticeDTO> list(Map map);
+
+  int write(NoticeDTO dto);
+
+  void upCnt(int noticeno);
+
+  NoticeDTO read(int noticeno);
+
+  int edit(NoticeDTO dto);
+
+  int delete(int noticeno);
+
 }
