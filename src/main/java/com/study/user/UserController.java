@@ -1,6 +1,7 @@
 package com.study.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -14,15 +15,59 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.study.utility.Utility;
 
 @Controller
 public class UserController {
   @Autowired
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
-
+  
+  @RequestMapping("/admin/user/list")
+  public String list(HttpServletRequest request) {
+    //검색
+    String col = Utility.checkNull(request.getParameter("col"));
+    String word = Utility.checkNull(request.getParameter("word"));
+    
+    if(col.equals("total")) {
+      word = "";
+    }
+    //페이지
+    int nowPage = 1;
+    if(request.getParameter("nowPage")!=null) {
+      nowPage = Integer.parseInt(request.getParameter("nowPage"));
+    }
+    int recordPerPage = 5;//한페이지당 보여줄 레코드 수
+    
+    //DB에서 가져올 순번
+    int sno = (nowPage-1)*recordPerPage;
+    int eno = recordPerPage;
+    
+    Map map = new HashMap();
+    map.put("col", col);
+    map.put("word", word);
+    map.put("sno", sno);
+    map.put("eno", eno);
+    
+    int total = service.total(map);
+    
+    List<UserDTO> list = service.list(map);
+    
+    String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+    
+    request.setAttribute("list", list);
+    request.setAttribute("nowPage", nowPage);
+    request.setAttribute("col", col);
+    request.setAttribute("word", word);
+    request.setAttribute("paging", paging);
+    
+    return "/user/list";
+  }
+  
   @PostMapping("/user/update")
   public String update(UserDTO dto, Model model) {
     int flag = service.update(dto);

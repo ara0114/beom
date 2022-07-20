@@ -1,5 +1,6 @@
 package com.study.user;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,16 @@ public class UserServiceImpl implements UserService {
   @Override
   public int update(UserDTO dto) {
     return mapper.update(dto);
+  }
+
+  @Override
+  public int total(Map map) {
+    return mapper.total(map);
+  }
+
+  @Override
+  public List<UserDTO> list(Map map) {
+    return mapper.list(map);
   }
   
 }

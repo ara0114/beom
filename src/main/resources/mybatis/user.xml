@@ -4,6 +4,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.user.UserMapper">
+	<select id="list" parameterType="Map" resultType="com.study.user.UserDTO">
+		SELECT *
+		FROM user
+		<where>
+			<choose>
+				<when test="col=='uname'">
+					uname like concat('%',#{word},'%')
+				</when>
+				<when test="col=='uid'">
+					uid like concat('%',#{word},'%')
+				</when>
+				<when test="col=='uphone'">
+					uphone like concat('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+		ORDER BY uname
+		limit #{sno}, #{eno}
+	</select>
+	<select id="total" parameterType="Map" resultType="int">
+		SELECT count(*)
+		FROM user
+		<where>
+			<choose>
+				<when test="col=='uname'">
+					uname like concat('%',#{word},'%')
+				</when>
+				<when test="col=='uid'">
+					uid like concat('%',#{word},'%')
+				</when>
+				<when test="col=='uphone'">
+					uphone like concat('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+	</select>
 	<update id="update" parameterType="com.study.user.UserDTO">
 		UPDATE user 
 		SET uphone=#{uphone}
