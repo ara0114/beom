@@ -42,7 +42,7 @@
 </script>
 <style>
 label {
-	font-size: 100%;
+	font-size: 150%;
 }
 
 button {
@@ -52,10 +52,6 @@ button {
 
 td button {
 	border: 1px solid;
-}
-
-.form {
-	float: right;
 }
 </style>
 <title>My page</title>
@@ -82,67 +78,47 @@ td button {
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 			</div>
 		</div>
-
 		<!-- div left구역 -->
+
+
 		<div style="width: 80%; float: right;">
-
-			<!-- 윗 목록 메뉴/스타일/리뷰 -->
-			<div style="padding-top: 1%; padding-bottom: 1%; text-align: center; font-size: 20px">
-				<ul id="nav2" class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="#">메뉴</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">스타일</a></li>
-					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a>
-					</li>
-				</ul>
-			</div>
-			<!-- 윗 목록 END -->
-
-
+			<div style="height: 6%;"></div>
 			<div class="container">
-				<div class="head" style="width:80%">
-					<div class="title" style="float:left; height:40px">
-						<p style="font-size:25px; font-weight:bold">Review</p>
+				<div class="head" style="display: flex">
+					<div class="title">
+						<a href="/review/list" id="h2"><h2>전체 리뷰</h2></a>
 					</div>
-					<div class="star-row" style="float:left;  height:40px;">
+					<div class="star-row">
 						<div class="starsum">
-							<p style="font-size:25px; font-weight:bold">&nbsp ⭐ ${starAvg }&nbsp</p>
+							<h3>&nbsp ⭐ ${starAvg }</h3>
 						</div>
 						<!-- 평균 별점 -->
 					</div>
-
-
-					<form class="form-inline" action="./list" style="float:right">
-						<div class="form-group">
-							<select class="form-control" name="col">
-								<option value="rtitle"
-									<c:if test= "${col=='rtitle'}"> selected </c:if>>제목</option>
-								<option value="rcontent"
-									<c:if test= "${col=='rcontent'}"> selected </c:if>>내용</option>
-								<option value="uid"
-									<c:if test= "${col=='uid'}"> selected </c:if>>아이디</option>
-								<option value="title_content"
-									<c:if test= "${col=='title_content'}"> selected</c:if>>제목+내용</option>
-								<option value="total"
-									<c:if test= "${col=='total'}"> selected </c:if>>전체출력</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Enter 검색어"
-								name="word" value="${word}">
-						</div>
-						<div class="form-group">
-						<button type="submit" class="btn btn-default">검색</button>
-						</div>
-						<div class="form-group">
-						<c:if test="${not empty sessionScope.uid}">
-							<button type="button" class="btn btn-default" id="reviewCreate">등록</button>
-						</c:if>
-						</div>
-					</form>
 				</div>
 				<!-- head END -->
-				<br>
+				<form class="form-inline" action="./list">
+					<div class="form-group">
+						<select class="form-control" name="col">
+							<option value="rtitle"
+								<c:if test= "${col=='rtitle'}"> selected </c:if>>제목</option>
+							<option value="rcontent"
+								<c:if test= "${col=='rcontent'}"> selected </c:if>>내용</option>
+							<option value="uid" <c:if test= "${col=='uid'}"> selected </c:if>>아이디</option>
+							<option value="title_content"
+								<c:if test= "${col=='title_content'}"> selected</c:if>>제목+내용</option>
+							<option value="total"
+								<c:if test= "${col=='total'}"> selected </c:if>>전체출력</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Enter 검색어"
+							name="word" value="${word}">
+					</div>
+					<button type="submit" class="btn btn-default">검색</button>
+					<c:if test="${not empty sessionScope.uid}">
+						<button type="button" class="btn btn-default" id="reviewCreate">등록</button>
+					</c:if>
+				</form>
 				<hr>
 
 				<div class="contents">
@@ -151,9 +127,7 @@ td button {
 							<c:if test="${dto.rfilename != null }">
 								<div class="review-img">
 									<a><img class='chat' data-rno="${dto.rno }"
-										src="/hairReview/storage/${dto.rfilename}"
-										style="width: 120px; height: 120px; border-radius: 5%;"></a>&nbsp
-									&nbsp
+										src="/hairReview/storage/${dto.rfilename}"></a>
 								</div>
 							</c:if>
 							<div class="customer-review">
@@ -213,10 +187,9 @@ td button {
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
-								<label>아이디</label> 
-								<input class="form-control" name='uid' id="uid" disabled> 
-								<label>담당디자이너</label> 
-									<input class="form-control" name='did' id="did"><br>
+								<label>아이디</label> <input class="form-control" name='uid'
+									id="uid" disabled> <label>담당디자이너</label> <input
+									class="form-control" name='did' id="did"><br>
 								<!-- 나중에 disabled -->
 								<div id="rating">
 									<label>평점</label>&nbsp&nbsp <select name="star">
@@ -229,14 +202,17 @@ td button {
 									</select>
 								</div>
 
+								<!--  <div id="star">
+						별5개
+						</div>-->
+
 								<label class="modal-img">이미지 </label>
 								<div class="review-img">
-									<img class='modal-img' src="" name="rfilename"
-										style="width: 150px; height: 150px; border-radius: 5%;">
-									<input type="file" name="addfile">
+									<img class='modal-img' src="" name="rfilename"> <input
+										type="file" name="addfile">
 								</div>
-								<label>제목</label> <input class="form-control" name='rtitle' id="rtitle"> 
-								<label>내용</label>
+								<label>제목</label> <input class="form-control" name='rtitle'
+									id="rtitle"> <label>내용</label>
 								<textarea cols="10" rows="10" class="form-control"
 									name='rcontent' id="rcontent"></textarea>
 								<!--  <label class="rdate" id="rdate">작성날짜</label>
@@ -263,11 +239,10 @@ td button {
 	<!-- 오른쪽 div 구역 END -->
 
 	<div style="width: 20%; float: right;"></div>
-	<div></div>
-
+	</div>
 	<!-- 맨처음 div -->
-<script>let uid = '${sessionScope.uid}'</script>
-<script src="/js/reviewProducer.js"></script>
-<script src="/js/reviewConsumer.js"></script>
+	<script>let uid = '${sessionScope.uid}'</script>
+	<script src="/js/reviewProducer.js"></script>
+	<script src="/js/reviewConsumer.js"></script>
 </body>
 </html>

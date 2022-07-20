@@ -12,6 +12,7 @@ function add(formData) {  //추가
 	return fetch('/review/create', {
 		method: 'post',
 		body: formData
+		//enctype="multipart/formData"
 	})
 		.then(response => response.json())
 		.catch(console.log);

@@ -6,6 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.study.review.ReviewMapper">
 
+	<select id="starAvg" resultType="double">
+		select avg(star) from review
+	</select>
+
 	<delete id="delete" parameterType="int">
 		delete FROM review
 		WHERE rno = #{rno}
@@ -15,8 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update review
 		set rtitle = #{rtitle},
 			rcontent = #{rcontent},
-			rfilename = #{rfilename}
-			<!-- star = #{star}-->
+			rfilename = #{rfilename},
+		 	star = #{star}
 		where rno = #{rno}
 	</update>
 

@@ -47,5 +47,12 @@ public class ReviewServiceImpl implements ReviewService {
     return mapper.delete(rno);
   }
 
+  @Override
+  public double starAvg() {
+    // TODO Auto-generated method stub
+    return mapper.starAvg();
+  }
+
+
 
 }
