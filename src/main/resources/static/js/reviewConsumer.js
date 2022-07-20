@@ -1,5 +1,4 @@
 
-
 function replaceAll(str, searchStr, replaceStr) { // replaceAll 함수 
 	return str.split(searchStr).join(replaceStr); // split으로 나눠서 배열로 만들고 join으로 하나의 문자열로 만듦
 }
@@ -14,12 +13,12 @@ let modalInputRcontent = modal.find("textarea[name='rcontent']");
 let modalInputRtitle = modal.find("input[name='rtitle']");
 let modalInputUid = modal.find("input[name='uid']");
 let modalInputDid = modal.find("input[name='did']");
-let modalInputRfilename = modal.find("img[name='rfilename']");
 let modalInputStar = modal.find("select[name='star']");
+let modalInputRfilename = modal.find("img[name='rfilename']");  //모달 이미지 보여지는 부분
 
 
-let addFile = modal.find("input[name='addfile']");  // 모달 이미지부분
-let labelImg = $(".modal-img");
+let addFile = modal.find("input[name='addfile']");  // 모달 파일선택 버튼
+let labelImg = $(".modal-img");   // 모달 '이미지'글자 부분
 
 
 let modalModBtn = $("#modalModBtn");
@@ -32,6 +31,7 @@ modalRemoveBtn.on("click", function(e) {
 	let rno = modal.data("rno");
 	remove(rno)
 		.then(result => {
+			
 			modal.modal("hide");
 			window.location.reload();
 		});
@@ -51,7 +51,12 @@ modalModBtn.on("click", function(e) {
 	}
 
 	const formData = new FormData();
-	const rfilename = document.querySelector('input[type="file"]');
+	let rfilename = "";
+	let f = document.querySelector('input[type="file"]');
+	if(f == undefined){
+		f = modalInputRfilename;
+	}
+	rfilename = f;
 	let rno = modal.data("rno");
 	
 	formData.append('rno', rno);
@@ -59,13 +64,17 @@ modalModBtn.on("click", function(e) {
 	formData.append('did', modalInputDid.val());
 	formData.append('rtitle', modalInputRtitle.val());
 	formData.append('rcontent', modalInputRcontent.val());
+	formData.append('star', modalInputStar.val());
+	
+	
 	formData.append('addfile', rfilename.files[0]);
+	alert(rfilename);
 	
 	update(formData)
 		.then(result => {
 			
 			modal.modal("hide");
-           window.location.reload();
+         	window.location.reload();
 
 		});
 
@@ -92,26 +101,25 @@ $("#reviewCreate").on("click", function(e) {
 
 // 리뷰 등록 Register 버튼 클릭시
 modalRegisterBtn.on("click", function(e) { 
+	//alert(modalInputStar.val());
 	
 	if (modalInputRtitle.val() == '') {
 		alert("제목을 입력하세요");
 		return;
 	}
 	if (modalInputRcontent.val() == '') {
-		alert("내용을 입력하세요")
+		alert("내용을 입력하세요");
 		return;
 	}
-	//alert(modalInputStar.val());
 
-
-	let review = {   // json 객체로 만듦
-		uid: modalInputUid.val(),
-		did: modalInputDid.val(),
-		//rstar: modalInputRstar.val(),
-		rtitle: modalInputRtitle.val(),
-		rcontent: modalInputRcontent.val(),
+	//let review = {   // json 객체로 
+	//	uid: modalInputUid.val(),
+	//	did: modalInputDid.val(),
+	//	//star: modalInputStar.val(),
+	//	rtitle: modalInputRtitle.val(),
+	//	rcontent: modalInputRcontent.val(),
 		
-	};
+	// };
 	
 	const formData = new FormData();
 	const rfilename = document.querySelector('input[type="file"]');
@@ -121,19 +129,11 @@ modalRegisterBtn.on("click", function(e) {
 	formData.append('rtitle', modalInputRtitle.val());
 	formData.append('rcontent', modalInputRcontent.val());
 	formData.append('star', modalInputStar.val());
-	formData.append('addfile', rfilename.files[0]);
+	formData.append('addfile', rfilename.files[0]); 
 	
 	add(formData)
 		.then(result => {
-			
-			//modal.find("input[name='uid']").val("");  // 파일 초기화코드 => X 가능
-			//modal.find("input[name='did']").val("");
-			//modal.find("div[name='rstar']").val("");
-			//modal.find("img[name='rfilename']").val("");    //파일 초기화 잘 안됌...
-			//modal.find("input[name='rtitle']").val("");
-			//modal.find("textarea[name='rcontent']").val("");
-			//modal.find("input[name='rdate']").val("");
-			
+			//alert(rfilename.files[0]);
 			modal.modal("hide");
 			window.location.reload();
 
@@ -145,7 +145,7 @@ modalRegisterBtn.on("click", function(e) {
 //리뷰 조회
 $(".chat").on("click", function (e) {
 	
- modal.modal({backdrop: 'static', keyboard: false})    //모달 외부 클릭 방지하는거
+ modal.modal({backdrop: 'static', keyboard: false})    //모달 외부 클릭 방지
   
   let rno = $(this).data("rno");
   //alert(rno);
@@ -166,8 +166,6 @@ $(".chat").on("click", function (e) {
 			
 			if (review.rfilename == null) {   // 올린 이미지 없이 조회할때 이미지구역 숨기기
 				
-				labelImg.hide();
-				addFile.hide();
 				modalInputRfilename.hide();
 			}
 			

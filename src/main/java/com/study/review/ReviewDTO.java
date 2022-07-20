@@ -1,5 +1,7 @@
 package com.study.review;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -13,5 +15,6 @@ public class ReviewDTO {
  private String rfilename  ; 
  private String uid        ; 
  private String did        ;
+ private MultipartFile addfile;
  
 }

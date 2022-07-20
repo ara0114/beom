@@ -1,7 +1,7 @@
 package com.study.review;
 import java.io.File;
  
-//회원 사진에 대한걸 올림
+//리뷰 사진에 대한걸 올림
 public class UploadReview {
     /** 페이지당 출력할 레코드 갯수 */
     public static int RECORD_PER_PAGE = 3;
@@ -10,7 +10,7 @@ public class UploadReview {
     public static synchronized String getUploadDir() {
         String path = "";
         if (File.separator.equals("\\")) {
-            path = "C:/AI study/deploy/hairReview/storage/";
+            path = "C:/deploy/hairReview/storage/";
             System.out.println("Windows 10: " + path);
             
         } else {

@@ -19,6 +19,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src = "/js/designer_mypage_modal.js"></script>
 <script>
 	function dmypage_update() {
 		let url = "/dmypage_update";
@@ -43,30 +44,10 @@
 		location.href = url;
 	}
 	
-	//function modal(){
-	//	$("#staticBackdrop").modal("show");
-	//}
 	
-	function get(rnum) {
-	    return fetch(`/reserve/${rnum}`,{method: 'get'})
-	           .then(response => response.json())
-	           .catch(console.log);
-	}
 	
-	let modalInputContent = $(".modal").find("p[id='message']");
 	
-	$("#reserve_modal").on("click", function (e) {
-		 
-		  let rnum = $(this).data("rnum");
-		 
-		   get(rnum)
-		    .then(reserve => {
-		      
-		      modalInputContent.val(reserve.message);
-			  $(".modal").modal("show");
-		 
-		    });
-		});
+	
 	
 </script>
 <style>
@@ -220,8 +201,7 @@ a:hover, a:active {
 									<c:forEach var="dto" items="${reserveList}">
 
 										<tr>
-											<td><a id="reserve_modal"
-												data-rnum="${dto.reserveno }">${dto.udto.uname }</a></td>
+											<td><a onclick="modal(${dto.reserveno})">${dto.udto.uname }</a></td>
 											<td>${dto.edto.hdto.hgender }</td>
 											<td>${dto.edto.enrolldate }</td>
 											<td>${dto.edto.enrolltime }</td>
@@ -266,7 +246,7 @@ a:hover, a:active {
 				<div class="modal-body">
 
 					<h5>메세지</h5>
-					<p id="message"></p>
+					<p class="message"></p>
 
 				</div>
 				<div class="modal-footer">
