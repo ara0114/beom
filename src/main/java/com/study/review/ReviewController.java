@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.study.utility.Utility;
@@ -61,13 +62,10 @@ public class ReviewController {
     }
 
     String upDir = UploadReview.getUploadDir();
-    String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
-    int size = (int) vo.getAddfile().getSize();
-    if (size > 0) {
+   //int size = (int) vo.getAddfile().getSize();
+    if (vo.getAddfile() != null) {
+      String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
       vo.setRfilename(fname);
-    }
-    else {
-      vo.setRfilename("no.jpg");
     }
     
     //기존 수정만
@@ -77,23 +75,17 @@ public class ReviewController {
   }
   
   @PostMapping("/review/create")
+  @ResponseBody
   public ResponseEntity<String> create(ReviewDTO vo) {
-//    log.info("title: " + vo.getRtitle());
+    log.info("title: " + vo);
     //System.out.println("create: " + vo);
     
-    
     String upDir = UploadReview.getUploadDir();
-    String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
-    int size = (int) vo.getAddfile().getSize();
-    if (size > 0) {
+    if (vo.getAddfile() !=null) {
+      String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
       vo.setRfilename(fname);
-    } else {
-      //System.out.println("size: " + size);
-      //log.info("size: " + size);
-      
-      vo.setRfilename("no.jpg");
-    }
- 
+    } 
+    
     vo.setRcontent(vo.getRcontent().replaceAll("/n/r", "<br>"));  // 모달등록
  
     int flag = service.create(vo);

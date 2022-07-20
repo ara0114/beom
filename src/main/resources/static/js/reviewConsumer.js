@@ -60,7 +60,10 @@ modalModBtn.on("click", function(e) {
 	formData.append('rtitle', modalInputRtitle.val());
 	formData.append('rcontent', modalInputRcontent.val());
 	formData.append('star', modalInputStar.val());
-	formData.append('addfile', rfilename.files[0]);
+	if(rfilename.files[0] != undefined) {   // 파일이 undefined가 아닐경우에만 데이터 보내줌
+		formData.append('addfile', rfilename.files[0]);
+
+	}
 	
 	update(formData)
 		.then(result => {
@@ -104,28 +107,25 @@ modalRegisterBtn.on("click", function(e) {
 		return;
 	}
 
-	//let review = {   // json 객체로 
-	//	uid: modalInputUid.val(),
-	//	did: modalInputDid.val(),
-	//	//star: modalInputStar.val(),
-	//	rtitle: modalInputRtitle.val(),
-	//	rcontent: modalInputRcontent.val(),
-		
-	// };
-	
 	const formData = new FormData();
 	const rfilename = document.querySelector('input[type="file"]');
-	
+
 	formData.append('uid', modalInputUid.val());
 	formData.append('did', modalInputDid.val());
 	formData.append('rtitle', modalInputRtitle.val());
 	formData.append('rcontent', modalInputRcontent.val());
 	formData.append('star', modalInputStar.val());
-	formData.append('addfile', rfilename.files[0]);
+	if(rfilename.files[0] != undefined) {
+		formData.append('addfile', rfilename.files[0]);
+
+	}
+	
 	
 	add(formData)
 		.then(result => {
+			
 			//alert(rfilename.files[0]);
+			
 			modal.modal("hide");
 			window.location.reload();
 
