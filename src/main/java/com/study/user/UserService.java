@@ -18,4 +18,8 @@ public interface UserService {
 
   String findPw(Map<String, String> map);
 
+  UserDTO mypage(String id);
+
+  int update(UserDTO dto);
+
 }

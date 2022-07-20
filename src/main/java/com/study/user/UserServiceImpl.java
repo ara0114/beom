@@ -45,5 +45,15 @@ public class UserServiceImpl implements UserService {
   public String findPw(Map<String, String> map) {
     return mapper.findPw(map);
   }
+
+  @Override
+  public UserDTO mypage(String id) {
+    return mapper.mypage(id);
+  }
+
+  @Override
+  public int update(UserDTO dto) {
+    return mapper.update(dto);
+  }
   
 }

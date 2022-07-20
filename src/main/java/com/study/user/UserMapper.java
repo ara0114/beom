@@ -18,4 +18,7 @@ public interface UserMapper {
   
   String findPw(Map<String, String> map);
   
+  UserDTO mypage(String id);
+  
+  int update(UserDTO dto);
 }
