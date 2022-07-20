@@ -179,6 +179,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set dfilename = #{dfilename}
 		where did = #{did}
 	</update>
+	
+	<select id="read_message" parameterType="int" resultType="com.study.reserve.ReserveDTO">
+		select message
+		from reserve
+		where reserveno = #{rnum}
+	</select>
 
 
 

@@ -2,7 +2,6 @@ package com.study.designer;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -265,6 +266,14 @@ public class DesignerController {
     } else {
       return "./error";
     }
+  }
+  
+  
+  @GetMapping("/reserve/{rnum}")
+  public ResponseEntity<ReserveDTO> get(@PathVariable("rnum") int rnum) {
+ 
+    System.out.println(dservice.read_message(rnum));
+    return new ResponseEntity<>(dservice.read_message(rnum), HttpStatus.OK);
   }
   
   

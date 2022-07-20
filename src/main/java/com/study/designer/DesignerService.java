@@ -38,6 +38,8 @@ public interface DesignerService {
 
   int dupdateFile(Map map);
 
+  ReserveDTO read_message(int rnum);
+
   
 
 }

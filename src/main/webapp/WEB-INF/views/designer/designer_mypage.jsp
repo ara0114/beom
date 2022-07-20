@@ -43,13 +43,31 @@
 		location.href = url;
 	}
 	
-	function modal(){
-		$("#staticBackdrop").modal("show");
+	//function modal(){
+	//	$("#staticBackdrop").modal("show");
+	//}
+	
+	function get(rnum) {
+	    return fetch(`/reserve/${rnum}`,{method: 'get'})
+	           .then(response => response.json())
+	           .catch(console.log);
 	}
 	
-	$("#Closebtn").on("click", function (e) {
-		$(".modal").modal('hide');
+	let modalInputContent = $(".modal").find("p[id='message']");
+	
+	$("#reserve_modal").on("click", function (e) {
+		 
+		  let rnum = $(this).data("rnum");
+		 
+		   get(rnum)
+		    .then(reserve => {
+		      
+		      modalInputContent.val(reserve.message);
+			  $(".modal").modal("show");
+		 
+		    });
 		});
+	
 </script>
 <style>
 label {
@@ -63,6 +81,14 @@ button {
 
 td button {
 	border: 1px solid;
+}
+
+a:link {
+	color: maroon;
+}
+
+a:hover, a:active {
+	background-color: yellow;
 }
 </style>
 <title>My page</title>
@@ -162,7 +188,8 @@ td button {
 						</tbody>
 					</table>
 					<div style="height: 50px;">
-						<button class="btn btn-outline-success" onclick = "enroll()">예약 등록</button>
+						<button class="btn btn-outline-success" onclick="enroll()">예약
+							등록</button>
 					</div>
 				</div>
 
@@ -192,8 +219,9 @@ td button {
 								<c:otherwise>
 									<c:forEach var="dto" items="${reserveList}">
 
-										<tr onclick="modal()">
-											<td>${dto.udto.uname }</td>
+										<tr>
+											<td><a id="reserve_modal"
+												data-rnum="${dto.reserveno }">${dto.udto.uname }</a></td>
 											<td>${dto.edto.hdto.hgender }</td>
 											<td>${dto.edto.enrolldate }</td>
 											<td>${dto.edto.enrolltime }</td>
@@ -236,13 +264,14 @@ td button {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					
+
 					<h5>메세지</h5>
-					<p id = "message"></p>
+					<p id="message"></p>
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" id = "Closebtn">닫기</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>

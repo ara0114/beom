@@ -107,4 +107,10 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.dupdateFile(map);
   }
 
+  @Override
+  public ReserveDTO read_message(int rnum) {
+    // TODO Auto-generated method stub
+    return mapper.read_message(rnum);
+  }
+
 }

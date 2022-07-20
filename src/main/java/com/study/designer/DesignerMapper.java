@@ -39,4 +39,6 @@ public interface DesignerMapper {
 
   int dupdateFile(Map map);
 
+  ReserveDTO read_message(int rnum);
+
 }
