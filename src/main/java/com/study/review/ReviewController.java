@@ -33,11 +33,6 @@ public class ReviewController {
   @Qualifier("com.study.review.ReviewServiceImpl")
   private ReviewService service;
 
-  @RequestMapping("/review/reviewListTest")
-  private String review() {
-    
-    return "/review/reviewListTest";
-  }
   
   @DeleteMapping("/review/{rno}")
   public ResponseEntity<String> delete(@PathVariable("rno") int rno) {
@@ -56,8 +51,7 @@ public class ReviewController {
     
     // 파일 업데이트 START
     String basePath = UploadReview.getUploadDir();
-
-    if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
+    if (oldfile != null) { // 원본파일 삭제
       Utility.deleteFile(basePath, oldfile);
     }
 

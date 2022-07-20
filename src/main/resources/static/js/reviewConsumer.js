@@ -60,6 +60,8 @@ modalModBtn.on("click", function(e) {
 	formData.append('rtitle', modalInputRtitle.val());
 	formData.append('rcontent', modalInputRcontent.val());
 	formData.append('star', modalInputStar.val());
+	formData.append('rfilename', modalInputRfilename.val());
+	
 	if(rfilename.files[0] != undefined) {   // 파일이 undefined가 아닐경우에만 데이터 보내줌
 		formData.append('addfile', rfilename.files[0]);
 
