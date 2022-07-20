@@ -1,4 +1,4 @@
-package com.study.reservation;
+package com.study.enroll;
 
 import java.util.List;
 import java.util.Map;
@@ -7,11 +7,11 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("com.study.reservation.ReservationServiceImpl")
-public class ReservationServiceImpl implements ReservationService {
+@Service("com.study.enroll.EnrollServiceImpl")
+public class EnrollServiceImpl implements EnrollService {
 
   @Autowired
-  private ReservationMapper mapper;
+  private EnrollMapper mapper;
 
   @Override
   public List<HairmenuDTO> list(String did) {

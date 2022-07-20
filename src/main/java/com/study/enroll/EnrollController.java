@@ -1,9 +1,11 @@
-package com.study.reservation;
+package com.study.enroll;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,16 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class reservationController {
+public class EnrollController {
 
   @Autowired
-  @Qualifier("com.study.reservation.ReservationServiceImpl")
-  private ReservationService service;
+  @Qualifier("com.study.enroll.EnrollServiceImpl")
+  private EnrollService service;
 
   @GetMapping("/enroll/designer")
   public String reservation(String did, Model model) {
@@ -73,16 +74,18 @@ public class reservationController {
   }
   
   //예약 입력 후 sumbit 버튼 클릭시 입력데이터 를 받는컨트롤러
-  @RequestMapping("/designerMypage/reservationList")
+  @PostMapping("/designerMypage/reservationList")
   public String reservationList(
-    @RequestParam("category") String category,
-    @RequestParam("gender") String gender,
-    @RequestParam("menu") String menu,
-    @RequestParam("price") String price,
-    @RequestParam("time") String time,
-    @RequestParam("date") String date,
-    @RequestParam("did") String did,
-    Model model) {
+     String category,
+     String gender,
+     String menu,
+     String price,
+     String time,
+     String date,
+     String did,
+    Model model,
+    HttpSession session) {
+    session.setAttribute("did", did);
     Map map = new HashMap();
     map.put("date",date);
     map.put("time",time);
@@ -98,11 +101,16 @@ public class reservationController {
     //예약등록
     int cnt = service.enrollInput(map);
     if(cnt == 1) {
-    Set<EnrollDTO> enrollList = service.enrollList(did);
-    System.out.println(enrollList);
-    model.addAttribute("list", enrollList);
+      return "redirect:/enrollList";
+    }else {
+      return "error";
     }
     
+  }
+  
+  @GetMapping("/enrollList")
+  public String enrollList(HttpSession session,Model model) {
+    model.addAttribute("list",service.enrollList((String)session.getAttribute("did")));
     return "/enrollList";
   }
   

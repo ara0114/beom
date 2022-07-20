@@ -1,4 +1,4 @@
-<%@page import="com.study.reservation.EnrollDTO"%>
+<%@page import="com.study.enroll.EnrollDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,11 +15,8 @@
 <body>
 <div class="container">
 
-
-<c:forEach var="dto" items="${list}" begin="1" end="1">
-<h3>${dto.did} 예약 리스트</h3>
-<input type="hidden" id="hidden" value="${dto.did}"/>
-</c:forEach>
+<h3>${sessionScope.did} 예약 리스트</h3>
+<input type="hidden" id="hidden" value="${sessionScope.did}"/>
 	<table>
 		<thead>
 			<tr>
@@ -48,7 +45,7 @@
 								<td>${dto.emenu}</td>
 								<td>${innerdto.hgender}</td>
 								<td>${dto.eprice}</td>
-								<td><button id="deletebtn" value="${dto.enrollno}">${dto.enrollno}삭제</button></td>
+								<td><button id="deletebtn" value="${dto.enrollno}">삭제</button></td>
 							<tr>
 						</tbody>
 					</c:forEach>

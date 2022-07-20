@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="upload-box">
 			<h3>Upload File</h3>
-			<div class="drag-area">
+			<div class="filearea">
 				<div class="icon">
 					<i class="fas fa-images"> </i>
 				</div>

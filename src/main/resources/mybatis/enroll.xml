@@ -4,11 +4,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.study.reservation.ReservationMapper">
+<mapper namespace="com.study.enroll.EnrollMapper">
 	
 	
 	
-	<select id="menuInfo" parameterType="Map" resultType="com.study.reservation.HairmenuDTO">
+	<select id="menuInfo" parameterType="Map" resultType="com.study.enroll.HairmenuDTO">
 		SELECT
 		h.menu,
 		h.price
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
-	<resultMap type="com.study.reservation.HairmenuDTO" id="hairmenuInfo">
+	<resultMap type="com.study.enroll.HairmenuDTO" id="hairmenuInfo">
 		<result property="menu" column="menu"/>
 		<result property="price" column="price"/>
 		<result property="did" column="did"/>
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="category" resultMap="categoryInfo"/>
 	</resultMap>
 	
-	<resultMap type="com.study.reservation.CategoryDTO" id="categoryInfo">
+	<resultMap type="com.study.enroll.CategoryDTO" id="categoryInfo">
 		<result property="catename" column="catename"/>
 	</resultMap>
 
@@ -47,21 +47,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	
-	<select id="catenameList" parameterType="String" resultType="com.study.reservation.CategoryDTO">
+	<select id="catenameList" parameterType="String" resultType="com.study.enroll.CategoryDTO">
 		SELECT c.catename 
 		FROM hairmenu h LEFT JOIN category c 
 		ON h.cateno = c.cateno
 		WHERE h.did = #{id}
 	</select>
 	
-	<select id="menuPriceList" parameterType="String" resultType="com.study.reservation.HairmenuDTO">
+	<select id="menuPriceList" parameterType="String" resultType="com.study.enroll.HairmenuDTO">
 		SELECT menu,price,hgender
 		FROM hairmenu 
 		WHERE did = #{id}
 		 
 	</select>
 	
-	<select id="menunoGet" parameterType="Map" resultType="com.study.reservation.HairmenuDTO">
+	<select id="menunoGet" parameterType="Map" resultType="com.study.enroll.HairmenuDTO">
 		SELECT menuno 
 		FROM hairmenu
 		WHERE did = #{did} and menu = #{menu}	
@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	values(#{date},#{time},#{emenu},#{menuno},#{eprice},#{did})
 	</insert>
 	
-	<resultMap type="com.study.reservation.EnrollDTO" id="enrollListDTO">
+	<resultMap type="com.study.enroll.EnrollDTO" id="enrollListDTO">
 		<result property="enrollno" column="enrollno"/>
 		<result property="enrolldate" column="enrolldate"/>
 		<result property="enrolltime" column="enrolltime"/>
@@ -83,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property ="hairmenu"  resultMap="hairmenuGengerDTO" />
 	</resultMap>
 	
-	<resultMap type="com.study.reservation.HairmenuDTO" id="hairmenuGengerDTO">
+	<resultMap type="com.study.enroll.HairmenuDTO" id="hairmenuGengerDTO">
 		<result property="hgender" column="hgender"/>
 	</resultMap>
 	

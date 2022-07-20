@@ -1,10 +1,10 @@
-package com.study.reservation;
+package com.study.enroll;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface ReservationService {
+public interface EnrollService {
 
   List<HairmenuDTO> list(String did);
 
