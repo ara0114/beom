@@ -10,11 +10,13 @@ public class DesignerDTO {
   private String birth;
   private String demail;
   private String dphone;
+  private String hairshop;
   private String address1;
   private String address2;
   private String dzipcode;
   private String dfilename;
   private boolean validation;
   private int likecnt;
+  private String introduction;
   
 }

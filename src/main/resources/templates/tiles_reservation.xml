@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+  <!-- main -->
+  <definition name="main"
+    template="/WEB-INF/views/template/template.jsp">
+    <put-attribute name="header"
+      value="/WEB-INF/views/template/top.jsp" />
+  </definition>
+  <definition name="/enroll/designer" extends="main">
+    <put-attribute name="title" value="디자이너예약페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/enroll/designer.jsp" />
+  </definition>
+  <definition name="/enrollList" extends="main">
+    <put-attribute name="title" value="디자이너예약페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/enroll/enrollList.jsp" />
+  </definition>
+</tiles-definitions>

@@ -1,5 +1,11 @@
 package com.study.hairmenu;
 
+
+
+import java.util.List;
+
+import com.study.enroll.EnrollDTO;
+
 import lombok.Data;
 
 @Data
@@ -10,5 +16,9 @@ public class HairmenuDTO {
   private String did;
   private int cateno;
   private String hgender;
+  
+  private List<EnrollDTO> edto;
+  
+  
   
 }

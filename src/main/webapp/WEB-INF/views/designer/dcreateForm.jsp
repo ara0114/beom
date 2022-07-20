@@ -272,6 +272,14 @@
 
 											<div class="mb-4">
 												<div class="form-outline form-white">
+													<label class="form-label" for="hairshop">헤어샵</label> <input
+														type="text" id="hairshop" name="hairshop"
+														class="form-control form-control-lg" />
+												</div>
+											</div>
+
+											<div class="mb-4">
+												<div class="form-outline form-white">
 													<label class="form-label" for="sample6_postcode">우편번호</label>
 													<input type="text" id="sample6_postcode" name="dzipcode"
 														class="form-control form-control-lg" />

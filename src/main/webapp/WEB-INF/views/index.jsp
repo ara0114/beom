@@ -4,6 +4,12 @@
 	<c:when test="${not empty sessionScope.did}">
 		<c:set var='str'>안녕하세요  ${sessionScope.did } 님!</c:set>
 	</c:when>
+	<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A'}">
+        <c:set var="str">안녕하세요 관리자님!</c:set>
+    </c:when>
+	<c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
+        <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>
+    </c:when>
 	<c:otherwise>
 		<c:set var="str">기본 페이지 입니다.</c:set>
 	</c:otherwise>
@@ -22,10 +28,12 @@ img {
 </head>
 <body>
 	<div class="container">
+
 		<p>
-			<a href="/contents/mainlist/1">SHOP NOW</a> ${str }
+			<a href="/contents/mainlist/1">SHOP NOW</a>
 		</p>
 		<img src="/images/tree.jpg" alt="Tree"> 
+
 	</div>
 </body>
 </html>

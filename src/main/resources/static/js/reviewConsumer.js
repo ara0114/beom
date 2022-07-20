@@ -181,4 +181,3 @@ $("#modalCloseBtn").on("click", function (e) {
    modal.modal('hide'); //모달숨기기
    window.location.reload();
 });
-

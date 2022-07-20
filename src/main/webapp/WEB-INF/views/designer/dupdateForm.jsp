@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,38 +20,6 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-	$(function() {
-		$('#selectBox').change(function() {
-			let selected_value = $('#selectBox option:selected').val();
-			if (selected_value == 2) {
-				$("#div4").show();
-				$("#div1").hide();
-				$("#div2").hide();
-				$("#div3").hide();
-			} else {
-				$("#div4").hide();
-				$("#div1").show();
-				$("#div2").show();
-				$("#div3").show();
-			}
-		});
-	});
-
-	function idCheck(id) {
-		if (id == '') {
-			alert("아이디를 입력하세요");
-			document.frm.id.focus();
-		} else {
-			var url = "idcheck";
-			var param = "id=" + id;
-
-			$.get(url, param, function(data, textStatus) {
-
-				$("#idcheck").text(data.str);
-			})
-		}
-	}
-
 	function emailCheck(email) {
 		if (email == '') {
 			alert("email를 입력하세요");
@@ -121,63 +90,37 @@
 	}
 
 	function inCheck(f) {
-		if (f.did.value.length == 0) {
-			alert("아이디를 입력하세요");
-			f.did.focus();
-			return false;
-		}
-		if (f.dpw.value.length == 0) {
-			alert("비번을 입력하세요");
-			f.dpw.focus();
-			return false;
-		}
-		if (f.repw.value.length == 0) {
-			alert("비번확인을 입력하세요");
-			f.repw.focus();
-			return false;
-		}
-		if (f.dpw.value != f.repw.value) {
-			alert("비번과 비번확인이 일치하지 않습니다.");
-			f.dpw.value = "";
-			f.repw.value = "";
-			f.dpw.focus();
-			return false;
-		}
 		if (f.dname.value.length == 0) {
 			alert("이름을 입력하세요");
 			f.dname.focus();
 			return false;
 		}
-		
+
 		if (f.demail.value.length == 0) {
 			alert("이메일을 입력하세요");
 			f.demail.focus();
 			return false;
 		}
-		
+
 		if (f.dphone.value.length == 0) {
 			alert("전화번호를 입력하세요");
 			f.dphone.focus();
 			return false;
 		}
-		if (f.birth.value.length == 0) {
-			alert("생년월일을 입력하세요");
-			f.birth.focus();
-			return false;
-		}
+
 		if (f.dzipcode.value.length == 0) {
 			alert("주소를 입력하세요");
 			f.dzipcode.focus();
 			return false;
 		}
-		
+
 	}
 </script>
 <title>회원가입</title>
 
 </head>
 <body>
-	<form action="dcreate" method="post" name="frm"
+	<form action="dupdate" method="post" name="frm"
 		onsubmit="return inCheck(this)">
 		<section class="h-100 h-custom gradient-custom-2">
 			<div class="container py-5 h-100">
@@ -198,9 +141,9 @@
 													<div class="form-outline">
 														<label class="form-label" for="did">아이디</label> <input
 															type="text" id="did" name="did"
-															class="form-control form-control-lg" />
-														<button type="button" class="btn btn-default col-sm-5"
-															onclick="idCheck(document.frm.id.value)">ID 중복확인</button>
+															class="form-control form-control-lg" value="${ddto.did }"
+															disabled />
+
 													</div>
 												</div>
 											</div>
@@ -209,75 +152,90 @@
 												<div class="form-outline">
 													<label class="form-label" for="dpw">비밀번호</label> <input
 														type="password" id="dpw" name="dpw"
-														class="form-control form-control-lg" />
+														class="form-control form-control-lg" value="${ddto.dpw }"
+														disabled />
 
 												</div>
 											</div>
-											
-											<div class="mb-4 pb-2">
-												<div class="form-outline">
-													<label class="form-label" for="repw">비밀번호 확인</label> <input
-														type="password" id="repw" name="repw"
-														class="form-control form-control-lg" />
 
-												</div>
-											</div>
+
 
 											<div class="mb-4 pb-2">
 												<div class="form-outline">
 													<label class="form-label" for="dname">이름</label> <input
 														type="text" id="dname" name="dname"
-														class="form-control form-control-lg" />
+														class="form-control form-control-lg"
+														value="${ddto.dname }" />
 
 												</div>
-											</div>	
-											
+											</div>
+											<div class="row">
+												<div class="mb-4">
+													<div class="form-outline form-white">
+														<label class="form-label" for="demail">이메일</label> <input
+															type="email" id="demail" name="demail"
+															class="form-control form-control-lg"
+															value="${ddto.demail }" />
+														<button type="button" class="btn btn-default col-sm-3"
+															onclick="emailCheck(document.frm.demail.value)">email
+															중복확인</button>
+														<div id="emailcheck"></div>
+													</div>
+												</div>
+											</div>
 											<div class="mb-4">
 												<div class="form-outline form-white">
-													<label class="form-label" for="demail">이메일</label>
-													<input type="email" id="demail" name = "demail"
-														class="form-control form-control-lg" />
+													<label class="form-label" for="dphone">전화번호</label> <input
+														type="text" id="dphone" name="dphone"
+														class="form-control form-control-lg"
+														value="${ddto.dphone }" />
 												</div>
 											</div>
 
 											<div class="mb-4">
 												<div class="form-outline form-white">
-													<label class="form-label" for="dphone">전화번호</label>
-													<input type="text" id="dphone" name = "dphone"
-														class="form-control form-control-lg" />
+													<label class="form-label" for="birth">생년월일 (예 :
+														901225)</label> <input type="text" id="birth" name="birth"
+														class="form-control form-control-lg"
+														value="${ddto.birth }" disabled />
 												</div>
 											</div>
 
 											<div class="mb-4">
 												<div class="form-outline form-white">
-													<label class="form-label" for="birth">생년월일
-														(예 : 901225)</label> <input type="text" id="birth" name = "birth"
-														class="form-control form-control-lg" />
+													<label class="form-label" for="hairshop">헤어샵</label> <input
+														type="text" id="hairshop" name="hairshop"
+														class="form-control form-control-lg"
+														value="${ddto.hairshop }"/>
 												</div>
 											</div>
 
 											<div class="mb-4">
 												<div class="form-outline form-white">
 													<label class="form-label" for="sample6_postcode">우편번호</label>
-													<input type="text" id="sample6_postcode" name = "dzipcode"
-														class="form-control form-control-lg"/>
-													<button type = "button" class="btn btn-default col-sm-2" onclick="sample6_execDaumPostcode()">주소 검색</button>
+													<input type="text" id="sample6_postcode" name="dzipcode"
+														class="form-control form-control-lg"
+														value="${ddto.dzipcode }" />
+													<button type="button" class="btn btn-default col-sm-2"
+														onclick="sample6_execDaumPostcode()">주소 검색</button>
 												</div>
 											</div>
 											<br>
 											<div class="mb-4">
 												<div class="form-outline form-white">
-													<label class="form-label" for="sample6_address">주소</label> <input
-														type="text" id="sample6_address" name = "address1"
-														class="form-control form-control-lg" />
+													<label class="form-label" for="sample6_address">주소</label>
+													<input type="text" id="sample6_address" name="address1"
+														class="form-control form-control-lg"
+														value=${ddto.address1 } />
 												</div>
 											</div>
 
 											<div class="mb-4">
 												<div class="form-outline form-white">
 													<label class="form-label" for="sample6_detailAddress">상세주소</label>
-													<input type="text" id="sample6_detailAddress" name = "address2"
-														class="form-control form-control-lg" />
+													<input type="text" id="sample6_detailAddress"
+														name="address2" class="form-control form-control-lg"
+														value="${ddto.address2 }" />
 												</div>
 											</div>
 
@@ -288,49 +246,59 @@
 										<div class="p-5">
 											<h3 class="fw-normal mb-5">자격증 정보</h3>
 
-											<div class="mb-4 pb-2" style="color: black;">
-												<select class="selectBox" id="selectBox">
-													<option value="1" selected="selected">수첩형 자격증</option>
-													<option value="2">상장형 자격증</option>
-												</select>
-											</div>
 
-											<div class="mb-4 pb-3" id="div1">
-												<div class="form-outline form-white">
-													<label class="form-label" for="licenseno">자격증
-														번호 (예:12345678901A)</label> <input type="text" id="licenseno" name = "licenseno"
-														class="form-control form-control-lg" />
-												</div>
-											</div>
+											<c:choose>
+												<c:when test="${empty cdto.uniquecode2}">
+													<div style="font-weight: bold; font-size: large;">수첩형
+														자격증</div>
 
-											<div class="mb-4 pb-3" id="div2">
-												<div class="form-outline form-white">
-													<label class="form-label" for="licensedate">발급(등록)연월일
-														(예:20050101)</label> <input type="text" id="licensedate" name = "licensedate"
-														class="form-control form-control-lg" />
-												</div>
-											</div>
+													<div class="mb-4 pb-3" id="div1">
+														<div class="form-outline form-white">
+															<label class="form-label" for="licenseno">자격증 번호
+																(예:12345678901A)</label> <input type="text" id="licenseno"
+																name="licenseno" class="form-control form-control-lg"
+																value="${cdto.licenseno }" disabled />
+														</div>
+													</div>
 
-											<div class="mb-4 pb-3" id="div3">
-												<div class="form-outline form-white">
-													<label class="form-label" for="uniquecode1">자격증
-														내지번호 (예:0901234567)</label> <input type="text" id="uniquecode1" name = "uniquecode1"
-														class="form-control form-control-lg" />
-												</div>
-											</div>
+													<div class="mb-4 pb-3" id="div2">
+														<div class="form-outline form-white">
+															<label class="form-label" for="licensedate">발급(등록)연월일
+																(예:20050101)</label> <input type="text" id="licensedate"
+																name="licensedate" class="form-control form-control-lg"
+																value="${cdto.licensedate }" disabled />
+														</div>
+													</div>
 
-											<div class="mb-4 pb-4" id="div4" style="display: none;">
-												<div class="form-outline form-white">
-													<label class="form-label" for="uniquecode2">자격증
-														관리번호</label> <input type="text" id="uniquecode2" name = "uniquecode1"
-														class="form-control form-control-lg" />
-												</div>
-											</div>
+													<div class="mb-4 pb-3" id="div3">
+														<div class="form-outline form-white">
+															<label class="form-label" for="uniquecode1">자격증
+																내지번호 (예:0901234567)</label> <input type="text" id="uniquecode1"
+																name="uniquecode1" class="form-control form-control-lg"
+																value="${cdto.uniquecode1 }" disabled />
+														</div>
+													</div>
+												</c:when>
+
+												<c:otherwise>
+													<div style="font-weight: bold; font-size: large;">상장형
+														자격증</div>
+													<div class="mb-4 pb-4" id="div4">
+														<div class="form-outline form-white">
+															<label class="form-label" for="uniquecode2">자격증
+																관리번호</label> <input type="text" id="uniquecode2"
+																name="uniquecode2" class="form-control form-control-lg"
+																value="${cdto.uniquecode2 }" disabled />
+														</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
+
 
 											<button type="submit" class="btn btn-light btn-lg"
 												data-mdb-ripple-color="dark">수정</button>
-											<button type="reset" class="btn btn-light btn-lg"
-												data-mdb-ripple-color="dark">취소</button>
+											<button type="button" class="btn btn-light btn-lg"
+												data-mdb-ripple-color="dark" onclick="history.back()">취소</button>
 
 										</div>
 									</div>

@@ -3,7 +3,7 @@
 <c:set var="root" value="${pageContext.request.contextPath }"/>
  <c:choose>
     <c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A'}">
-        <c:set var="str">관리자 페이지 입니다.</c:set>
+        <c:set var="str">안녕하세요 관리자님!</c:set>
     </c:when>
     <c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
         <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>
@@ -43,16 +43,16 @@
 
                 <div class="menu-group float--left">
                     <div class="logo">
-                        <a href="#">GitHub</a>
+                        <a href="/">GitHub</a>
                     </div>
                     <ul class="main-menu">
-                        <li><a href="#">TeamBEOM</a></li>
+                        <li><a href="/">TeamBEOM</a></li>
                   <!-- 드롭다운 예정  
                   		<li><a href="#">Story</a></li>
                         <li><a href="#">Developer</a></li>
                         <li><a href="#">Support</a></li> 
                         									-->
-                        <li><a href="#">Home</a></li>									
+                        <li><a href="${root}/">Home</a></li>									
                         <li><a href="${root }/notice/list">Notice</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
@@ -88,7 +88,7 @@
                     		<li><a href="#">Reservation</a></li>
                     	</c:when>
                     	<c:when test="${not empty sessionScope.did }"> <!-- 고객 로그인했을때 -->
-                    		<li><a href="#">Mypage</a></li>
+                    		<li><a href="/dmypage">Mypage</a></li>
                     	</c:when>
                     </c:choose>             
                     </ul>

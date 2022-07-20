@@ -1,5 +1,6 @@
 package com.study.designer;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,12 +11,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.study.reserve.ReserveDTO;
+import com.study.utility.Utility;
 
 @Controller
 public class DesignerController {
@@ -80,29 +88,6 @@ public class DesignerController {
   
   @GetMapping("/dlogin")
   public String dlogin(HttpServletRequest request) {
-//  /*----쿠키설정 내용시작----------------------------*/
-//  String c_id = ""; // ID 저장 여부를 저장하는 변수, Y
-//  String c_id_val = ""; // ID 값
-//
-//  Cookie[] cookies = request.getCookies();
-//  Cookie cookie = null;
-//
-//  if (cookies != null) {
-//    for (int i = 0; i < cookies.length; i++) {
-//      cookie = cookies[i];
-//
-//      if (cookie.getName().equals("c_id")) {
-//        c_id = cookie.getValue(); // Y
-//      } else if (cookie.getName().equals("c_id_val")) {
-//        c_id_val = cookie.getValue(); // user1...
-//      }
-//    }
-//  }
-//  /*----쿠키설정 내용 끝----------------------------*/
-//
-//  request.setAttribute("c_id", c_id);
-//  request.setAttribute("c_id_val", c_id_val);
-    
     String chk_id = "";
     String cookie_id_val = "";
     
@@ -131,8 +116,16 @@ public class DesignerController {
   public String dlogin(@RequestParam Map map, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
     int flag = dservice.dlogin(map);
     
+    
     if(flag > 0) {
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
+
+      boolean validation = ddto.isValidation();
+      if(!validation) {
+        model.addAttribute("msg","관리자의 자격승인이 필요합니다.");
+        return "/errorMsg";
+      }
+
       session.setAttribute("did", ddto.getDid());
       session.setAttribute("dname", ddto.getDname());
       session.setAttribute("validation", ddto.isValidation());
@@ -166,14 +159,146 @@ public class DesignerController {
       
       return "redirect:/";
     }else {
-      return "error";
+
+      model.addAttribute("msg","아이디 또는 비밀번호를 잘못 입력했거나<br>회원이 아닙니다. 회원가입하세요");
+      
+      return "/errorMsg"; 
+
     }
   }
   
  
   
   @GetMapping("/dmypage")
-  public String designer_mypage() {
+  public String designer_mypage(HttpSession session, Model model) {
+    if(session.getAttribute("did") == null) return "redirect:/";
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    //List<EnrollDTO> enrollList2 = dservice.enrollList((String)session.getAttribute("did"));
+    //List<ReserveDTO> reserveList = dservice.reserve_list((String)session.getAttribute("did"));
+    //System.out.println(ddto.getDfilename());
+    model.addAttribute("ddto", ddto);
+    model.addAttribute("enrollList",dservice.enroll_list((String)session.getAttribute("did")));
+    model.addAttribute("reserveList", dservice.reserve_list((String)session.getAttribute("did")));
+    //System.out.println(reserveList);
+    //model.addAttribute("enrollList2",dservice.enrollList((String)session.getAttribute("did")));
+   //System.out.println(enrollList2);
     return "/dmypage";
   }
+  
+  @GetMapping("/dmypage_intro_update")
+  public String designer_introduction_update(Model model, HttpSession session) {
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    if(ddto.getIntroduction() == null) ddto.setIntroduction("");
+    ddto.setIntroduction(ddto.getIntroduction().replaceAll("<br>", "\r\n"));
+    model.addAttribute("ddto", ddto);
+    return "/dmypage_intro_update";
+  }
+  
+  @PostMapping("/dmypage_intro_update")
+  public String designer_introduction_update(HttpServletRequest request, HttpSession session, Model model) {
+    String introduction = request.getParameter("introduction").replaceAll("\r\n", "<br>");
+    //System.out.println(text);
+    
+    Map map = new HashMap();
+    map.put("introduction", introduction);
+    map.put("did", (String)session.getAttribute("did"));
+    
+    int flag = dservice.intro_update(map);
+    if(flag > 0) {
+      DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
+      model.addAttribute("ddto", ddto);
+      return "redirect:/dmypage";
+    }else {
+      return "error";
+    }
+    
+  }
+  
+  @GetMapping("/dmypage_update")
+  public String dmypage_update(HttpSession session, Model model) {
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    LicenseDTO cdto = dservice.license((String)session.getAttribute("did"));
+    //System.out.println(cdto.getDid());
+    model.addAttribute("ddto", ddto);
+    model.addAttribute("cdto", cdto);
+    return "/dmypage_update";
+  }
+  
+  @PostMapping("/dupdate")
+  public String dupdate(DesignerDTO ddto, Model model, HttpSession session) {
+    ddto.setDid((String)session.getAttribute("did"));
+    int flag = dservice.dupdate(ddto);
+    System.out.println(ddto.getAddress1());
+    
+    if(flag > 0) {
+      DesignerDTO new_ddto = dservice.dmypage((String)session.getAttribute("did"));
+      model.addAttribute("ddto", new_ddto);
+    }
+    
+    return "redirect:/dmypage";
+  }
+  
+  @GetMapping("/designer/dupdateFileForm")
+  public String dupdateFile(Model model, HttpSession session) {
+    model.addAttribute("ddto", dservice.dmypage((String)session.getAttribute("did")));
+    return "/designer/dupdateFileForm";
+  }
+  
+  
+  @PostMapping("/designer/dupdateFile")
+  public String updateFile(MultipartFile dfilenameMF, String oldfile, HttpSession session) throws IOException {
+    String basePath = UploadDesignerFile.getUploadDir();
+    
+    if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
+      Utility.deleteFile(basePath, oldfile);
+    }
+
+    // pstorage에 변경 파일 저장
+    Map map = new HashMap();
+    map.put("did", (String)session.getAttribute("did"));
+    map.put("dfilename", Utility.saveFileSpring(dfilenameMF, basePath));
+
+    // 디비에 파일명 변경
+    int cnt = dservice.dupdateFile(map);
+
+    if (cnt == 1) {
+      return "redirect:/dmypage";
+    } else {
+      return "./error";
+    }
+  }
+  
+  
+  @GetMapping("/reserve/{rnum}")
+  public ResponseEntity<ReserveDTO> get(@PathVariable("rnum") int rnum) {
+ 
+    System.out.println(dservice.read_message(rnum));
+    return new ResponseEntity<>(dservice.read_message(rnum), HttpStatus.OK);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }

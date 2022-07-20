@@ -13,4 +13,5 @@ public interface ReviewService {
   int delete(int rno);
   double starAvg();
 
+
 }

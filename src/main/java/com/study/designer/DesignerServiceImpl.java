@@ -1,9 +1,14 @@
 package com.study.designer;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.study.hairmenu.HairmenuDTO;
+import com.study.reservation.EnrollDTO;
+import com.study.reserve.ReserveDTO;
 
 @Service("com.study.designer.DesignerServiceImpl")
 public class DesignerServiceImpl implements DesignerService {
@@ -52,6 +57,60 @@ public class DesignerServiceImpl implements DesignerService {
   public DesignerDTO dread(String did) {
     // TODO Auto-generated method stub
     return mapper.dread(did);
+  }
+
+  @Override
+  public DesignerDTO dmypage(String did) {
+    // TODO Auto-generated method stub
+    return mapper.dmypage(did);
+  }
+
+  @Override
+  public int intro_update(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.intro_update(map);
+  }
+
+  @Override
+  public LicenseDTO license(String did) {
+    // TODO Auto-generated method stub
+    return mapper.license(did);
+  }
+
+  @Override
+  public int dupdate(DesignerDTO ddto) {
+    // TODO Auto-generated method stub
+    return mapper.dupdate(ddto);
+  }
+
+  @Override
+  public List<HairmenuDTO> enroll_list(String did) {
+    // TODO Auto-generated method stub
+    return mapper.enroll_list(did);
+  }
+
+  @Override
+  public List<ReserveDTO> reserve_list(String did) {
+    // TODO Auto-generated method stub
+    return mapper.reserve_list(did);
+  }
+
+  @Override
+  public List<EnrollDTO> enrollList(String did) {
+    // TODO Auto-generated method stub
+    return mapper.enrollList(did);
+  }
+
+  @Override
+  public int dupdateFile(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.dupdateFile(map);
+  }
+
+  @Override
+  public ReserveDTO read_message(int rnum) {
+    // TODO Auto-generated method stub
+    return mapper.read_message(rnum);
   }
 
 }

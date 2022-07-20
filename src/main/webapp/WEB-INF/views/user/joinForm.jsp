@@ -83,6 +83,14 @@
     		}
     	}
     	function inCheck(f){
+    		if($("#idcheck").text()==""){
+    			alert("아이디 중복체크를 해주세요");
+    			return false;
+    		}
+    		if($("#emailcheck").text()==""){
+    			alert("이메일 중복체크를 해주세요");
+    			return false;
+    		}
     		if(f.uid.value.length==0){
     			alert("아이디를 입력하세요");
     			f.uid.focus();
@@ -120,6 +128,7 @@
     			f.uphone.focus();
     			return false;
     		}
+
     	}
     </script>
 </head>
@@ -132,7 +141,7 @@
                 <th><label class="control-label" for="uid">아이디</label></th>
                 <td><input type="text" id="uid" name="uid" placeholder="아이디입력">
                 <div id="idcheck"></div></td>
-                <td><button class="btn" onclick="idCheck(document.frm.uid.value)">아이디 중복확인</button></td>
+                <td><button type="button" class="btn" onclick="idCheck(document.frm.uid.value)">아이디 중복확인</button></td>
             
             </tr>
                       
@@ -152,15 +161,15 @@
                 <th><label class="control-label" for="uemail">이메일</label></th>
                 <td><input type="email" id="uemail" name="uemail" placeholder="이메일입력">
                 <div id="emailcheck"></div></td>
-                <td><button class="btn" onclick="emailCheck(document.frm.uemail.value)">이메일 중복확인</button></td>
+                <td><button type="button" class="btn" onclick="emailCheck(document.frm.uemail.value)">이메일 중복확인</button></td>
             </tr>
             <tr>
                 <th><label class="control-label" for="uphone">전화번호</label></th>
                 <td><input type="text" id="uphone" name="uphone" placeholder="전화번호입력"></td>
             </tr>
         </table>
-        <div>
-            <button class="btn">등록</button>
+        <div> 
+            <button type="submit" class="btn">등록</button>
             <button class="btn" onclick="history.back()">뒤로가기</button>
         </div>
     </form>
