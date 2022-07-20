@@ -1,18 +1,16 @@
-//let modalInputContent = $(".modal").find("p[class='message']");
-	
-let modalex = $(".message"); 
-
 function modal(reserveno){
             
     let rnum = reserveno;
             
-    //modalInputContent.val(reply.content);
     get(rnum)
     .then(reserve => {
-        alert(reserve.message);
-        alert(modalex);
-        modalex.val(reserve.message);
-        //modalInputContent.val(reserve.message);
+        $("#uname").val(reserve.udto.uname);
+        $("#gender").val(reserve.edto.hdto.hgender);
+        $("#date").val(reserve.edto.enrolldate);
+        $("#time").val(reserve.edto.enrolltime);
+        $("#menu").val(reserve.edto.emenu);
+        $("#price").val(reserve.edto.eprice);
+        $("#message").val(reserve.message);
         $(".modal").modal("show");
             
     });

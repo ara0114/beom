@@ -108,9 +108,9 @@ public class DesignerServiceImpl implements DesignerService {
   }
 
   @Override
-  public ReserveDTO read_message(int rnum) {
+  public ReserveDTO read_message(Map map) {
     // TODO Auto-generated method stub
-    return mapper.read_message(rnum);
+    return mapper.read_message(map);
   }
 
 }

@@ -38,7 +38,7 @@ public interface DesignerService {
 
   int dupdateFile(Map map);
 
-  ReserveDTO read_message(int rnum);
+  ReserveDTO read_message(Map map);
 
   
 

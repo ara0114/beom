@@ -270,10 +270,35 @@ public class DesignerController {
   
   
   @GetMapping("/reserve/{rnum}")
-  public ResponseEntity<ReserveDTO> get(@PathVariable("rnum") int rnum) {
+  public ResponseEntity<ReserveDTO> get(@PathVariable("rnum") int rnum, HttpSession session) {
  
-    System.out.println(dservice.read_message(rnum));
-    return new ResponseEntity<>(dservice.read_message(rnum), HttpStatus.OK);
+    Map map = new HashMap();
+    map.put("rnum", rnum);
+    map.put("did", (String)session.getAttribute("did"));
+    System.out.println(dservice.read_message(map));
+    return new ResponseEntity<>(dservice.read_message(map), HttpStatus.OK);
+  }
+  
+  @GetMapping("/designer/deleteEnroll/{enrollno}")
+  public String deleteEnroll(@PathVariable int enrollno, Model model) {
+    
+//    if(dservice.reserve_cnt(enrollno) > 0) {//하나의 예약시간에 대해 하나의 예약신청만 가능하다.
+//      model.addAttribute("msg","예약신청내역이 있어 삭제가 불가능합니다.");
+//      return "/errorMsg";
+//    }
+//    else {
+//      int flag = dservice.delete_enroll(enrollno);
+//      if(flag > 0) {
+//        return "/dmypage";
+//      }
+//      else {
+//        model.addAttribute("msg","삭제 실패");
+//        return "/errorMsg";
+//      }
+//    
+//    }
+    return "";
+    
   }
   
   

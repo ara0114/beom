@@ -19,7 +19,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script src = "/js/designer_mypage_modal.js"></script>
+<script src="/js/designer_mypage_modal.js"></script>
 <script>
 	function dmypage_update() {
 		let url = "/dmypage_update";
@@ -70,6 +70,18 @@ a:link {
 
 a:hover, a:active {
 	background-color: yellow;
+}
+
+div h5 {
+	text-align: center;
+	font-weight: bold;
+	font-size: 150%;
+}
+
+textarea {
+	text-align: center;
+	width: 100%;
+	font-size: 125%;
 }
 </style>
 <title>My page</title>
@@ -233,20 +245,31 @@ a:hover, a:active {
 		<div style="width: 20%; float: right;"></div>
 	</div>
 
-	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-		data-bs-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<div class="modal fade" id="exampleModalPopovers" data-bs-backdrop="static"
+		  aria-hidden="true">
+		<div class="modal-dialog modal-lg" role = "document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">예약 신청 내역</h5>
+					<h5 class="modal-title" id="exampleModalPopoversLabel">예약 신청 내역</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 
+					<h5>고객이름</h5>
+					<textarea id="uname" disabled></textarea>
+					<h5>성별</h5>
+					<textarea id="gender" disabled></textarea>
+					<h5>예약날짜</h5>
+					<textarea id="date" disabled></textarea>
+					<h5>예약시간</h5>
+					<textarea id="time" disabled></textarea>
+					<h5>시술명</h5>
+					<textarea id="menu" disabled></textarea>
+					<h5>가격</h5>
+					<textarea id="price" disabled></textarea>
 					<h5>메세지</h5>
-					<p class="message"></p>
+					<textarea id="message" disabled></textarea>
 
 				</div>
 				<div class="modal-footer">

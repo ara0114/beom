@@ -180,10 +180,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where did = #{did}
 	</update>
 	
-	<select id="read_message" parameterType="int" resultType="com.study.reserve.ReserveDTO">
-		select message
-		from reserve
-		where reserveno = #{rnum}
+	<resultMap type="com.study.reserve.ReserveDTO" id="reservedetail">
+		<result property = "message" column = "message"/>
+		<association property="udto" javaType = "com.study.user.UserDTO">
+			<result property = "uname" column = "uname" />
+		</association>
+		<association property="edto" javaType = "com.study.enroll.EnrollDTO">
+			<result property = "enrolldate" column = "enrolldate" />
+			<result property = "enrolltime" column = "enrolltime" />
+			<result property = "emenu" column = "emenu" />
+			<result property = "eprice" column = "eprice" />
+			<association property="hdto" javaType = "com.study.hairmenu.HairmenuDTO">
+				<result property = "hgender" column = "hgender" />
+		</association>
+		</association>
+	</resultMap>
+
+	<select id="read_message" parameterType="Map" resultMap="reservedetail">
+		select u.uname, h.hgender, e.enrolldate, e.enrolltime, e.emenu, e.eprice, r.message
+		from reserve r
+		left join user u
+		on r.uid = u.uid
+		left join enroll e
+		on r.enrollno = e.enrollno
+		left join hairmenu h
+		on h.menuno = e.menuno
+		where r.reserveno = #{rnum} and e.did = #{did}
 	</select>
 
 
