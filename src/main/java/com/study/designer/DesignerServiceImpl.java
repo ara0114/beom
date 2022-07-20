@@ -113,4 +113,16 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.read_message(map);
   }
 
+  @Override
+  public int reserve_cnt(int enrollno) {
+    // TODO Auto-generated method stub
+    return mapper.reserve_cnt(enrollno);
+  }
+
+  @Override
+  public int delete_enroll(int enrollno) {
+    // TODO Auto-generated method stub
+    return mapper.delete_enroll(enrollno);
+  }
+
 }

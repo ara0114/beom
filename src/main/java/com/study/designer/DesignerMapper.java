@@ -41,4 +41,8 @@ public interface DesignerMapper {
 
   ReserveDTO read_message(Map map);
 
+  int reserve_cnt(int enrollno);
+
+  int delete_enroll(int enrollno);
+
 }

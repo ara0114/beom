@@ -35,7 +35,7 @@
 		let url = "/dmypage_intro_update";
 		location.href = url;
 	}
-	function delete_enroll(enrollno){
+	function deleteEnroll(enrollno){
 		let url = "/designer/deleteEnroll/" + enrollno;
 		location.href = url;
 	}

@@ -207,6 +207,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on h.menuno = e.menuno
 		where r.reserveno = #{rnum} and e.did = #{did}
 	</select>
+	
+	<select id="reserve_cnt" parameterType="int" resultType="int">
+		select count(*)
+		from reserve
+		where enrollno = #{enrollno}
+	</select>
+	
+	<delete id="delete_enroll" parameterType="int">
+		delete 
+		from enroll
+		where enrollno = #{enrollno}
+	</delete>
 
 
 
