@@ -32,7 +32,7 @@
 		<c:choose>
 			<c:when test="${empty list}">
 				<tbody>
-					<td colspan="5">등록된 예약이없습니다.</td>
+					<td colspan="6">등록된 예약이없습니다.</td>
 				</tbody>
 			</c:when>
 			<c:otherwise>

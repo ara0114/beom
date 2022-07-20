@@ -9,7 +9,7 @@
 <title>디자이너 예약페이지</title>
 <link rel="stylesheet prefetch"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-<link rel="stylesheet" href="/css/reservationD.css">
+<link rel="stylesheet" href="/css/enroll.css">
 </head>
 <body>
 
