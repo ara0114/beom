@@ -22,7 +22,7 @@ function formSubmit(){
 	//form 을 생성해서 submit
 	let form = document.createElement("form");
 	form.setAttribute("method","post");
-	form.setAttribute("action","/designerMypage/reservationList");
+	form.setAttribute("action","/designerMypage");
 	document.charset ="utf-8";
 	
 	

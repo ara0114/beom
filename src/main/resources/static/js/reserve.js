@@ -37,7 +37,7 @@ $("#submit").click(function() {
 			// 고객예약신청 리스트를 reserve 테이블에 저장하기위해 해당 예약체크된 enrollno ,uid,message 를 form 을생성해서 POST 방식으로 전송
 			let form = document.createElement("form");
 			form.setAttribute("method", "post");
-			form.setAttribute("action", "/reserve/userMypage");
+			form.setAttribute("action", "/reserve");
 			document.charset = "utf-8";
 			let values = [enrollno,message, uid];
 			console.log(enrollno);

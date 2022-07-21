@@ -21,4 +21,10 @@ public interface EnrollService {
   Set<EnrollDTO> enrollList(String did);
   
   int enrollDelete(int enrollno);
+
+  int userInsert(Map map);
+
+  List<EnrollDTO> reserveList(String uid);
+
+  List<EnrollDTO> infoList(String did);
 }

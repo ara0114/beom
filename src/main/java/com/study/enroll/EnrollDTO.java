@@ -2,6 +2,9 @@ package com.study.enroll;
 
 import java.util.List;
 
+import com.study.designer.DesignerDTO;
+import com.study.user.UserDTO;
+
 import lombok.Data;
 @Data
 public class EnrollDTO {
@@ -14,5 +17,8 @@ public class EnrollDTO {
   private String did;
   
   private List<HairmenuDTO> hairmenu;
+  private List<DesignerDTO> designerInfo;
+  private List<UserDTO> userInfo;
+  private List<ReserveDTO> reserveInfo;
 
 }

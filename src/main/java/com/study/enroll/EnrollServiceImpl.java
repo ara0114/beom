@@ -31,36 +31,51 @@ public class EnrollServiceImpl implements EnrollService {
 
     return mapper.menuPriceList(did);
   }
- 
+
   @Override
   public List<HairmenuDTO> menuInfo(Map map) {
     return mapper.menuInfo(map);
   }
-  
-  //예약테이블에 예약등록
+
+  // 예약테이블에 예약등록
   @Override
   public int enrollInput(Map map) {
     return mapper.enrollInput(map);
   }
-  //enroll 에insert 하기전에 시술명으로  해당 hairmenu 에 menuno 를 갖고온다
+
+  // enroll 에insert 하기전에 시술명으로 해당 hairmenu 에 menuno 를 갖고온다
   @Override
   public HairmenuDTO menunoGet(Map map) {
-    
+
     return mapper.menunoGet(map);
   }
 
   @Override
   public Set<EnrollDTO> enrollList(String did) {
-    
+
     return mapper.enrollList(did);
+  }
+  //enroll 테이블에 enrollno 로 데이터 삭제
+  @Override
+  public int enrollDelete(int enrollno) {
+
+    return mapper.enrollDelete(enrollno);
+  }
+  //유저 reserve 테이블에 insert
+  @Override
+  public int userInsert(Map map) {
+    return mapper.userInsert(map);
+  }
+  //유저의 예약리스트 조회
+  @Override
+  public List<EnrollDTO> reserveList(String uid) {
+    return mapper.reserveList(uid);
   }
 
   @Override
-  public int enrollDelete(int enrollno) {
+  public List<EnrollDTO> infoList(String did) {
     
-    return mapper.enrollDelete(enrollno);
+    return mapper.infoList(did);
   }
-
-
 
 }
