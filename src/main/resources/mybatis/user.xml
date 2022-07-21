@@ -53,7 +53,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<update id="update" parameterType="com.study.user.UserDTO">
 		UPDATE user 
-		SET uphone = #{uphone}
+		SET uname = #{uname},
+			uphone = #{uphone}
 		WHERE uid = #{uid}
 	</update>
 	<select id="mypage" parameterType="String" resultType="com.study.user.UserDTO">

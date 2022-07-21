@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,16 +27,6 @@ public class UserController {
   @Autowired
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
-  
-//  @GetMapping("/admin/user/read")
-//  public String readInfo(@RequestParam String uid, Model model) {
-//    
-//    UserDTO dto = service.read(uid);
-//    
-//    model.addAttribute("dto",dto);
-//    
-//    return "/user/read";
-//  }
   
   @RequestMapping("/admin/user/list")
   public String list(HttpServletRequest request) {
@@ -79,29 +70,41 @@ public class UserController {
   }
   
   @PostMapping("/user/update")
-  public String update(UserDTO dto, Model model) {
+  public String update(UserDTO dto, HttpSession session, Model model) {
     int flag = service.update(dto);
+    
     if(flag>0) {
-      model.addAttribute("id",dto.getUid());
-      return "redirect:/user/mypage";
+      if(!dto.getUid().equals((String) session.getAttribute("uid"))) {
+        model.addAttribute("id",session.getAttribute("uid"));
+        return "redirect:/admin/user/list";
+      }else {
+        model.addAttribute("id",dto.getUid());
+        return "redirect:/user/mypage";
+      }
     }else {
       model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
       return "/errorMsg";
     }
   }
-  @GetMapping("/user/update")
-  public String update(HttpSession session, Model model) {
-
-    String id = (String) session.getAttribute("uid");
+  @GetMapping(value={"/user/update","/admin/user/update"})
+  public String update(@RequestParam String uid, HttpSession session, HttpServletRequest request, Model model) {
+    String id = null;
+    
+    if(request.getServletPath().equals("/user/update")) {
+      id = (String) session.getAttribute("uid");
+    }else if(request.getServletPath().equals("/admin/user/update")){
+      id = uid;
+    }
+    
     if (id == null) {
       return "redirect:/user/login";
-    } else {
-      
-      UserDTO dto = service.mypage(id);
-      model.addAttribute("dto", dto);
-
-      return "/user/update";
     }
+    
+    UserDTO dto = service.read(id);
+    model.addAttribute("dto", dto);
+    
+    return "/user/update";
+
   }
 
   @GetMapping("/user/mypage")

@@ -27,5 +27,5 @@ public interface UserMapper {
   
   List<UserDTO> list(Map map);
   
-//  UserDTO read(String id);
+  UserDTO read(String id);
 }

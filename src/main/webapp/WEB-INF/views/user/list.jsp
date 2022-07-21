@@ -31,6 +31,9 @@
             padding: 10px;
             text-align: center;
         }
+        th{
+        	font-weight: bold;
+        }
         div{
             padding: 10px;
         }
@@ -46,11 +49,11 @@
         }
     </style>
     <script type="text/javascript">
-    	//function readInfo(uid){
-    	//	let url = "/admin/user/read";
-    	//	url += "?uid="+uid;
-    	//	location.href = url;
-    	//}
+    	function update(uid){
+    		let url = "/admin/user/update";
+    		url += "?uid="+uid;
+    		location.href = url;
+    	}
     </script>
 </head>
 <body>
@@ -85,7 +88,6 @@
 		<table class="table table-hover">
 			<thead class="table-light">
 				<tr>
-					<!--<th>번호</th>  -->
 					<th>성명</th>
 					<th>아이디</th>
 					<th>이메일</th>
@@ -99,13 +101,12 @@
 				<tr><td colspan="6">등록된 글이 없습니다.</td>
 			</c:when>
 			<c:otherwise>
-			<c:forEach var="dto" items="${list }" varStatus="status">		
-					<!-- <td>${status.count}</td>  -->
+			<c:forEach var="dto" items="${list }">		
 					<td>${dto.uname }</td>
 					<td>${dto.uid }</td>
 					<td>${dto.uemail }</td>
 					<td>${dto.uphone }</td>
-					<td><button class="btn">수정</button>
+					<td><button type="button" class="btn" onclick="javascript:update('${dto.uid}')">수정</button>
 						<button type="button" class="btn" onclick="#">삭제</button></td>
 				</tr> 
 			</c:forEach>

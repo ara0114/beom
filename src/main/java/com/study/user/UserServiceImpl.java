@@ -67,9 +67,9 @@ public class UserServiceImpl implements UserService {
     return mapper.list(map);
   }
 
-//  @Override
-//  public UserDTO read(String id) {
-//    return mapper.read(id);
-//  }
+  @Override
+  public UserDTO read(String id) {
+    return mapper.read(id);
+  }
   
 }
