@@ -124,5 +124,16 @@ public class DesignerServiceImpl implements DesignerService {
     // TODO Auto-generated method stub
     return mapper.delete_enroll(enrollno);
   }
+  
+  public String findId(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.findId(map);
+  }
+
+  @Override
+  public String findPw(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.findPw(map);
+  }
 
 }

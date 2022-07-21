@@ -1,5 +1,6 @@
 package com.study.user;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -17,5 +18,13 @@ public interface UserService {
   String findId(Map<String, String> map);
 
   String findPw(Map<String, String> map);
+
+  UserDTO mypage(String id);
+
+  int update(UserDTO dto);
+
+  int total(Map map);
+
+  List<UserDTO> list(Map map);
 
 }

@@ -23,6 +23,7 @@ public interface DesignerMapper {
 
   DesignerDTO dread(String did);
 
+
   DesignerDTO dmypage(String did);
 
   int intro_update(Map map);
@@ -44,5 +45,10 @@ public interface DesignerMapper {
   int reserve_cnt(int enrollno);
 
   int delete_enroll(int enrollno);
+
+  String findId(Map<String, String> map);
+
+  String findPw(Map<String, String> map);
+
 
 }

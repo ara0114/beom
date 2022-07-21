@@ -23,6 +23,7 @@ public interface DesignerService {
 
   DesignerDTO dread(String did);
 
+
   DesignerDTO dmypage(String did);
 
   int intro_update(Map map);
@@ -44,6 +45,9 @@ public interface DesignerService {
 
   int delete_enroll(int enrollno);
 
-  
+  String findId(Map<String, String> map);
+
+  String findPw(Map<String, String> map);
+
 
 }

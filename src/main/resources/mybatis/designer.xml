@@ -221,8 +221,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 
-
-
-
-
+	<select id="findPw" parameterType="Map" resultType="String">
+		SELECT dpw
+		FROM designer
+		WHERE did=#{did} and demail=#{demail}
+	</select> 
+	
+	<select id="findId" parameterType="Map" resultType="String">
+		SELECT did
+		FROM designer
+		WHERE dname=#{dname} and demail=#{demail}
+	</select>
 </mapper>
