@@ -10,7 +10,7 @@ function setConnected(connected) {
     else {
         $("#conversation").hide();
     }
-    $("#msg").html("");
+    //$("#msg").html("");
 }
 
 function connect() {
@@ -20,7 +20,7 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/public', function (message) {
-            showMessage("받은 메시지: " + message.body); // 서버에 메시지 전달 후 리턴받는 메시지
+            showMessage("답변: " + message.body); // 서버에 메시지 전달 후 리턴받는 메시지
         });
     });
 }
@@ -35,7 +35,7 @@ function disconnect() {
 
 function sendMessage() {
     let message = $("#msg").val()
-    showMessage("보낸 메시지: " + message);
+    showMessage("질문: " + message);
 
     stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); // 서버에 보낼 메시지
 }
@@ -48,7 +48,8 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#connect" ).click(function() { connect(); });
+     connect(); 
+   // $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendMessage(); });
 });
