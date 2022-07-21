@@ -45,6 +45,13 @@
                     font-size: 16px;
         }
     </style>
+    <script type="text/javascript">
+    	//function readInfo(uid){
+    	//	let url = "/admin/user/read";
+    	//	url += "?uid="+uid;
+    	//	location.href = url;
+    	//}
+    </script>
 </head>
 <body>
 	<div class="container">
@@ -58,6 +65,9 @@
 					<option value="uid"
 					<c:if test="${col='uid'}"> selected </c:if>
 					>아이디</option>
+					<option value="uemail"
+					<c:if test="${col='uemail'}"> selected </c:if>
+					>이메일</option>
 					<option value="uphone"
 					<c:if test="${col='uphone'}"> selected </c:if>
 					>전화번호</option>
@@ -78,6 +88,7 @@
 					<!--<th>번호</th>  -->
 					<th>성명</th>
 					<th>아이디</th>
+					<th>이메일</th>
 					<th>전화번호</th>
 					<th>수정/삭제</th>
 				</tr>
@@ -92,9 +103,10 @@
 					<!-- <td>${status.count}</td>  -->
 					<td>${dto.uname }</td>
 					<td>${dto.uid }</td>
+					<td>${dto.uemail }</td>
 					<td>${dto.uphone }</td>
 					<td><button class="btn">수정</button>
-						<button class="btn">삭제</button></td>
+						<button type="button" class="btn" onclick="#">삭제</button></td>
 				</tr> 
 			</c:forEach>
 			</c:otherwise>

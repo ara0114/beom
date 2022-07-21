@@ -40,5 +40,5 @@
    <definition name="/user/list" extends="main"> 
       <put-attribute name="title" value="고객목록" ></put-attribute> 
       <put-attribute name="body" value="/WEB-INF/views/user/list.jsp" /> 
-   </definition>            
+   </definition>                        
 </tiles-definitions>

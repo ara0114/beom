@@ -27,4 +27,6 @@ public interface UserService {
 
   List<UserDTO> list(Map map);
 
+//  UserDTO read(String id);
+
 }

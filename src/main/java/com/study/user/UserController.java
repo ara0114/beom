@@ -27,6 +27,16 @@ public class UserController {
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
   
+//  @GetMapping("/admin/user/read")
+//  public String readInfo(@RequestParam String uid, Model model) {
+//    
+//    UserDTO dto = service.read(uid);
+//    
+//    model.addAttribute("dto",dto);
+//    
+//    return "/user/read";
+//  }
+  
   @RequestMapping("/admin/user/list")
   public String list(HttpServletRequest request) {
     //검색
