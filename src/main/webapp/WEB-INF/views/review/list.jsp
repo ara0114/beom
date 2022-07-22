@@ -42,7 +42,7 @@
 </script>
 <style>
 label {
-	font-size: 100%;
+	font-size: 150%;
 }
 
 button {
@@ -71,7 +71,7 @@ td button {
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align: center;"">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
@@ -87,9 +87,9 @@ td button {
 		<div style="width: 80%; float: right;">
 
 			<!-- 윗 목록 메뉴/스타일/리뷰 -->
-			<div style="padding-top: 1%; padding-bottom: 1%; text-align: center; font-size: 20px">
+			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold">
 				<ul id="nav2" class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="#">메뉴</a>
+					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">스타일</a></li>
 					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a>
@@ -100,7 +100,7 @@ td button {
 
 
 			<div class="container">
-				<div class="head" style="width:80%">
+				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>
 					</div>
@@ -238,7 +238,7 @@ td button {
 								<label>제목</label> <input class="form-control" name='rtitle' id="rtitle"> 
 								<label>내용</label>
 								<textarea cols="10" rows="10" class="form-control"
-									name='rcontent' id="rcontent"></textarea>
+									name='rcontent' id="rcontent" ></textarea>
 								<!--  <label class="rdate" id="rdate">작성날짜</label>
 						<input class="form-control" name='rdate' id="rdate" disabled>-->
 							</div>

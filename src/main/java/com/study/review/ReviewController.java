@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.study.designer.DesignerDTO;
+import com.study.designer.DesignerService;
 import com.study.utility.Utility;
 
 @Controller
@@ -31,12 +34,10 @@ public class ReviewController {
   @Autowired
   @Qualifier("com.study.review.ReviewServiceImpl")
   private ReviewService service;
+  @Autowired
+  @Qualifier("com.study.designer.DesignerServiceImpl")
+  private DesignerService dservice;
 
-  @RequestMapping("/review/reviewListTest")
-  private String review() {
-    
-    return "/review/reviewListTest";
-  }
   
   @DeleteMapping("/review/{rno}")
   public ResponseEntity<String> delete(@PathVariable("rno") int rno) {
@@ -55,20 +56,15 @@ public class ReviewController {
     
     // 파일 업데이트 START
     String basePath = UploadReview.getUploadDir();
-
-    if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
+    if (oldfile != null) { // 원본파일 삭제
       Utility.deleteFile(basePath, oldfile);
     }
 
     String upDir = UploadReview.getUploadDir();
-    String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
-    //System.out.println("fname:" + fname);
-    int size = (int)vo.getAddfile().getSize();
-    if (size > 0) {
+   //int size = (int) vo.getAddfile().getSize();
+    if (vo.getAddfile() != null) {
+      String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
       vo.setRfilename(fname);
-    }
-    else {
-      vo.setRfilename("no.jpg");
     }
     
     //기존 수정만
@@ -78,23 +74,17 @@ public class ReviewController {
   }
   
   @PostMapping("/review/create")
+  @ResponseBody
   public ResponseEntity<String> create(ReviewDTO vo) {
-//    log.info("title: " + vo.getRtitle());
+    log.info("title: " + vo);
     //System.out.println("create: " + vo);
     
-    
     String upDir = UploadReview.getUploadDir();
-    String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
-    int size = (int) vo.getAddfile().getSize();
-    if (size > 0) {
+    if (vo.getAddfile() !=null) {
+      String fname = Utility.saveFileSpring(vo.getAddfile(), upDir);
       vo.setRfilename(fname);
-    } else {
-      //System.out.println("size: " + size);
-      //log.info("size: " + size);
-      
-      vo.setRfilename("no.jpg");
-    }
- 
+    } 
+    
     vo.setRcontent(vo.getRcontent().replaceAll("/n/r", "<br>"));  // 모달등록
  
     int flag = service.create(vo);
@@ -117,7 +107,9 @@ public class ReviewController {
   
   
   @RequestMapping("/review/list")
-  private String list (HttpServletRequest request, Model model, ReviewDTO vo) {  //리스트 페이지
+  private String list (HttpSession session, HttpServletRequest request, Model model) {  //리스트 페이지
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    model.addAttribute("ddto", ddto);
      //log.info("star: "+ service.starAvg());
     
     // 검색관련------------------------

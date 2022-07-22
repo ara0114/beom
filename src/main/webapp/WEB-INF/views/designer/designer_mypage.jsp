@@ -271,6 +271,7 @@ textarea {
 					<h5>메세지</h5>
 					<textarea id="message" disabled></textarea>
 
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
