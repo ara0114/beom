@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.study.hairmenu.HairmenuDTO;
-import com.study.reservation.EnrollDTO;
+
 import com.study.reserve.ReserveDTO;
 
 public interface DesignerService {
@@ -33,7 +33,7 @@ public interface DesignerService {
   int dupdate(DesignerDTO ddto);
 
   List<HairmenuDTO> enroll_list(String did); //예약 등록 리스트(hairmenu가 기준인 쿼리)
-  List<EnrollDTO> enrollList(String did); //예약 등록 리스트(enroll이 기준인 쿼리)
+  
   
   List<ReserveDTO> reserve_list(String did);
 

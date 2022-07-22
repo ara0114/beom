@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.study.hairmenu.HairmenuDTO;
-import com.study.reservation.EnrollDTO;
 import com.study.reserve.ReserveDTO;
 
 public interface DesignerMapper {
@@ -36,7 +35,7 @@ public interface DesignerMapper {
 
   List<ReserveDTO> reserve_list(String did);
 
-  List<EnrollDTO> enrollList(String did);
+  
 
   int dupdateFile(Map map);
 

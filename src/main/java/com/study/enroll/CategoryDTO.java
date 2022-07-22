@@ -1,4 +1,4 @@
-package com.study.reservation;
+package com.study.enroll;
 
 import lombok.Data;
 

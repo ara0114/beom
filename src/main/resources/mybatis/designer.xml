@@ -118,28 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where e.did = #{did}
 	</select>
 
-	<resultMap type="com.study.reservation.EnrollDTO"
-		id="enrollListDTO">
-		<result property="enrolldate" column="enrolldate" />
-		<result property="enrolltime" column="enrolltime" />
-		<result property="eprice" column="eprice" />
-		<result property="emenu" column="emenu" />
-		<collection property="hairmenu"
-			resultMap="hairmenuGenderDTO" />
-	</resultMap>
-
-	<resultMap type="com.study.reservation.HairmenuDTO"
-		id="hairmenuGenderDTO">
-		<result property="hgender" column="hgender" />
-	</resultMap>
-
-	<select id="enrollList" parameterType="String"
-		resultMap="enrollListDTO">
-		SELECT e.enrolldate,e.enrolltime,e.eprice,e.emenu,h.hgender
-		FROM enroll e LEFT JOIN hairmenu h
-		ON e.menuno = h.menuno
-		WHERE e.did = #{did}
-	</select>
+	
 
 
 
