@@ -18,8 +18,9 @@ public class TilesConfiguration {
                                               "classpath:/templates/tiles_reservation.xml",
                                               "classpath:/templates/tiles_style.xml",
                                              "classpath:/templates/tiles_notice.xml",
-                                             "classpath:/templates/tiles_review.xml"
-                                             
+                                             "classpath:/templates/tiles_review.xml",                                            
+                                             "classpath:/templates/tiles_faq.xml"
+
                                              });
       configurer.setCheckRefresh(true);
       return configurer;
