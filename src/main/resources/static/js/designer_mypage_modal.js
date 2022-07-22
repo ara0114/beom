@@ -1,6 +1,6 @@
-//let modalInputContent = $(".modal").find("p[class='message']");
+//let modalInputContent = $("#modal").find("p[id='message']");
 	
-let modalex = $(".message"); 
+let modalex = $("#message"); 
 
 function modal(reserveno){
             
@@ -10,9 +10,7 @@ function modal(reserveno){
     get(rnum)
     .then(reserve => {
         alert(reserve.message);
-        alert(modalex);
-        modalex.val(reserve.message);
-        //modalInputContent.val(reserve.message);
+        $("#message").val(reserve.message);
         $(".modal").modal("show");
             
     });

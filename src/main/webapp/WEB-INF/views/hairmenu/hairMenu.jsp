@@ -68,6 +68,32 @@
 		    });
 		});
 	
+	function hairmenuEnroll(){
+		let url = "/hairmenuEnroll";
+		location.href = url;
+	}
+	
+	function cut(cateno){
+		let url = "/hairmenu/" + 1;
+		location.href = url;
+	}
+	function perm(cateno){
+		let url = "/hairmenu/" + 2;
+		location.href = url;
+	}
+	function color(cateno){
+		let url = "/hairmenu/" + 3;
+		location.href = url;
+	}
+	function clinic(cateno){
+		let url = "/hairmenu/" + 4;
+		location.href = url;
+	}
+	function etc(cateno){
+		let url = "/hairmenu/" + 5;
+		location.href = url;
+	}
+	
 </script>
 <style>
 label {
@@ -104,7 +130,7 @@ a:hover, a:active {
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align: center;"">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
@@ -117,95 +143,79 @@ a:hover, a:active {
 		</div>
 
 
-
-
+		<!-- 오른쪽 구역 START -->
 		<div style="width: 80%; float: right;">
 
-			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center;">
+			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold">
 				<ul id="nav2" class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="#">메뉴</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">스타일</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">리뷰</a></li>
+					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a></li>
 				</ul>
 			</div>
 
-			<div>
+			<div style="text-align: center; font-size: 15px; font-weight: bold">
 				<nav class="nav nav-pills nav-justified"
 					style="margin-left: 3%; margin-right: 3%;">
-					<a class="nav-link active" aria-current="page" href="#">커트&드라이</a>
-					<a class="nav-link" href="#">펌</a> <a class="nav-link" href="#">염색</a>
-					<a class="nav-link" href="#">클리닉</a> <a class="nav-link" href="#">기타</a>
+					<a class="nav-link" onclick="cut()">커트&드라이</a>
+					<a class="nav-link" onclick="perm()">펌</a> <a class="nav-link" onclick="color()">염색</a>
+					<a class="nav-link" onclick="clinic()">클리닉</a> <a class="nav-link" onclick="etc()">기타</a>
 				</nav>
 			</div>
+			
+			
+		<section class="vh-100">
+			<div class="container py-5 h-150">
+				<div class="row d-flex justify-content-center align-items-center">
+					<div class="col col-lg-9 col-xl-12">
+						<div class="card rounded-3">
+							<div class="card-body p-4">
 
-			<section class="vh-100">
-				<div class="container py-5 h-150">
-					<div class="row d-flex justify-content-center align-items-center">
-						<div class="col col-lg-9 col-xl-12">
-							<div class="card rounded-3">
-								<div class="card-body p-4">
 
-
-									<table class="table mb-4">
-										<thead>
+								<table class="table mb-4">
+									<thead>
+										<tr style="font-weight: bold">
+											<th scope="col">No.</th>
+											<th scope="col">시술</th>
+											<th scope="col">가격</th>
+										</tr>
+									</thead>
+									<tbody>
+									<c:choose>
+										<c:when test="${empty list}">
 											<tr>
-												<th scope="col">No.</th>
-												<th scope="col">시술</th>
-												<th scope="col">이름</th>
-												<th scope="col">가격</th>
+												<td colspan="6">등록된 메뉴가 없습니다.</td>
 											</tr>
-										</thead>
-										<tbody>
+										</c:when>
+		
+										<c:otherwise>
+											<c:forEach var="dto" items="${list}">
+												<tr>
+													<th scope="row">${dto.menuno }</th>
+													<td>${dto.menu }</td>
+													<td>${dto.price }</td>
+													<td><button class="btn btn-outline-success">삭제</button></td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+									</tbody>
+								</table>
 
-											<tr>
-												<th scope="row">1</th>
-												<td>일반 남성컷</td>
-												<td>홍길동 디자이너</td>
-												<td>25000원</td>
-												<td><button class="btn btn-outline-success">삭제</button></td>
-											</tr>
-
-											<tr>
-												<th scope="row">2</th>
-												<td>일반 남성컷</td>
-												<td>홍길동 디자이너</td>
-												<td>25000원</td>
-												<td><button class="btn btn-outline-success">삭제</button></td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td>일반 남성컷</td>
-												<td>홍길동 디자이너</td>
-												<td>25000원</td>
-												<td><button class="btn btn-outline-success">삭제</button></td>
-											</tr>
-											<tr>
-												<th scope="row">4</th>
-												<td>일반 남성컷</td>
-												<td>홍길동 디자이너</td>
-												<td>25000원</td>
-												<td><button class="btn btn-outline-success">삭제</button></td>
-											</tr>
-										</tbody>
-									</table>
-
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
-				<div style="float: right;">
-					<button class="btn btn-outline-success">메뉴 등록</button>
-				</div>
-			</section>
+			<div style="float: right;">
+				<button class="btn btn-outline-success" onclick="hairmenuEnroll()">메뉴 등록</button>
+			</div>
+		</section>
 
+	</div>
 
-
-		</div>
-
-		<div style="width: 20%; float: right;"></div>
+	<div style="width: 20%; float: right;"></div>
 	</div>
 	<!-- 맨 윗줄 div -->
 </body>

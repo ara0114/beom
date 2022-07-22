@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.study.designer.DesignerDTO;
+import com.study.designer.DesignerService;
 import com.study.utility.Utility;
 
 @Controller
@@ -32,6 +34,9 @@ public class ReviewController {
   @Autowired
   @Qualifier("com.study.review.ReviewServiceImpl")
   private ReviewService service;
+  @Autowired
+  @Qualifier("com.study.designer.DesignerServiceImpl")
+  private DesignerService dservice;
 
   
   @DeleteMapping("/review/{rno}")
@@ -102,7 +107,9 @@ public class ReviewController {
   
   
   @RequestMapping("/review/list")
-  private String list (HttpServletRequest request, Model model, ReviewDTO vo) {  //리스트 페이지
+  private String list (HttpSession session, HttpServletRequest request, Model model) {  //리스트 페이지
+    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    model.addAttribute("ddto", ddto);
      //log.info("star: "+ service.starAvg());
     
     // 검색관련------------------------

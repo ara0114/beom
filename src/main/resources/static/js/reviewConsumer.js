@@ -146,7 +146,7 @@ $(".chat").on("click", function (e) {
   
   get(rno)  //조회
     .then(review => { 
-			//alert(`/hairReview/storage/${review.rfilename}`);
+			//alert(modalInputUid.val(review.uid));
 			
 			$("#rtitle").val(review.rtitle);
 			modalInputRcontent.val(review.rcontent);

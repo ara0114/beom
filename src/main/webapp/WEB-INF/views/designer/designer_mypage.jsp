@@ -246,7 +246,7 @@ a:hover, a:active {
 				<div class="modal-body">
 
 					<h5>메세지</h5>
-					<p class="message"></p>
+					<input id="message" disabled></input>
 
 				</div>
 				<div class="modal-footer">
