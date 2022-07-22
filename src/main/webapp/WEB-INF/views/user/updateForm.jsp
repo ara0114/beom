@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,6 +56,11 @@
     </style>
     <script type="text/javascript">
  		function inCheck(f){
+ 			if(f.uname.value.length==0){
+ 				alert("이름를 입력하세요");
+ 				f.uname.focus();
+ 				return false;
+ 			}
  			if(f.uphone.value.length==0){
  				alert("전화번호를 입력하세요");
  				f.uphone.focus();
@@ -73,7 +79,16 @@
 			</tr>
 			<tr>
 				<th><label for="uname">이름</label></th>
-				<td><input type="text" id="uname" name="uname" value="${dto.uname }" readonly></td>
+				<td>
+				<c:choose>
+				<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }">
+					<input type="text" id="uname" name="uname" value="${dto.uname }">
+				</c:when>
+				<c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
+					<input type="text" id="uname" name="uname" value="${dto.uname }" readonly>
+				</c:when>
+				</c:choose>
+				</td>
 			</tr>
 			<tr>
 				<th><label for="uemail">이메일</label></th>

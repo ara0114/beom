@@ -66,5 +66,10 @@ public class UserServiceImpl implements UserService {
   public List<UserDTO> list(Map map) {
     return mapper.list(map);
   }
+
+  @Override
+  public UserDTO read(String id) {
+    return mapper.read(id);
+  }
   
 }

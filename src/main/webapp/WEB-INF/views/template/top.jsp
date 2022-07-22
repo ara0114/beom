@@ -80,7 +80,7 @@
                     <ul class="sub-menu">
                     <c:choose>
                     	<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }"> <!-- 관리자 로그인했을때 -->
-                    		<li><a href="#">고객 목록</a></li>
+                    		<li><a href="${root }/admin/user/list">고객 목록</a></li>
                     		<li><a href="#">디자이너 목록</a></li>
                     	</c:when>
                     	<c:when test="${not empty sessionScope.uid }"> <!-- 고객 로그인했을때 -->

@@ -26,4 +26,6 @@ public interface UserMapper {
   int total(Map map);
   
   List<UserDTO> list(Map map);
+  
+  UserDTO read(String id);
 }
