@@ -54,7 +54,7 @@
 			</c:choose>
 
 		</table>
-		<h3>고객예약신청 현황</h3>
+		<h3>오늘 예약신청 현황</h3>
 		<table>
 			<thead>
 				<tr>
@@ -64,14 +64,13 @@
 					<th>시술이름</th>
 					<th>가격</th>
 					<th>예약승인</th>
-					<th>예약취소</th>
 				</tr>
 
 			</thead>
 			<c:choose>
 				<c:when test="${empty infoList}">
 					<tbody>
-						<td colspan="7">신청된 예약이없습니다.</td>
+						<td colspan="6">오늘 신청된 예약이없습니다.</td>
 					</tbody>
 				</c:when>
 				<c:otherwise>
@@ -85,8 +84,7 @@
 										<td>${edto.enrolltime}</td>
 										<td>${edto.emenu}</td>
 										<td>${edto.eprice}</td>
-										<td><button id="deletebtn" value="${rdto.reserveno}">예약승인</button></td>
-										<td><button id="deletebtn" value="${rdto.reserveno}">예약취소</button></td>
+										<td><button id="deletebtn" value="${rdto.reserveno}">확인</button></td>
 									<tr>
 								</tbody>
 							</c:forEach>
