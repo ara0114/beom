@@ -13,19 +13,22 @@
 <html>
 <head>
 <title>기본페이지</title>
+<script src="/js/slide.js"></script>
 <meta charset="utf-8">
-<style type="text/css">
-img {
-	display: inline;
-}
-</style>
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/slide.css">
 </head>
 <body>
-	<div class="container">
-		<p>
-			<a href="/contents/mainlist/1">SHOP NOW</a> ${str }
-		</p>
-		<img src="/images/tree.jpg" alt="Tree"> 
-	</div>
+<br>
+	<section class="section section--visual">
+		<div class="inner slideshow-container">
+			<div class="picture mySlideDiv fade active"></div>
+			<div class="picture2 mySlideDiv fade"></div>
+			<div class="picture3 mySlideDiv fade"></div>
+			<a class="prev" onclick="prevSlide()">&#10094;</a>
+    		<a class="next" onclick="nextSlide()">&#10095;</a>
+			
+		</div>
+	</section>
 </body>
 </html>
