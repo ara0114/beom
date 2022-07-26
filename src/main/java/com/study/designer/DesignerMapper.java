@@ -49,5 +49,10 @@ public interface DesignerMapper {
 
   String findPw(Map<String, String> map);
 
+  int total(Map map);
 
+  List<DesignerDTO> list(Map map);
+  
+  int updateValidation(DesignerDTO ddto);
+  
 }

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,com.study.user.*" %>
+<%@ page import="java.util.*,com.study.designer.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>관리자 - User List</title>
+<title>관리자 - Designer List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -49,31 +49,36 @@
         }
     </style>
     <script type="text/javascript">
-    	function update(uid){
-    		let url = "/admin/user/update";
-    		url += "?uid="+uid;
+//     	function update(uid){
+//     		let url = "/admin/user/update";
+//     		url += "?uid="+uid;
+//     		location.href = url;
+//     	}
+    	function approve(did){
+    		let url = "/admin/approve";
+    		url += "?did="+did;
     		location.href = url;
     	}
     </script>
 </head>
 <body>
 	<div class="container">
-		<h2>일반회원목록</h2>
-		<form class="form-inline" action="/admin/user/list">
+		<h2>디자이너목록</h2>
+		<form class="form-inline" action="/admin/designer/list">
 			<div class="form-group" id="search">
 				<select class="form-control" name="col">
-					<option value="uname"
-					<c:if test="${col='uname'}"> selected </c:if>
+					<option value="dname"
+					<c:if test="${col='dname'}"> selected </c:if>
 					>성명</option>
-					<option value="uid"
-					<c:if test="${col='uid'}"> selected </c:if>
+					<option value="did"
+					<c:if test="${col='did'}"> selected </c:if>
 					>아이디</option>
-					<option value="uemail"
-					<c:if test="${col='uemail'}"> selected </c:if>
-					>이메일</option>
-					<option value="uphone"
-					<c:if test="${col='uphone'}"> selected </c:if>
-					>전화번호</option>
+					<option value="address1"
+					<c:if test="${col='address1'}"> selected </c:if>
+					>주소</option>
+					<option value="hairshop"
+					<c:if test="${col='hairshop'}"> selected </c:if>
+					>미용실명</option>
 					<option value="total"
 					<c:if test="${col='total'}"> selected </c:if>
 					>전체출력</option>
@@ -90,8 +95,9 @@
 				<tr>
 					<th>성명</th>
 					<th>아이디</th>
-					<th>이메일</th>
-					<th>전화번호</th>
+					<th>주소</th>
+					<th>미용실명</th>
+					<th>자격승인여부</th>
 					<th>수정/삭제</th>
 				</tr>
 			</thead>
@@ -101,12 +107,22 @@
 				<tr><td colspan="6">등록된 글이 없습니다.</td>
 			</c:when>
 			<c:otherwise>
-			<c:forEach var="dto" items="${list }">		
-					<td>${dto.uname }</td>
-					<td>${dto.uid }</td>
-					<td>${dto.uemail }</td>
-					<td>${dto.uphone }</td>
-					<td><button type="button" class="btn" onclick="javascript:update('${dto.uid}')">수정</button>
+			<c:forEach var="ddto" items="${list }">		
+					<td>${ddto.dname }</td>
+					<td>${ddto.did }</td>
+					<td>${ddto.address1 }</td>
+					<td>${ddto.hairshop }</td>
+					<td>
+					<c:choose>
+						<c:when test="${ddto.validation}">
+						O
+						</c:when>
+						<c:when test="${not ddto.validation}">
+						<a href="javascript:approve('${ddto.did }')">X</a> 
+						</c:when>
+					</c:choose>
+					</td>
+					<td><button type="button" class="btn" onclick="#">수정</button>
 						<button type="button" class="btn" onclick="#">삭제</button></td>
 				</tr> 
 			</c:forEach>

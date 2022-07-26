@@ -211,4 +211,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM designer
 		WHERE dname=#{dname} and demail=#{demail}
 	</select>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		SELECT count(*)
+		FROM designer
+		<where>
+			<choose>
+				<when test="col=='dname'">
+					dname like concat('%',#{word},'%')
+				</when>
+				<when test="col=='did'">
+					did like concat('%',#{word},'%')
+				</when>
+				<when test="col=='address1'">
+					address1 like concat('%',#{word},'%')
+				</when>
+				<when test="col=='hairshop'">
+					hairshop like concat('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="list" parameterType="Map" resultType="com.study.designer.DesignerDTO">
+		SELECT *
+		FROM designer
+		<where>
+			<choose>
+				<when test="col=='dname'">
+					dname like concat('%',#{word},'%')
+				</when>
+				<when test="col=='did'">
+					did like concat('%',#{word},'%')
+				</when>
+				<when test="col=='address1'">
+					address1 like concat('%',#{word},'%')
+				</when>
+				<when test="col=='hairshop'">
+					hairshop like concat('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+		ORDER BY dname
+		limit #{sno}, #{eno}
+	</select>
+
+	<update id="updateValidation" parameterType="com.study.designer.DesignerDTO">
+		UPDATE designer
+		SET validation=1
+		WHERE did = #{did}
+	</update>
 </mapper>

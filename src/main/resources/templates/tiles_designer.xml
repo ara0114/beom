@@ -45,4 +45,14 @@
     <put-attribute name="body"
       value="/WEB-INF/views/designer/findpwForm.jsp" />
   </definition>
+  <definition name="/dlist" extends="main">
+    <put-attribute name="title" value="디자이너목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/list.jsp" />
+  </definition>
+  <definition name="/dapprove" extends="main">
+    <put-attribute name="title" value="자격승인"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/approve.jsp" />
+  </definition>
 </tiles-definitions>
