@@ -30,4 +30,31 @@ public class ReviewServiceImpl implements ReviewService {
   }
 
 
+  @Override
+  public int create(ReviewDTO vo) {
+    // TODO Auto-generated method stub
+    return mapper.create(vo);
+  }
+
+  @Override
+  public int update(ReviewDTO vo) {
+    // TODO Auto-generated method stub
+    return mapper.update(vo);
+  }
+
+  @Override
+  public int delete(int rno) {
+    // TODO Auto-generated method stub
+    return mapper.delete(rno);
+  }
+
+  @Override
+  public double starAvg() {
+    // TODO Auto-generated method stub
+    return mapper.starAvg();
+  }
+
+
+
+
 }

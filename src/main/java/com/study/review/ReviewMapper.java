@@ -8,4 +8,8 @@ public interface ReviewMapper {
   List<ReviewDTO> list(Map map);
   int total(Map map);
   ReviewDTO read(int rno);
+  int create(ReviewDTO vo);
+  int update(ReviewDTO vo);
+  int delete(int rno);
+  double starAvg();
 }
