@@ -11,19 +11,33 @@ let tdArr;
 $("input[id='enrollbtn']").on("click", function() {
 	let uid = document.getElementById("hiddenUid").value;
 	let message = document.getElementById("message").value;
-	console.log(message);
 	checkBtn = $(this);
 	enrollno = checkBtn.val();
-	tr = checkBtn.parent().parent();
-	td = tr.children();
-	enrolldate = td.eq(0).text();
-	enrolltime = td.eq(1).text();
-	menu = td.eq(2).text();
-	price = td.eq(3).text();
-	gender = td.eq(4).text();
-	tdArr = [enrolldate, enrolltime, menu, price, gender]; //예약확인을 confirm 창으로 보여주기위한 처리일뿐 컨트롤러에 데이터를 보내진않는다.
-
+	enrollnoCheck(enrollno).then(res => {
+		console.log(res);
+		if (res == "예약불가") {
+			alert("이미 예약이 찼습니다.다른예약을 선택해주세요");
+			tr = checkBtn.parent().parent();
+			td = tr.children();
+			tr.css("color","red");
+			td.text("X");
+		}else{
+			
+			tr = checkBtn.parent().parent();
+			td = tr.children();
+			enrolldate = td.eq(0).text();
+			enrolltime = td.eq(1).text();
+			menu = td.eq(2).text();
+			price = td.eq(3).text();
+			gender = td.eq(4).text();
+			tdArr = [enrolldate, enrolltime, menu, price, gender]; //예약확인을 confirm 창으로 보여주기위한 처리일뿐 컨트롤러에 데이터를 보내진않는다.
+		}
+	})
 })
+function enrollnoCheck(enrollno) {
+	let result = fetch(`/enrollnoCheck/${enrollno}`,{method:"POST"}).then(res=>res.text()).catch(error=>{console.log(error)});
+	return result;
+}
 $("#submit").click(function() {
 	if (!$('input:radio[name="radioCheck"]').is(":checked")) {
 		alert("예약 체크를 해주세요.")
@@ -39,7 +53,7 @@ $("#submit").click(function() {
 			form.setAttribute("method", "post");
 			form.setAttribute("action", "/reserve");
 			document.charset = "utf-8";
-			let values = [enrollno,message, uid];
+			let values = [enrollno, message, uid];
 			console.log(enrollno);
 			console.log(message);
 			console.log(uid);

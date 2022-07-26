@@ -25,6 +25,10 @@ public interface EnrollMapper {
   
   List<EnrollDTO> reserveList(String uid);
   
+  int checking(String enrollno);
+  
   List<EnrollDTO> infoList(String did);
+  
+  List<EnrollDTO> todayList(String uid);
   
 }

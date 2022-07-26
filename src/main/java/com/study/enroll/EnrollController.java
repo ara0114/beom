@@ -147,9 +147,26 @@ public class EnrollController {
     //유저의 마이페이지로 model 을통해서 reserve list 를 보내준다.
     String uid = (String)session.getAttribute("uid");
     List<EnrollDTO> list = service.reserveList(uid);
+    List<EnrollDTO> todayList = service.todayList(uid);
     model.addAttribute("uid", uid);
     model.addAttribute("reserveList", list);
+    model.addAttribute("todayList", todayList);
     return "/user/mypage";
+  }
+  //enrollno 가 reserve 에 있는지 없는지 checking
+  @PostMapping("/enrollnoCheck/{enrollno}")
+  @ResponseBody
+  public String enrollnoChecking(@PathVariable("enrollno") String enrollno) {
+    System.out.println(enrollno);
+    String no = enrollno;
+    int flag = service.checking(no);
+    if(flag == 1) {
+      System.out.println("체크함");
+      String text = "예약불가";
+      return text;
+    }else {
+      return "error";
+    }
   }
 
 }
