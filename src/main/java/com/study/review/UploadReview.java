@@ -15,7 +15,7 @@ public class UploadReview {
             
         } else {
             // System.out.println("Linux");
-            path = "/root/deploy/hairReview/storage/";
+            path = "/root/AI study/deploy/hairReview/storage/";
         }
         
         return path;

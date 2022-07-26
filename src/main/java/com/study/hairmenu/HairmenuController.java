@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
@@ -44,16 +45,15 @@ public class HairmenuController {
   }
   
   @PostMapping("/hairmenuEnroll")
-  public String hairmenuEnroll(HttpSession session, Model model, HttpServletRequest request, HairmenuDTO dto) {
-    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
-    //HairmenuDTO dto = 
-    model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
+  public String hairmenuEnroll(HairmenuDTO dto, HttpSession session, Model model) {
+//    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+//    //HairmenuDTO dto = 
+//    model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
+    dto.setDid((String)session.getAttribute("did"));
+    System.out.println(dto);
+    //log.info("dto: " + dto);
     
-    dto.setDid(ddto.getDid());
-    
-    log.info("dto: " + dto);
-    
-    if(service.hairmenuEnroll(dto) == 1) {  // 성공 시
+    if(service.hairmenuEnroll(dto) > 0) {  // 성공 시
       return "/hairmenu";
     } else {
       System.out.println("악");

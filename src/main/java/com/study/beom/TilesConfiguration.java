@@ -18,7 +18,6 @@ public class TilesConfiguration {
                                              "classpath:/templates/tiles_notice.xml",
                                              "classpath:/templates/tiles_review.xml",                                            
                                              "classpath:/templates/tiles_faq.xml",
-                                             "classpath:/templates/tiles_designer.xml",
                                              "classpath:/templates/tiles_hairmenu.xml",
                                               "classpath:/templates/tiles_style.xml"
                                              });

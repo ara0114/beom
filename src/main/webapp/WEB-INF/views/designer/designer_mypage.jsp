@@ -97,7 +97,7 @@ textarea {
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align: center;"">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">

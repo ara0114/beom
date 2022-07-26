@@ -25,9 +25,9 @@ public class EnrollController {
   private EnrollService service;
 
   @GetMapping("/enroll/designer")
-  public String reservation(String did, Model model) {
+  public String reservation(Model model, HttpSession session) {
     // 아래 id 는 디자이너페이지에서 받을 디자이너아이디
-    String id = "designer1";
+    String id = (String)session.getAttribute("did");
 
     List<HairmenuDTO> list = service.list(id);
     model.addAttribute("list", list);
@@ -49,8 +49,9 @@ public class EnrollController {
   @GetMapping("/datareq/{gender}/{category}")
   @ResponseBody
   public List<HairmenuDTO> list(@PathVariable("gender") String gender, @PathVariable("category") String category,
-      Model model) {
-    String did = "designer1";
+      Model model, HttpSession session) {
+    //String did = "designer1";
+    String did = (String)session.getAttribute("did");
     Map map = new HashMap();
     map.put("id", did);
     map.put("hgender", gender);
@@ -75,21 +76,22 @@ public class EnrollController {
   @PostMapping("/designerMypage")
   public String reservationList(String category, String gender, String menu, String price, String time, String date,
       String did, Model model, HttpSession session) {
-    session.setAttribute("did", did);
     Map map = new HashMap();
     map.put("date", date);
     map.put("time", time);
     map.put("emenu", menu);
     map.put("eprice", price);
-    map.put("did", did);
+    map.put("did", (String)session.getAttribute("did"));
 
     Map map2 = new HashMap();
     map2.put("menu", menu);
     map2.put("did", did);
     HairmenuDTO dto = service.menunoGet(map2);
+    System.out.println("ex 1 : " + dto);
     map.put("menuno", dto.getMenuno());
     // 예약등록
     int cnt = service.enrollInput(map);
+    System.out.println("cnt : " + cnt);
     if (cnt == 1) {
       return "redirect:/enrollList";
     } else {
@@ -114,7 +116,8 @@ public class EnrollController {
   public String reserve(HttpSession session, Model model) {
     // 디자이너 프로필에서 user id 와 designer id 를 넘겨받고 시작한다.
     // 임의로 user id는 하드코딩 하여 테스트 . 나중에 session 으로 넘어올것으로 예상
-    String userId = "user1";
+    //String userId = "user1";
+    String userId = (String)session.getAttribute("uid");
     
     // 디자이너 id 를 이용해서 예약 리스트를 불러온다.
     model.addAttribute("uid", userId);
@@ -129,7 +132,7 @@ public class EnrollController {
     map.put("enrollno", enrollno);
     map.put("uid", uid);
     map.put("message", message);
-    session.setAttribute("uid", uid); //session 으로 유저아이디가 넘어온다면 지금코드는 따로할필요없다
+    //session.setAttribute("uid", uid); //session 으로 유저아이디가 넘어온다면 지금코드는 따로할필요없다
     //  insert 하고
     int cnt = service.userInsert(map);
     if (cnt == 1) {
