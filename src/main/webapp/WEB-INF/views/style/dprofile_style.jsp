@@ -15,11 +15,22 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet" href="/css/styleUpload.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="/js/designer_mypage.js"></script>
+<script src="/js/styleUpload.js"></script>
 
 <style>
 label {
@@ -88,132 +99,51 @@ textarea {
 			<div style="height: 6%;"></div>
 
 			<div class="container">
+				<div class="upload-box">
+					<h3>Upload File</h3>
+					<div class="filearea">
+						<div class="icon">
+							<i class="fas fa-images"> </i>
+						</div>
+						<span class="header">Click Me</span> <span class="support">Supports:JPEG,JPG,PNG</span>
 
-				<div>
-					<label style="font-weight: 700;">디자이너 소개</label>
-					<p style="font-size: large; color: cadetblue">${ddto.introduction }</p>
-					<div style="height: 50px;">
-						<c:choose>
-							<c:when
-								test="${ddto.introduction == '' || empty ddto.introduction }">
-								<button class="btn btn-outline-success"
-									style="border: 1px solid" onclick="dmypage_intro_update()">등록</button>
-							</c:when>
-							<c:otherwise>
-								<button class="btn btn-outline-success"
-									style="border: 1px solid" onclick="dmypage_intro_update()">수정</button>
-							</c:otherwise>
-						</c:choose>
 					</div>
+					<form action="/style/designer" method="post"
+						enctype="multipart/form-data" onsubmit="return formCheck()">
+						<input type="file" name="file" id="input-file">
+						<div class="form-radio">
+							<label for="iwoman" class="ilabel"> <input type="radio"
+								name="uploadgender" value="여자" id="iwoman" />여자
+							</label> <label for="iman" class="ilabel"> <input type="radio"
+								name="uploadgender" value="남자" id="iman" />남자
+							</label>
+						</div>
+
+						<button>
+							UP LOAD <i class="fa-solid fa-cloud-arrow-up"></i>
+						</button>
+					</form>
+
 				</div>
 
-				<div>
-					<label>예약 등록 시간</label>
-					<table class="table">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">예약 날짜</th>
-								<th scope="col">예약 시간</th>
-								<th scope="col">시술명</th>
-								<th scope="col">성별</th>
-								<th scope="col">가격</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:choose>
-								<c:when test="${empty enrollList}">
-									<tr>
-										<td colspan="6">등록된 상품이 없습니다.</td>
-									</tr>
-								</c:when>
-
-								<c:otherwise>
-									<c:forEach var="dto" items="${enrollList}">
-										<c:forEach var="edto" items="${dto.edto}">
-											<tr>
-												<td>${edto.enrolldate }</td>
-												<td>${edto.enrolltime }</td>
-												<td>${edto.emenu }</td>
-												<td>${dto.hgender }</td>
-												<td>${edto.eprice }</td>
-												<td><button class="btn btn-outline-success"
-														onclick="deleteEnroll(${edto.enrollno})">삭제</button></td>
-											</tr>
-										</c:forEach>
-
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
-
-
-
-
-						</tbody>
-					</table>
-					<div style="height: 50px;">
-						<button class="btn btn-outline-success" onclick="enroll()">예약
-							등록</button>
+				<div class="img-box">
+					<h3>your styles</h3>
+					<div class="radio-box">
+						<label for="all" class="select-btn"><input type="radio"
+							value="all" name="gender" id="all" />전체 사진 </label> <label for="woman"
+							class="select-btn"><input type="radio" value="여자"
+							name="gender" id="woman" />여성 사진모음</label> <label for="man"
+							class="select-btn"><input type="radio" value="남자"
+							name="gender" id="man" />남성 사진모음</label>
 					</div>
+					<div class="img-area">
+						<div class="all-img" id="styleBox"></div>
+						<div class="woman-img" id="styleBox"></div>
+						<div class="man-img" id="styleBox"></div>
+
+					</div>
+					<button class="add-btn">더보기</button>
 				</div>
-
-
-				<div>
-					<label>예약 신청 내역</label>
-					<table class="table">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">고객이름</th>
-								<th scope="col">성별</th>
-								<th scope="col">예약 날짜</th>
-								<th scope="col">예약 시간</th>
-								<th scope="col">시술명</th>
-								<th scope="col">가격</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:choose>
-								<c:when test="${empty enrollList}">
-									<tr>
-										<td colspan="6">등록된 상품이 없습니다.</td>
-									</tr>
-								</c:when>
-
-								<c:otherwise>
-									<c:forEach var="dto" items="${reserveList}">
-
-										<tr>
-											<td><a onclick="modal(${dto.reserveno})">${dto.udto.uname }</a></td>
-											<td>${dto.edto.hdto.hgender }</td>
-											<td>${dto.edto.enrolldate }</td>
-											<td>${dto.edto.enrolltime }</td>
-											<td>${dto.edto.emenu }</td>
-											<td>${dto.edto.eprice }</td>
-											<td style="display: none">${dto.reserveno }</td>
-											<td style="display: none">${dto.message }</td>
-											<td style="display: none">${dto.rconfig }</td>
-											<c:choose>
-												<c:when test="${dto.rconfig == false }">
-													<td><button class="btn btn-outline-success" id = "configBtn" onclick = "config(${dto.reserveno})">확인</button></td>
-												</c:when>
-												<c:otherwise>
-													<td></td>
-												</c:otherwise>
-											</c:choose>
-													
-										</tr>
-
-
-
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
-						</tbody>
-					</table>
-
-				</div>
-
 			</div>
 
 

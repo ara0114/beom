@@ -1,5 +1,5 @@
 const filearea= document.querySelector(".filearea");
-const dragText = document.querySelector(".header");
+const dragArea = document.querySelector(".header");
 const styleButton = document.querySelector(".select-btn");
 let input = document.getElementById("input-file");
 const allImg = document.querySelector(".all-img");

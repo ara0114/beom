@@ -15,9 +15,5 @@
     <put-attribute name="body"
       value="/WEB-INF/views/style/designer.jsp" />
   </definition>
-  <definition name="/style/list" extends="main">
-    <put-attribute name="title" value="list페이지"></put-attribute>
-    <put-attribute name="body"
-      value="/WEB-INF/views/style/list.jsp" />
-  </definition>
+  
 </tiles-definitions>

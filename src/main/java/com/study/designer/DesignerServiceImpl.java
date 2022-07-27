@@ -131,4 +131,10 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.findPw(map);
   }
 
+  @Override
+  public int rconfig(int reserveno) {
+    // TODO Auto-generated method stub
+    return mapper.rconfig(reserveno);
+  }
+
 }

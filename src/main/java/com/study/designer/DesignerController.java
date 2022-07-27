@@ -176,7 +176,7 @@ public class DesignerController {
     model.addAttribute("ddto", ddto);
     model.addAttribute("enrollList", dservice.enroll_list((String) session.getAttribute("did")));
     model.addAttribute("reserveList", dservice.reserve_list((String) session.getAttribute("did")));
-    // System.out.println(reserveList);
+    //System.out.println(dservice.reserve_list((String) session.getAttribute("did")));
     // model.addAttribute("enrollList2",dservice.enrollList((String)session.getAttribute("did")));
     // System.out.println(enrollList2);
     return "/dmypage";
@@ -300,6 +300,18 @@ public class DesignerController {
   @GetMapping("/dfindpw")
   public String findpw() {
     return "/dfindpw";
+  }
+  
+  @GetMapping("/dmypage/rconfig/{reserveno}")
+  @ResponseBody
+  public String config_reserve(@PathVariable int reserveno, Model model) {
+    int flag = dservice.rconfig(reserveno);
+    if(flag > 0) {
+      return "true";
+    }
+    else {
+      return "false";
+    }
   }
 
 }
