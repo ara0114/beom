@@ -23,8 +23,12 @@ public interface EnrollMapper {
   
   int userInsert(Map map);
   
-  List<EnrollDTO> reserveList(String uid);
+  
+  
+  int checking(String enrollno);
   
   List<EnrollDTO> infoList(String did);
+  
+  
   
 }

@@ -76,7 +76,7 @@ fieldset>label {
 	margin: 5px auto;
 }
 
-#submit, #goback {
+#sub_mit, #goback {
 	margin-top: 10px;
 	font-size: 1.5rem;
 	border: none;
@@ -86,7 +86,7 @@ fieldset>label {
 	font-family: "Nanum Gothic", sans-serif;
 }
 
-#submit:hover {
+#sub_mit:hover {
 	color: white;
 	background-color: #0fbcf9;
 }

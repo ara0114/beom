@@ -97,9 +97,9 @@
 	
 	//클릭 시 
 	function hairenrollCheck(f){
-		if (f.catename.value.length == 0){
+		if (f.cateno.value.length == 0){
 			alert("카테고리를 선택하세요");
-			f.catename.focus()
+			f.cateno.focus()
             return false;
 		}
 		if (f.hgender.value.length == 0){
@@ -195,10 +195,10 @@ a:hover, a:active {
                 <div class="container py-5 h-150">
                     <form action="./hairmenuEnroll" method="post" onsubmit="return hairenrollCheck(this)">
                         <div class = "form-group">
-                            <label for = "category">카테고리</label>
+                            <label for = "cateno">카테고리</label>
                             <div>
-                                <select name="category" id="category" class = "form-select" aria-label="Default select example">
-                                    <option value="1">커트&드라이</option>
+                                <select name="cateno" id="cateno" class = "form-select" aria-label="Default select example">
+                                    <option value="1">드라이</option>
                                     <option value="2">펌</option>
                                     <option value="3">염색</option>
                                     <option value="4">클리닉</option>
@@ -211,8 +211,8 @@ a:hover, a:active {
                           <label for = "hgender">성별</label>
                             <div>
                               <select name="hgender" id="hgender" class = "form-select" aria-label="Default select example">
-                                  <option value="1">여자</option>
-                                  <option value="2">남자</option>
+                                  <option value="여자">여자</option>
+                                  <option value="남자">남자</option>
                               </select>
                             </div>
                         </div>

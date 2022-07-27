@@ -97,7 +97,7 @@ textarea {
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align: center;"">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
@@ -222,7 +222,7 @@ textarea {
 											<td style="display: none">${dto.reserveno }</td>
 											<td style="display: none">${dto.message }</td>
 											<td><button class="btn btn-outline-success">확인</button>
-												<button class="btn btn-outline-success">삭제</button></td>
+											</td>
 										</tr>
 
 
@@ -245,12 +245,13 @@ textarea {
 		<div style="width: 20%; float: right;"></div>
 	</div>
 
-	<div class="modal fade" id="exampleModalPopovers" data-bs-backdrop="static"
-		  aria-hidden="true">
-		<div class="modal-dialog modal-lg" role = "document">
+	<div class="modal fade" id="exampleModalPopovers"
+		data-bs-backdrop="static" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalPopoversLabel">예약 신청 내역</h5>
+					<h5 class="modal-title" id="exampleModalPopoversLabel">예약 신청
+						내역</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>

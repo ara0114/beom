@@ -56,7 +56,8 @@ th, td {
 			<div class="col-sm-4" style="float: left;">
 				<h3>내 정보</h3>
 				<div style="padding-bottom: 10px;">
-					<img align="left" src="/svg/person-circle.svg"/> <p>&nbsp;${dto.uname} 님(${dto.uid}) </p>
+					<img align="left" src="/svg/person-circle.svg" />
+					<p>&nbsp; ${dto.uname} 님(${dto.uid})</p>
 					<img align="left" src="/svg/envelope.svg" />
 					<p>&nbsp; ${dto.uemail}</p>
 					<img align="left" src="/svg/phone.svg" />
@@ -71,7 +72,7 @@ th, td {
 			</div>
 			<div class="col-sm-8" style="float: right;">
 				<div class="list1">
-					<h3>예약 신청 내역</h3>
+					<h3>예약신청 전체내역</h3>
 					<table>
 						<thead>
 							<tr>
@@ -88,12 +89,53 @@ th, td {
 			<c:choose>
 				<c:when test="${empty reserveList}">
 					<tbody>
-						<td colspan="6">등록된 예약이없습니다.</td>
+						<td colspan="6">등록된 예약이 없습니다.</td>
 					</tbody>
 				</c:when>
 				<c:otherwise>
 						<tbody>
 							<c:forEach var="dto" items="${reserveList}">
+								<c:forEach var="innerdto" items="${dto.designerInfo}">
+									<tr>
+										<td>${innerdto.hairshop}</td>
+										<td>${innerdto.dname}</td>
+										<td>${dto.enrolldate}</td>
+										<td>${dto.enrolltime}</td>
+										<td>${dto.emenu}</td>
+										<td>${dto.eprice}</td>
+									</tr>
+								</c:forEach>
+							</c:forEach>
+						</tbody>
+				</c:otherwise>
+			</c:choose>
+					</table>
+				</div>
+				
+				<div class="list1">
+					<h3>오늘예약 내역</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>미용실</th>
+								<th>디자이너</th>
+								<th>날짜</th>
+								<th>시간</th>
+								<th>시술명</th>
+								<th>시술가격</th>
+							</tr>
+						</thead>
+						
+						
+			<c:choose>
+				<c:when test="${empty reserveList}">
+					<tbody>
+						<td colspan="6">등록된 예약이 없습니다.</td>
+					</tbody>
+				</c:when>
+				<c:otherwise>
+						<tbody>
+							<c:forEach var="dto" items="${todayList}">
 								<c:forEach var="innerdto" items="${dto.designerInfo}">
 									<tr>
 										<td>${innerdto.hairshop}</td>

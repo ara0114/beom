@@ -2,7 +2,7 @@
 $(function() {
 	updateProgress();
 });
-$("#submit").click(function(){
+$("#sub_mit").click(function(){
 	formSubmit();
 })
 
@@ -16,7 +16,6 @@ function formSubmit(){
 	let twoData = splitJoin.split(':');
 	let menu = twoData[0];
 	let price = twoData[1];
-	let did = $("#did").text();
 	
 	
 	//form 을 생성해서 submit
@@ -26,8 +25,8 @@ function formSubmit(){
 	document.charset ="utf-8";
 	
 	
-	let values = [category,gender,menu,price,time,date,did];
-	let names = ["category","gender","menu","price","time","date","did"];
+	let values = [category,gender,menu,price,time,date];
+	let names = ["category","gender","menu","price","time","date"];
 	console.log(values[0]);
 	for(let i = 0 ; i < values.length; i++){
 		let input = document.createElement("input");
@@ -70,7 +69,7 @@ $("#startDate").datepicker({
 	minDate: new Date(),
 	showOn: "both",
 	buttonImage:
-		"https://cdn-icons.flaticon.com/png/512/939/premium/939128.png?token=exp=1657774669~hmac=1c3ac533c4f996c6ba86b17be0cda07d",
+		"/svg/calendar.svg",
 	buttonImageOnly: true,
 	buttonText: "Click Here",
 	dateFormat: "yy-mm-dd",
@@ -113,7 +112,7 @@ $("#startDate").datepicker({
 $("input[type='radio']").checkboxradio();
 
 
-$("#submit").button({
+$("#sub_mit").button({
 	disabled: true,
 });
 //progress var 진행율
@@ -156,8 +155,13 @@ function updateProgress() {
 	$("#progress").progressbar("option", "color", "green");
 	$(".pct span").text($progress);
 	if ($progress == 100) {
-		$("#submit").button({
+		$("#sub_mit").button({
 			disabled: false,
 		});
 	}
+}
+
+function go_back(){
+	let url = "/dmypage";
+	location.href = url;
 }
