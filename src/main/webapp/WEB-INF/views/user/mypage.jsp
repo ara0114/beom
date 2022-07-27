@@ -57,7 +57,7 @@ th, td {
 				<h3>내 정보</h3>
 				<div style="padding-bottom: 10px;">
 					<img align="left" src="/svg/person-circle.svg" />
-					<p>${dto.uname} 님(${dto.uid})</p>
+					<p>&nbsp; ${dto.uname} 님(${dto.uid})</p>
 					<img align="left" src="/svg/envelope.svg" />
 					<p>&nbsp; ${dto.uemail}</p>
 					<img align="left" src="/svg/phone.svg" />
