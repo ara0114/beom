@@ -23,6 +23,7 @@
 <script>
 	function dmypage_update() {
 		let url = "/dmypage_update";
+		url += "?did=${ddto.did}";
 		location.href = url;
 	}
 

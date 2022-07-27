@@ -261,4 +261,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET validation=1
 		WHERE did = #{did}
 	</update>
+	
+	<update id="lupdate1" parameterType="com.study.designer.LicenseDTO">
+		UPDATE certification
+		SET licenseno = #{licenseno},
+			licensedate = #{licensedate},
+			uniquecode1 = #{uniquecode1}
+		WHERE did = #{did}
+	</update>
+	
+	<update id="lupdate2" parameterType="com.study.designer.LicenseDTO">
+		UPDATE certification
+		SET uniquecode2 = #{uniquecode2}
+		WHERE did = #{did}
+	</update>
 </mapper>

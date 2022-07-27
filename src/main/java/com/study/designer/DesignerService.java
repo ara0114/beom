@@ -55,5 +55,8 @@ public interface DesignerService {
 
   int updateValidation(DesignerDTO ddto);
 
+  int lupdate1(LicenseDTO cdto);
+
+  int lupdate2(LicenseDTO cdto);
 
 }

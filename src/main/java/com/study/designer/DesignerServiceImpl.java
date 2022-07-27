@@ -149,4 +149,16 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.updateValidation(ddto);
   }
 
+  @Override
+  public int lupdate1(LicenseDTO cdto) {
+    // TODO Auto-generated method stub
+    return mapper.lupdate1(cdto);
+  }
+
+  @Override
+  public int lupdate2(LicenseDTO cdto) {
+    // TODO Auto-generated method stub
+    return mapper.lupdate2(cdto);
+  }
+
 }

@@ -49,11 +49,11 @@
         }
     </style>
     <script type="text/javascript">
-//     	function update(did){
-//     		let url = "/admin/designer/update";
-//     		url += "?did="+uid;
-//     		location.href = url;
-//     	}
+    	function update(did){
+    		let url = "/admin/dupdate";
+    		url += "?did="+did;
+    		location.href = url;
+    	}
     	function approve(did){
     		let url = "/admin/approve";
     		url += "?did="+did;
@@ -98,7 +98,7 @@
 					<th>주소</th>
 					<th>미용실명</th>
 					<th>자격승인여부</th>
-					<th>삭제</th>
+					<th>상세정보 / 삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -122,7 +122,7 @@
 						</c:when>
 					</c:choose>
 					</td>
-					<td><!-- <button type="button" class="btn" onclick="#">수정</button> -->
+					<td><button type="button" class="btn" onclick="javascript:update('${ddto.did}')">상세정보</button>
 						<button type="button" class="btn" onclick="#">삭제</button></td>
 				</tr> 
 			</c:forEach>

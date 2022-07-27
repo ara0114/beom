@@ -214,28 +214,55 @@ public class DesignerController {
 
   }
 
-  @GetMapping("/dmypage_update")
-  public String dmypage_update(HttpSession session, Model model) {
-    DesignerDTO ddto = dservice.dmypage((String) session.getAttribute("did"));
-    LicenseDTO cdto = dservice.license((String) session.getAttribute("did"));
+  @GetMapping(value={"/dmypage_update","/admin/dupdate"})
+  public String dmypage_update(@RequestParam String did, HttpServletRequest request, HttpSession session, Model model) {
+    String id = null;
+    
+    if(request.getServletPath().equals("/dmypage_update")) {
+      id = (String) session.getAttribute("did");
+    }else if(request.getServletPath().equals("/admin/dupdate")) {
+      id = did;
+    }
+    
+    DesignerDTO ddto = dservice.dmypage(id);
+    LicenseDTO cdto = dservice.license(id);
     // System.out.println(cdto.getDid());
     model.addAttribute("ddto", ddto);
     model.addAttribute("cdto", cdto);
+    
     return "/dmypage_update";
   }
 
   @PostMapping("/dupdate")
-  public String dupdate(DesignerDTO ddto, Model model, HttpSession session) {
-    ddto.setDid((String) session.getAttribute("did"));
-    int flag = dservice.dupdate(ddto);
+  public String dupdate(DesignerDTO ddto, LicenseDTO cdto, Model model, HttpSession session) {
+//  ddto.setDid((String) session.getAttribute("did"));
+    int flag1 = dservice.dupdate(ddto);
+    int flag2 = 0;
+
+    if(cdto.getUniquecode1().length() != 0 || cdto.getUniquecode2().equals("")) {
+      flag2 = dservice.lupdate1(cdto);
+    }else {
+      flag2 = dservice.lupdate2(cdto);
+    }
+    
     System.out.println(ddto.getAddress1());
 
-    if (flag > 0) {
-      DesignerDTO new_ddto = dservice.dmypage((String) session.getAttribute("did"));
-      model.addAttribute("ddto", new_ddto);
+    if (flag1 > 0 && flag2 > 0) {
+      if(!ddto.getDid().equals((String) session.getAttribute("did"))){
+        model.addAttribute("did",session.getAttribute("did"));
+        return "redirect:/admin/designer/list";
+      }else {
+        model.addAttribute("did",ddto.getDid());
+        return "redirect:/dmypage_update";
+      }
+//      DesignerDTO new_ddto = dservice.dmypage((String) session.getAttribute("did"));
+//      model.addAttribute("ddto", new_ddto);
+    }else {
+      model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
+      return "/errorMsg";
     }
 
-    return "redirect:/dmypage";
+//    return "redirect:/dmypage";
   }
 
   @GetMapping("/designer/dupdateFileForm")
