@@ -98,7 +98,7 @@
 			<tbody>
 			<c:choose>
 			<c:when test="${empty list }">
-				<tr><td colspan="6">등록된 글이 없습니다.</td>
+				<tr><td colspan="6">등록된 회원이 없습니다.</td>
 			</c:when>
 			<c:otherwise>
 			<c:forEach var="dto" items="${list }">		

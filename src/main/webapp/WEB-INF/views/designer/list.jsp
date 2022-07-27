@@ -49,9 +49,9 @@
         }
     </style>
     <script type="text/javascript">
-//     	function update(uid){
-//     		let url = "/admin/user/update";
-//     		url += "?uid="+uid;
+//     	function update(did){
+//     		let url = "/admin/designer/update";
+//     		url += "?did="+uid;
 //     		location.href = url;
 //     	}
     	function approve(did){
@@ -98,13 +98,13 @@
 					<th>주소</th>
 					<th>미용실명</th>
 					<th>자격승인여부</th>
-					<th>수정/삭제</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:choose>
 			<c:when test="${empty list }">
-				<tr><td colspan="6">등록된 글이 없습니다.</td>
+				<tr><td colspan="6">등록된 디자이너가 없습니다.</td>
 			</c:when>
 			<c:otherwise>
 			<c:forEach var="ddto" items="${list }">		
@@ -122,7 +122,7 @@
 						</c:when>
 					</c:choose>
 					</td>
-					<td><button type="button" class="btn" onclick="#">수정</button>
+					<td><!-- <button type="button" class="btn" onclick="#">수정</button> -->
 						<button type="button" class="btn" onclick="#">삭제</button></td>
 				</tr> 
 			</c:forEach>
