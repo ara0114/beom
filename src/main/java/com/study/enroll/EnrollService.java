@@ -24,11 +24,11 @@ public interface EnrollService {
 
   int userInsert(Map map);
 
-  List<EnrollDTO> reserveList(String uid);
+ 
 
   List<EnrollDTO> infoList(String did);
 
   int checking(String enrollno);
 
-  List<EnrollDTO> todayList(String uid);
+  
 }

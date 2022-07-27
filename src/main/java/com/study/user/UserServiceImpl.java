@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.study.enroll.EnrollDTO;
+
 @Service("com.study.user.UserServiceImpl")
 public class UserServiceImpl implements UserService {
 
@@ -70,6 +72,18 @@ public class UserServiceImpl implements UserService {
   @Override
   public UserDTO read(String id) {
     return mapper.read(id);
+  }
+
+  @Override
+  public List<EnrollDTO> reserveList(String id) {
+    // TODO Auto-generated method stub
+    return mapper.reserveList(id);
+  }
+
+  @Override
+  public List<EnrollDTO> todayList(String id) {
+    // TODO Auto-generated method stub
+    return mapper.todayList(id);
   }
   
 }

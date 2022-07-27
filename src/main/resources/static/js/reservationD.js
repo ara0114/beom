@@ -16,7 +16,6 @@ function formSubmit(){
 	let twoData = splitJoin.split(':');
 	let menu = twoData[0];
 	let price = twoData[1];
-	let did = $("#did").text();
 	
 	
 	//form 을 생성해서 submit
@@ -26,8 +25,8 @@ function formSubmit(){
 	document.charset ="utf-8";
 	
 	
-	let values = [category,gender,menu,price,time,date,did];
-	let names = ["category","gender","menu","price","time","date","did"];
+	let values = [category,gender,menu,price,time,date];
+	let names = ["category","gender","menu","price","time","date"];
 	console.log(values[0]);
 	for(let i = 0 ; i < values.length; i++){
 		let input = document.createElement("input");

@@ -222,7 +222,7 @@ textarea {
 											<td style="display: none">${dto.reserveno }</td>
 											<td style="display: none">${dto.message }</td>
 											<td><button class="btn btn-outline-success">확인</button>
-												<button class="btn btn-outline-success">삭제</button></td>
+											</td>
 										</tr>
 
 
@@ -245,12 +245,13 @@ textarea {
 		<div style="width: 20%; float: right;"></div>
 	</div>
 
-	<div class="modal fade" id="exampleModalPopovers" data-bs-backdrop="static"
-		  aria-hidden="true">
-		<div class="modal-dialog modal-lg" role = "document">
+	<div class="modal fade" id="exampleModalPopovers"
+		data-bs-backdrop="static" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalPopoversLabel">예약 신청 내역</h5>
+					<h5 class="modal-title" id="exampleModalPopoversLabel">예약 신청
+						내역</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>

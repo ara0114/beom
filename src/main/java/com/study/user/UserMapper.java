@@ -3,6 +3,8 @@ package com.study.user;
 import java.util.List;
 import java.util.Map;
 
+import com.study.enroll.EnrollDTO;
+
 public interface UserMapper {
 
   int create(UserDTO dto);
@@ -28,4 +30,8 @@ public interface UserMapper {
   List<UserDTO> list(Map map);
   
   UserDTO read(String id);
+
+  List<EnrollDTO> reserveList(String id);
+
+  List<EnrollDTO> todayList(String id);
 }

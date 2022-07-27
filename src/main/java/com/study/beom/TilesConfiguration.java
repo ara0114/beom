@@ -19,7 +19,8 @@ public class TilesConfiguration {
                                              "classpath:/templates/tiles_review.xml",                                            
                                              "classpath:/templates/tiles_faq.xml",
                                              "classpath:/templates/tiles_hairmenu.xml",
-                                              "classpath:/templates/tiles_style.xml"
+                                              "classpath:/templates/tiles_style.xml",
+                                              "classpath:/templates/tiles_enroll.xml"
                                              });
       configurer.setCheckRefresh(true);
       return configurer;

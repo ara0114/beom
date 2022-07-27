@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.study.enroll.EnrollDTO;
 import com.study.utility.Utility;
 
 @Controller
@@ -111,13 +112,17 @@ public class UserController {
   public String mypage(HttpSession session, Model model) {
 
     String id = (String) session.getAttribute("uid");
-
+    List<EnrollDTO> list = service.reserveList(id);
+    List<EnrollDTO> todayList = service.todayList(id);
+    
     if (id == null) {
       return "redirect:/user/login";
     } else {
 
       UserDTO dto = service.mypage(id);
       model.addAttribute("dto", dto);
+      model.addAttribute("reserveList", list);
+      model.addAttribute("todayList", todayList);
 
       return "/user/mypage";
     }

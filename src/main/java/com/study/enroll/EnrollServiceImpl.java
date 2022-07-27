@@ -66,11 +66,7 @@ public class EnrollServiceImpl implements EnrollService {
   public int userInsert(Map map) {
     return mapper.userInsert(map);
   }
-  //고객마이페이지 전체예약리스트 내역
-  @Override
-  public List<EnrollDTO> reserveList(String uid) {
-    return mapper.reserveList(uid);
-  }
+  
 
   @Override
   public List<EnrollDTO> infoList(String did) {
@@ -83,10 +79,6 @@ public class EnrollServiceImpl implements EnrollService {
     
     return mapper.checking(enrollno);
   }
-  //고객마이페이지 오늘예약 내역
-  @Override
-  public List<EnrollDTO> todayList(String uid) {
-    return mapper.todayList(uid);
-  }
+  
 
 }

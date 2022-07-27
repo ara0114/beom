@@ -96,4 +96,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO user(uid, upw, uname, uemail, uphone, grade)
 		VALUES(#{uid}, #{upw}, #{uname}, #{uemail}, #{uphone}, 'C')
 	</insert>
+	
+	<resultMap type="com.study.enroll.EnrollDTO" id="userReserveList">
+		<result property="enrolldate" column="enrolldate" />
+		<result property="enrolltime" column="enrolltime" />
+		<result property="emenu" column="emenu" />
+		<result property="eprice" column="eprice" />
+		<collection property="designerInfo"	resultMap="designerInfoDTO" /> 
+	</resultMap>
+	
+	<resultMap type="com.study.designer.DesignerDTO" id="designerInfoDTO">
+		<result property="hairshop" column="hairshop" />
+		<result property="dname" column="dname" />
+	</resultMap>
+	
+	<select id="reserveList" parameterType="String"
+		resultMap="userReserveList">
+		SELECT
+		d.hairshop, 
+		d.dname,
+		e.enrolldate,
+		e.enrolltime,
+		e.emenu,
+		e.eprice
+		FROM designer d 
+		LEFT JOIN enroll e ON d.did = e.did
+		LEFT JOIN reserve r ON r.enrollno = e.enrollno
+		LEFT JOIN user u ON r.uid = u.uid
+		WHERE u.uid = #{uid};
+	</select>
+	
+	<resultMap type="com.study.enroll.EnrollDTO" id="todayList">
+		<result property="enrolldate" column="enrolldate" />
+		<result property="enrolltime" column="enrolltime" />
+		<result property="emenu" column="emenu" />
+		<result property="eprice" column="eprice" />
+		<collection property="designerInfo"	resultMap="todayInfoDTO" /> 
+	</resultMap>
+	
+	<resultMap type="com.study.designer.DesignerDTO" id="todayInfoDTO">
+		<result property="hairshop" column="hairshop" />
+		<result property="dname" column="dname" />
+	</resultMap>
+	
+	<select id="todayList" parameterType="String"
+		resultMap="todayList">
+		SELECT
+		d.hairshop, 
+		d.dname,
+		e.enrolldate,
+		e.enrolltime,
+		e.emenu,
+		e.eprice
+		FROM designer d 
+		LEFT JOIN enroll e ON d.did = e.did
+		LEFT JOIN reserve r ON r.enrollno = e.enrollno
+		LEFT JOIN user u ON r.uid = u.uid
+		WHERE u.uid = #{uid} and e.enrolldate = curdate();
+	</select>
 </mapper>

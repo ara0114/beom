@@ -38,7 +38,7 @@ function enrollnoCheck(enrollno) {
 	let result = fetch(`/enrollnoCheck/${enrollno}`,{method:"POST"}).then(res=>res.text()).catch(error=>{console.log(error)});
 	return result;
 }
-$("#submit").click(function() {
+$("#sub_mit").click(function() {
 	if (!$('input:radio[name="radioCheck"]').is(":checked")) {
 		alert("예약 체크를 해주세요.")
 	} else {
@@ -53,11 +53,10 @@ $("#submit").click(function() {
 			form.setAttribute("method", "post");
 			form.setAttribute("action", "/reserve");
 			document.charset = "utf-8";
-			let values = [enrollno, message, uid];
+			let values = [enrollno, message];
 			console.log(enrollno);
 			console.log(message);
-			console.log(uid);
-			let names = ["enrollno", "message", "uid"];
+			let names = ["enrollno", "message"];
 			for (let i = 0; i < values.length; i++) {
 				let input = document.createElement("input");
 				input.setAttribute('type', 'hidden');
@@ -77,4 +76,9 @@ $("#submit").click(function() {
 function CategoryGender(gender, category) {
 	return fetch(`/datareq/${gender}/${category}`)
 		.then((res) => res.json()).catch((error) => console.log(error));
+}
+
+function go_back(){
+	let url = "/reserve";
+	location.href = url;
 }
