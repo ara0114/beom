@@ -30,40 +30,12 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="/js/designer_mypage.js"></script>
-<script src="/js/styleUpload.js"></script>
+
 
 <style>
-label {
-	font-size: 150%;
-}
-
 button {
 	border: 1px solid;
 	float: right;
-}
-
-td button {
-	border: 1px solid;
-}
-
-a:link {
-	color: maroon;
-}
-
-a:hover, a:active {
-	background-color: yellow;
-}
-
-div h5 {
-	text-align: center;
-	font-weight: bold;
-	font-size: 150%;
-}
-
-textarea {
-	text-align: center;
-	width: 100%;
-	font-size: 125%;
 }
 </style>
 <title>My page</title>
@@ -71,9 +43,11 @@ textarea {
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
-			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<img src="/designer/${ddto.dfilename }"
-				style="width: 100%; height: 80%;">
+			style="width: 18%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+			<div style="width: 100%; height: 100%;">
+				<img src="/designer/${ddto.dfilename }"
+					style="width: 100%; height: 80%;">
+			</div>
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
@@ -95,10 +69,18 @@ textarea {
 
 
 		<div style="width: 80%; float: right;">
+			<div
+				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold">
+				<ul id="nav2" class="nav justify-content-center">
+					<li class="nav-item"><a class="nav-link active"
+						href="/hairmenu">메뉴</a></li>
+					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a>
+					</li>
+				</ul>
+			</div>
 
-			<div style="height: 6%;"></div>
-
-			<div class="container">
+			<div class="container" style="margin-left: 5%;">
 				<div class="upload-box">
 					<h3>Upload File</h3>
 					<div class="filearea">
@@ -127,7 +109,7 @@ textarea {
 				</div>
 
 				<div class="img-box">
-					<h3>your styles</h3>
+					<h3>스타일</h3>
 					<div class="radio-box">
 						<label for="all" class="select-btn"><input type="radio"
 							value="all" name="gender" id="all" />전체 사진 </label> <label for="woman"
@@ -154,43 +136,8 @@ textarea {
 		<div style="width: 20%; float: right;"></div>
 	</div>
 
-	<div class="modal fade" id="exampleModalPopovers"
-		data-bs-backdrop="static" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalPopoversLabel">예약 신청
-						내역</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
+	
 
-					<h5>고객이름</h5>
-					<textarea id="uname" disabled></textarea>
-					<h5>성별</h5>
-					<textarea id="gender" disabled></textarea>
-					<h5>예약날짜</h5>
-					<textarea id="date" disabled></textarea>
-					<h5>예약시간</h5>
-					<textarea id="time" disabled></textarea>
-					<h5>시술명</h5>
-					<textarea id="menu" disabled></textarea>
-					<h5>가격</h5>
-					<textarea id="price" disabled></textarea>
-					<h5>메세지</h5>
-					<textarea id="message" disabled></textarea>
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
+	<script src="/js/styleUpload.js"></script>
 </body>
 </html>

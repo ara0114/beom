@@ -61,8 +61,10 @@ textarea {
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
 			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<img src="/designer/${ddto.dfilename }"
-				style="width: 100%; height: 80%;">
+			<div style="width: 100%; height: 100%;">
+				<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
+			</div>
+			
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
@@ -195,13 +197,14 @@ textarea {
 											<td style="display: none">${dto.rconfig }</td>
 											<c:choose>
 												<c:when test="${dto.rconfig == false }">
-													<td><button class="btn btn-outline-success" id = "configBtn" onclick = "config(${dto.reserveno})">확인</button></td>
+													<td><button class="btn btn-outline-success"
+															id="configBtn" onclick="config(${dto.reserveno})">확인</button></td>
 												</c:when>
 												<c:otherwise>
 													<td></td>
 												</c:otherwise>
 											</c:choose>
-													
+
 										</tr>
 
 

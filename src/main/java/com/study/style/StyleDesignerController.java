@@ -33,9 +33,9 @@ public class StyleDesignerController {
 
   @GetMapping("/style/designer")
   public String style(Model model, HttpSession session) {
-//    String did = "test"; //메인페이지에서 받아와야함
-//    DesignerDTO ddto = dservice.dmypage(did);
-//    model.addAttribute("ddto", ddto);
+    String did = "test"; //메인페이지에서 받아와야함
+    DesignerDTO ddto = dservice.dmypage(did);
+    model.addAttribute("ddto", ddto);
     
     return "/style/designer";
   }
