@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="menuInfo" parameterType="Map"
-		resultType="com.study.enroll.HairmenuDTO">
+		resultType="com.study.hairmenu.HairmenuDTO">
 		SELECT
 		h.menu,
 		h.price
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
-	<resultMap type="com.study.enroll.HairmenuDTO"
+	<resultMap type="com.study.hairmenu.HairmenuDTO"
 		id="hairmenuInfo">
 		<result property="menu" column="menu" />
 		<result property="price" column="price" />
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="category" resultMap="categoryInfo" />
 	</resultMap>
 
-	<resultMap type="com.study.enroll.CategoryDTO"
+	<resultMap type="com.study.category.CategoryDTO"
 		id="categoryInfo">
 		<result property="catename" column="catename" />
 	</resultMap>
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="catenameList" parameterType="String"
-		resultType="com.study.enroll.CategoryDTO">
+		resultType="com.study.category.CategoryDTO">
 		SELECT c.catename
 		FROM hairmenu h LEFT JOIN category c
 		ON h.cateno = c.cateno
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="menuPriceList" parameterType="String"
-		resultType="com.study.enroll.HairmenuDTO">
+		resultType="com.study.hairmenu.HairmenuDTO">
 		SELECT menu,price,hgender
 		FROM hairmenu
 		WHERE did = #{id}
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="menunoGet" parameterType="Map"
-		resultType="com.study.enroll.HairmenuDTO">
+		resultType="com.study.hairmenu.HairmenuDTO">
 		SELECT menuno
 		FROM hairmenu
 		WHERE did = #{did} and menu = #{menu}
@@ -94,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			resultMap="hairmenuGengerDTO" />
 	</resultMap>
 
-	<resultMap type="com.study.enroll.HairmenuDTO"
+	<resultMap type="com.study.hairmenu.HairmenuDTO"
 		id="hairmenuGengerDTO">
 		<result property="hgender" column="hgender" />
 	</resultMap>
@@ -141,7 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="uid" column="uid" />
 	</resultMap>
 	
-	<resultMap type="com.study.enroll.ReserveDTO" id="ReserveInfo">
+	<resultMap type="com.study.reserve.ReserveDTO" id="ReserveInfo">
 		<result property="reserveno" column="reserveno" />
 	</resultMap>
 	

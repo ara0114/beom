@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.study.category.CategoryDTO;
+import com.study.hairmenu.HairmenuDTO;
+
 public interface EnrollMapper {
   List<HairmenuDTO> list(String did);
 

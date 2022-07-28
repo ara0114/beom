@@ -68,29 +68,36 @@
 		    });
 		});
 	
-	function hairmenuEnroll(){
+	function hairmenuEnroll(){  //헤어메뉴 등록하는 페이지로 이동
 		let url = "/hairmenuEnroll";
 		location.href = url;
 	}
 	
-	function cut(cateno){
-		let url = "/hairmenu/" + 1;
+	function cut(){
+		let url = "/hairmenu/cateno/"+ 1;
 		location.href = url;
 	}
-	function perm(cateno){
-		let url = "/hairmenu/" + 2;
+	function perm(){
+		let url = "/hairmenu/cateno/" + 2;
 		location.href = url;
 	}
-	function color(cateno){
-		let url = "/hairmenu/" + 3;
+	function color(){
+		let url = "/hairmenu/cateno/" + 3;
 		location.href = url;
 	}
-	function clinic(cateno){
-		let url = "/hairmenu/" + 4;
+	function clinic(){
+		let url = "/hairmenu/cateno/" + 4;
 		location.href = url;
 	}
-	function etc(cateno){
-		let url = "/hairmenu/" + 5;
+	function etc(){
+		let url = "/hairmenu/cateno/" + 5;
+		location.href = url;
+	}
+	
+	function del(menuno){
+		confirm("정말 삭제하시겠습니까?");
+		//console.log(menuno);
+		let url = "/hairmenu/delete/" + menuno ;
 		location.href = url;
 	}
 	
@@ -111,34 +118,39 @@ td button {
 
 a:link {
 	color: maroon;
+	border-radius:5px;
 }
 
 a:hover, a:active {
-	background-color: yellow;
+	background-color: #87CEFA;
 }
 </style>
 <title>My page</title>
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div
-			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				<c:if test="${not empty sessionScope.uid}">
+					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
+                </c:if>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
-				헤어 디자이너</div>
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname } 헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
+			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
 					onclick="dmypage_update()">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
+			</c:if>
 			</div>
 		</div>
 
@@ -146,7 +158,8 @@ a:hover, a:active {
 		<!-- 오른쪽 구역 START -->
 		<div style="width: 80%; float: right;">
 
-			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold">
+			<div style="padding-top: 2%; padding-bottom: 2%; text-align: center;
+			 font-size: 22px; font-weight: bold;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
@@ -154,15 +167,16 @@ a:hover, a:active {
 				</ul>
 			</div>
 
+
 			<div style="text-align: center; font-size: 15px; font-weight: bold">
-				<nav class="nav nav-pills nav-justified"
-					style="margin-left: 3%; margin-right: 3%;">
-					<a class="nav-link" onclick="cut()">커트&드라이</a>
-					<a class="nav-link" onclick="perm()">펌</a> <a class="nav-link" onclick="color()">염색</a>
-					<a class="nav-link" onclick="clinic()">클리닉</a> <a class="nav-link" onclick="etc()">기타</a>
-				</nav>
-			</div>
-			
+				<div>
+					<nav class="nav nav-pills nav-justified" style="margin-left: 35%; margin-right: 20%; font-size:17px; width:80%">
+						<a class="nav-link" onclick="cut()">커트&드라이</a>
+						<a class="nav-link" onclick="perm()">펌</a> <a class="nav-link" onclick="color()">염색</a>
+						<a class="nav-link" onclick="clinic()">클리닉</a> <a class="nav-link" onclick="etc()">기타</a>
+					</nav>
+				</div>
+			</div> <!-- 스타일 div -->
 			
 		<section class="vh-100">
 			<div class="container py-5 h-150">
@@ -178,6 +192,8 @@ a:hover, a:active {
 											<th scope="col">No.</th>
 											<th scope="col">시술</th>
 											<th scope="col">가격</th>
+											<th scope="col">성별</th>
+											<th scope="col">디자이너</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -194,7 +210,12 @@ a:hover, a:active {
 													<th scope="row">${dto.menuno }</th>
 													<td>${dto.menu }</td>
 													<td>${dto.price }</td>
-													<td><button class="btn btn-outline-success">삭제</button></td>
+													<td>${dto.hgender }</td>
+													<td>${dto.did }</td>
+													<c:if test="${not empty sessionScope.did}">
+													<td><button class="btn btn-outline-success"
+													onclick="del(${dto.menuno})">삭제</button></td>
+													</c:if>
 												</tr>
 											</c:forEach>
 										</c:otherwise>
@@ -204,19 +225,18 @@ a:hover, a:active {
 
 							</div>
 						</div>
+						<c:if test="${not empty sessionScope.did}">
+							<div style="float: right;">
+								<button class="btn btn-outline-success" onclick="hairmenuEnroll()" style="border: 1px solid">메뉴 등록</button>
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
-
-			<div style="float: right;">
-				<button class="btn btn-outline-success" onclick="hairmenuEnroll()">메뉴 등록</button>
-			</div>
 		</section>
 
-	</div>
-
-	<div style="width: 20%; float: right;"></div>
-	</div>
-	<!-- 맨 윗줄 div -->
+	</div> <!-- 오른쪽 구역 div -->
+		<div style="width: 20%; float: right;"> </div>
+	</div> <!-- 맨 윗줄 div -->
 </body>
 </html>
