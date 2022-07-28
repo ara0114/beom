@@ -213,9 +213,75 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE dname=#{dname} and demail=#{demail}
 	</select>
 	
+	
 	<update id="rconfig" parameterType="int">
 		update reserve
 		set rconfig = true
 		where reserveno = #{reserveno}
+	</update>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		SELECT count(*)
+		FROM designer
+		<where>
+			<choose>
+				<when test="col=='dname'">
+					dname like concat('%',#{word},'%')
+				</when>
+				<when test="col=='did'">
+					did like concat('%',#{word},'%')
+				</when>
+				<when test="col=='address1'">
+					address1 like concat('%',#{word},'%')
+				</when>
+				<when test="col=='hairshop'">
+					hairshop like concat('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="list" parameterType="Map" resultType="com.study.designer.DesignerDTO">
+		SELECT *
+		FROM designer
+		<where>
+			<choose>
+				<when test="col=='dname'">
+					dname like concat('%',#{word},'%')
+				</when>
+				<when test="col=='did'">
+					did like concat('%',#{word},'%')
+				</when>
+				<when test="col=='address1'">
+					address1 like concat('%',#{word},'%')
+				</when>
+				<when test="col=='hairshop'">
+					hairshop like concat('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+		ORDER BY dname
+		limit #{sno}, #{eno}
+	</select>
+
+	<update id="updateValidation" parameterType="com.study.designer.DesignerDTO">
+		UPDATE designer
+		SET validation=1
+		WHERE did = #{did}
+	</update>
+	
+	<update id="lupdate1" parameterType="com.study.designer.LicenseDTO">
+		UPDATE certification
+		SET licenseno = #{licenseno},
+			licensedate = #{licensedate},
+			uniquecode1 = #{uniquecode1}
+		WHERE did = #{did}
+	</update>
+	
+	<update id="lupdate2" parameterType="com.study.designer.LicenseDTO">
+		UPDATE certification
+		SET uniquecode2 = #{uniquecode2}
+		WHERE did = #{did}
+
 	</update>
 </mapper>

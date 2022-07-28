@@ -89,7 +89,7 @@ th, td {
 			<c:choose>
 				<c:when test="${empty reserveList}">
 					<tbody>
-						<td colspan="6">등록된 예약이없습니다.</td>
+						<td colspan="6">등록된 예약이 없습니다.</td>
 					</tbody>
 				</c:when>
 				<c:otherwise>
@@ -130,7 +130,7 @@ th, td {
 			<c:choose>
 				<c:when test="${empty reserveList}">
 					<tbody>
-						<td colspan="6">등록된 예약이없습니다.</td>
+						<td colspan="6">등록된 예약이 없습니다.</td>
 					</tbody>
 				</c:when>
 				<c:otherwise>

@@ -32,8 +32,10 @@ function get(rnum) {
 
 
 
-function dmypage_update() {
+function dmypage_update(did) {
     let url = "/dmypage_update";
+    url += "?did=";
+    url += did;
     location.href = url;
 }
 

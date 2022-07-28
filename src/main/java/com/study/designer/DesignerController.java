@@ -2,6 +2,7 @@ package com.study.designer;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -212,28 +214,55 @@ public class DesignerController {
 
   }
 
-  @GetMapping("/dmypage_update")
-  public String dmypage_update(HttpSession session, Model model) {
-    DesignerDTO ddto = dservice.dmypage((String) session.getAttribute("did"));
-    LicenseDTO cdto = dservice.license((String) session.getAttribute("did"));
+  @GetMapping(value={"/dmypage_update","/admin/dupdate"})
+  public String dmypage_update(@RequestParam String did, HttpServletRequest request, HttpSession session, Model model) {
+    String id = null;
+    
+    if(request.getServletPath().equals("/dmypage_update")) {
+      id = (String) session.getAttribute("did");
+    }else if(request.getServletPath().equals("/admin/dupdate")) {
+      id = did;
+    }
+    
+    DesignerDTO ddto = dservice.dmypage(id);
+    LicenseDTO cdto = dservice.license(id);
     // System.out.println(cdto.getDid());
     model.addAttribute("ddto", ddto);
     model.addAttribute("cdto", cdto);
+    
     return "/dmypage_update";
   }
 
   @PostMapping("/dupdate")
-  public String dupdate(DesignerDTO ddto, Model model, HttpSession session) {
-    ddto.setDid((String) session.getAttribute("did"));
-    int flag = dservice.dupdate(ddto);
+  public String dupdate(DesignerDTO ddto, LicenseDTO cdto, Model model, HttpSession session) {
+//  ddto.setDid((String) session.getAttribute("did"));
+    int flag1 = dservice.dupdate(ddto);
+    int flag2 = 0;
+
+    if(cdto.getUniquecode1().length() != 0 || cdto.getUniquecode2().equals("")) {
+      flag2 = dservice.lupdate1(cdto);
+    }else {
+      flag2 = dservice.lupdate2(cdto);
+    }
+    
     System.out.println(ddto.getAddress1());
 
-    if (flag > 0) {
-      DesignerDTO new_ddto = dservice.dmypage((String) session.getAttribute("did"));
-      model.addAttribute("ddto", new_ddto);
+    if (flag1 > 0 && flag2 > 0) {
+      if(!ddto.getDid().equals((String) session.getAttribute("did"))){
+        model.addAttribute("did",session.getAttribute("did"));
+        return "redirect:/admin/designer/list";
+      }else {
+        model.addAttribute("did",ddto.getDid());
+        return "redirect:/dmypage_update";
+      }
+//      DesignerDTO new_ddto = dservice.dmypage((String) session.getAttribute("did"));
+//      model.addAttribute("ddto", new_ddto);
+    }else {
+      model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
+      return "/errorMsg";
     }
 
-    return "redirect:/dmypage";
+//    return "redirect:/dmypage";
   }
 
   @GetMapping("/designer/dupdateFileForm")
@@ -302,6 +331,7 @@ public class DesignerController {
     return "/dfindpw";
   }
   
+
   @GetMapping("/dmypage/rconfig/{reserveno}")
   @ResponseBody
   public String config_reserve(@PathVariable int reserveno, Model model) {
@@ -311,6 +341,70 @@ public class DesignerController {
     }
     else {
       return "false";
+    }
+  }
+
+  @RequestMapping("/admin/designer/list")
+  public String list(HttpServletRequest request) {
+    //검색
+    String col = Utility.checkNull(request.getParameter("col"));
+    String word = Utility.checkNull(request.getParameter("word"));
+    
+    if(col.equals("total")) {
+      word = "";
+    }
+    //페이지
+    int nowPage = 1;
+    if(request.getParameter("nowPage")!=null) {
+      nowPage = Integer.parseInt(request.getParameter("nowPage"));
+    }
+    int recordPerPage = 5;//한페이지당 보여줄 레코드 수
+    
+    //DB에서 가져올 순번
+    int sno = (nowPage-1)*recordPerPage;
+    int eno = recordPerPage;
+    
+    Map map = new HashMap();
+    map.put("col", col);
+    map.put("word", word);
+    map.put("sno", sno);
+    map.put("eno", eno);
+    
+    int total = dservice.total(map);
+    
+    List<DesignerDTO> list = dservice.list(map);
+    
+    String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+    
+    request.setAttribute("list", list);
+    request.setAttribute("nowPage", nowPage);
+    request.setAttribute("col", col);
+    request.setAttribute("word", word);
+    request.setAttribute("paging", paging);
+    
+    return "/dlist";
+  }
+  
+  @GetMapping("/admin/approve")
+  public String approve(@RequestParam String did, Model model) {
+    DesignerDTO ddto = dservice.dmypage(did);
+    LicenseDTO cdto = dservice.license(did);
+    
+    model.addAttribute("ddto",ddto);
+    model.addAttribute("cdto",cdto);
+    
+    return "/dapprove";
+  }
+  @PostMapping("/dapprove")
+  public String approve(DesignerDTO ddto, Model model) {
+    int flag = dservice.updateValidation(ddto);
+    if(flag>0) {
+      return "redirect:/admin/designer/list";
+    }
+    else {
+      model.addAttribute("msg","[실패] 승인여부가 수정되지 않았습니다.");
+      return "/errorMsg";
+
     }
   }
 
