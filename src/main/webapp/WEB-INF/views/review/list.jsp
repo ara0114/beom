@@ -62,28 +62,32 @@ td button {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div
-			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<img src="/designer/${ddto.dfilename }"
-				style="width: 100%; height: 80%;">
+		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+			<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				<c:if test="${not empty sessionScope.uid}">
+					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
+                </c:if>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
+			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
 					onclick="dmypage_update()">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
+			</c:if>
 			</div>
-		</div>
+		</div> <!-- div left구역 end -->
 
-		<!-- div left구역 -->
+		
 		<div style="width: 80%; float: right;">
 
 			<!-- 윗 목록 메뉴/스타일/리뷰 -->
@@ -99,7 +103,7 @@ td button {
 			<!-- 윗 목록 END -->
 
 
-			<div class="container">
+			<div class="container" style="width:100%">
 				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>
@@ -132,23 +136,22 @@ td button {
 								name="word" value="${word}">
 						</div>
 						<div class="form-group">
-						<button type="submit" class="btn btn-default">검색</button>
+							<button type="submit" class="btn btn-default">검색</button>
 						</div>
 						<div class="form-group">
-						<c:if test="${not empty sessionScope.uid}">
-							<button type="button" class="btn btn-default" id="reviewCreate">등록</button>
-						</c:if>
+							<c:if test="${not empty sessionScope.uid}">
+								<button type="button" class="btn btn-default" id="reviewCreate">등록</button>
+							</c:if>
 						</div>
 					</form>
-				</div>
-				<!-- head END -->
+				</div> <!-- head END -->
 				<br>
 				<hr>
 
 				<div class="contents">
 					<c:forEach var='dto' items="${list }">
 						<div class="row">
-							<c:if test="${dto.rfilename != null }">
+							<c:if test="${dto.rfilename != 'no.jpg'  }">
 								<div class="review-img">
 									<a><img class='chat' data-rno="${dto.rno }"
 										src="/hairReview/storage/${dto.rfilename}"
@@ -189,7 +192,7 @@ td button {
 								</div>
 
 
-								<h3>${dto.rtitle }</h3>
+								<h3>${dto.rtitle } </h3> 
 								<p data-rno="${dto.rno }" class='chat'>${dto.rcontent }</p>
 							</div>
 						</div>
@@ -246,8 +249,7 @@ td button {
 						<div class="modal-footer">
 							<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
 							<button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
-							<button id='modalRegisterBtn' type="button"
-								class="btn btn-primary">Register</button>
+							<button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
 							<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
 						</div>
 					</div>

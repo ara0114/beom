@@ -6,6 +6,7 @@ plugins {
 }
 
 group = 'com.study'
+archivesBaseName = 'beom'
 version = '0.0.1'
 sourceCompatibility = '11'
 

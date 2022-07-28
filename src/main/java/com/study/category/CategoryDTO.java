@@ -1,10 +1,10 @@
-package com.study.hairmenu;
+package com.study.category;
 
 import lombok.Data;
 
 @Data
 public class CategoryDTO {
   private int cateno;
-  private int catename;
+  private String catename;
 
 }
