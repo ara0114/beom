@@ -20,7 +20,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-<script src="/js/designer_mypage.js"></script>
 
 
 
@@ -65,9 +64,10 @@ textarea {
 		<div
 			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<div style="width: 100%; height: 100%;">
-				<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
+				<img src="/designer/${ddto.dfilename }"
+					style="width: 100%; height: 80%;">
 			</div>
-			
+
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
@@ -79,7 +79,7 @@ textarea {
 			<div style="float: right">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
-					onclick="dmypage_update(${ddto.did})">디자이너 정보 수정</button>
+					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 			</div>
@@ -267,6 +267,6 @@ textarea {
 		</div>
 	</div>
 
-
+	<script src="/js/designer_mypage.js"></script>
 </body>
 </html>
