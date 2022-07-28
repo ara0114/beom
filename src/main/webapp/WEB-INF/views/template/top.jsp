@@ -54,7 +54,7 @@
                         									-->
                         <li><a href="${root}/">Home</a></li>									
                         <li><a href="${root }/notice/list">Notice</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="${root }/faq/chat">FAQ</a></li>
                     </ul>
                 </div>
 
