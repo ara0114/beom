@@ -93,7 +93,8 @@ td button {
 			<!-- 윗 목록 메뉴/스타일/리뷰 -->
 			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold">
 				<ul id="nav2" class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a> </li>
+					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a>
+					</li>
 					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
 					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a>
 					</li>
@@ -102,7 +103,7 @@ td button {
 			<!-- 윗 목록 END -->
 
 
-			<div class="container" style="width:100%; margin-left: 5%">
+			<div class="container" style="width:100%">
 				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>
@@ -260,12 +261,11 @@ td button {
 		</div>
 		<!-- container END -->
 
-	<div style="width: 20%; float: right;"></div>
 	</div>
 	<!-- 오른쪽 div 구역 END -->
 
-	<div>
-</div>
+	<div style="width: 20%; float: right;"></div>
+	<div></div>
 
 	<!-- 맨처음 div -->
 <script>let uid = '${sessionScope.uid}'</script>

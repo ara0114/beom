@@ -47,16 +47,7 @@ public class HairmenuController {
         model.addAttribute("msg", "예약이 등록되어 있어 삭제가 불가능합니다.");
         return "/errorMsg";
       }
-//          
-//      if(cnt > 0) {
-//      
-//        return "redirect:/hairmenu";
-//      } else {
-//        System.out.println("에러");
-//        
-//        model.addAttribute("msg", "예약이 등록되어 있어 삭제가 불가능합니다.");
-//        return "/errorMsg";
-//    }
+
   }
   
   @GetMapping("/hairmenu/cateno/{cateno}")
@@ -91,8 +82,7 @@ public class HairmenuController {
     model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
     
     dto.setDid((String)session.getAttribute("did"));
-   // System.out.println(dto);
-    log.info("dto: " + dto);
+   // log.info("dto: " + dto);
     
     
     if(service.hairmenuEnroll(dto) == 1) {  // 성공 시

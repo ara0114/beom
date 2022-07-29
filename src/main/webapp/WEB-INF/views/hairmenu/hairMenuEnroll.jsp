@@ -203,8 +203,8 @@ a:hover, a:active {
                           <label for = "hgender">성별</label>
                             <div>
                               <select name="hgender" id="hgender" class = "form-control" aria-label="Default select example">
-                                  <option value="female">여자</option>
-                                  <option value="male">남자</option>
+                                  <option value="FEMALE">여자</option>
+                                  <option value="MALE">남자</option>
                               </select>
                             </div>
                         </div>

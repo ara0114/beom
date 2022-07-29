@@ -158,14 +158,21 @@ public class ReviewController {
     List<ReviewDTO> list = service.list(map);
  
     String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
- 
+    
     // request에 Model사용 결과 담는다
     request.setAttribute("list", list);
     request.setAttribute("nowPage", nowPage);
     request.setAttribute("col", col);
     request.setAttribute("word", word);
     request.setAttribute("paging", paging);
-    request.setAttribute("starAvg", String.format("%.2f",service.starAvg()));  //평균 별점 소수점 2번째자리까지
+    
+    int cnt = service.starAvg0();
+    if(cnt == 0) {
+      request.setAttribute("starAvg", 0);
+    } else {
+      request.setAttribute("starAvg", String.format("%.2f",service.starAvg()));  //평균 별점 소수점 2번째자리까지
+    }
+    
     
     return "/review/list";
   }
