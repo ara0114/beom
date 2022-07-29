@@ -39,25 +39,27 @@ public class ReviewController {
   private DesignerService dservice;
 
   
-  @DeleteMapping("/review/{rno}")
-  public ResponseEntity<String> delete(@PathVariable("rno") int rno) {
-    //log.info("remove: " + rno);
- 
+  @DeleteMapping("/review/{rno}/{oldfile}")
+  public ResponseEntity<String> delete(@PathVariable("rno") int rno, @PathVariable String oldfile) {
+    log.info("remove: " + rno);
+    log.info("oldfile: " + oldfile);
+    
+    String upDir = UploadReview.getUploadDir();
+    
+      if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
+      Utility.deleteFile(upDir, oldfile);
+      
+    }
+    
     return service.delete(rno) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
         : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
- 
   }
   
   @PutMapping("/review/")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
   public ResponseEntity<String> update(ReviewDTO dto, String oldfile, HttpSession session, MultipartFile addfile) {
     System.out.println("modify: " + dto);
-    
-// 파일 업데이트 START
-//    String basePath = UploadReview.getUploadDir();
-//    if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
-//      Utility.deleteFile(basePath, oldfile);
-//    }
 
+    
     // 기존 업데이트 코드
     String upDir = UploadReview.getUploadDir();
     
@@ -156,14 +158,21 @@ public class ReviewController {
     List<ReviewDTO> list = service.list(map);
  
     String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
- 
+    
     // request에 Model사용 결과 담는다
     request.setAttribute("list", list);
     request.setAttribute("nowPage", nowPage);
     request.setAttribute("col", col);
     request.setAttribute("word", word);
     request.setAttribute("paging", paging);
-    request.setAttribute("starAvg", String.format("%.2f",service.starAvg()));  //평균 별점 소수점 2번째자리까지
+    
+    int cnt = service.starAvg0();
+    if(cnt == 0) {
+      request.setAttribute("starAvg", 0);
+    } else {
+      request.setAttribute("starAvg", String.format("%.2f",service.starAvg()));  //평균 별점 소수점 2번째자리까지
+    }
+    
     
     return "/review/list";
   }

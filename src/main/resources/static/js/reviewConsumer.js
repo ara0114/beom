@@ -29,7 +29,8 @@ let modalRegisterBtn = $("#modalRegisterBtn");
 modalRemoveBtn.on("click", function(e) {
 
 	let rno = modal.data("rno");
-	remove(rno)
+	let oldfile = modalInputRfilename.val();
+	remove(rno,oldfile)
 		.then(result => {
 			
 			modal.modal("hide");

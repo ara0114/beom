@@ -62,7 +62,7 @@ td button {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 15.5%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
@@ -91,7 +91,7 @@ td button {
 		<div style="width: 80%; float: right;">
 
 			<!-- 윗 목록 메뉴/스타일/리뷰 -->
-			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold">
+			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a>
 					</li>
@@ -103,7 +103,7 @@ td button {
 			<!-- 윗 목록 END -->
 
 
-			<div class="container" style="width:100%">
+			<div class="container" style="width:100%;">
 				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>

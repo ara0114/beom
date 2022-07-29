@@ -70,7 +70,7 @@ button {
 
 		<div style="width: 80%; float: right;">
 			<div
-				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold">
+				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left : 10%;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
 						href="/hairmenu">메뉴</a></li>
@@ -133,7 +133,7 @@ button {
 
 		</div>
 
-		<div style="width: 20%; float: right;"></div>
+		<div style="width: 15%; float: right;"></div>
 	</div>
 
 	
