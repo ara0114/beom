@@ -95,9 +95,9 @@ button {
 						<input type="file" name="file" id="input-file">
 						<div class="form-radio">
 							<label for="iwoman" class="ilabel"> <input type="radio"
-								name="uploadgender" value="여자" id="iwoman" />여자
+								name="uploadgender" value="FEMALE" id="iwoman" />여자
 							</label> <label for="iman" class="ilabel"> <input type="radio"
-								name="uploadgender" value="남자" id="iman" />남자
+								name="uploadgender" value="MALE" id="iman" />남자
 							</label>
 						</div>
 
@@ -113,9 +113,9 @@ button {
 					<div class="radio-box">
 						<label for="all" class="select-btn"><input type="radio"
 							value="all" name="gender" id="all" />전체 사진 </label> <label for="woman"
-							class="select-btn"><input type="radio" value="여자"
+							class="select-btn"><input type="radio" value="FEMALE"
 							name="gender" id="woman" />여성 사진모음</label> <label for="man"
-							class="select-btn"><input type="radio" value="남자"
+							class="select-btn"><input type="radio" value="MALE"
 							name="gender" id="man" />남성 사진모음</label>
 					</div>
 					<div class="img-area">

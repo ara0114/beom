@@ -48,7 +48,7 @@ public class EnrollServiceImpl implements EnrollService {
 
   // enroll 에insert 하기전에 시술명으로 해당 hairmenu 에 menuno 를 갖고온다
   @Override
-  public HairmenuDTO menunoGet(Map map) {
+  public int menunoGet(Map map) {
 
     return mapper.menunoGet(map);
   }

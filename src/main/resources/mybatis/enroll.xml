@@ -69,8 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
-	<select id="menunoGet" parameterType="Map"
-		resultType="com.study.hairmenu.HairmenuDTO">
+	<select id="menunoGet" parameterType="Map" resultType="int">
 		SELECT menuno
 		FROM hairmenu
 		WHERE did = #{did} and menu = #{menu}

@@ -19,7 +19,7 @@ public interface EnrollService {
   
   int enrollInput(Map map);
 
-  HairmenuDTO menunoGet(Map map);
+  int menunoGet(Map map);
 
   Set<EnrollDTO> enrollList(String did);
   

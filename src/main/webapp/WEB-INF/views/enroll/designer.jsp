@@ -43,8 +43,8 @@
 					<label for="gender">성별 선택</label> 
 					<select id="gender" name="gender">
 						<option>성별 선택</option>
-						<option value="여자">여성</option>
-						<option value="남자">남성</option>
+						<option value="FEMALE">여성</option>
+						<option value="MALE">남성</option>
 					</select>
 				</div>
 				<div id="service_price">

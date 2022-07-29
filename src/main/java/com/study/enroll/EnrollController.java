@@ -76,11 +76,13 @@ public class EnrollController {
     map.put("did", (String)session.getAttribute("did"));
 
     Map map2 = new HashMap();
-    map2.put("menu", menu);
+    map2.put("menu", menu);// 메뉴명 적을 때 띄어쓰기 하면 오류 발생함
     map2.put("did", (String)session.getAttribute("did"));
-    HairmenuDTO dto = service.menunoGet(map2);
-    System.out.println("ex 1 : " + dto);
-    map.put("menuno", dto.getMenuno());
+    System.out.println("map2 : " + map2);
+    int menuno = service.menunoGet(map2); 
+    
+    System.out.println("menuno : " + menuno);
+    map.put("menuno", menuno);
     // 예약등록
     int cnt = service.enrollInput(map);
     System.out.println("cnt : " + cnt);
