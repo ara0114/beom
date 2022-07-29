@@ -83,7 +83,7 @@
 				<input type="text" class="form-control" name="word" id="word" placeholder="검색어 입력" value="${word }">
 			</div>
 			<button type="submit" class="btn btn-default">검색</button>
-			<button type="button" class="btn btn-default">등록</button>
+			<button type="button" class="btn btn-default" onclick="location.href='/user/joinForm'">등록</button>
 		</form>
 		<table class="table table-hover">
 			<thead class="table-light">
