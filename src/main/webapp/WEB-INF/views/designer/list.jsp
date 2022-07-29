@@ -88,7 +88,7 @@
 				<input type="text" class="form-control" name="word" id="word" placeholder="검색어 입력" value="${word }">
 			</div>
 			<button type="submit" class="btn btn-default">검색</button>
-			<button type="button" class="btn btn-default">등록</button>
+			<button type="button" class="btn btn-default" onclick="location.href='/dcreate'">등록</button>
 		</form>
 		<table class="table table-hover">
 			<thead class="table-light">
@@ -122,7 +122,7 @@
 						</c:when>
 					</c:choose>
 					</td>
-					<td><button type="button" class="btn" onclick="javascript:update('${ddto.did}')">상세정보</button>
+					<td><button type="submit" class="btn" onclick="javascript:update('${ddto.did}')">상세정보</button>
 						<button type="button" class="btn" onclick="#">삭제</button></td>
 				</tr> 
 			</c:forEach>
