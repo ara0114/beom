@@ -11,12 +11,12 @@
       value="/WEB-INF/views/template/top.jsp" />
   </definition>
   <definition name="/hairmenu" extends="main">
-    <put-attribute name="title" value="헤어메뉴"></put-attribute>
+    <put-attribute name="title" value="hairmenu"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/hairmenu/hairMenu.jsp" />
   </definition>
   <definition name="/hairmenuEnroll" extends="main">
-    <put-attribute name="title" value="헤어메뉴등록"></put-attribute>
+    <put-attribute name="title" value="menuEnroll"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/hairmenu/hairMenuEnroll.jsp" />
   </definition>

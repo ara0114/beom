@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,16 +30,33 @@ public class HairmenuController {
   @Qualifier("com.study.designer.DesignerServiceImpl")
   private DesignerService dservice;
   
+
   
   @GetMapping("/hairmenu/delete/{menuno}")
-  public String delete(@PathVariable("menuno") int menuno) {
+  public String delete(@PathVariable("menuno") int menuno, Model model) {
+    //System.out.println("번호");
     
-    System.out.println("번호");
-    int cnt = service.delete(menuno);
-    if(cnt > 0)
-      return "redirect:/hairmenu";
-    
-    return "error";
+      int cnt = 0;
+      
+      try {
+       cnt =  service.delete(menuno);
+       return "redirect:/hairmenu";
+       
+      } catch(Exception e) {
+        e.printStackTrace();
+        model.addAttribute("msg", "예약이 등록되어 있어 삭제가 불가능합니다.");
+        return "/errorMsg";
+      }
+//          
+//      if(cnt > 0) {
+//      
+//        return "redirect:/hairmenu";
+//      } else {
+//        System.out.println("에러");
+//        
+//        model.addAttribute("msg", "예약이 등록되어 있어 삭제가 불가능합니다.");
+//        return "/errorMsg";
+//    }
   }
   
   @GetMapping("/hairmenu/cateno/{cateno}")

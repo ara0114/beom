@@ -72,6 +72,10 @@
 		let url = "/hairmenuEnroll";
 		location.href = url;
 	}
+	function hairmenu(){  //헤어메뉴 등록하는 페이지로 이동
+		let url = "/hairmenu";
+		location.href = url;
+	}
 	
 	function cut(){
 		let url = "/hairmenu/cateno/"+ 1;
@@ -95,10 +99,15 @@
 	}
 	
 	function del(menuno){
-		confirm("정말 삭제하시겠습니까?");
+		if(confirm("정말 삭제하시겠습니까?")==true){
+			
 		//console.log(menuno);
 		let url = "/hairmenu/delete/" + menuno ;
 		location.href = url;
+		
+		} else {
+			return;
+		}
 	}
 	
 </script>
@@ -158,11 +167,11 @@ a:hover, a:active {
 		<!-- 오른쪽 구역 START -->
 		<div style="width: 80%; float: right;">
 
-			<div style="padding-top: 2%; padding-bottom: 2%; text-align: center;
-			 font-size: 22px; font-weight: bold;">
+			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center;
+			 font-size: 20px; font-weight: bold;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
 					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a></li>
 				</ul>
 			</div>
@@ -170,16 +179,18 @@ a:hover, a:active {
 
 			<div style="text-align: center; font-size: 15px; font-weight: bold">
 				<div>
-					<nav class="nav nav-pills nav-justified" style="margin-left: 35%; margin-right: 20%; font-size:17px; width:80%">
+					<nav class="nav nav-pills nav-justified" style="margin-left: 33%; margin-right: 20%; font-size:17px; width:80%">
+						<a class="nav-link" onclick="hairmenu()">전체메뉴</a>
 						<a class="nav-link" onclick="cut()">커트&드라이</a>
 						<a class="nav-link" onclick="perm()">펌</a> <a class="nav-link" onclick="color()">염색</a>
 						<a class="nav-link" onclick="clinic()">클리닉</a> <a class="nav-link" onclick="etc()">기타</a>
 					</nav>
 				</div>
 			</div> <!-- 스타일 div -->
+
 			
 		<section class="vh-100">
-			<div class="container py-5 h-150">
+			<div class="container py-5 h-150" style="margin-left: 5%">
 				<div class="row d-flex justify-content-center align-items-center">
 					<div class="col col-lg-9 col-xl-12">
 						<div class="card rounded-3">
@@ -189,7 +200,6 @@ a:hover, a:active {
 								<table class="table mb-4">
 									<thead>
 										<tr style="font-weight: bold">
-											<th scope="col">No.</th>
 											<th scope="col">시술</th>
 											<th scope="col">가격</th>
 											<th scope="col">성별</th>
@@ -207,7 +217,6 @@ a:hover, a:active {
 										<c:otherwise>
 											<c:forEach var="dto" items="${list}">
 												<tr>
-													<th scope="row">${dto.menuno }</th>
 													<td>${dto.menu }</td>
 													<td>${dto.price }</td>
 													<td>${dto.hgender }</td>
@@ -236,7 +245,7 @@ a:hover, a:active {
 		</section>
 
 	</div> <!-- 오른쪽 구역 div -->
-		<div style="width: 20%; float: right;"> </div>
+	<div style="width: 20%; float: right;"></div>
 	</div> <!-- 맨 윗줄 div -->
 </body>
 </html>
