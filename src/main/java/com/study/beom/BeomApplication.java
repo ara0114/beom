@@ -1,11 +1,11 @@
-package com.study;
+package com.study.beom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages= {"com.study"})
+@ComponentScan(basePackages= {"com.study.*"})
 public class BeomApplication {
 
 	public static void main(String[] args) {
