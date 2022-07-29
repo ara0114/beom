@@ -191,6 +191,8 @@ public class DesignerController {
       ddto.setIntroduction("");
     ddto.setIntroduction(ddto.getIntroduction().replaceAll("<br>", "\r\n"));
     model.addAttribute("ddto", ddto);
+    model.addAttribute("enrollList", dservice.enroll_list((String) session.getAttribute("did")));
+    model.addAttribute("reserveList", dservice.reserve_list((String) session.getAttribute("did")));
     return "/dmypage_intro_update";
   }
 
@@ -207,6 +209,7 @@ public class DesignerController {
     if (flag > 0) {
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
       model.addAttribute("ddto", ddto);
+      
       return "redirect:/dmypage";
     } else {
       return "error";
