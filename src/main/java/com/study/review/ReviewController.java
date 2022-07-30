@@ -167,9 +167,13 @@ public class ReviewController {
     request.setAttribute("paging", paging);
     
     int cnt = service.starAvg0();
+
+    System.out.println("cnt= " + cnt);
     if(cnt == 0) {
-      request.setAttribute("starAvg", 0);
-    } else {
+      request.setAttribute("starAvg0",0.0);
+      
+    } else if(cnt != 0) {
+      log.info("star");
       request.setAttribute("starAvg", String.format("%.2f",service.starAvg()));  //평균 별점 소수점 2번째자리까지
     }
     

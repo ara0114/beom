@@ -110,7 +110,12 @@ td button {
 					</div>
 					<div class="star-row" style="float:left;  height:40px;">
 						<div class="starsum">
+						<c:if test = "${not empty starAvg }">
 							<p style="font-size:25px; font-weight:bold">&nbsp ⭐ ${starAvg }&nbsp</p>
+						</c:if>
+						<c:if test = "${empty starAvg }">
+							<p style="font-size:25px; font-weight:bold">&nbsp ⭐ ${starAvg0 }&nbsp</p>
+						</c:if>
 						</div>
 						<!-- 평균 별점 -->
 					</div>
