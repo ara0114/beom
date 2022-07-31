@@ -35,4 +35,8 @@ public interface UserService {
 
   List<EnrollDTO> todayList(String id);
 
+  int delete(String uid);
+
+  int passCheck(Map map);
+
 }

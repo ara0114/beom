@@ -54,6 +54,12 @@
     		url += "?uid="+uid;
     		location.href = url;
     	}
+    	function del(uid){
+    		if(confirm('회원을 강제탈퇴 처리하시겠습니까? 모든 정보가 지워집니다.')){
+	    		let url = "/admin/udelete/"+uid;
+	    		location.href = url;
+    		}
+    	}
     </script>
 </head>
 <body>
@@ -107,7 +113,7 @@
 					<td>${dto.uemail }</td>
 					<td>${dto.uphone }</td>
 					<td><button type="button" class="btn" onclick="javascript:update('${dto.uid}')">수정</button>
-						<button type="button" class="btn" onclick="#">삭제</button></td>
+						<button type="button" class="btn" onclick="javascript:del('${dto.uid}')">삭제</button></td>
 				</tr> 
 			</c:forEach>
 			</c:otherwise>

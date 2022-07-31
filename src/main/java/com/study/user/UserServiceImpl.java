@@ -85,5 +85,15 @@ public class UserServiceImpl implements UserService {
     // TODO Auto-generated method stub
     return mapper.todayList(id);
   }
+
+  @Override
+  public int delete(String uid) {
+    return mapper.delete(uid);
+  }
+
+  @Override
+  public int passCheck(Map map) {
+    return mapper.passCheck(map);
+  }
   
 }

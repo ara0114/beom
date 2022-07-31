@@ -29,6 +29,44 @@ public class UserController {
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
   
+  @GetMapping("/user/delete")
+  public String delete(@RequestParam String uid, Model model) {
+    model.addAttribute("uid", uid);
+    return "/user/delete";
+  }
+  @PostMapping("/user/delete")
+  public String delete(String uid, String upw, HttpSession session) {
+    Map map = new HashMap();
+    map.put("uid", uid);
+    map.put("upw", upw);
+    
+    int flag1 = service.passCheck(map);
+    
+    if(flag1 != 1) return "/passwdError";
+    
+    if(flag1 == 1) {
+      int flag2 = service.delete(uid);
+      
+      if(flag2 != 1) return "error";
+      else {
+        session.invalidate();
+        return "redirect:/";
+      }
+    }
+    return "/user/mypage";
+  }
+  
+  @GetMapping("/admin/udelete/{uid}")
+  public String delete(@PathVariable String uid) {   
+    int flag = service.delete(uid);
+    
+    if(flag != 1) {
+      return "error";
+    }else {
+      return "redirect:/admin/user/list";
+    }
+  }
+  
   @RequestMapping("/admin/user/list")
   public String list(HttpServletRequest request) {
     //검색

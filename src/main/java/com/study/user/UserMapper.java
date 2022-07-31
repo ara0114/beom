@@ -34,4 +34,9 @@ public interface UserMapper {
   List<EnrollDTO> reserveList(String id);
 
   List<EnrollDTO> todayList(String id);
+  
+  int delete(String uid);
+  
+  int passCheck(Map map);
+  
 }

@@ -47,6 +47,11 @@ th, td {
 		url += "?uid=${dto.uid}";
 		location.href = url;
 	}
+	function withdrawl(){
+		let url = "/user/delete";
+		url += "?uid=${dto.uid}";
+		location.href = url;
+	}
 </script>
 </head>
 <body>
@@ -67,7 +72,7 @@ th, td {
 					수정</button>
 				<button type="button" class="btn" onclick="location.href='#'">비밀번호
 					수정</button>
-				<button type="button" class="btn" onclick="location.href='#'">회원
+				<button type="button" class="btn" onclick="javascript:withdrawl()">회원
 					탈퇴</button>
 			</div>
 			<div class="col-sm-8" style="float: right;">
