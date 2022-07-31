@@ -49,7 +49,12 @@ public interface DesignerMapper {
 
   String findPw(Map<String, String> map);
 
+
+  int rconfig(int reserveno);
+
+
   int total(Map map);
+
 
   List<DesignerDTO> list(Map map);
   

@@ -12,6 +12,7 @@ public class ReserveDTO {
   private String uid;
   private String message;
   private int enrollno;
+  private boolean rconfig;
   
   private EnrollDTO edto;
   private UserDTO udto;

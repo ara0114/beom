@@ -125,6 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="com.study.reserve.ReserveDTO" id="reserveList">
 		<result property = "message" column = "message"/>
 		<result property = "reserveno" column = "reserveno"/>
+		<result property = "rconfig" column = "rconfig"/>
 		<association property="udto" javaType = "com.study.user.UserDTO">
 			<result property = "uname" column = "uname" />
 		</association>
@@ -140,7 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<select id="reserve_list" parameterType="String" resultMap="reserveList">
-		select u.uname, h.hgender, e.enrolldate, e.enrolltime, e.emenu, e.eprice, r.reserveno, r.message
+		select u.uname, h.hgender, e.enrolldate, e.enrolltime, e.emenu, e.eprice, r.reserveno, r.message, r.rconfig
 		from reserve r
 		left join user u
 		on r.uid = u.uid
@@ -212,6 +213,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE dname=#{dname} and demail=#{demail}
 	</select>
 	
+	
+	<update id="rconfig" parameterType="int">
+		update reserve
+		set rconfig = true
+		where reserveno = #{reserveno}
+	</update>
+	
 	<select id="total" parameterType="Map" resultType="int">
 		SELECT count(*)
 		FROM designer
@@ -274,5 +282,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE certification
 		SET uniquecode2 = #{uniquecode2}
 		WHERE did = #{did}
+
 	</update>
 </mapper>

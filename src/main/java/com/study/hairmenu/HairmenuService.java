@@ -9,5 +9,10 @@ public interface HairmenuService {
 
   int hairmenuEnroll(HairmenuDTO dto);
 
+  List<HairmenuDTO> itemlist(int cateno);
+
+  int delete(int menuno);
+
+
 
 }

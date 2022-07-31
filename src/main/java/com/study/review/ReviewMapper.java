@@ -12,4 +12,5 @@ public interface ReviewMapper {
   int update(ReviewDTO vo);
   int delete(int rno);
   double starAvg();
+  int starAvg0();
 }

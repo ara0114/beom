@@ -72,52 +72,37 @@
 		let url = "/hairmenu";
 		location.href = url;
 	}
-	
-	function cut(cateno){
-		let url = "/hairmenu/" + 1;
-		location.href = url;
-	}
-	function perm(cateno){
-		let url = "/hairmenu/" + 2;
-		location.href = url;
-	}
-	function color(cateno){
-		let url = "/hairmenu/" + 3;
-		location.href = url;
-	}
-	function clinic(cateno){
-		let url = "/hairmenu/" + 4;
-		location.href = url;
-	}
-	function etc(cateno){
-		let url = "/hairmenu/" + 5;
-		location.href = url;
-	}
-	
+
 	
 	//클릭 시 
 	function hairenrollCheck(f){
-		if (f.cateno.value.length == 0){
+		if (f.cateno.value == ""){
 			alert("카테고리를 선택하세요");
 			f.cateno.focus()
             return false;
 		}
-		if (f.hgender.value.length == 0){
+		if (f.hgender.value == ""){
 			alert("성별을 선택하세요");
 			f.hgender.focus()
             return false;
 		}
-		if (f.menu.value.length == 0){
+		if (f.menu.value == ""){
 			alert("시술 이름을 입력하세요");
 			f.menu.focus()
             return false;
 		}
-		if (f.price.value.length == 0){
+		if (f.price.value == ""){
 			alert("가격을 입력하세요");
 			f.price.focus()
             return false;
 		}
+		
+		if (f.price.value != "" && f.menu.value !=""){
+			let url = "/hairmenu";
+			location.href = url;
+		}
 	}
+	
 	
 </script>
 <style>
@@ -136,10 +121,11 @@ td button {
 
 a:link {
 	color: maroon;
+	border-radius:5px
 }
 
 a:hover, a:active {
-	background-color: yellow;
+	background-color: #87CEFA;
 }
 .nav-link.active{
 	color : purple;
@@ -157,17 +143,23 @@ a:hover, a:active {
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				<c:if test="${not empty sessionScope.uid}">
+					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+                	<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
+                </c:if>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
+			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
 					onclick="dmypage_update()">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
+			</c:if>
 			</div>
 		</div>
 
@@ -175,30 +167,30 @@ a:hover, a:active {
 		<!-- 오른쪽 구역 START -->
 		 <div style="width : 80%; float : right;">
 		 
-            <div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold">
+            <div style="padding-top: 3%; padding-bottom: 3%; text-align: center; 
+            font-size: 20px; font-weight: bold; ">
               <ul id="nav2" class="nav justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link active" href="/hairmenu">메뉴</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">스타일</a>
+                    <a class="nav-link" href="/style/designer">스타일</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/review/list">리뷰</a>
                 </li>
               </ul>
             </div>
-
-
+			
 
               <section class="vh-100">
-                <div class="container py-5 h-150">
+                <div class="container py-5 h-150" style="margin-left: 5%">
                     <form action="./hairmenuEnroll" method="post" onsubmit="return hairenrollCheck(this)">
                         <div class = "form-group">
                             <label for = "cateno">카테고리</label>
                             <div>
-                                <select name="cateno" id="cateno" class = "form-select" aria-label="Default select example">
-                                    <option value="1">드라이</option>
+                                <select name="cateno" id="cateno" class = "form-control" aria-label="Default select example">
+                                    <option value="1">커트&드라이</option>
                                     <option value="2">펌</option>
                                     <option value="3">염색</option>
                                     <option value="4">클리닉</option>
@@ -210,9 +202,10 @@ a:hover, a:active {
                         <div class = "form-group">
                           <label for = "hgender">성별</label>
                             <div>
-                              <select name="hgender" id="hgender" class = "form-select" aria-label="Default select example">
-                                  <option value="여자">여자</option>
-                                  <option value="남자">남자</option>
+
+                              <select name="hgender" id="hgender" class = "form-control" aria-label="Default select example">
+                                  <option value="FEMALE">여자</option>
+                                  <option value="MALE">남자</option>
                               </select>
                             </div>
                         </div>
@@ -226,10 +219,12 @@ a:hover, a:active {
                           <label for="price">가격</label>
                           <input type="text" class="form-control" name="price" id="price" placeholder="가격">
                         </div>
-                        
-                        <div style = "float: right;">
-		                  <button class = "btn btn-outline-success" type="submit">메뉴 등록</button>
-		                </div>
+                        <c:if test="${not empty sessionScope.did}">
+	                        <div style = "float: right;">
+			                  <button class ="btn btn-outline-success" type="submit" onclick="menuenroll()"
+			                  style="border: 1px solid">메뉴 등록</button>
+			                </div>
+			            </c:if>
                 
               </form>
                 </div>
@@ -237,14 +232,8 @@ a:hover, a:active {
                 
               </section>
 
-          
-
         </div>
-
-        <div style="width: 20%; float : right;">
-
-
-        </div>
+<div style="width: 20%; float: right;"></div>
     </div>
 </body>
 </html>

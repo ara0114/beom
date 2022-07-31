@@ -23,6 +23,20 @@ public class HairmenuServiceImpl implements HairmenuService {
     return mapper.hairmenuEnroll(dto);
   }
 
+
+  @Override
+  public List<HairmenuDTO> itemlist(int cateno) {
+    // TODO Auto-generated method stub
+    return mapper.itemlist(cateno);
+  }
+
+  @Override
+  public int delete(int menuno) {
+    // TODO Auto-generated method stub
+    return mapper.delete(menuno);
+  }
+
+
   
 
 

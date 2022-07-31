@@ -132,6 +132,12 @@ public class DesignerServiceImpl implements DesignerService {
   }
 
   @Override
+
+  public int rconfig(int reserveno) {
+    // TODO Auto-generated method stub
+    return mapper.rconfig(reserveno);
+  }
+
   public int total(Map map) {
     // TODO Auto-generated method stub
     return mapper.total(map);
@@ -159,6 +165,7 @@ public class DesignerServiceImpl implements DesignerService {
   public int lupdate2(LicenseDTO cdto) {
     // TODO Auto-generated method stub
     return mapper.lupdate2(cdto);
+
   }
 
 }

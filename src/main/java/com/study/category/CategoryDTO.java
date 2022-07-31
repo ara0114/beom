@@ -1,4 +1,4 @@
-package com.study.enroll;
+package com.study.category;
 
 import lombok.Data;
 
@@ -6,4 +6,5 @@ import lombok.Data;
 public class CategoryDTO {
   private int cateno;
   private String catename;
+
 }

@@ -7,6 +7,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.study.category.CategoryDTO;
+import com.study.hairmenu.HairmenuDTO;
+
 @Service("com.study.enroll.EnrollServiceImpl")
 public class EnrollServiceImpl implements EnrollService {
 
@@ -45,7 +48,7 @@ public class EnrollServiceImpl implements EnrollService {
 
   // enroll 에insert 하기전에 시술명으로 해당 hairmenu 에 menuno 를 갖고온다
   @Override
-  public HairmenuDTO menunoGet(Map map) {
+  public int menunoGet(Map map) {
 
     return mapper.menunoGet(map);
   }

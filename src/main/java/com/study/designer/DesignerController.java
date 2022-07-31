@@ -178,7 +178,7 @@ public class DesignerController {
     model.addAttribute("ddto", ddto);
     model.addAttribute("enrollList", dservice.enroll_list((String) session.getAttribute("did")));
     model.addAttribute("reserveList", dservice.reserve_list((String) session.getAttribute("did")));
-    // System.out.println(reserveList);
+    //System.out.println(dservice.reserve_list((String) session.getAttribute("did")));
     // model.addAttribute("enrollList2",dservice.enrollList((String)session.getAttribute("did")));
     // System.out.println(enrollList2);
     return "/dmypage";
@@ -191,6 +191,8 @@ public class DesignerController {
       ddto.setIntroduction("");
     ddto.setIntroduction(ddto.getIntroduction().replaceAll("<br>", "\r\n"));
     model.addAttribute("ddto", ddto);
+    model.addAttribute("enrollList", dservice.enroll_list((String) session.getAttribute("did")));
+    model.addAttribute("reserveList", dservice.reserve_list((String) session.getAttribute("did")));
     return "/dmypage_intro_update";
   }
 
@@ -207,6 +209,7 @@ public class DesignerController {
     if (flag > 0) {
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
       model.addAttribute("ddto", ddto);
+      
       return "redirect:/dmypage";
     } else {
       return "error";
@@ -332,6 +335,19 @@ public class DesignerController {
     return "/dfindpw";
   }
   
+
+  @GetMapping("/dmypage/rconfig/{reserveno}")
+  @ResponseBody
+  public String config_reserve(@PathVariable int reserveno, Model model) {
+    int flag = dservice.rconfig(reserveno);
+    if(flag > 0) {
+      return "true";
+    }
+    else {
+      return "false";
+    }
+  }
+
   @RequestMapping("/admin/designer/list")
   public String list(HttpServletRequest request) {
     //검색
@@ -392,6 +408,7 @@ public class DesignerController {
     else {
       model.addAttribute("msg","[실패] 승인여부가 수정되지 않았습니다.");
       return "/errorMsg";
+
     }
   }
 

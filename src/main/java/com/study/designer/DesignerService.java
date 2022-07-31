@@ -49,6 +49,10 @@ public interface DesignerService {
 
   String findPw(Map<String, String> map);
 
+
+  int rconfig(int reserveno);
+
+
   int total(Map map);
 
   List<DesignerDTO> list(Map map);
@@ -58,5 +62,6 @@ public interface DesignerService {
   int lupdate1(LicenseDTO cdto);
 
   int lupdate2(LicenseDTO cdto);
+
 
 }
