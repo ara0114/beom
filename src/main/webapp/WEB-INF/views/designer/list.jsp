@@ -59,6 +59,12 @@
     		url += "?did="+did;
     		location.href = url;
     	}
+    	function del(did){
+    		if(confirm('디자이너를 강제탈퇴 처리하시겠습니까? 모든 정보가 지워집니다.')){
+	    		let url = "/admin/ddelete/"+did;
+	    		location.href = url;
+    		}
+    	}
     </script>
 </head>
 <body>
@@ -122,8 +128,8 @@
 						</c:when>
 					</c:choose>
 					</td>
-					<td><button type="submit" class="btn" onclick="javascript:update('${ddto.did}')">상세정보</button>
-						<button type="button" class="btn" onclick="#">삭제</button></td>
+					<td><button type="button" class="btn" onclick="javascript:update('${ddto.did}')">상세정보</button>
+						<button type="button" class="btn" onclick="javascript:del('${ddto.did}')">삭제</button></td>
 				</tr> 
 			</c:forEach>
 			</c:otherwise>

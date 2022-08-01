@@ -411,5 +411,15 @@ public class DesignerController {
 
     }
   }
-
+  
+  @GetMapping("/admin/ddelete/{did}")
+  public String delete(@PathVariable String did) {
+    int flag = dservice.delete(did);
+    
+    if(flag != 1) {
+      return "error";
+    }else {
+      return "redirect:/admin/designer/list";
+    }
+  }
 }

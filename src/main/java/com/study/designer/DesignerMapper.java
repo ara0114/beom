@@ -64,4 +64,5 @@ public interface DesignerMapper {
   
   int lupdate2(LicenseDTO cdto);
   
+  int delete(String did);
 }

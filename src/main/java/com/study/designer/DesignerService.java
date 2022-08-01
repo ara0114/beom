@@ -63,5 +63,6 @@ public interface DesignerService {
 
   int lupdate2(LicenseDTO cdto);
 
+  int delete(String did);
 
 }

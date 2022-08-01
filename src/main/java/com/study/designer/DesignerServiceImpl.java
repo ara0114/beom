@@ -168,4 +168,10 @@ public class DesignerServiceImpl implements DesignerService {
 
   }
 
+  @Override
+  public int delete(String did) {
+    // TODO Auto-generated method stub
+    return mapper.delete(did);
+  }
+
 }
