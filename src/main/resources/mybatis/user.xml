@@ -4,12 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.user.UserMapper">
-	<select id="passCheck" parameterType="Map" resultType="int">
-		SELECT count(uid) as cnt
-		FROM user              
-		WHERE uid = #{uid} and upw = #{upw}    
-	</select>
-	
+
 	<delete id="delete" parameterType="String">
 		DELETE FROM user
 		WHERE uid = #{uid}

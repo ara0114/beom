@@ -34,26 +34,25 @@ public class UserController {
     model.addAttribute("uid", uid);
     return "/user/delete";
   }
+  
   @PostMapping("/user/delete")
-  public String delete(String uid, String upw, HttpSession session) {
-    Map map = new HashMap();
-    map.put("uid", uid);
-    map.put("upw", upw);
+  public String delete(String upw, HttpSession session) {
     
-    int flag1 = service.passCheck(map);
+    String id = (String)session.getAttribute("uid");
     
-    if(flag1 != 1) return "/passwdError";
+    UserDTO dto = service.read(id);
     
-    if(flag1 == 1) {
-      int flag2 = service.delete(uid);
-      
-      if(flag2 != 1) return "error";
-      else {
+    if(!dto.getUpw().equals(upw)) {
+      return "/passwdError";
+    }else {
+      int flag = service.delete(id);
+      if(flag == 1) {
         session.invalidate();
         return "redirect:/";
+      }else {
+        return "error";
       }
     }
-    return "/user/mypage";
   }
   
   @GetMapping("/admin/udelete/{uid}")

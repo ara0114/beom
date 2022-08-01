@@ -53,21 +53,32 @@
             border-color: #000;
         }
     </style>
+    <script>
+    	function chk(){
+    		if(document.frm.chk_warning.checked == false){
+    			alert('안내사항에 동의해야 탈퇴가 가능합니다.');
+    			return false;
+    		}
+    	}
+    </script>
 </head>
 <body>
-    <form class="withdrawl" action="/user/delete" method="post">
+    <form class="withdrawl" action="/user/delete" method="post" onsubmit="return chk()" name="frm">
         <h2>회원탈퇴</h2>
         <p>
             탈퇴 전 확인하세요! <br>
             탈퇴하면 모든 정보가 사라지게 되며 복구할 수 없습니다. <br>
             - 프로필, 예약내역, 리뷰 등 모든 정보 삭제<br>
         </p>
+        <div>
             <input type="checkbox" id="chk_warning" for="chk_warning">
             안내사항을 모두 확인하였으며 동의합니다.
-            <input type="hidden" name="uid" value="${dto.uid}">
+       </div>
+       <div>
+            <label for="upw">비밀번호</label>
+            <input type="password" id="upw" name="upw" class="pw-text" placeholder="비밀번호를 입력해주세요">
+       </div>
             <div>
-                <label for="upw">비밀번호</label>
-                <input type="password" id="upw" name="upw" class="pw-text" placeholder="비밀번호를 입력해주세요">
                 <button type="submit" class="btn">확인</button>
                 <button type="button" class="btn" onclick="history.back()">취소</button>
             </div>
