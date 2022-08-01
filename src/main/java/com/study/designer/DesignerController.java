@@ -89,7 +89,7 @@ public class DesignerController {
   @GetMapping("/dlogin")
   public String dlogin(HttpServletRequest request) {
     String chk_id = "";
-    String cookie_id_val = "";
+    String cookie_did_val = "";
 
     Cookie[] cookies = request.getCookies();
     Cookie cookie = null;
@@ -100,30 +100,32 @@ public class DesignerController {
 
         if (cookie.getName().equals("chk_id")) {
           chk_id = cookie.getValue();
-        } else if (cookie.getName().equals("cookie_id_val")) {
-          cookie_id_val = cookie.getValue();
+        } else if (cookie.getName().equals("cookie_did_val")) {
+          cookie_did_val = cookie.getValue();
         }
       }
     }
 
     request.setAttribute("chk_id", chk_id);
-    request.setAttribute("cookie_id_val", cookie_id_val);
+    request.setAttribute("cookie_did_val", cookie_did_val);
 
     return "/dlogin";
   }
 
   @PostMapping("/dlogin")
-  public String dlogin(@RequestParam Map map, HttpSession session, Model model, HttpServletRequest request,
+  public String dlogin(@RequestParam Map<String, String> map, HttpSession session, Model model, HttpServletRequest request,
       HttpServletResponse response) {
     int flag = dservice.dlogin(map);
 
     if (flag > 0) {
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
       boolean validation = ddto.isValidation();
+
       if (!validation) {
         model.addAttribute("msg", "관리자의 자격승인이 필요합니다.");
         return "/errorMsg";
       }
+
       session.setAttribute("did", ddto.getDid());
       session.setAttribute("dname", ddto.getDname());
       session.setAttribute("validation", ddto.isValidation());
@@ -139,29 +141,25 @@ public class DesignerController {
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", (String) map.get("did"));
+        cookie = new Cookie("cookie_did_val", (String) map.get("did"));
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
-      } else {
+      } else if(chk_id == null || !validation) {
 
         cookie = new Cookie("chk_id", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", "");
+        cookie = new Cookie("cookie_did_val", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
-
       }
-
       return "redirect:/";
-
+      
     } else {
       model.addAttribute("msg", "아이디 또는 비밀번호를 잘못 입력했거나<br>회원이 아닙니다. 회원가입하세요");
-
       return "/errorMsg";
-
     }
   }
 

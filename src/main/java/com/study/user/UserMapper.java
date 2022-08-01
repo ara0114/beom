@@ -36,7 +36,5 @@ public interface UserMapper {
   List<EnrollDTO> todayList(String id);
   
   int delete(String uid);
-  
-  int passCheck(Map map);
-  
+   
 }

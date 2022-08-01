@@ -91,9 +91,4 @@ public class UserServiceImpl implements UserService {
     return mapper.delete(uid);
   }
 
-  @Override
-  public int passCheck(Map map) {
-    return mapper.passCheck(map);
-  }
-  
 }

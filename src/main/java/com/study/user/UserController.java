@@ -225,7 +225,7 @@ public class UserController {
   public String login(HttpServletRequest request) {
 
     String chk_id = "";
-    String cookie_id_val = "";
+    String cookie_uid_val = "";
 
     Cookie[] cookies = request.getCookies();
     Cookie cookie = null;
@@ -236,14 +236,14 @@ public class UserController {
 
         if (cookie.getName().equals("chk_id")) {
           chk_id = cookie.getValue();
-        } else if (cookie.getName().equals("cookie_id_val")) {
-          cookie_id_val = cookie.getValue();
+        } else if (cookie.getName().equals("cookie_uid_val")) {
+          cookie_uid_val = cookie.getValue();
         }
       }
     }
 
     request.setAttribute("chk_id", chk_id);
-    request.setAttribute("cookie_id_val", cookie_id_val);
+    request.setAttribute("cookie_uid_val", cookie_uid_val);
 
     return "/user/login";
   }
@@ -268,7 +268,7 @@ public class UserController {
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", map.get("uid"));
+        cookie = new Cookie("cookie_uid_val", map.get("uid"));
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
@@ -278,7 +278,7 @@ public class UserController {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", "");
+        cookie = new Cookie("cookie_uid_val", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 

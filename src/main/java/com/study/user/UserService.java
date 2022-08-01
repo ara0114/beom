@@ -37,6 +37,4 @@ public interface UserService {
 
   int delete(String uid);
 
-  int passCheck(Map map);
-
 }
