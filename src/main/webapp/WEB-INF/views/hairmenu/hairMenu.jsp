@@ -42,7 +42,11 @@
 		let url = "/enroll/designer";
 		location.href = url;
 	}
-	
+	function reserve(){
+		let url = "/reserve";
+		url += "?did=${ddto.did}";
+		location.href = url;
+	}
 	//function modal(){
 	//	$("#staticBackdrop").modal("show");
 	//}
@@ -145,7 +149,7 @@ a:hover, a:active {
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 				<c:if test="${not empty sessionScope.uid}">
-					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+					<button type=button onclick="javascript:reserve('${ddto.did}')" class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
                 </c:if>
 			</div>

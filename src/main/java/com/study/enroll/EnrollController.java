@@ -14,9 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.category.CategoryDTO;
+import com.study.designer.DesignerDTO;
 import com.study.hairmenu.HairmenuDTO;
 
 @Controller
@@ -97,22 +99,17 @@ public class EnrollController {
 
   // 고객 예약신청 페이지
   @GetMapping("/reserve")
-  public String reserve(HttpSession session, Model model) {
-    // 디자이너 프로필에서 user id 와 designer id 를 넘겨받고 시작한다.
-    // 임의로 user id는 하드코딩 하여 테스트 . 나중에 session 으로 넘어올것으로 예상
-    //String userId = "user1";
+  public String reserve(@RequestParam String did, HttpSession session, Model model) {
     String userId = (String)session.getAttribute("uid");
-    String did = "test";
-    
+    String desId = did;
     // 디자이너 id 를 이용해서 예약 리스트를 불러온다.
-    //model.addAttribute("uid", userId);
-    model.addAttribute("list", service.enrollList(did));
+    model.addAttribute("list", service.enrollList(desId));
     return "/reserve";
   }
 
   // PostMapping 은 insert 만 담당
   @PostMapping("/reserve")
-  public String reserveInsert(HttpSession session,String enrollno, String message) {
+  public String reserveInsert(HttpSession session, String enrollno, String message) {
     Map map = new HashMap<>();
     map.put("enrollno", enrollno);
     map.put("uid", (String)session.getAttribute("uid"));

@@ -78,7 +78,7 @@ function CategoryGender(gender, category) {
 		.then((res) => res.json()).catch((error) => console.log(error));
 }
 
-function go_back(){
+/*function go_back(){
 	let url = "/reserve";
 	location.href = url;
-}
+}*/

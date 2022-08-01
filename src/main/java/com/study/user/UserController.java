@@ -150,7 +150,8 @@ public class UserController {
 
     String id = (String) session.getAttribute("uid");
     List<EnrollDTO> list = service.reserveList(id);
-    List<EnrollDTO> todayList = service.todayList(id);
+    List<EnrollDTO> configList = service.configList(id);
+    List<EnrollDTO> historyList = service.historyList(id);
     
     if (id == null) {
       return "redirect:/user/login";
@@ -159,7 +160,8 @@ public class UserController {
       UserDTO dto = service.mypage(id);
       model.addAttribute("dto", dto);
       model.addAttribute("reserveList", list);
-      model.addAttribute("todayList", todayList);
+      model.addAttribute("configList", configList);
+      model.addAttribute("historyList", historyList);
 
       return "/user/mypage";
     }

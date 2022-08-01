@@ -77,7 +77,7 @@ th, td {
 			</div>
 			<div class="col-sm-8" style="float: right;">
 				<div class="list1">
-					<h3>예약신청 전체내역</h3>
+					<h3>예약 신청 내역</h3>
 					<table>
 						<thead>
 							<tr>
@@ -94,7 +94,7 @@ th, td {
 			<c:choose>
 				<c:when test="${empty reserveList}">
 					<tbody>
-						<td colspan="6">등록된 예약이 없습니다.</td>
+						<td colspan="6">등록된 신청내역이 없습니다.</td>
 					</tbody>
 				</c:when>
 				<c:otherwise>
@@ -117,8 +117,8 @@ th, td {
 					</table>
 				</div>
 				
-				<div class="list1">
-					<h3>오늘예약 내역</h3>
+				 <div class="list2">
+					<h3>예약 확정 내역</h3>
 					<table>
 						<thead>
 							<tr>
@@ -135,12 +135,53 @@ th, td {
 			<c:choose>
 				<c:when test="${empty reserveList}">
 					<tbody>
-						<td colspan="6">등록된 예약이 없습니다.</td>
+						<td colspan="6">등록된 확정내역이 없습니다.</td>
 					</tbody>
 				</c:when>
 				<c:otherwise>
 						<tbody>
-							<c:forEach var="dto" items="${todayList}">
+							<c:forEach var="dto" items="${configList}">
+								<c:forEach var="innerdto" items="${dto.designerInfo}">
+									<tr>
+										<td>${innerdto.hairshop}</td>
+										<td>${innerdto.dname}</td>
+										<td>${dto.enrolldate}</td>
+										<td>${dto.enrolltime}</td>
+										<td>${dto.emenu}</td>
+										<td>${dto.eprice}</td>
+									</tr>
+								</c:forEach>
+							</c:forEach>
+						</tbody>
+				</c:otherwise>
+			</c:choose>
+					</table>
+				</div>
+				
+				<div class="list3">
+					<h3>사용 내역</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>미용실</th>
+								<th>디자이너</th>
+								<th>날짜</th>
+								<th>시간</th>
+								<th>시술명</th>
+								<th>시술가격</th>
+							</tr>
+						</thead>
+						
+						
+			<c:choose>
+				<c:when test="${empty reserveList}">
+					<tbody>
+						<td colspan="6">등록된 사용내역이 없습니다.</td>
+					</tbody>
+				</c:when>
+				<c:otherwise>
+						<tbody>
+							<c:forEach var="dto" items="${historyList}">
 								<c:forEach var="innerdto" items="${dto.designerInfo}">
 									<tr>
 										<td>${innerdto.hairshop}</td>
