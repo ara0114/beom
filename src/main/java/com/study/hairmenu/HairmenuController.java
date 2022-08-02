@@ -71,6 +71,7 @@ public class HairmenuController {
     Map map = new HashMap();
     List<HairmenuDTO> list = service.list(map);
     
+    
     request.setAttribute("list", list);  //담기
     
     return "/hairmenu";

@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://kit.fontawesome.com/320c5e3232.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,10 +143,22 @@ a:hover, a:active {
 			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
-				<button class="btn btn-outline-success"
+			
+			<c:choose>
+				<c:when test="${not empty sessionScope }">  <!-- 로그인 상태 -->
+					<button class="btn btn-outline-success" id="heart" value="${ddto.did }"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				</c:when>
+				<c:otherwise> <!--  로그인상태가 아닐 때 -->
+					<button class="btn btn-outline-success" id="heart"
+								style="width: 100%; border: 1px solid;" disabled>💙좋아요(${ddto.likecnt })</button>
+				</c:otherwise>
+			</c:choose>
+			
+				<!-- <button class="btn btn-outline-success"
+					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>  -->
 				<c:if test="${not empty sessionScope.uid}">
-					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
                 </c:if>
 			</div>
@@ -217,6 +230,7 @@ a:hover, a:active {
 										<c:otherwise>
 											<c:forEach var="dto" items="${list}">
 												<tr>
+												<c:if test="${sessionScope.did==dto.did }">  <!-- 세션이랑 디자이너 정보가 같을때 -->
 													<td>${dto.menu }</td>
 													<td>${dto.price }</td>
 													<td>${dto.hgender }</td>
@@ -225,6 +239,7 @@ a:hover, a:active {
 													<td><button class="btn btn-outline-success"
 													onclick="del(${dto.menuno})">삭제</button></td>
 													</c:if>
+												</c:if>
 												</tr>
 											</c:forEach>
 										</c:otherwise>
@@ -247,5 +262,6 @@ a:hover, a:active {
 	</div> <!-- 오른쪽 구역 div -->
 	<div style="width: 20%; float: right;"></div>
 	</div> <!-- 맨 윗줄 div -->
+<script src="/js/heart.js"></script>
 </body>
 </html>

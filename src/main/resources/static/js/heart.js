@@ -1,6 +1,22 @@
-//로그인 후 하트 클릭
-$(".heart-click").click(function({
+let likecnt = $("#heart");
+
+function add(did) {  //추가
+	return fetch('/heart/plus', {
+		method: 'get',
+	})
+		.then(response => response.json())
+		.catch(console.log);
+}
+
+$("#heart").click(function(){
 	
-	//디자이너 번호를 전달받아 저장
-	let 
-}))
+	let did =$(this).attr('value');	
+	alert(did);
+	
+	add(ddto)
+		.then(result=>{
+			
+			likecnt.val(designer.likecnt);
+			
+		})
+})
