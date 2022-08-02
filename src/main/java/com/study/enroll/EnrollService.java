@@ -33,5 +33,7 @@ public interface EnrollService {
 
   int checking(String enrollno);
 
+  Set<EnrollDTO> asOfEnrollList(String did);
+
   
 }

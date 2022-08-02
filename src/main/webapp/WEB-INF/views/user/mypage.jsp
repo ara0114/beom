@@ -115,6 +115,7 @@ th, td {
 				</c:otherwise>
 			</c:choose>
 					</table>
+					<button type="button" class="btn">더보기</button>
 				</div>
 				
 				 <div class="list2">
@@ -197,11 +198,11 @@ th, td {
 				</c:otherwise>
 			</c:choose>
 					</table>
+					<button type="button" class="btn">더보기</button>
 				</div>
 
 			</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

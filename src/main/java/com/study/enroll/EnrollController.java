@@ -103,7 +103,7 @@ public class EnrollController {
     String userId = (String)session.getAttribute("uid");
     String desId = did;
     // 디자이너 id 를 이용해서 예약 리스트를 불러온다.
-    model.addAttribute("list", service.enrollList(desId));
+    model.addAttribute("list", service.asOfEnrollList(desId));
     return "/reserve";
   }
 

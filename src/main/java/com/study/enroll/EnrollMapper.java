@@ -32,6 +32,6 @@ public interface EnrollMapper {
   
   List<EnrollDTO> infoList(String did);
   
-  
+  Set<EnrollDTO> asOfEnrollList(String did);
   
 }

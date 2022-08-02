@@ -116,10 +116,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="userInsert" parameterType="Map">
 		INSERT INTO reserve
-		(uid,message,enrollno) values(#{uid},#{message},#{enrollno});
+		(uid,message,enrollno) values(#{uid},#{message},#{enrollno})
 	</insert>
 	
-	
+	<resultMap type="com.study.enroll.EnrollDTO"
+		id="asOfEnrollListDTO">
+		<result property="enrollno" column="enrollno" />
+		<result property="enrolldate" column="enrolldate" />
+		<result property="enrolltime" column="enrolltime" />
+		<result property="eprice" column="eprice" />
+		<result property="emenu" column="emenu" />
+		<result property="did" column="did" />
+		<collection property="hairmenu"
+			resultMap="hmenuGengerDTO" />
+	</resultMap>
+
+	<resultMap type="com.study.hairmenu.HairmenuDTO"
+		id="hmenuGengerDTO">
+		<result property="hgender" column="hgender" />
+	</resultMap>
+
+	<select id="asOfEnrollList" parameterType="String"
+		resultMap="asOfEnrollListDTO">
+		SELECT
+		e.enrollno,e.did,e.menuno,e.enrolldate,e.enrolltime,e.eprice,e.emenu,h.hgender
+		FROM enroll e LEFT JOIN hairmenu h
+		ON e.menuno = h.menuno
+		WHERE (e.did = #{did} AND e.enrolldate > curdate())
+			  OR
+			  (e.did = #{did} AND (e.enrolldate = curdate() AND e.enrolltime > curtime()))
+	</select>
 	
 	
 	
