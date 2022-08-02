@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.study.reserve.ReserveDTO;
+import com.study.user.UserDTO;
 import com.study.utility.Utility;
 
 @Controller
@@ -418,6 +419,39 @@ public class DesignerController {
       return "error";
     }else {
       return "redirect:/admin/designer/list";
+    }
+  }
+  
+  @GetMapping("/dmypage_delete")
+  public String delete(@RequestParam String did, Model model) {
+    model.addAttribute("did",did);
+    return "/dmypage_delete";
+  }
+  
+  @PostMapping("/dmypage_delete")
+  public String delete(String dpw, HttpSession session, Model model) {
+
+    String id = (String)session.getAttribute("did");
+    
+    DesignerDTO ddto = dservice.dmypage(id);
+    
+    if(!ddto.getDpw().equals(dpw)) {
+      return "/passwdError";
+    }else {
+      try{
+          int flag = dservice.delete(id);
+          
+          if(flag == 1) {
+            session.invalidate();
+            return "redirect:/";
+          }else {
+            model.addAttribute("msg","고객예약이 있어 탈퇴가 불가능합니다.");
+            return "/errorMsg";
+          }
+      }catch(Exception e){
+          model.addAttribute("msg","탈퇴가 불가능합니다. 등록한 예약이나 신청된 내역이 있을 수 있습니다.");
+          return "/errorMsg";
+      }
     }
   }
 }

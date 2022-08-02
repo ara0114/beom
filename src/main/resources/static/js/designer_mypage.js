@@ -56,7 +56,12 @@ function enroll(){
     let url = "/enroll/designer";
     location.href = url;
 }
-
+function dmypage_delete(did){
+	let url = "/dmypage_delete";
+	url += "?did=";
+	url += did;
+    location.href = url;
+}
 //#####################################################################
 // reservation configuration
 
