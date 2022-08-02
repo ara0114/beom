@@ -20,7 +20,7 @@
 				<!-- 진행율 -->
 				<div id="progress">
 					<div class="pct">
-						 예약등록 <span>0</span>%
+						 실시간 예약등록 <span>0</span>%
 					</div>
 				</div>
 				<div id="designer">

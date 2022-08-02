@@ -71,11 +71,11 @@ function config(reserveno){
         .then(res => {
             if(res == "true"){
                 alert("예약 확인 성공");
-                
-                location.href = "/dmypage";
+                $("#configBtn").hide();
+                //location.href = "/dmypage";
             }
             else{
-                alert("예약 확인 살패");
+                alert("예약 확인 실패");
             }
         })
         
