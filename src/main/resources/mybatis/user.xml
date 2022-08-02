@@ -150,12 +150,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="enrolltime" column="enrolltime" />
 		<result property="emenu" column="emenu" />
 		<result property="eprice" column="eprice" />
-		<collection property="designerInfo"	resultMap="configInfoDTO" /> 
-	</resultMap>
-	
-	<resultMap type="com.study.designer.DesignerDTO" id="configInfoDTO">
-		<result property="hairshop" column="hairshop" />
-		<result property="dname" column="dname" />
+		<collection property="designerInfo"	resultMap="designerInfoDTO" /> 
 	</resultMap>
 	
 	<select id="configList" parameterType="String"
@@ -182,12 +177,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="enrolltime" column="enrolltime" />
 		<result property="emenu" column="emenu" />
 		<result property="eprice" column="eprice" />
-		<collection property="designerInfo"	resultMap="historyInfoDTO" /> 
-	</resultMap>
-	
-	<resultMap type="com.study.designer.DesignerDTO" id="historyInfoDTO">
-		<result property="hairshop" column="hairshop" />
-		<result property="dname" column="dname" />
+		<collection property="designerInfo"	resultMap="designerInfoDTO" /> 
 	</resultMap>
 	
 	<select id="historyList" parameterType="String"

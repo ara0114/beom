@@ -22,9 +22,9 @@
 			value="/WEB-INF/views/enroll/reserve.jsp" />
 	</definition>
 
-	<definition name="/userReserveList" extends="main">
-		<put-attribute name="title" value="고객예약신청페이지"></put-attribute>
+	<definition name="/ureserveList" extends="main">
+		<put-attribute name="title" value="고객예약히스토리"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/user/userReserveList.jsp" />
+			value="/WEB-INF/views/user/reserveList.jsp" />
 	</definition>
 </tiles-definitions>

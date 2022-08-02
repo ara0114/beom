@@ -128,13 +128,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="emenu" column="emenu" />
 		<result property="did" column="did" />
 		<collection property="hairmenu"
-			resultMap="hmenuGengerDTO" />
+			resultMap="hairmenuGengerDTO" />
 	</resultMap>
 
-	<resultMap type="com.study.hairmenu.HairmenuDTO"
-		id="hmenuGengerDTO">
-		<result property="hgender" column="hgender" />
-	</resultMap>
 
 	<select id="asOfEnrollList" parameterType="String"
 		resultMap="asOfEnrollListDTO">
