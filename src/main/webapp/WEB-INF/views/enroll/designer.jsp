@@ -29,9 +29,9 @@
 				</div>
 
 				<div class="ui-widget">
-					<label for="category">시술 선택</label> <select id="category"
+					<label for="category">카테고리 선택</label> <select id="category"
 						name="category">
-						<option>시술 선택</option>
+						<option>카테고리 선택</option>
 						<c:forEach var="clist" items="${cateNameList}">
 						<option value="${clist.catename}"> ${clist.catename}</option>
 						</c:forEach>

@@ -63,5 +63,7 @@ public interface DesignerService {
 
   int lupdate2(LicenseDTO cdto);
 
+  ReserveDTO reserve_detail(int reserveno);
+
 
 }

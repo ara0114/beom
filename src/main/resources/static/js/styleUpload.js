@@ -13,6 +13,8 @@ let dto;
 
 
 $(function() {
+	
+	
 
 	$('#input-file').hide();
 	fetchAPI(allImg, "all");
@@ -71,15 +73,18 @@ function fetchAPI(genderTag, gender) {
 			img.data = list[i].imageno;
 			img.value = list[i].imageno;
 			img.classList = "images";
-			img.onclick = function() {
-				let imageno = $(this).val();
-				console.log(imageno);
-				if (confirm("사진을 삭제하시겠습니까?")) {
-					let text = deleteStyle(imageno);
-					text.then(res => alert(res));
-					location.reload(); // 새로고침
+			if(did != ""){
+				img.onclick = function() {
+					let imageno = $(this).val();
+					console.log(imageno);
+					if (confirm("사진을 삭제하시겠습니까?")) {
+						let text = deleteStyle(imageno);
+						text.then(res => alert(res));
+						location.reload(); // 새로고침
+					}
 				}
 			}
+			
 			genderTag.append(img);
 		}
 	})

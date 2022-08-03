@@ -63,5 +63,7 @@ public interface DesignerMapper {
   int lupdate1(LicenseDTO cdto);
   
   int lupdate2(LicenseDTO cdto);
+
+  ReserveDTO reserve_detail(int reserveno);
   
 }

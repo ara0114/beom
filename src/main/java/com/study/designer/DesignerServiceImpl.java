@@ -168,4 +168,10 @@ public class DesignerServiceImpl implements DesignerService {
 
   }
 
+  @Override
+  public ReserveDTO reserve_detail(int reserveno) {
+    // TODO Auto-generated method stub
+    return mapper.reserve_detail(reserveno);
+  }
+
 }

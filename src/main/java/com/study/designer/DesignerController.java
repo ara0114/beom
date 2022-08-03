@@ -167,8 +167,12 @@ public class DesignerController {
 
   @GetMapping("/dmypage")
   public String designer_mypage(HttpSession session, Model model) {
-    if (session.getAttribute("did") == null)
-      return "redirect:/";
+    if (session.getAttribute("did") == null) {
+      model.addAttribute("msg", "디자이너 권한이 없습니다. 디자이너로 로그인하세요");
+
+      return "/errorMsg";
+    }
+      
     DesignerDTO ddto = dservice.dmypage((String) session.getAttribute("did"));
     // List<EnrollDTO> enrollList2 =
     // dservice.enrollList((String)session.getAttribute("did"));
@@ -340,6 +344,7 @@ public class DesignerController {
   @ResponseBody
   public String config_reserve(@PathVariable int reserveno, Model model) {
     int flag = dservice.rconfig(reserveno);
+    
     if(flag > 0) {
       return "true";
     }
