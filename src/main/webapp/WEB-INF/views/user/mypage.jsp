@@ -47,6 +47,10 @@ th, td {
 		url += "?uid=${dto.uid}";
 		location.href = url;
 	}
+	function updatePw() {
+		let url = "/user/updatePwForm";
+		location.href = url;
+	}
 	function withdrawl(){
 		let url = "/user/delete";
 		url += "?uid=${dto.uid}";
@@ -70,7 +74,7 @@ th, td {
 				</div>
 				<button type="button" class="btn" onclick="javascript:updateInfo()">정보
 					수정</button>
-				<button type="button" class="btn" onclick="location.href='#'">비밀번호
+				<button type="button" class="btn" onclick="javascript:updatePw()">비밀번호
 					수정</button>
 			
 				<div class="list1">

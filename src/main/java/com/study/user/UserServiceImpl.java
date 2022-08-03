@@ -94,4 +94,9 @@ public class UserServiceImpl implements UserService {
     return mapper.configList(id);
   }
 
+  @Override
+  public int pwUpdate(Map map) {
+    return mapper.pwUpdate(map);
+  }
+
 }

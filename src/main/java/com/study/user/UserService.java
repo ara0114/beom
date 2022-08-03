@@ -39,4 +39,6 @@ public interface UserService {
 
   List<EnrollDTO> configList(String id);
 
+  int pwUpdate(Map map);
+
 }
