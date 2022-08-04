@@ -9,7 +9,7 @@ public class UploadDesignerFile {
     public static synchronized String getUploadDir() {
         String path = "";
         if (File.separator.equals("\\")) {
-            path = "C:\\deploy\\designer\\";
+            path = "///C:\\deploy\\designer\\";
             System.out.println("Windows 10: " + path);
             
         } else {
