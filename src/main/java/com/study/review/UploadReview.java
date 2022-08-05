@@ -10,12 +10,12 @@ public class UploadReview {
     public static synchronized String getUploadDir() {
         String path = "";
         if (File.separator.equals("\\")) {
-            path = "C:/AI study/deploy/hairReview/storage/";
+            path = "///C:\\AI study\\deploy\\hairReview\\storage\\";
             System.out.println("Windows 10: " + path);
             
         } else {
             // System.out.println("Linux");
-            path = "/root/AI study/deploy/hairReview/storage/";
+            path = "/root/deploy/hairReview/storage/";
         }
         
         return path;
