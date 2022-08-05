@@ -19,37 +19,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script src = "/js/designer_mypage_modal.js"></script>
-<script>
-	function dmypage_update() {
-		let url = "/dmypage_update";
-		location.href = url;
-	}
 
-	function dmypage_photo_update() {
-		let url = "/designer/dupdateFileForm/";
-		location.href = url;
-	}
 
-	function dmypage_intro_update() {
-		let url = "/dmypage_intro_update";
-		location.href = url;
-	}
-	function delete_enroll(enrollno){
-		let url = "/designer/deleteEnroll/" + enrollno;
-		location.href = url;
-	}
-	function enroll(){
-		let url = "/enroll/designer";
-		location.href = url;
-	}
-	
-	
-	
-	
-	
-	
-</script>
+
+
 <style>
 label {
 	font-size: 150%;
@@ -71,6 +44,18 @@ a:link {
 a:hover, a:active {
 	background-color: yellow;
 }
+
+div h5 {
+	text-align: center;
+	font-weight: bold;
+	font-size: 150%;
+}
+
+textarea {
+	text-align: center;
+	width: 100%;
+	font-size: 125%;
+}
 </style>
 <title>My page</title>
 </head>
@@ -78,20 +63,23 @@ a:hover, a:active {
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
 			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<img src="/designer/${ddto.dfilename }"
-				style="width: 100%; height: 80%;">
+			<div style="width: 100%; height: 100%;">
+				<img src="/designer/${ddto.dfilename }"
+					style="width: 100%; height: 80%;">
+			</div>
+
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align: center;"">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
-					onclick="dmypage_update()">디자이너 정보 수정</button>
+					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 			</div>
@@ -209,8 +197,17 @@ a:hover, a:active {
 											<td>${dto.edto.eprice }</td>
 											<td style="display: none">${dto.reserveno }</td>
 											<td style="display: none">${dto.message }</td>
-											<td><button class="btn btn-outline-success">확인</button>
-												<button class="btn btn-outline-success">삭제</button></td>
+											<td style="display: none">${dto.rconfig }</td>
+											<c:choose>
+												<c:when test="${dto.rconfig == false }">
+													<td><button class="btn btn-outline-success"
+															id="configBtn" onclick="config(${dto.reserveno})">확인</button></td>
+												</c:when>
+												<c:otherwise>
+													<td></td>
+												</c:otherwise>
+											</c:choose>
+
 										</tr>
 
 
@@ -233,20 +230,33 @@ a:hover, a:active {
 		<div style="width: 20%; float: right;"></div>
 	</div>
 
-	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-		data-bs-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<div class="modal fade" id="exampleModalPopovers"
+		data-bs-backdrop="static" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">예약 신청 내역</h5>
+					<h5 class="modal-title" id="exampleModalPopoversLabel">예약 신청
+						내역</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 
+					<h5>고객이름</h5>
+					<textarea id="uname" disabled></textarea>
+					<h5>성별</h5>
+					<textarea id="gender" disabled></textarea>
+					<h5>예약날짜</h5>
+					<textarea id="date" disabled></textarea>
+					<h5>예약시간</h5>
+					<textarea id="time" disabled></textarea>
+					<h5>시술명</h5>
+					<textarea id="menu" disabled></textarea>
+					<h5>가격</h5>
+					<textarea id="price" disabled></textarea>
 					<h5>메세지</h5>
-					<input id="message" disabled></input>
+					<textarea id="message" disabled></textarea>
+
 
 				</div>
 				<div class="modal-footer">
@@ -257,6 +267,6 @@ a:hover, a:active {
 		</div>
 	</div>
 
-
+	<script src="/js/designer_mypage.js"></script>
 </body>
 </html>

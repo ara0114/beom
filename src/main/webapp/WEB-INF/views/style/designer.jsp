@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="upload-box">
 			<h3>Upload File</h3>
-			<div class="drag-area">
+			<div class="filearea">
 				<div class="icon">
 					<i class="fas fa-images"> </i>
 				</div>
@@ -37,7 +37,7 @@
 				<label for="iwoman" class="ilabel"> <input type="radio" name="uploadgender" value="여자" id="iwoman"/>여자</label>
 				<label for="iman" class="ilabel"> <input type="radio"	name="uploadgender" value="남자" id="iman"/>남자</label> 
 				</div>
-				<input type="text" name="did" value="designer1" hidden>
+				
 				<button>
 					UP LOAD <i class="fa-solid fa-cloud-arrow-up"></i>
 				</button>
@@ -46,7 +46,7 @@
 		</div>
 
 		<div class="img-box">
-			<h3>your styles</h3>
+			<h3>스타일</h3>
 			<div class="radio-box">
 			<label for="all" class="select-btn"><input type="radio" value="all" name="gender" id="all"/>전체 사진 </label>
 			<label for="woman" class="select-btn"><input type="radio" value="여자" name="gender" id="woman"/>여성 사진모음</label>

@@ -102,11 +102,11 @@
         <h2>디자이너 로그인</h2>
         <ul>
             <div>
-            	<input type="radio" name="selectuser" onclick="javascript:moveForm()"><label>고객</label>
-                <input type="radio" name="selectuser" checked><label>디자이너</label>
+            	<input type="radio" name="selectuser" onclick="javascript:moveForm()" id="id"><label for ="id">고객</label>
+                <input type="radio" name="selectuser" id="id2" checked><label for ="id2">디자이너</label>
             </div>
             <li><input type="text" id="did" name="did" placeholder="아이디" 
-            		   required="required" value="${cookie_id_val }"></li>
+            		   required="required" value="${cookie_did_val }"></li>
             <li><input type="password" id="dpw" name="dpw" placeholder="비밀번호" required="required"></li>
             <div>
             	<input type="checkbox" name="chk_id" id="chk_id" value="Y" checked="checked">
@@ -117,8 +117,8 @@
         <div>
             <ul>
                 <li><a href="/user/agree">회원가입</a></li>
-                <li><a href="#">아이디찾기</a></li>
-                <li><a href="#">비밀번호찾기</a></li>
+                <li><a href="/dfindid">아이디찾기</a></li>
+                <li><a href="/dfindpw">비밀번호찾기</a></li>
             </ul>        
         </div>
     </form>

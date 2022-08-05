@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.hairmenu.HairmenuDTO;
-import com.study.reservation.EnrollDTO;
 import com.study.reserve.ReserveDTO;
 
 @Service("com.study.designer.DesignerServiceImpl")
@@ -95,11 +94,7 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.reserve_list(did);
   }
 
-  @Override
-  public List<EnrollDTO> enrollList(String did) {
-    // TODO Auto-generated method stub
-    return mapper.enrollList(did);
-  }
+  
 
   @Override
   public int dupdateFile(Map map) {
@@ -108,9 +103,75 @@ public class DesignerServiceImpl implements DesignerService {
   }
 
   @Override
-  public ReserveDTO read_message(int rnum) {
+  public ReserveDTO read_message(Map map) {
     // TODO Auto-generated method stub
-    return mapper.read_message(rnum);
+    return mapper.read_message(map);
+  }
+
+  @Override
+  public int reserve_cnt(int enrollno) {
+    // TODO Auto-generated method stub
+    return mapper.reserve_cnt(enrollno);
+  }
+
+  @Override
+  public int delete_enroll(int enrollno) {
+    // TODO Auto-generated method stub
+    return mapper.delete_enroll(enrollno);
+  }
+  
+  public String findId(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.findId(map);
+  }
+
+  @Override
+  public String findPw(Map<String, String> map) {
+    // TODO Auto-generated method stub
+    return mapper.findPw(map);
+  }
+
+  @Override
+
+  public int rconfig(int reserveno) {
+    // TODO Auto-generated method stub
+    return mapper.rconfig(reserveno);
+  }
+
+  public int total(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.total(map);
+  }
+
+  @Override
+  public List<DesignerDTO> list(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.list(map);
+  }
+
+  @Override
+  public int updateValidation(DesignerDTO ddto) {
+    // TODO Auto-generated method stub
+    return mapper.updateValidation(ddto);
+  }
+
+  @Override
+  public int lupdate1(LicenseDTO cdto) {
+    // TODO Auto-generated method stub
+    return mapper.lupdate1(cdto);
+  }
+
+  @Override
+  public int lupdate2(LicenseDTO cdto) {
+    // TODO Auto-generated method stub
+    return mapper.lupdate2(cdto);
+
+  }
+
+  @Override
+  public int delete(String did) {
+    // TODO Auto-generated method stub
+    return mapper.delete(did);
   }
 
 }

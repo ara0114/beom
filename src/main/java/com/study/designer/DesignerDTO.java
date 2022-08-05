@@ -8,9 +8,9 @@ public class DesignerDTO {
   private String dpw;
   private String dname;
   private String birth;
+  private String hairshop;
   private String demail;
   private String dphone;
-  private String hairshop;
   private String address1;
   private String address2;
   private String dzipcode;

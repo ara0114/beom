@@ -19,11 +19,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-	function dmypage_update() {
+	function dmypage_update(did) {
 		let url = "/dmypage_update";
-		location.href = url;
+	    url += "?did=";
+	    url += did;
+	    location.href = url;
 	}
-
 	function dmypage_photo_update() {
 		let url = "/designer/dupdateFileForm/";
 		location.href = url;
@@ -41,7 +42,11 @@
 		let url = "/enroll/designer";
 		location.href = url;
 	}
-	
+	function reserve(){
+		let url = "/reserve";
+		url += "?did=${ddto.did}";
+		location.href = url;
+	}
 	//function modal(){
 	//	$("#staticBackdrop").modal("show");
 	//}
@@ -68,24 +73,14 @@
 		});
 	
 	
-	function hairmenu(){   // 버튼클릭시 헤어메뉴리스트로 이동
-		let url = "/hairmenu";
-		location.href = url;
-	}
-
+//	function hairmenu(did){  //메뉴클릭시
+//		let url = "/hairmenu/";
+//		url += did;
+//		location.href = url;
+//	}
 	
 	//클릭 시 
 	function hairenrollCheck(f){
-		if (f.cateno.value == ""){
-			alert("카테고리를 선택하세요");
-			f.cateno.focus()
-            return false;
-		}
-		if (f.hgender.value == ""){
-			alert("성별을 선택하세요");
-			f.hgender.focus()
-            return false;
-		}
 		if (f.menu.value == ""){
 			alert("시술 이름을 입력하세요");
 			f.menu.focus()
@@ -98,7 +93,7 @@
 		}
 		
 		if (f.price.value != "" && f.menu.value !=""){
-			let url = "/hairmenu";
+			let url = "/hairmenu/" ;
 			location.href = url;
 		}
 	}
@@ -144,13 +139,12 @@ a:hover, a:active {
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 				<c:if test="${not empty sessionScope.uid}">
-					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
                 	<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
                 </c:if>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
-				헤어 디자이너</div>
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname } 헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
@@ -171,7 +165,7 @@ a:hover, a:active {
             font-size: 20px; font-weight: bold; ">
               <ul id="nav2" class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/hairmenu">메뉴</a>
+                    <a class="nav-link active" href="/hairmenu/${sessionScope.did }">메뉴</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/style/designer">스타일</a>
@@ -202,6 +196,7 @@ a:hover, a:active {
                         <div class = "form-group">
                           <label for = "hgender">성별</label>
                             <div>
+
                               <select name="hgender" id="hgender" class = "form-control" aria-label="Default select example">
                                   <option value="FEMALE">여자</option>
                                   <option value="MALE">남자</option>
@@ -218,17 +213,20 @@ a:hover, a:active {
                           <label for="price">가격</label>
                           <input type="text" class="form-control" name="price" id="price" placeholder="가격">
                         </div>
+                        
+                        <div class="form-group" style = "float: center; ">
+                          <button class="btn btn-outline-success"
+	                        	style="border: 1px solid; visibility : hidden;">hidden</button><!-- 위치맞추기 버튼(숨김) -->
+                        </div>
+                        
                         <c:if test="${not empty sessionScope.did}">
-	                        <div style = "float: right;">
-			                  <button class ="btn btn-outline-success" type="submit" onclick="menuenroll()"
-			                  style="border: 1px solid">메뉴 등록</button>
+	                        <div style = "float: center; ">
+	                        	<button class="btn btn-outline-success" type="submit" onclick="hairmenu()"
+	                        	style="border: 1px solid">등록하기</button>
 			                </div>
 			            </c:if>
-                
-              </form>
+	              </form>
                 </div>
-
-                
               </section>
 
         </div>

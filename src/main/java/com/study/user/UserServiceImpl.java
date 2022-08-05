@@ -1,9 +1,12 @@
 package com.study.user;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.study.enroll.EnrollDTO;
 
 @Service("com.study.user.UserServiceImpl")
 public class UserServiceImpl implements UserService {
@@ -45,5 +48,50 @@ public class UserServiceImpl implements UserService {
   public String findPw(Map<String, String> map) {
     return mapper.findPw(map);
   }
-  
+
+  @Override
+  public UserDTO mypage(String id) {
+    return mapper.mypage(id);
+  }
+
+  @Override
+  public int update(UserDTO dto) {
+    return mapper.update(dto);
+  }
+
+  @Override
+  public int total(Map map) {
+    return mapper.total(map);
+  }
+
+  @Override
+  public List<UserDTO> list(Map map) {
+    return mapper.list(map);
+  }
+
+  @Override
+  public UserDTO read(String id) {
+    return mapper.read(id);
+  }
+
+  @Override
+  public List<EnrollDTO> reserveList(String id) {
+    return mapper.reserveList(id);
+  }
+
+  @Override
+  public List<EnrollDTO> historyList(String id) {
+    return mapper.historyList(id);
+  }
+
+  @Override
+  public int delete(String uid) {
+    return mapper.delete(uid);
+  }
+
+  @Override
+  public List<EnrollDTO> configList(String id) {
+    return mapper.configList(id);
+  }
+
 }

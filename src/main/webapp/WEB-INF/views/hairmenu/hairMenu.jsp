@@ -21,9 +21,11 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
-	function dmypage_update() {
+	function dmypage_update(did) {
 		let url = "/dmypage_update";
-		location.href = url;
+	    url += "?did=";
+	    url += did;
+	    location.href = url;
 	}
 
 	function dmypage_photo_update() {
@@ -43,7 +45,11 @@
 		let url = "/enroll/designer";
 		location.href = url;
 	}
-	
+	function reserve(){
+		let url = "/reserve";
+		url += "?did=${ddto.did}";
+		location.href = url;
+	}
 	//function modal(){
 	//	$("#staticBackdrop").modal("show");
 	//}
@@ -69,40 +75,36 @@
 		    });
 		});
 	
-	function hairmenuEnroll(){  //헤어메뉴 등록하는 페이지로 이동
-		let url = "/hairmenuEnroll";
-		location.href = url;
-	}
-	function hairmenu(){  //헤어메뉴 등록하는 페이지로 이동
-		let url = "/hairmenu";
+	function hairmenuEnroll(){  //헤어메뉴버튼 클릭시
+		let url = "/hairmenuEnroll" ;
 		location.href = url;
 	}
 	
-	function cut(){
-		let url = "/hairmenu/cateno/"+ 1;
+/* 	function cut(did){
+		let url = "/hairmenu/" +did +"/cateno/"+ 1;
+		
 		location.href = url;
 	}
-	function perm(){
-		let url = "/hairmenu/cateno/" + 2;
+	function perm(did){
+		let url = "/hairmenu/" +did +"/cateno/"+ 2;
 		location.href = url;
 	}
-	function color(){
-		let url = "/hairmenu/cateno/" + 3;
+	function color(did){
+		let url = "/hairmenu/" +did +"/cateno/"+ 3;
 		location.href = url;
 	}
-	function clinic(){
-		let url = "/hairmenu/cateno/" + 4;
+	function clinic(did){
+		let url = "/hairmenu/" +did +"/cateno/"+ 4;
 		location.href = url;
 	}
-	function etc(){
-		let url = "/hairmenu/cateno/" + 5;
+	function etc(did){
+		let url = "/hairmenu/" +did +"/cateno/"+ 5;
 		location.href = url;
-	}
+	} */
 	
 	function del(menuno){
 		if(confirm("정말 삭제하시겠습니까?")==true){
 			
-		//console.log(menuno);
 		let url = "/hairmenu/delete/" + menuno ;
 		location.href = url;
 		
@@ -134,6 +136,9 @@ a:link {
 a:hover, a:active {
 	background-color: #87CEFA;
 }
+nav a {
+	color:black;
+}
 </style>
 <title>My page</title>
 </head>
@@ -143,22 +148,10 @@ a:hover, a:active {
 			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
-			
-			<c:choose>
-				<c:when test="${not empty sessionScope }">  <!-- 로그인 상태 -->
-					<button class="btn btn-outline-success" id="heart" value="${ddto.did }"
+				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
-				</c:when>
-				<c:otherwise> <!--  로그인상태가 아닐 때 -->
-					<button class="btn btn-outline-success" id="heart"
-								style="width: 100%; border: 1px solid;" disabled>💙좋아요(${ddto.likecnt })</button>
-				</c:otherwise>
-			</c:choose>
-			
-				<!-- <button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>  -->
 				<c:if test="${not empty sessionScope.uid}">
-					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
+					<button type=button onclick="javascript:reserve('${ddto.did}')" class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
                 </c:if>
 			</div>
@@ -169,7 +162,7 @@ a:hover, a:active {
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
-					onclick="dmypage_update()">디자이너 정보 수정</button>
+					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 			</c:if>
@@ -181,9 +174,9 @@ a:hover, a:active {
 		<div style="width: 80%; float: right;">
 
 			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center;
-			 font-size: 20px; font-weight: bold;">
+			 font-size: 20px; font-weight: bold; margin-left : 6%;">
 				<ul id="nav2" class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/hairmenu/${ddto.did }">메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
 					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a></li>
 				</ul>
@@ -192,11 +185,14 @@ a:hover, a:active {
 
 			<div style="text-align: center; font-size: 15px; font-weight: bold">
 				<div>
-					<nav class="nav nav-pills nav-justified" style="margin-left: 33%; margin-right: 20%; font-size:17px; width:80%">
-						<a class="nav-link" onclick="hairmenu()">전체메뉴</a>
-						<a class="nav-link" onclick="cut()">커트&드라이</a>
-						<a class="nav-link" onclick="perm()">펌</a> <a class="nav-link" onclick="color()">염색</a>
-						<a class="nav-link" onclick="clinic()">클리닉</a> <a class="nav-link" onclick="etc()">기타</a>
+					<nav class="nav nav-pills nav-justified" 
+					style="margin-left: 33%; margin-right: 20%; font-size:17px; width:80%;">
+						<a class="nav-link" href="/hairmenu/${ddto.did}">전체메뉴</a>
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/1">커트&드라이</a>
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/2">펌</a> 
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/3">염색</a>
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/4">클리닉</a> 
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/5">기타</a>
 					</nav>
 				</div>
 			</div> <!-- 스타일 div -->
@@ -230,16 +226,14 @@ a:hover, a:active {
 										<c:otherwise>
 											<c:forEach var="dto" items="${list}">
 												<tr>
-												<c:if test="${sessionScope.did==dto.did }">  <!-- 세션이랑 디자이너 정보가 같을때 -->
-													<td>${dto.menu }</td>
-													<td>${dto.price }</td>
-													<td>${dto.hgender }</td>
-													<td>${dto.did }</td>
-													<c:if test="${not empty sessionScope.did}">
-													<td><button class="btn btn-outline-success"
-													onclick="del(${dto.menuno})">삭제</button></td>
-													</c:if>
-												</c:if>
+														<td>${dto.menu }</td>
+														<td>${dto.price }</td>
+														<td>${dto.hgender }</td>
+														<td>${dto.did }</td>
+														<c:if test="${not empty sessionScope.did}">
+															<td><button class="btn btn-outline-success"
+															onclick="del(${dto.menuno})">삭제</button></td>
+														</c:if>
 												</tr>
 											</c:forEach>
 										</c:otherwise>

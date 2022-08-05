@@ -4,6 +4,7 @@ package com.study.hairmenu;
 
 import java.util.List;
 
+import com.study.category.CategoryDTO;
 import com.study.enroll.EnrollDTO;
 
 import lombok.Data;
@@ -18,6 +19,7 @@ public class HairmenuDTO {
   private String hgender;
   
   private List<EnrollDTO> edto;
+  private List<CategoryDTO> category;
   
   
   

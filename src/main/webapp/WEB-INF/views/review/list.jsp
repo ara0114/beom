@@ -21,11 +21,13 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
-	function dmypage_update() {
+	function dmypage_update(did) {
 		let url = "/dmypage_update";
-		location.href = url;
+	    url += "?did=";
+	    url += did;
+	    location.href = url;
 	}
-
+	
 	function dmypage_photo_update() {
 		let url = "/designer/dupdateFileForm/";
 		location.href = url;
@@ -37,6 +39,11 @@
 	}
 	function delete_enroll(enrollno) {
 		let url = "/designer/deleteEnroll/" + enrollno;
+		location.href = url;
+	}
+	function reserve(){
+		let url = "/reserve";
+		url += "?did=${ddto.did}";
 		location.href = url;
 	}
 </script>
@@ -62,13 +69,13 @@ td button {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 15.5%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 				<c:if test="${not empty sessionScope.uid}">
-					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
                 </c:if>
 			</div>
@@ -91,7 +98,7 @@ td button {
 		<div style="width: 80%; float: right;">
 
 			<!-- 윗 목록 메뉴/스타일/리뷰 -->
-			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold">
+			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a>
 					</li>
@@ -103,7 +110,7 @@ td button {
 			<!-- 윗 목록 END -->
 
 
-			<div class="container" style="width:100%">
+			<div class="container" style="width:100%;">
 				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>

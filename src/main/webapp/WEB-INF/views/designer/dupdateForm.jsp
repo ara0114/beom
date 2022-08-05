@@ -120,21 +120,21 @@
 
 </head>
 <body>
-	<form action="dupdate" method="post" name="frm"
+	<form action="/dupdate" method="post" name="frm"
 		onsubmit="return inCheck(this)">
-		<section class="h-100 h-custom gradient-custom-2">
+		<section class="h-100 h-custom gradient-custom-2" style="background:skyblue">
 			<div class="container py-5 h-100">
 				<div
 					class="row d-flex justify-content-center align-items-center h-100">
 					<div class="col-12">
 						<div class="card card-registration card-registration-2"
-							style="border-radius: 15px;">
+							style="border-radius: 2%;">
 							<div class="card-body p-0">
 								<div class="row g-0">
 									<div class="col-lg-6">
 										<div class="p-5">
 											<h3 class="fw-normal mb-5" style="color: #4835d4;">디자이너
-												회원가입</h3>
+												정보 수정</h3>
 
 											<div class="row">
 												<div class="col-md-6 mb-4 pb-2">
@@ -142,7 +142,7 @@
 														<label class="form-label" for="did">아이디</label> <input
 															type="text" id="did" name="did"
 															class="form-control form-control-lg" value="${ddto.did }"
-															disabled />
+															readonly />
 
 													</div>
 												</div>
@@ -226,7 +226,7 @@
 													<label class="form-label" for="sample6_address">주소</label>
 													<input type="text" id="sample6_address" name="address1"
 														class="form-control form-control-lg"
-														value=${ddto.address1 } />
+														value="${ddto.address1 }" />
 												</div>
 											</div>
 
@@ -255,27 +255,55 @@
 													<div class="mb-4 pb-3" id="div1">
 														<div class="form-outline form-white">
 															<label class="form-label" for="licenseno">자격증 번호
-																(예:12345678901A)</label> <input type="text" id="licenseno"
-																name="licenseno" class="form-control form-control-lg"
-																value="${cdto.licenseno }" disabled />
+																(예:12345678901A)</label>
+															<c:choose>
+															<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }">
+															<input type="text" id="licenseno" name="licenseno" class="form-control form-control-lg"
+																value="${cdto.licenseno }" >
+															</c:when>
+															<c:otherwise>	
+															<input type="text" id="licenseno" name="licenseno" class="form-control form-control-lg"
+																value="${cdto.licenseno }" readonly />
+															</c:otherwise>
+															</c:choose>
 														</div>
 													</div>
 
 													<div class="mb-4 pb-3" id="div2">
 														<div class="form-outline form-white">
 															<label class="form-label" for="licensedate">발급(등록)연월일
-																(예:20050101)</label> <input type="text" id="licensedate"
+																(예:20050101)</label>
+															<c:choose>
+															<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }">
+															<input type="text" id="licensedate"
 																name="licensedate" class="form-control form-control-lg"
-																value="${cdto.licensedate }" disabled />
+																value="${cdto.licensedate }" >
+															</c:when>
+															<c:otherwise>
+															<input type="text" id="licensedate"
+																name="licensedate" class="form-control form-control-lg"
+																value="${cdto.licensedate }" readonly />
+															</c:otherwise>
+															</c:choose>
 														</div>
 													</div>
 
 													<div class="mb-4 pb-3" id="div3">
 														<div class="form-outline form-white">
 															<label class="form-label" for="uniquecode1">자격증
-																내지번호 (예:0901234567)</label> <input type="text" id="uniquecode1"
+																내지번호 (예:0901234567)</label>
+															<c:choose>
+															<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }">
+															<input type="text" id="uniquecode1"
 																name="uniquecode1" class="form-control form-control-lg"
-																value="${cdto.uniquecode1 }" disabled />
+																value="${cdto.uniquecode1 }" >
+															</c:when>
+															<c:otherwise>
+															<input type="text" id="uniquecode1"
+																name="uniquecode1" class="form-control form-control-lg"
+																value="${cdto.uniquecode1 }" readonly />
+															</c:otherwise>
+															</c:choose>
 														</div>
 													</div>
 												</c:when>
@@ -286,9 +314,19 @@
 													<div class="mb-4 pb-4" id="div4">
 														<div class="form-outline form-white">
 															<label class="form-label" for="uniquecode2">자격증
-																관리번호</label> <input type="text" id="uniquecode2"
+																관리번호</label>
+															<c:choose>
+															<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }">
+															<input type="text" id="uniquecode2"
 																name="uniquecode2" class="form-control form-control-lg"
-																value="${cdto.uniquecode2 }" disabled />
+																value="${cdto.uniquecode2 }" >
+															</c:when>
+															<c:otherwise>
+															<input type="text" id="uniquecode2"
+																name="uniquecode2" class="form-control form-control-lg"
+																value="${cdto.uniquecode2 }" readonly />
+															</c:otherwise>
+															</c:choose>
 														</div>
 													</div>
 												</c:otherwise>
