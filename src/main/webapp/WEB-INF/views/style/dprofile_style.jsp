@@ -70,43 +70,48 @@ button {
 
 		<div style="width: 80%; float: right;">
 			<div
-				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left : 10%;">
+				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left: 10%;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
 						href="/hairmenu">메뉴</a></li>
-					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/style/designer">스타일</a></li>
 					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a>
 					</li>
 				</ul>
 			</div>
 
 			<div class="container" style="margin-left: 5%;">
-				<div class="upload-box">
-					<h3>Upload File</h3>
-					<div class="filearea">
-						<div class="icon">
-							<i class="fas fa-images"> </i>
-						</div>
-						<span class="header">Click Me</span> <span class="support">Supports:JPEG,JPG,PNG</span>
+				<c:if test="${sessionScope.did != null }">
+					<div class="upload-box" id="upload">
+						<h3>Upload File</h3>
+						<div class="filearea">
+							<div class="icon">
+								<i class="fas fa-images"> </i>
+							</div>
+							<span class="header">Click Me</span> <span class="support">Supports:JPEG,JPG,PNG</span>
 
+						</div>
+						<form action="/style/designer" method="post"
+							enctype="multipart/form-data" onsubmit="return formCheck()">
+							<input type="file" name="file" id="input-file">
+							<div class="form-radio">
+								<label for="iwoman" class="ilabel"> <input type="radio"
+									name="uploadgender" value="FEMALE" id="iwoman" />여자
+								</label> <label for="iman" class="ilabel"> <input type="radio"
+									name="uploadgender" value="MALE" id="iman" />남자
+								</label>
+							</div>
+
+							<button>
+								UP LOAD <i class="fa-solid fa-cloud-arrow-up"></i>
+							</button>
+						</form>
 					</div>
-					<form action="/style/designer" method="post"
-						enctype="multipart/form-data" onsubmit="return formCheck()">
-						<input type="file" name="file" id="input-file">
-						<div class="form-radio">
-							<label for="iwoman" class="ilabel"> <input type="radio"
-								name="uploadgender" value="FEMALE" id="iwoman" />여자
-							</label> <label for="iman" class="ilabel"> <input type="radio"
-								name="uploadgender" value="MALE" id="iman" />남자
-							</label>
-						</div>
+				</c:if>
 
-						<button>
-							UP LOAD <i class="fa-solid fa-cloud-arrow-up"></i>
-						</button>
-					</form>
 
-				</div>
+
 
 				<div class="img-box">
 					<h3>스타일</h3>
@@ -136,7 +141,9 @@ button {
 		<div style="width: 15%; float: right;"></div>
 	</div>
 
-	
+	<script>
+		let did = "${sessionScope.did}";
+	</script>
 
 	<script src="/js/styleUpload.js"></script>
 </body>

@@ -37,13 +37,6 @@ td button {
 	border: 1px solid;
 }
 
-a:link {
-	color: maroon;
-}
-
-a:hover, a:active {
-	background-color: yellow;
-}
 
 div h5 {
 	text-align: center;
@@ -63,7 +56,7 @@ textarea {
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
 			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
-			<div style="width: 100%; height: 100%;">
+			<div style="width: 100%; height: 100%;">				
 				<img src="/designer/${ddto.dfilename }"
 					style="width: 100%; height: 80%;">
 			</div>

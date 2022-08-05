@@ -7,7 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="dcreate"
 		parameterType="com.study.designer.DesignerDTO">
 		insert into designer(
-		did,dpw,dname,birth,hairshop,demail,dphone,address1,address2,dzipcode )
+		did,dpw,dname,birth,hairshop,demail,dphone,address1,address2,dzipcode
+		)
 		values(
 		#{did},#{dpw},#{dname},#{birth},#{hairshop},#{demail},#{dphone},#{address1},#{address2},#{dzipcode}
 		)
@@ -118,84 +119,101 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where e.did = #{did}
 	</select>
 
-	
 
 
 
-	<resultMap type="com.study.reserve.ReserveDTO" id="reserveList">
-		<result property = "message" column = "message"/>
-		<result property = "reserveno" column = "reserveno"/>
-		<result property = "rconfig" column = "rconfig"/>
-		<association property="udto" javaType = "com.study.user.UserDTO">
-			<result property = "uname" column = "uname" />
+
+	<resultMap type="com.study.reserve.ReserveDTO"
+		id="reserveList">
+		<result property="message" column="message" />
+		<result property="reserveno" column="reserveno" />
+		<result property="rconfig" column="rconfig" />
+		<association property="udto"
+			javaType="com.study.user.UserDTO">
+			<result property="uname" column="uname" />
 		</association>
-		<association property="edto" javaType = "com.study.enroll.EnrollDTO">
-			<result property = "enrolldate" column = "enrolldate" />
-			<result property = "enrolltime" column = "enrolltime" />
-			<result property = "emenu" column = "emenu" />
-			<result property = "eprice" column = "eprice" />
-			<association property="hdto" javaType = "com.study.hairmenu.HairmenuDTO">
-				<result property = "hgender" column = "hgender" />
-		</association>
+		<association property="edto"
+			javaType="com.study.enroll.EnrollDTO">
+			<result property="enrolldate" column="enrolldate" />
+			<result property="enrolltime" column="enrolltime" />
+			<result property="emenu" column="emenu" />
+			<result property="eprice" column="eprice" />
+			<association property="hdto"
+				javaType="com.study.hairmenu.HairmenuDTO">
+				<result property="hgender" column="hgender" />
+			</association>
 		</association>
 	</resultMap>
 
-	<select id="reserve_list" parameterType="String" resultMap="reserveList">
-		select u.uname, h.hgender, e.enrolldate, e.enrolltime, e.emenu, e.eprice, r.reserveno, r.message, r.rconfig
+	<select id="reserve_list" parameterType="String"
+		resultMap="reserveList">
+		select u.uname, h.hgender, e.enrolldate, e.enrolltime,
+		e.emenu, e.eprice, r.reserveno, r.message, r.rconfig
 		from reserve r
 		left join user u
 		on r.uid = u.uid
 		left join enroll e
-		on r.enrollno = e.enrollno
+		on r.enrollno =
+		e.enrollno
 		left join hairmenu h
 		on h.menuno = e.menuno
-		where e.did = #{did}
+		where e.did =
+		#{did}
 		order by r.reserveno;
 	</select>
-	
-	
+
+
 	<update id="dupdateFile" parameterType="Map">
 		update designer
-		set dfilename = #{dfilename}
+		set
+		dfilename = #{dfilename}
 		where did = #{did}
 	</update>
-	
-	<resultMap type="com.study.reserve.ReserveDTO" id="reservedetail">
-		<result property = "message" column = "message"/>
-		<association property="udto" javaType = "com.study.user.UserDTO">
-			<result property = "uname" column = "uname" />
+
+	<resultMap type="com.study.reserve.ReserveDTO"
+		id="reservedetail">
+		<result property="message" column="message" />
+		<association property="udto"
+			javaType="com.study.user.UserDTO">
+			<result property="uname" column="uname" />
 		</association>
-		<association property="edto" javaType = "com.study.enroll.EnrollDTO">
-			<result property = "enrolldate" column = "enrolldate" />
-			<result property = "enrolltime" column = "enrolltime" />
-			<result property = "emenu" column = "emenu" />
-			<result property = "eprice" column = "eprice" />
-			<association property="hdto" javaType = "com.study.hairmenu.HairmenuDTO">
-				<result property = "hgender" column = "hgender" />
-		</association>
+		<association property="edto"
+			javaType="com.study.enroll.EnrollDTO">
+			<result property="enrolldate" column="enrolldate" />
+			<result property="enrolltime" column="enrolltime" />
+			<result property="emenu" column="emenu" />
+			<result property="eprice" column="eprice" />
+			<association property="hdto"
+				javaType="com.study.hairmenu.HairmenuDTO">
+				<result property="hgender" column="hgender" />
+			</association>
 		</association>
 	</resultMap>
 
-	<select id="read_message" parameterType="Map" resultMap="reservedetail">
-		select u.uname, h.hgender, e.enrolldate, e.enrolltime, e.emenu, e.eprice, r.message
+	<select id="read_message" parameterType="Map"
+		resultMap="reservedetail">
+		select u.uname, h.hgender, e.enrolldate, e.enrolltime,
+		e.emenu, e.eprice, r.message
 		from reserve r
 		left join user u
-		on r.uid = u.uid
+		on r.uid =
+		u.uid
 		left join enroll e
 		on r.enrollno = e.enrollno
 		left join hairmenu h
 		on h.menuno = e.menuno
 		where r.reserveno = #{rnum} and e.did = #{did}
 	</select>
-	
+
 	<select id="reserve_cnt" parameterType="int" resultType="int">
-		select count(*)
+		select
+		count(*)
 		from reserve
 		where enrollno = #{enrollno}
 	</select>
-	
+
 	<delete id="delete_enroll" parameterType="int">
-		delete 
+		delete
 		from enroll
 		where enrollno = #{enrollno}
 	</delete>
@@ -205,21 +223,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT dpw
 		FROM designer
 		WHERE did=#{did} and demail=#{demail}
-	</select> 
-	
+	</select>
+
 	<select id="findId" parameterType="Map" resultType="String">
 		SELECT did
 		FROM designer
 		WHERE dname=#{dname} and demail=#{demail}
 	</select>
-	
-	
+
+
 	<update id="rconfig" parameterType="int">
 		update reserve
-		set rconfig = true
+		set rconfig =
+		true
 		where reserveno = #{reserveno}
 	</update>
-	
+
 	<select id="total" parameterType="Map" resultType="int">
 		SELECT count(*)
 		FROM designer
@@ -241,7 +260,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
-	<select id="list" parameterType="Map" resultType="com.study.designer.DesignerDTO">
+	<select id="list" parameterType="Map"
+		resultType="com.study.designer.DesignerDTO">
 		SELECT *
 		FROM designer
 		<where>
@@ -264,29 +284,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		limit #{sno}, #{eno}
 	</select>
 
-	<update id="updateValidation" parameterType="com.study.designer.DesignerDTO">
+	<update id="updateValidation"
+		parameterType="com.study.designer.DesignerDTO">
 		UPDATE designer
 		SET validation=1
 		WHERE did = #{did}
 	</update>
-	
-	<update id="lupdate1" parameterType="com.study.designer.LicenseDTO">
+
+	<update id="lupdate1"
+		parameterType="com.study.designer.LicenseDTO">
 		UPDATE certification
 		SET licenseno = #{licenseno},
-			licensedate = #{licensedate},
-			uniquecode1 = #{uniquecode1}
+		licensedate = #{licensedate},
+		uniquecode1 = #{uniquecode1}
 		WHERE did = #{did}
 	</update>
-	
-	<update id="lupdate2" parameterType="com.study.designer.LicenseDTO">
+
+	<update id="lupdate2"
+		parameterType="com.study.designer.LicenseDTO">
 		UPDATE certification
 		SET uniquecode2 = #{uniquecode2}
 		WHERE did = #{did}
-
 	</update>
-	
+
 	<delete id="delete" parameterType="String">
 		DELETE FROM designer
 		WHERE did = #{did}
 	</delete>
+
+
+	
+	
+	<resultMap type="com.study.reserve.ReserveDTO"
+		id="r_detail">
+		<association property="udto"
+			javaType="com.study.user.UserDTO">
+			<result property="uid" column="uid" />
+			<result property="uname" column="uname" />
+			<result property="uemail" column="uemail" />
+		</association>
+		<association property="edto"
+			javaType="com.study.enroll.EnrollDTO">
+			<result property="enrolldate" column="enrolldate" />
+			<result property="enrolltime" column="enrolltime" />
+			<result property="emenu" column="emenu" />
+			<result property="eprice" column="eprice" />
+		</association>
+	</resultMap>
+
+	<select id="reserve_detail" parameterType="int"
+		resultMap="r_detail">
+		select u.uid, u.uname, u.uemail, e.enrolldate, e.enrolltime,
+		e.emenu, e.eprice
+		from reserve r
+		left join user u
+		on r.uid = u.uid
+		left join enroll e
+		on r.enrollno = e.enrollno
+		where reserveno = #{reserveno};
+	</select>
+
 </mapper>

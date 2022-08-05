@@ -67,7 +67,10 @@
 
 	  			return fetch(`/findpwmail?uid=\${uid}&uemail=\${uemail}`) 
 	  				.then(response => response.text())
-	  				.then(text => alert(text))		
+	  				.then(text => {
+	  					alert(text);
+	  					location.href = history.back();					
+	  				})		
 	  				.catch(console.log);
 	  		});
 	  	});	

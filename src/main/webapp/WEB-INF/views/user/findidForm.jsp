@@ -67,7 +67,10 @@
 
 		  		return fetch(`/findidmail?uname=\${uname}&uemail=\${uemail}`)
 					.then(response => response.text())
-		  			.then(text=> alert(text))//알림창 속도 느림
+		  			.then(text => {
+		  				alert(text);
+		  				location.href = history.back();
+		  			})//알림창 속도 느림
 		  			.catch(console.log);
 	  		});
 	  	});	  
