@@ -72,7 +72,10 @@ modalModBtn.on("click", function(e) {
 		.then(result => {
 			
 			modal.modal("hide");
-         	window.location.reload();
+			setTimeout(function(){
+				location.reload();
+			},2000);
+         	//window.location.reload();
 
 		});
 
@@ -130,7 +133,10 @@ modalRegisterBtn.on("click", function(e) {
 			//alert(rfilename.files[0]);
 			
 			modal.modal("hide");
-			window.location.reload();
+		    setTimeout(function(){
+				location.reload('/review/list');
+			},2000);
+			//window.location.reload();
 
 		}); //end add
 
@@ -154,7 +160,7 @@ $(".chat").on("click", function (e) {
 			modalInputUid.val(review.uid);
 			modalInputDid.val(review.did);
 			modalInputStar.val(review.star);
-			modalInputRfilename.attr('src',`/hairReview/storage/${review.rfilename}`);
+			modalInputRfilename.attr('src',`/review/${review.rfilename}`);
 			modalInputRfilename.val(review.rfilename);
 			modal.data("rno", review.rno);
 			modal.find("button[id !='modalCloseBtn']").hide();

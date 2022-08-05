@@ -64,7 +64,7 @@ textarea {
 		<div
 			style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<div style="width: 100%; height: 100%;">
-				<img src="/d/${ddto.dfilename }"
+				<img src="/designer/${ddto.dfilename }"
 					style="width: 100%; height: 80%;">
 			</div>
 

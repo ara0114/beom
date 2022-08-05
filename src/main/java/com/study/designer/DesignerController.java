@@ -1,6 +1,7 @@
 package com.study.designer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.study.reserve.ReserveDTO;
-import com.study.user.UserDTO;
 import com.study.utility.Utility;
 
 @Controller
@@ -275,9 +275,10 @@ public class DesignerController {
   }
 
   @PostMapping("/designer/dupdateFile")
+  @ResponseBody
   public String updateFile(MultipartFile dfilenameMF, String oldfile, HttpSession session) throws IOException {
 //    String basePath = UploadDesignerFile.getUploadDir();
-    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\d";
+    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\designer";
 
     if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
       Utility.deleteFile(basePath, oldfile);
@@ -292,7 +293,11 @@ public class DesignerController {
     int cnt = dservice.dupdateFile(map);
 
     if (cnt == 1) {
-      return "redirect:/dmypage";
+      return "<script>"
+          + " setTimeout(function(){\r\n"
+          + "    location.replace('/dmypage');\r\n"
+          + "  },2700);"
+          +"</script>";
     } else {
       return "./error";
     }
