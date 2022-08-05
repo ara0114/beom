@@ -68,4 +68,6 @@ public interface DesignerService {
   ReserveDTO reserve_detail(int reserveno);
 
 
+  List<DesignerDTO> getList(DesignerDTO ddto);
+
 }

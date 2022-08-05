@@ -179,4 +179,11 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.reserve_detail(reserveno);
   }
 
+  @Override
+  public List<DesignerDTO> getList(DesignerDTO ddto) {
+    // TODO Auto-generated method stub
+    return mapper.getList(ddto);
+  }
+
+
 }

@@ -67,4 +67,6 @@ public interface DesignerMapper {
   ReserveDTO reserve_detail(int reserveno);
   
   int delete(String did);
+  
+  List<DesignerDTO> getList(DesignerDTO ddto);
 }
