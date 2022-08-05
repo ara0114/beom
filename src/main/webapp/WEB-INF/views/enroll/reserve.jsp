@@ -10,10 +10,9 @@
 <link rel="stylesheet" href="/css/reserve.css" />
 </head>
 <body>
-	<div class="container">
-		<h3>${sessionScope.did} 예약가능 리스트</h3>
-		<input type="hidden" id="hidden" value="${sessionScope.did}" />
-		<input type="hidden" id="hiddenUid" value="${uid}" />
+	<div class="container" style = "width : 30%;">
+		<h3>예약가능 리스트</h3>
+		<input type="hidden" id="hiddenUid" value="${sessionScope.uid}" />
 		<table>
 			<thead>
 				<tr>
@@ -55,8 +54,8 @@
 			<textarea name="textArea" id="message"
 				style="width: 401px; height: 163px;"></textarea>
 		</div>
-		<button id="submit" type="submit">예약신청</button>
-		<button id="goback" type="button" onclick="javascript:history.back()">뒤로가기</button>
+		<button id="sub_mit" type="submit">예약신청</button>
+		<button id="goback" type="button" onclick="history.back()">뒤로가기</button>
 
 		<p>
 			예약 접수 정보는 등록된 <strong>@Email 주소 </strong>로 확인 할수있습니다.

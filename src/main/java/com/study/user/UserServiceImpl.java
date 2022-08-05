@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.study.enroll.EnrollDTO;
+
 @Service("com.study.user.UserServiceImpl")
 public class UserServiceImpl implements UserService {
 
@@ -71,5 +73,25 @@ public class UserServiceImpl implements UserService {
   public UserDTO read(String id) {
     return mapper.read(id);
   }
-  
+
+  @Override
+  public List<EnrollDTO> reserveList(String id) {
+    return mapper.reserveList(id);
+  }
+
+  @Override
+  public List<EnrollDTO> historyList(String id) {
+    return mapper.historyList(id);
+  }
+
+  @Override
+  public int delete(String uid) {
+    return mapper.delete(uid);
+  }
+
+  @Override
+  public List<EnrollDTO> configList(String id) {
+    return mapper.configList(id);
+  }
+
 }

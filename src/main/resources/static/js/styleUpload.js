@@ -1,5 +1,5 @@
 const filearea= document.querySelector(".filearea");
-const dragText = document.querySelector(".header");
+const dragArea = document.querySelector(".header");
 const styleButton = document.querySelector(".select-btn");
 let input = document.getElementById("input-file");
 const allImg = document.querySelector(".all-img");
@@ -46,11 +46,11 @@ function formCheck() {
 $('input:radio[name="gender"]').change(function() {
 
 	let gender = $('input:radio[name="gender"]:checked').val();
-	if (gender == "여자") {
+	if (gender == "FEMALE") {
 		fetchAPI(womanImg, gender);
 		$('.all-img').empty();
 		$('.man-img').empty();
-	} else if (gender == "남자") {
+	} else if (gender == "MALE") {
 		fetchAPI(manImg, gender);
 		$('.all-img').empty();
 		$('.woman-img').empty();

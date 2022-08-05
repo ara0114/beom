@@ -54,11 +54,17 @@
     		url += "?uid="+uid;
     		location.href = url;
     	}
+    	function del(uid){
+    		if(confirm('회원을 강제탈퇴 처리하시겠습니까? 모든 정보가 지워집니다.')){
+	    		let url = "/admin/udelete/"+uid;
+	    		location.href = url;
+    		}
+    	}
     </script>
 </head>
 <body>
 	<div class="container">
-		<h2>회원목록</h2>
+		<h2>일반회원목록</h2>
 		<form class="form-inline" action="/admin/user/list">
 			<div class="form-group" id="search">
 				<select class="form-control" name="col">
@@ -83,7 +89,7 @@
 				<input type="text" class="form-control" name="word" id="word" placeholder="검색어 입력" value="${word }">
 			</div>
 			<button type="submit" class="btn btn-default">검색</button>
-			<button type="button" class="btn btn-default">등록</button>
+			<button type="button" class="btn btn-default" onclick="location.href='/user/joinForm'">등록</button>
 		</form>
 		<table class="table table-hover">
 			<thead class="table-light">
@@ -98,7 +104,7 @@
 			<tbody>
 			<c:choose>
 			<c:when test="${empty list }">
-				<tr><td colspan="6">등록된 글이 없습니다.</td>
+				<tr><td colspan="6">등록된 회원이 없습니다.</td>
 			</c:when>
 			<c:otherwise>
 			<c:forEach var="dto" items="${list }">		
@@ -107,7 +113,7 @@
 					<td>${dto.uemail }</td>
 					<td>${dto.uphone }</td>
 					<td><button type="button" class="btn" onclick="javascript:update('${dto.uid}')">수정</button>
-						<button type="button" class="btn" onclick="#">삭제</button></td>
+						<button type="button" class="btn" onclick="javascript:del('${dto.uid}')">삭제</button></td>
 				</tr> 
 			</c:forEach>
 			</c:otherwise>

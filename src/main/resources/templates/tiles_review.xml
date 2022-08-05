@@ -8,12 +8,8 @@
   <definition name="main" template="/WEB-INF/views/template/template.jsp">
     <put-attribute name="header" value="/WEB-INF/views/template/top.jsp" />
   </definition>
-  <definition name="/review/reviewForm" extends="main">
-    <put-attribute name="title" value="리뷰페이지"></put-attribute>
-    <put-attribute name="body" value="/WEB-INF/views/review/reviewForm.jsp" />
-  </definition>
   <definition name="/review/list" extends="main">
-    <put-attribute name="title" value="review"></put-attribute>
+    <put-attribute name="title" value="Designer review"></put-attribute>
     <put-attribute name="body" value="/WEB-INF/views/review/list.jsp" />
   </definition>
 </tiles-definitions>

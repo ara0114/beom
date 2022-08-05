@@ -5,6 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.study.hairmenu.HairmenuMapper">
 	
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM hairmenu
+		WHERE menuno=#{menuno}
+	</delete>
+	
 	<select id="list" parameterType="Map" resultType="com.study.hairmenu.HairmenuDTO">
 		SELECT *
 		FROM hairmenu
@@ -16,6 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (#{price}, #{menu}, #{did}, #{cateno}, #{hgender})
 	</insert>
 	
-	
+	<select id="itemlist" parameterType="int" resultType="com.study.hairmenu.HairmenuDTO">
+		SELECT *
+		FROM hairmenu
+		where cateno=#{cateno}
+	</select>
 
 </mapper>

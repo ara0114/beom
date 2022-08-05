@@ -29,7 +29,8 @@ let modalRegisterBtn = $("#modalRegisterBtn");
 modalRemoveBtn.on("click", function(e) {
 
 	let rno = modal.data("rno");
-	remove(rno)
+	let oldfile = modalInputRfilename.val();
+	remove(rno,oldfile)
 		.then(result => {
 			
 			modal.modal("hide");
@@ -60,7 +61,7 @@ modalModBtn.on("click", function(e) {
 	formData.append('rtitle', modalInputRtitle.val());
 	formData.append('rcontent', modalInputRcontent.val());
 	formData.append('star', modalInputStar.val());
-	formData.append('rfilename', modalInputRfilename.val());
+	formData.append('oldfile', modalInputRfilename.val());
 	
 	if(rfilename.files[0] != undefined) {   // 파일이 undefined가 아닐경우에만 데이터 보내줌
 		formData.append('addfile', rfilename.files[0]);
@@ -154,13 +155,20 @@ $(".chat").on("click", function (e) {
 			modalInputDid.val(review.did);
 			modalInputStar.val(review.star);
 			modalInputRfilename.attr('src',`/hairReview/storage/${review.rfilename}`);
-			
+			modalInputRfilename.val(review.rfilename);
 			modal.data("rno", review.rno);
 			modal.find("button[id !='modalCloseBtn']").hide();
 			
-			if (review.rfilename == null) {   // 올린 이미지 없이 조회할때 이미지구역 숨기기
+			if (review.rfilename == "no.jpg" && uid == review.uid ) {   // 올린 이미지 없이 조회할때 이미지구역 숨기기
 				
 				modalInputRfilename.hide();
+			}
+			
+			if (review.rfilename == "no.jpg"  && uid != review.uid) {   // 올린 이미지 없이 조회할때 이미지구역 숨기기
+				
+				modalInputRfilename.hide();
+		 		addFile.hide();  // 모달 파일선택 버튼
+				labelImg.hide();
 			}
 			
 			if (uid == review.uid) {    // 리뷰쓴 id랑 세션아이디랑 같을때만 수정, 삭제버튼 보이게

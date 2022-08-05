@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.study.category.CategoryDTO;
+import com.study.hairmenu.HairmenuDTO;
+
 public interface EnrollMapper {
   List<HairmenuDTO> list(String did);
 
@@ -15,7 +18,7 @@ public interface EnrollMapper {
   
   int enrollInput(Map map);
   
-  HairmenuDTO menunoGet(Map map);
+  int menunoGet(Map map);
   
   Set<EnrollDTO> enrollList(String did);
   
@@ -23,8 +26,12 @@ public interface EnrollMapper {
   
   int userInsert(Map map);
   
-  List<EnrollDTO> reserveList(String uid);
+  
+  
+  int checking(String enrollno);
   
   List<EnrollDTO> infoList(String did);
+  
+  Set<EnrollDTO> asOfEnrollList(String did);
   
 }

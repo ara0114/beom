@@ -5,6 +5,8 @@ import java.util.Base64;
 import java.util.Base64.Encoder;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,36 +17,53 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.study.designer.DesignerDTO;
+import com.study.designer.DesignerService;
+
 @Controller
 public class StyleDesignerController {
 
   @Autowired
   @Qualifier("com.study.style.StyleServiceImpl")
   private StyleService service;
+  
+  @Autowired
+  @Qualifier("com.study.designer.DesignerServiceImpl")
+  private DesignerService dservice;
 
   @GetMapping("/style/designer")
-  public String style() {
-
+  public String style(Model model, HttpSession session) {
+    String did = "test"; //메인페이지에서 받아와야함
+    DesignerDTO ddto = dservice.dmypage(did);
+    model.addAttribute("ddto", ddto);
+    
     return "/style/designer";
   }
 
   // 사진업로드 -> DB 에 Insert
   @PostMapping("/style/designer")
-  public String file(MultipartFile file, String uploadgender, String did) throws IOException {
+  public String file(MultipartFile file, String uploadgender, HttpSession session, Model model) throws IOException {
 
     StyleDTO dto = new StyleDTO();
 
-    Encoder encoder = Base64.getEncoder();
+    //Encoder encoder = Base64.getEncoder();
 
     // String fileName = file.getOriginalFilename();
     String fileType = file.getContentType();
+    System.out.println("fileType : " + fileType );
+    if(fileType.equals("application/octet-stream")){
+      model.addAttribute("msg", "파일이 선택되지 않았습니다.");
+      return "/errorMsg";
+    }
+    
     byte[] fileBytes = file.getBytes();
     // String encodeString = encoder.encodeToString(fileBytes); 서버측에서 encoding 할경우
 
-    dto.setDid(did);
+    dto.setDid((String)session.getAttribute("did"));
     dto.setGender(uploadgender);
     dto.setImagecode(fileBytes);
     dto.setImagetype(fileType);
+    
 
     int cnt = service.create(dto);
     if(cnt == 1) {
@@ -76,5 +95,7 @@ public class StyleDesignerController {
       return "삭제실패";
     }
   }
+  
+  
 
 }

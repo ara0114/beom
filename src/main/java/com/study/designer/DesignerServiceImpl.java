@@ -131,4 +131,54 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.findPw(map);
   }
 
+  @Override
+
+  public int rconfig(int reserveno) {
+    // TODO Auto-generated method stub
+    return mapper.rconfig(reserveno);
+  }
+
+  public int total(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.total(map);
+  }
+
+  @Override
+  public List<DesignerDTO> list(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.list(map);
+  }
+
+  @Override
+  public int updateValidation(DesignerDTO ddto) {
+    // TODO Auto-generated method stub
+    return mapper.updateValidation(ddto);
+  }
+
+  @Override
+  public int lupdate1(LicenseDTO cdto) {
+    // TODO Auto-generated method stub
+    return mapper.lupdate1(cdto);
+  }
+
+  @Override
+  public int lupdate2(LicenseDTO cdto) {
+    // TODO Auto-generated method stub
+    return mapper.lupdate2(cdto);
+
+  }
+
+  @Override
+  public int delete(String did) {
+    // TODO Auto-generated method stub
+    return mapper.delete(did);
+  }
+
+  @Override
+  public List<DesignerDTO> getList(DesignerDTO ddto) {
+    // TODO Auto-generated method stub
+    return mapper.getList(ddto);
+  }
+
+
 }

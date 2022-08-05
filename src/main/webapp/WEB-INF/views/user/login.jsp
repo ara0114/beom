@@ -92,9 +92,9 @@
                 <input type="radio" name="selectuser" onclick="javascript:moveForm()"><label>디자이너</label>
             </div>
             <li><input type="text" id="uid" name="uid" placeholder="아이디" 
-            		   required="required" value="${cookie_id_val }"></li>
+            		   required="required" value="${cookie_uid_val }"></li>
             <li><input type="password" id="upw" name="upw" placeholder="비밀번호" required="required"></li>
-            <div>
+            <div>      
             	<input type="checkbox" name="chk_id" id="chk_id" value="Y" checked="checked">
             	<label for="chk_id">아이디 저장</label>
             </div>

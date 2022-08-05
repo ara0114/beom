@@ -14,7 +14,7 @@
 	border-radius:15px;
 }
 
-#submit,#goback {
+#sub_mit,#goback {
 	background-color: #999;
 	border: none;
 	border-radius: 7px;
@@ -26,7 +26,7 @@
 	font-family: "Nanum Gothic", sans-serif;
 }
 
-#submit:hover {
+#sub_mit:hover {
 	color: white;
 	background-color: #4bcffa;
 }

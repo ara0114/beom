@@ -3,6 +3,8 @@ package com.study.user;
 import java.util.List;
 import java.util.Map;
 
+import com.study.enroll.EnrollDTO;
+
 public interface UserService {
 
   int create(UserDTO dto);
@@ -28,5 +30,13 @@ public interface UserService {
   List<UserDTO> list(Map map);
 
   UserDTO read(String id);
+
+  List<EnrollDTO> reserveList(String id);
+
+  List<EnrollDTO> historyList(String id);
+
+  int delete(String uid);
+
+  List<EnrollDTO> configList(String id);
 
 }

@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
@@ -28,11 +30,50 @@ public class HairmenuController {
   @Autowired
   @Qualifier("com.study.designer.DesignerServiceImpl")
   private DesignerService dservice;
+  
 
   
-  @GetMapping("/hairmenu")
-  public String list(HttpSession session, Model model, HttpServletRequest request) {
+  @GetMapping("/hairmenu/delete/{menuno}")
+  public String delete(@PathVariable("menuno") int menuno, Model model) {
+    //System.out.println("번호");
+    
+      int cnt = 0;
+      
+      try {
+       cnt =  service.delete(menuno);
+       return "redirect:/hairmenu";
+       
+      } catch(Exception e) {
+        e.printStackTrace();
+        model.addAttribute("msg", "예약이 등록되어 있어 삭제가 불가능합니다.");
+        return "/errorMsg";
+      }
+
+  }
+  
+  @GetMapping("/hairmenu/cateno/{cateno}")
+  public String itemlist(HttpSession session, Model model, HttpServletRequest request, @PathVariable int cateno) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
+    
+    
+    List<HairmenuDTO> list = service.itemlist(cateno);  //카테번호별 리스트 가져오기
+    
+    request.setAttribute("list", list);  //담기
+    
+    return "/hairmenu";
+  }
+  
+  @GetMapping("/hairmenu")
+  public String list(@RequestParam String did, HttpSession session, Model model, HttpServletRequest request) {
+    
+    String id = null;
+    if(session.getAttribute("did")!=null) {
+      id = (String)session.getAttribute("did");
+    }else if(session.getAttribute("did")==null && session.getAttribute("uid") != null) {
+      id = did;
+    }
+    DesignerDTO ddto = dservice.dmypage(id);
     model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
     
     Map map = new HashMap();
@@ -46,17 +87,15 @@ public class HairmenuController {
   @PostMapping("/hairmenuEnroll")
   public String hairmenuEnroll(HttpSession session, Model model, HttpServletRequest request, HairmenuDTO dto) {
     DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
-    //HairmenuDTO dto = 
     model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
     
-    dto.setDid(ddto.getDid());
+    dto.setDid((String)session.getAttribute("did"));
+   // log.info("dto: " + dto);
     
-    log.info("dto: " + dto);
     
     if(service.hairmenuEnroll(dto) == 1) {  // 성공 시
-      return "/hairmenu";
+      return "redirect:/hairmenu";
     } else {
-      System.out.println("악");
       return "error";
     }
     

@@ -73,15 +73,12 @@
                 	</div>
                 </c:when>
                 </c:choose>
-                    <form id="search-form" action="" method="POST">
-                        <input type="text" id="search" class="search-text" placeholder="search designer">
-                        <button value="Submit" id="search-btn">Find</button>
-                    </form>
+                    
                     <ul class="sub-menu">
                     <c:choose>
                     	<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }"> <!-- 관리자 로그인했을때 -->
                     		<li><a href="${root }/admin/user/list">고객 목록</a></li>
-                    		<li><a href="#">디자이너 목록</a></li>
+                    		<li><a href="${root }/admin/designer/list">디자이너 목록</a></li>
                     	</c:when>
                     	<c:when test="${not empty sessionScope.uid }"> <!-- 고객 로그인했을때 -->
                     		<li><a href="${root }/user/mypage">Mypage</a></li>
@@ -89,6 +86,9 @@
                     	</c:when>
                     	<c:when test="${not empty sessionScope.did }"> <!-- 고객 로그인했을때 -->
                     		<li><a href="/dmypage">Mypage</a></li>
+      						<li><a href="/hairmenu?did=${sessionScope.did }">Hairmenu</a></li>
+                    		<li><a href="#">Style</a></li>
+                    		<li><a href="#">Review</a></li>
                     	</c:when>
                     </c:choose>             
                     </ul>

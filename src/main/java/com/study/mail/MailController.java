@@ -80,5 +80,34 @@ public class MailController {
     }
 
   }
+  
+  
+  @GetMapping("/rconfig")
+  @ResponseBody
+  public String rconfig(@RequestParam Map<String, String> map) {
+
+    String upw = service.findPw(map);
+    String uid = map.get("uid");
+    String uemail = map.get("uemail");
+
+    if (upw != null) {
+
+      SimpleMailMessage message = new SimpleMailMessage();
+
+      message.setTo(uemail);
+      message.setSubject("[Beom] " + uid + "님의 비밀번호 안내");
+      message.setText("해당 정보와 일치하는\n회원님의 비밀번호는 " + upw + "입니다.");
+      message.setFrom(fromMail);
+      mailSender.send(message);
+
+      return "입력하신 이메일로 비밀번호가 전송되었습니다.";
+
+    } else {
+
+      return "해당 정보로는 비밀번호를 찾을 수 없습니다. 다시 확인해주세요.";
+
+    }
+
+  }
 
 }

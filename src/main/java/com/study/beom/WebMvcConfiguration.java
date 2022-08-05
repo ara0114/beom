@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.study.designer.UploadDesignerFile;
 import com.study.review.UploadReview;
 
 @Configuration
@@ -25,6 +26,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         
         registry.addResourceHandler("/hairReview/storage/**")
                  .addResourceLocations("file:///" + UploadReview.getUploadDir());
+        registry.addResourceHandler("/designer/**")
+        .addResourceLocations("file:///" + UploadDesignerFile.getUploadDir());
       
       
 //        

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.study.enroll.EnrollDTO;
 import com.study.utility.Utility;
 
 @Controller
@@ -27,6 +28,43 @@ public class UserController {
   @Autowired
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
+  
+  @GetMapping("/user/delete")
+  public String delete(@RequestParam String uid, Model model) {
+    model.addAttribute("uid", uid);
+    return "/user/delete";
+  }
+  
+  @PostMapping("/user/delete")
+  public String delete(String upw, HttpSession session) {
+    
+    String id = (String)session.getAttribute("uid");
+    
+    UserDTO dto = service.read(id);
+    
+    if(!dto.getUpw().equals(upw)) {
+      return "/passwdError";
+    }else {
+      int flag = service.delete(id);
+      if(flag == 1) {
+        session.invalidate();
+        return "redirect:/";
+      }else {
+        return "error";
+      }
+    }
+  }
+  
+  @GetMapping("/admin/udelete/{uid}")
+  public String delete(@PathVariable String uid) {   
+    int flag = service.delete(uid);
+    
+    if(flag != 1) {
+      return "error";
+    }else {
+      return "redirect:/admin/user/list";
+    }
+  }
   
   @RequestMapping("/admin/user/list")
   public String list(HttpServletRequest request) {
@@ -111,13 +149,19 @@ public class UserController {
   public String mypage(HttpSession session, Model model) {
 
     String id = (String) session.getAttribute("uid");
-
+    List<EnrollDTO> list = service.reserveList(id);
+    List<EnrollDTO> configList = service.configList(id);
+    List<EnrollDTO> historyList = service.historyList(id);
+    
     if (id == null) {
       return "redirect:/user/login";
     } else {
 
       UserDTO dto = service.mypage(id);
       model.addAttribute("dto", dto);
+      model.addAttribute("reserveList", list);
+      model.addAttribute("configList", configList);
+      model.addAttribute("historyList", historyList);
 
       return "/user/mypage";
     }
@@ -183,7 +227,7 @@ public class UserController {
   public String login(HttpServletRequest request) {
 
     String chk_id = "";
-    String cookie_id_val = "";
+    String cookie_uid_val = "";
 
     Cookie[] cookies = request.getCookies();
     Cookie cookie = null;
@@ -194,14 +238,14 @@ public class UserController {
 
         if (cookie.getName().equals("chk_id")) {
           chk_id = cookie.getValue();
-        } else if (cookie.getName().equals("cookie_id_val")) {
-          cookie_id_val = cookie.getValue();
+        } else if (cookie.getName().equals("cookie_uid_val")) {
+          cookie_uid_val = cookie.getValue();
         }
       }
     }
 
     request.setAttribute("chk_id", chk_id);
-    request.setAttribute("cookie_id_val", cookie_id_val);
+    request.setAttribute("cookie_uid_val", cookie_uid_val);
 
     return "/user/login";
   }
@@ -226,7 +270,7 @@ public class UserController {
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", map.get("uid"));
+        cookie = new Cookie("cookie_uid_val", map.get("uid"));
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
@@ -236,7 +280,7 @@ public class UserController {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", "");
+        cookie = new Cookie("cookie_uid_val", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 

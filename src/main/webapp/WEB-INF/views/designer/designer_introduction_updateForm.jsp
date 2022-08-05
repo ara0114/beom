@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -56,8 +56,8 @@ td button {
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 
 			</div>
-			<div style="font-size: 20px; font-weight: bold; text-align : center;">${ddto.hairshop }</div>
-			<div style="font-size: 20px; font-weight: bold; text-align : center;"">${ddto.dname }
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
+			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
 
@@ -77,7 +77,7 @@ td button {
 							<button class="btn btn-outline-success" style="border: 1px solid"
 								onclick="history.back();">취소</button>
 							<button class="btn btn-outline-success" style="border: 1px solid">수정</button>
-							
+
 						</div>
 					</div>
 				</form>
@@ -87,57 +87,49 @@ td button {
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
-
-
 								<th scope="col">예약 날짜</th>
 								<th scope="col">예약 시간</th>
 								<th scope="col">시술명</th>
 								<th scope="col">성별</th>
 								<th scope="col">가격</th>
-
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<c:choose>
+								<c:when test="${empty enrollList}">
+									<tr>
+										<td colspan="6">등록된 상품이 없습니다.</td>
+									</tr>
+								</c:when>
 
-								<td>2022.07.06</td>
-								<td>15:51</td>
-								<td>일반컷</td>
-								<td>남자</td>
-								<td>20000</td>
+								<c:otherwise>
+									<c:forEach var="dto" items="${enrollList}">
+										<c:forEach var="edto" items="${dto.edto}">
+											<tr>
+												<td>${edto.enrolldate }</td>
+												<td>${edto.enrolltime }</td>
+												<td>${edto.emenu }</td>
+												<td>${dto.hgender }</td>
+												<td>${edto.eprice }</td>
+												<td><button class="btn btn-outline-success"
+														onclick="deleteEnroll(${edto.enrollno})">삭제</button></td>
+											</tr>
+										</c:forEach>
 
-							</tr>
-							<tr>
-
-								<td>2022.07.06</td>
-								<td>16:30</td>
-								<td>일반컷</td>
-								<td>여자</td>
-								<td>20000</td>
-
-							</tr>
-							<tr>
-
-								<td>2022.07.06</td>
-								<td>17:51</td>
-								<td>디자인 펌</td>
-								<td>남자</td>
-								<td>100000</td>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 
 
-							</tr>
-							<tr>
 
-								<td>2022.07.06</td>
-								<td>18:51</td>
-								<td>디자인 펌</td>
-								<td>여자</td>
-								<td>150000</td>
 
-							</tr>
 						</tbody>
 					</table>
-
+					<div style="height: 50px;">
+						<button class="btn btn-outline-success" onclick="enroll()">예약
+							등록</button>
+					</div>
 				</div>
 
 
@@ -146,37 +138,60 @@ td button {
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
+								<th scope="col">고객이름</th>
+								<th scope="col">성별</th>
+								<th scope="col">예약 날짜</th>
+								<th scope="col">예약 시간</th>
+								<th scope="col">시술명</th>
+								<th scope="col">가격</th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
+							<c:choose>
+								<c:when test="${empty enrollList}">
+									<tr>
+										<td colspan="6">등록된 상품이 없습니다.</td>
+									</tr>
+								</c:when>
+
+								<c:otherwise>
+									<c:forEach var="dto" items="${reserveList}">
+
+										<tr>
+											<td><a onclick="modal(${dto.reserveno})">${dto.udto.uname }</a></td>
+											<td>${dto.edto.hdto.hgender }</td>
+											<td>${dto.edto.enrolldate }</td>
+											<td>${dto.edto.enrolltime }</td>
+											<td>${dto.edto.emenu }</td>
+											<td>${dto.edto.eprice }</td>
+											<td style="display: none">${dto.reserveno }</td>
+											<td style="display: none">${dto.message }</td>
+											<td style="display: none">${dto.rconfig }</td>
+											<c:choose>
+												<c:when test="${dto.rconfig == false }">
+													<td><button class="btn btn-outline-success"
+															id="configBtn" onclick="config(${dto.reserveno})">확인</button></td>
+												</c:when>
+												<c:otherwise>
+													<td></td>
+												</c:otherwise>
+											</c:choose>
+
+										</tr>
+
+
+
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 
 				</div>
 
 			</div>
+
 
 
 
