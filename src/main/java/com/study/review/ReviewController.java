@@ -44,10 +44,12 @@ public class ReviewController {
     log.info("remove: " + rno);
     log.info("oldfile: " + oldfile);
     
-    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+    String upDir = UploadReview.getUploadDir();
+//    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
     
       if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
-      Utility.deleteFile(basePath, oldfile);
+//      Utility.deleteFile(basePath, oldfile);
+      Utility.deleteFile(upDir, oldfile);
       
     }
     
@@ -61,13 +63,16 @@ public class ReviewController {
 
     
     // 기존 업데이트 코드
-    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+//    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+    String upDir = UploadReview.getUploadDir();
     
     if (dto.getAddfile() != null && !dto.getAddfile().equals("")) {   // 파일을 올리면 새로 업로드
         if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
-        Utility.deleteFile(basePath, oldfile);
+//        Utility.deleteFile(basePath, oldfile);
+        Utility.deleteFile(upDir, oldfile);
       }
-        String fname = Utility.saveFileSpring(dto.getAddfile(), basePath);
+//        String fname = Utility.saveFileSpring(dto.getAddfile(), basePath);
+        String fname = Utility.saveFileSpring(dto.getAddfile(), upDir);
         dto.setRfilename(fname);
 
     }
@@ -92,9 +97,10 @@ public class ReviewController {
     log.info("title: " + dto);
     //System.out.println("create: " + vo);
     
-    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+//    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+    String upDir = UploadReview.getUploadDir();
     if (dto.getAddfile() != null) {
-      String fname = Utility.saveFileSpring(dto.getAddfile(), basePath);
+      String fname = Utility.saveFileSpring(dto.getAddfile(), upDir);
       dto.setRfilename(fname);
     } 
     else {

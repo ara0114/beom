@@ -160,7 +160,7 @@ $(".chat").on("click", function (e) {
 			modalInputUid.val(review.uid);
 			modalInputDid.val(review.did);
 			modalInputStar.val(review.star);
-			modalInputRfilename.attr('src',`/review/${review.rfilename}`);
+			modalInputRfilename.attr('src',`/hairReview/storage/${review.rfilename}`);
 			modalInputRfilename.val(review.rfilename);
 			modal.data("rno", review.rno);
 			modal.find("button[id !='modalCloseBtn']").hide();

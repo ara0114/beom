@@ -159,7 +159,7 @@ td button {
 							<c:if test="${dto.rfilename != 'no.jpg'  }">
 								<div class="review-img">
 									<a><img class='chat' data-rno="${dto.rno }"
-										src="/review/${dto.rfilename}"
+										src="/hairReview/storage/${dto.rfilename}"
 										style="width: 120px; height: 120px; border-radius: 5%;"></a>&nbsp
 									&nbsp
 								</div>
