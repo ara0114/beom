@@ -64,6 +64,8 @@
 	  				$("#uemail").focus();
 	  				return;
 	  			}
+	  			
+	  			alert("수초~수분이 소요됩니다. 다음 알림까지 기다려주세요");
 
 	  			return fetch(`/findpwmail?uid=\${uid}&uemail=\${uemail}`) 
 	  				.then(response => response.text())
