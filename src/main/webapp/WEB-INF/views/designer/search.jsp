@@ -18,7 +18,7 @@
             font-size: 32px;
             color: #111;
             border-bottom: 2px solid #111;
-            text-align: center;
+            text-align: left;
             line-height: 1;
         }
         table {

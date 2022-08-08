@@ -5,23 +5,8 @@
 <head>
 <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/user.css" />
     <style>
-        .login {
-            width: 800px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .login > h2 {
-            padding: 0 0 20px;
-            font-size: 32px;
-            color: #111;
-            border-bottom: 2px solid #111;
-            text-align: center;
-            line-height: 1;
-        }
         ul, li {
             list-style: none;
         }

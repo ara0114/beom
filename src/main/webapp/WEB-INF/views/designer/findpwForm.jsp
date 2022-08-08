@@ -5,23 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+    <link rel="stylesheet" href="/css/user.css" />
     <style>
-        .find {
-            width: 800px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .find > h2 {
-            padding: 0 0 20px;
-            font-size: 32px;
-            color: #111;
-            border-bottom: 2px solid #111;
-            text-align: center;
-            line-height: 1;
-        }
         .find > div input {
             width: 60%;
             height: 46px;
