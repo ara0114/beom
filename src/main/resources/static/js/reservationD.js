@@ -53,12 +53,19 @@ $("#gender").change(function() {
 	let category = $("#category option:selected").val();
 	
 	CategoryGender(gender, category).then(list => {
-		let str = ""
-			str += "<option>시술 선택</option>";
-		for (let i = 0; i < list.length; i++) {
-			str += "<option>" + list[i].menu + " : " + list[i].price + "</option>"
+		let str = "";
+		selectTag.html(str);
+		str += "<option>시술 선택</option>";
+
+		if(list.length == 0){
 			selectTag.html(str);
-			console.log(str);
+		}
+		else{
+			for (let i = 0; i < list.length; i++) {
+				str += "<option>" + list[i].menu + " : " + list[i].price + "</option>";
+				selectTag.html(str);
+				console.log(str);
+			}
 		}
 	});
 });
@@ -146,7 +153,7 @@ function updateProgress() {
 	//let $referrer = $('input[type="radio"]:checked').val();
 
 	if ($gender != "성별 선택") $itemCompleted++;
-	if ($category != "시술 선택") $itemCompleted++;
+	if ($category != "카테고리 선택") $itemCompleted++;
 	if ($time) $itemCompleted++;
 	if ($date) $itemCompleted++;
 	if ($price != "시술 선택") $itemCompleted++;

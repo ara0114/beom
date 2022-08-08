@@ -178,7 +178,7 @@ nav a {
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active" href="/hairmenu/${ddto.did }">메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
-					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a></li>
+					<li class="nav-item"><a class="nav-link" href="/review/${ddto.did}/list">리뷰</a></li>
 				</ul>
 			</div>
 

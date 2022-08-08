@@ -64,10 +64,15 @@
 	  				$("#uemail").focus();
 	  				return;
 	  			}
+	  			
+	  			alert("수초~수분이 소요됩니다. 다음 알림까지 기다려주세요");
 
 		  		return fetch(`/findidmail?uname=\${uname}&uemail=\${uemail}`)
 					.then(response => response.text())
-		  			.then(text=> alert(text))//알림창 속도 느림
+		  			.then(text => {
+		  				alert(text);
+		  				location.href = history.back();
+		  			})//알림창 속도 느림
 		  			.catch(console.log);
 	  		});
 	  	});	  

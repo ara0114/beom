@@ -1,6 +1,7 @@
 package com.study.designer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -165,8 +166,12 @@ public class DesignerController {
 
   @GetMapping("/dmypage")
   public String designer_mypage(HttpSession session, Model model) {
-    if (session.getAttribute("did") == null)
-      return "redirect:/";
+    if (session.getAttribute("did") == null) {
+      model.addAttribute("msg", "디자이너 권한이 없습니다. 디자이너로 로그인하세요.");
+
+      return "/errorMsg";
+    }
+      
     DesignerDTO ddto = dservice.dmypage((String) session.getAttribute("did"));
     // List<EnrollDTO> enrollList2 =
     // dservice.enrollList((String)session.getAttribute("did"));
@@ -277,8 +282,9 @@ public class DesignerController {
   @ResponseBody
   public String updateFile(MultipartFile dfilenameMF, String oldfile, HttpSession session) throws IOException {
 //    String basePath = UploadDesignerFile.getUploadDir();
-    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\d";
-
+//    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\designer";
+    String basePath = System.getProperty("user.dir") + "root/deploy/designer";
+    
     if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
       Utility.deleteFile(basePath, oldfile);
     }
@@ -344,6 +350,7 @@ public class DesignerController {
   @ResponseBody
   public String config_reserve(@PathVariable int reserveno, Model model) {
     int flag = dservice.rconfig(reserveno);
+    
     if(flag > 0) {
       return "true";
     }

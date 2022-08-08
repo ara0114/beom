@@ -76,11 +76,17 @@ function config(reserveno){
         .then(res => {
             if(res == "true"){
                 alert("예약 확인 성공");
+                return fetch(`/rconfig/${reserveno}`,{method : "get"})
+                .then(res => {
+                    alert("예약 확인 메일이 정상적으로 발송되었습니다.");
+                    location.href = "/dmypage";
+                })
                 
-                location.href = "/dmypage";
+                .catch(console.log());
+                
             }
             else{
-                alert("예약 확인 살패");
+                alert("예약 확인 실패");
             }
         })
         

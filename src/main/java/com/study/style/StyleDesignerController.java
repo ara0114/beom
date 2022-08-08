@@ -33,9 +33,15 @@ public class StyleDesignerController {
 
   @GetMapping("/style/designer")
   public String style(Model model, HttpSession session) {
-    String did = "test"; //메인페이지에서 받아와야함
+    String uid = "";
+    if(session.getAttribute("uid") != null) {
+      uid = (String)session.getAttribute("uid");
+    }
+    String did = "test";//메인페이지에서 받아와야함
+    
     DesignerDTO ddto = dservice.dmypage(did);
     model.addAttribute("ddto", ddto);
+    model.addAttribute("uid", uid);
     
     return "/style/designer";
   }

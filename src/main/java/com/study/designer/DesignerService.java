@@ -64,5 +64,10 @@ public interface DesignerService {
   int lupdate2(LicenseDTO cdto);
 
   int delete(String did);
+  
+  ReserveDTO reserve_detail(int reserveno);
+
+
+  List<DesignerDTO> getList(DesignerDTO ddto);
 
 }

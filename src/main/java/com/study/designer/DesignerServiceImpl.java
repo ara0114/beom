@@ -132,7 +132,6 @@ public class DesignerServiceImpl implements DesignerService {
   }
 
   @Override
-
   public int rconfig(int reserveno) {
     // TODO Auto-generated method stub
     return mapper.rconfig(reserveno);
@@ -173,5 +172,18 @@ public class DesignerServiceImpl implements DesignerService {
     // TODO Auto-generated method stub
     return mapper.delete(did);
   }
+  
+  @Override
+  public ReserveDTO reserve_detail(int reserveno) {
+    // TODO Auto-generated method stub
+    return mapper.reserve_detail(reserveno);
+  }
+
+  @Override
+  public List<DesignerDTO> getList(DesignerDTO ddto) {
+    // TODO Auto-generated method stub
+    return mapper.getList(ddto);
+  }
+
 
 }

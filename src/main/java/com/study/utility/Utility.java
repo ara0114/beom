@@ -178,7 +178,7 @@ public class Utility {
         String serverFullPath = null;
         if (os.equals("mac os x")) { // Mac
           System.out.println("맥");
-          serverFullPath = basePath + "/" + filename;
+          serverFullPath = basePath + "\\" + filename;
         } else if (os.equals("windows 10")) {
           System.out.println("os: " + os);
           serverFullPath = basePath + "\\" + filename;

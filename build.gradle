@@ -44,6 +44,8 @@ dependencies {
  	implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.6'
  	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+// https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
+implementation 'net.sf.json-lib:json-lib:2.4:jdk15'
 }
 
 tasks.named('test') {

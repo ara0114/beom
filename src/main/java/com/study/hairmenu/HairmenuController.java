@@ -49,7 +49,7 @@ public class HairmenuController {
        
       } catch(Exception e) {
         e.printStackTrace();
-        model.addAttribute("msg", "예약이 등록되어 있어 삭제가 불가능합니다.");
+        model.addAttribute("msg", "예약신청 내역이 있어 삭제가 불가능합니다.");
         return "/errorMsg";
       }
 
@@ -122,7 +122,7 @@ public class HairmenuController {
     
     if (session.getAttribute("did") == null) {
       
-      model.addAttribute("msg", "디자이너 로그인 후 접근 가능합니다.");
+      model.addAttribute("msg", "디자이너 권한이 없습니다. 디자이너로 로그인하세요.");
       return "/errorMsg";  //디자이너가 로그인 시 디자이너 로그인 페이지로 이동
     }
     
