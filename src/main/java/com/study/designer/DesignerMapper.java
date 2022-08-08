@@ -66,5 +66,5 @@ public interface DesignerMapper {
   
   int delete(String did);
   
-  List<DesignerDTO> getList(DesignerDTO ddto);
+  List<DesignerDTO> getList(String searchWrd);
 }

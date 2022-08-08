@@ -65,6 +65,6 @@ public interface DesignerService {
 
   int delete(String did);
 
-  List<DesignerDTO> getList(DesignerDTO ddto);
+  List<DesignerDTO> getList(String searchWrd);
 
 }

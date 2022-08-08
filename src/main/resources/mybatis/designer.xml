@@ -208,11 +208,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE dname=#{dname} and demail=#{demail}
 	</select>
 	
-	<select id="getList" parameterType="com.study.designer.DesignerDTO"
+	<select id="getList" parameterType="String"
 		resultType="com.study.designer.DesignerDTO">
 		SELECT hairshop, address1
 		FROM designer
-		<!-- 
+		 
 		<where>
 			<choose>
 				<when test="searchWrd != null">
@@ -225,6 +225,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</when>
 			</choose>
 		</where>
-		 -->
+		 
 	</select>
 </mapper>

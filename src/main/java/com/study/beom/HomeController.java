@@ -32,7 +32,8 @@ public class HomeController {
   public String home(HttpServletRequest request, ModelMap model, DesignerDTO ddto ) throws Exception{
     
     try {
-      List<DesignerDTO> test = service.getList(ddto);
+      String searchWrd = request.getParameter("searchWrd");
+      List<DesignerDTO> test = service.getList(searchWrd);
       model.addAttribute("ShopListJson", JSONArray.fromObject(test));
       
     }catch(Exception e) {
