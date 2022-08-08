@@ -47,6 +47,10 @@ th, td {
 		url += "?uid=${dto.uid}";
 		location.href = url;
 	}
+	function updatePw() {
+		let url = "/user/updatePwForm";
+		location.href = url;
+	}
 	function withdrawl(){
 		let url = "/user/delete";
 		url += "?uid=${dto.uid}";
@@ -58,7 +62,7 @@ th, td {
 	<div class="container">
 		<div class="row">
 			<h2>My Page</h2>
-			<div class="col-sm-4" style="float: left;">
+			<div class="col-sm-6" style="float: left;">
 				<h3>내 정보</h3>
 				<div style="padding-bottom: 10px;">
 					<img align="left" src="/svg/person-circle.svg" />
@@ -70,12 +74,9 @@ th, td {
 				</div>
 				<button type="button" class="btn" onclick="javascript:updateInfo()">정보
 					수정</button>
-				<button type="button" class="btn" onclick="location.href='#'">비밀번호
+				<button type="button" class="btn" onclick="javascript:updatePw()">비밀번호
 					수정</button>
-				<button type="button" class="btn" onclick="javascript:withdrawl()">회원
-					탈퇴</button>
-			</div>
-			<div class="col-sm-8" style="float: right;">
+			
 				<div class="list1">
 					<h3>예약 신청 내역</h3>
 					<table>
@@ -133,7 +134,7 @@ th, td {
 						
 						
 			<c:choose>
-				<c:when test="${empty reserveList}">
+				<c:when test="${empty configList}">
 					<tbody>
 						<td colspan="6">등록된 확정내역이 없습니다.</td>
 					</tbody>
@@ -157,7 +158,8 @@ th, td {
 			</c:choose>
 					</table>
 				</div>
-				
+			</div>	
+			<div class="col-sm-6" style="float: right;">	
 				<div class="list3">
 					<h3>사용 내역</h3>
 					<table>
@@ -174,7 +176,7 @@ th, td {
 						
 						
 			<c:choose>
-				<c:when test="${empty reserveList}">
+				<c:when test="${empty historyList}">
 					<tbody>
 						<td colspan="6">등록된 사용내역이 없습니다.</td>
 					</tbody>
@@ -201,7 +203,8 @@ th, td {
 
 			</div>
 		</div>
-	</div>
+	<button type="button" class="btn" onclick="javascript:withdrawl()" style="margin-top: 10px;">회원
+					탈퇴</button>
 	</div>
 </body>
 </html>

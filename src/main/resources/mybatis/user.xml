@@ -4,7 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.user.UserMapper">
-
+	
+	<update id="pwUpdate" parameterType="Map">
+		UPDATE user 
+		SET upw = #{newpw}
+		WHERE uid = #{uid}
+	</update>
+	
 	<delete id="delete" parameterType="String">
 		DELETE FROM user
 		WHERE uid = #{uid}
@@ -140,7 +146,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN enroll e ON d.did = e.did
 		LEFT JOIN reserve r ON r.enrollno = e.enrollno
 		LEFT JOIN user u ON r.uid = u.uid
-		WHERE u.uid = #{uid} and r.rconfig = 0;
+		WHERE u.uid = #{uid} AND r.rconfig = 0
 	</select>
 	
 	
@@ -150,12 +156,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="enrolltime" column="enrolltime" />
 		<result property="emenu" column="emenu" />
 		<result property="eprice" column="eprice" />
-		<collection property="designerInfo"	resultMap="configInfoDTO" /> 
-	</resultMap>
-	
-	<resultMap type="com.study.designer.DesignerDTO" id="configInfoDTO">
-		<result property="hairshop" column="hairshop" />
-		<result property="dname" column="dname" />
+		<collection property="designerInfo"	resultMap="designerInfoDTO" /> 
 	</resultMap>
 	
 	<select id="configList" parameterType="String"
@@ -174,7 +175,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE (u.uid = #{uid} AND r.rconfig = 1 AND e.enrolldate > curdate()) 
 			 OR
 			 (u.uid = #{uid} AND r.rconfig = 1 AND
-			 e.enrolldate = curdate() AND e.enrolltime > curtime());
+			 e.enrolldate = curdate() AND e.enrolltime > curtime())
 	</select>
 	
 	<resultMap type="com.study.enroll.EnrollDTO" id="historyList">
@@ -182,12 +183,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="enrolltime" column="enrolltime" />
 		<result property="emenu" column="emenu" />
 		<result property="eprice" column="eprice" />
-		<collection property="designerInfo"	resultMap="historyInfoDTO" /> 
-	</resultMap>
-	
-	<resultMap type="com.study.designer.DesignerDTO" id="historyInfoDTO">
-		<result property="hairshop" column="hairshop" />
-		<result property="dname" column="dname" />
+		<collection property="designerInfo"	resultMap="designerInfoDTO" /> 
 	</resultMap>
 	
 	<select id="historyList" parameterType="String"
@@ -207,7 +203,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE (u.uid = #{uid} AND r.rconfig = 1 AND e.enrolldate < curdate()) 
 			 OR
 			 (u.uid = #{uid} AND r.rconfig = 1 AND
-			 e.enrolldate = curdate() AND e.enrolltime < curtime());
+			 e.enrolldate = curdate() AND e.enrolltime < curtime())
 		]]>
+		ORDER BY e.enrolldate desc
 	</select>
 </mapper>

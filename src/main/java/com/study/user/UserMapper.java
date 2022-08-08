@@ -38,5 +38,7 @@ public interface UserMapper {
   int delete(String uid);
   
   List<EnrollDTO> configList(String id);
-   
+  
+  int pwUpdate(Map map);
+  
 }

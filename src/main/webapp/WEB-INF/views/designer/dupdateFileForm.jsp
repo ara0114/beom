@@ -20,7 +20,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="oldfile">원본파일</label>
       <div class="col-sm-6">
-        <img src="/designer/${ddto.dfilename }" 
+        <img src="/d/${ddto.dfilename }" 
         class="img-rounded" width="200px" height="200px">
       </div>
     </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" class="btn btn-default">수정</button>
+        <button type="submit" class="btn btn-default" id=modify>수정</button>
         <button type="button" class="btn btn-default" 
         onclick="history.back()">취소</button>
       </div>

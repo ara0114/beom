@@ -77,8 +77,3 @@ function CategoryGender(gender, category) {
 	return fetch(`/datareq/${gender}/${category}`)
 		.then((res) => res.json()).catch((error) => console.log(error));
 }
-
-/*function go_back(){
-	let url = "/reserve";
-	location.href = url;
-}*/

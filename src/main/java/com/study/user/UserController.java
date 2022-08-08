@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.study.enroll.EnrollDTO;
 import com.study.utility.Utility;
@@ -28,6 +30,37 @@ public class UserController {
   @Autowired
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
+  
+  @PostMapping("/pwUpdate")
+  public String updatePw(HttpSession session, String upw, String newpw, Model model, RedirectAttributes rttr) {
+    String id = (String) session.getAttribute("uid");
+    UserDTO dto = service.read(id);
+    
+    Map map = new HashMap();
+    map.put("uid", id);
+    map.put("newpw", newpw);
+    
+    if(!dto.getUpw().equals(upw)) {
+      model.addAttribute("msg","현재 비밀번호가 일치하지않습니다.");
+      return "/errorMsg";
+    } else {
+      int flag = service.pwUpdate(map);
+      if(flag == 1) {
+        session.invalidate();
+//        rttr.addFlashAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
+        model.addAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
+        return "/newpwMsg";
+      }else {
+        model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
+        return "/errorMsg";
+      }
+    }
+  }
+  
+  @GetMapping("/user/updatePwForm")
+  public String updatePwForm() {
+    return "/user/updatePw";
+  }
   
   @GetMapping("/user/delete")
   public String delete(@RequestParam String uid, Model model) {
@@ -225,7 +258,7 @@ public class UserController {
 
   @GetMapping("/user/login")
   public String login(HttpServletRequest request) {
-
+    
     String chk_id = "";
     String cookie_uid_val = "";
 
@@ -246,7 +279,7 @@ public class UserController {
 
     request.setAttribute("chk_id", chk_id);
     request.setAttribute("cookie_uid_val", cookie_uid_val);
-
+    
     return "/user/login";
   }
 

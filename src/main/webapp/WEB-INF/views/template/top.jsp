@@ -69,7 +69,7 @@
                 </c:when>
                 <c:when test="${not empty sessionScope.uid || not empty sessionScope.did}"> <!-- 로그인했을때 -->
                 	<div class="btn-group">
-                	<a href="${root }/logout" class="btn sign-in">Logout</a></li>
+                	<a href="${root }/logout" class="btn sign-in">Logout</a>
                 	</div>
                 </c:when>
                 </c:choose>
@@ -84,7 +84,7 @@
                     		<li><a href="${root }/user/mypage">Mypage</a></li>
                     		<li><a href="#">Reservation</a></li>
                     	</c:when>
-                    	<c:when test="${not empty sessionScope.did }"> <!-- 고객 로그인했을때 -->
+                    	<c:when test="${not empty sessionScope.did }"> <!-- 디자이너 로그인했을때 -->
                     		<li><a href="/dmypage">Mypage</a></li>
       						<li><a href="/hairmenu/${sessionScope.did }">Hairmenu</a></li>
                     		<li><a href="#">Style</a></li>

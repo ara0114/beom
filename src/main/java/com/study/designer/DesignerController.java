@@ -274,8 +274,10 @@ public class DesignerController {
   }
 
   @PostMapping("/designer/dupdateFile")
+  @ResponseBody
   public String updateFile(MultipartFile dfilenameMF, String oldfile, HttpSession session) throws IOException {
-    String basePath = UploadDesignerFile.getUploadDir();
+//    String basePath = UploadDesignerFile.getUploadDir();
+    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\d";
 
     if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
       Utility.deleteFile(basePath, oldfile);
@@ -290,7 +292,11 @@ public class DesignerController {
     int cnt = dservice.dupdateFile(map);
 
     if (cnt == 1) {
-      return "redirect:/dmypage";
+      return "<script>"
+          + " setTimeout(function(){\r\n"
+          + "    location.replace('/dmypage');\r\n"
+          + "  },2000);"
+          +"</script>";
     } else {
       return "./error";
     }
@@ -418,6 +424,39 @@ public class DesignerController {
       return "error";
     }else {
       return "redirect:/admin/designer/list";
+    }
+  }
+  
+  @GetMapping("/dmypage_delete")
+  public String delete(@RequestParam String did, Model model) {
+    model.addAttribute("did",did);
+    return "/dmypage_delete";
+  }
+  
+  @PostMapping("/dmypage_delete")
+  public String delete(String dpw, HttpSession session, Model model) {
+
+    String id = (String)session.getAttribute("did");
+    
+    DesignerDTO ddto = dservice.dmypage(id);
+    
+    if(!ddto.getDpw().equals(dpw)) {
+      return "/passwdError";
+    }else {
+      try{
+          int flag = dservice.delete(id);
+          
+          if(flag == 1) {
+            session.invalidate();
+            return "redirect:/";
+          }else {
+            model.addAttribute("msg","고객예약이 있어 탈퇴가 불가능합니다.");
+            return "/errorMsg";
+          }
+      }catch(Exception e){
+          model.addAttribute("msg","탈퇴가 불가능합니다. 등록한 예약이나 신청된 내역이 있을 수 있습니다.");
+          return "/errorMsg";
+      }
     }
   }
 }

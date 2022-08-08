@@ -35,10 +35,10 @@ public class HairmenuController {
   @GetMapping("/hairmenu/delete/{menuno}")
   public String delete(@PathVariable("menuno") int menuno, Model model, HttpSession session) {
     
-    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+    String did = (String)session.getAttribute("did");
+    DesignerDTO ddto = dservice.dmypage(did);
     model.addAttribute("ddto", ddto);
     
-    String did = (String)session.getAttribute("did");  //디자이너 정보 가져오기
    // System.out.println("QQQQQQQQQQQQQQQQ: " + did);
     
       int cnt = 0;
@@ -110,7 +110,7 @@ public class HairmenuController {
     String did = (String)session.getAttribute("did");
     
     if(service.hairmenuEnroll(dto) == 1) {  // 성공 시
-      return "redirect:/hairmenu/{did}";
+      return "redirect:/hairmenu/did";
     } else {
       return "error";
     }
