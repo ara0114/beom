@@ -1,6 +1,5 @@
 package com.study.enroll;
 
-
 import java.util.List;
 
 import com.study.designer.DesignerDTO;
@@ -20,16 +19,12 @@ public class EnrollDTO {
   private String did;
   private String emenu;
   private String eprice;
-  
+
   private HairmenuDTO hdto;
 
-  
-  
   private List<HairmenuDTO> hairmenu;
   private List<DesignerDTO> designerInfo;
   private List<UserDTO> userInfo;
   private List<ReserveDTO> reserveInfo;
-
-
 
 }

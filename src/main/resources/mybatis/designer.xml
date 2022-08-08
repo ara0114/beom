@@ -306,6 +306,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		limit #{sno}, #{eno}
 	</select>
 
+
+
 	<update id="updateValidation"
 		parameterType="com.study.designer.DesignerDTO">
 		UPDATE designer
@@ -334,8 +336,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE did = #{did}
 	</delete>
 
-
-	
 	
 	<resultMap type="com.study.reserve.ReserveDTO"
 		id="r_detail">

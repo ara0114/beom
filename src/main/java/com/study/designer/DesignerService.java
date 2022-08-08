@@ -70,4 +70,6 @@ public interface DesignerService {
 
   List<DesignerDTO> getList(DesignerDTO ddto);
 
+  List<DesignerDTO> slist(Map map);
+
 }
