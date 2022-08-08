@@ -232,7 +232,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-
 	<update id="rconfig" parameterType="int">
 		update reserve
 		set rconfig =
@@ -240,27 +239,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where reserveno = #{reserveno}
 	</update>
 
-
-	<select id="getList" parameterType="com.study.designer.DesignerDTO"
-		resultType="com.study.designer.DesignerDTO">
-		SELECT hairshop, address1
-		FROM designer
-		<!-- 
-		<where>
-			<choose>
-				<when test="searchWrd != null">
-					address1 like concat('%',#{searchWrd},'%') or
-					hairshop like concat('%',#{searchWrd},'%')
-				</when>
-				<when test="searchWrd != ''">
-					address1 like concat('%',#{searchWrd},'%') or
-					hairshop like concat('%',#{searchWrd},'%')
-				</when>
-			</choose>
-		</where>
-		 -->
-	</select>
-	
 	<select id="total" parameterType="Map" resultType="int">
 		SELECT count(*)
 		FROM designer
@@ -327,13 +305,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE certification
 		SET uniquecode2 = #{uniquecode2}
 		WHERE did = #{did}
+
 	</update>
-
-	<delete id="delete" parameterType="String">
-		DELETE FROM designer
-		WHERE did = #{did}
-	</delete>
-
 
 	
 	
@@ -365,5 +338,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on r.enrollno = e.enrollno
 		where reserveno = #{reserveno};
 	</select>
-
 </mapper>

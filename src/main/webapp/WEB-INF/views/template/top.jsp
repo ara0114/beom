@@ -88,7 +88,7 @@
                     		<li><a href="/dmypage">Mypage</a></li>
       						<li><a href="/hairmenu/${sessionScope.did }">Hairmenu</a></li>
                     		<li><a href="#">Style</a></li>
-                    		<li><a href="#">Review</a></li>
+                    		<li><a href="/review/${sessionScope.did}/list">Review</a></li>
                     	</c:when>
                     </c:choose>             
                     </ul>

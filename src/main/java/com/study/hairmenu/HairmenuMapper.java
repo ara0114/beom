@@ -17,4 +17,6 @@ public interface HairmenuMapper {
   
   List<HairmenuDTO> hlist(String id);
   
+  int overHairmenu(String menu);
+  
 }

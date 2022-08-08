@@ -97,7 +97,7 @@ public class ReviewController {
     log.info("title: " + dto);
     //System.out.println("create: " + vo);
     
-//    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+//  String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
     String upDir = UploadReview.getUploadDir();
     if (dto.getAddfile() != null) {
       String fname = Utility.saveFileSpring(dto.getAddfile(), upDir);
@@ -180,7 +180,7 @@ public class ReviewController {
     if(cnt == 0) {
       request.setAttribute("starAvg", 0);
     } else {
-      request.setAttribute("starAvg", String.format("%.2f",service.starAvg()));  //평균 별점 소수점 2번째자리까지
+      request.setAttribute("starAvg", String.format("%.2f",service.starAvg(id)));  //평균 별점 소수점 2번째자리까지
     }
     
     

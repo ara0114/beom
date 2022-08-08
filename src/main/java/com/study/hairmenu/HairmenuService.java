@@ -17,7 +17,6 @@ public interface HairmenuService {
 
   List<HairmenuDTO> hlist(String id);
 
-
-
+  int overHairmenu(String menu);
 
 }

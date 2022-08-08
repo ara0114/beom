@@ -161,10 +161,10 @@ td button {
 				<div class="contents">
 					<c:forEach var='dto' items="${list }">
 						<div class="row">
-							<c:if test="${dto.rfilename != 'no.jpg'  }">
+							<c:if test="${dto.rfilename != 'no.jpg'}">
 								<div class="review-img">
 									<a><img class='chat' data-rno="${dto.rno }"
-										src="/review/${dto.rfilename}"
+										src="/hairReview/storage/${dto.rfilename}"
 										style="width: 120px; height: 120px; border-radius: 5%;"></a>&nbsp
 									&nbsp
 								</div>
@@ -229,8 +229,7 @@ td button {
 								<label>아이디</label> 
 								<input class="form-control" name='uid' id="uid" disabled> 
 								<label>담당디자이너</label> 
-									<input class="form-control" name='did' id="did"><br>
-								<!-- 나중에 disabled -->
+									<input class="form-control" name='did' id="did" disabled><br>
 								<div id="rating">
 									<label>평점</label>&nbsp&nbsp <select name="star">
 										<option value="5">아주 좋아요 &nbsp ★★★★★</option>
@@ -277,6 +276,7 @@ td button {
 
 	<!-- 맨처음 div -->
 <script>let uid = '${sessionScope.uid}'</script>
+<script>let did = '${ddto.did}'</script>
 <script src="/js/reviewProducer.js"></script>
 <script src="/js/reviewConsumer.js"></script>
 </body>
