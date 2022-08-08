@@ -65,6 +65,8 @@
 	  				return;
 	  			}
 
+	  			alert("수초~수분이 소요됩니다. 다음 알림까지 기다려주세요");
+	  			
 	  			return fetch(`/dfindpwmail?did=\${did}&demail=\${demail}`) 
 	  				.then(response => response.text())
 	  				.then(text => alert(text))		

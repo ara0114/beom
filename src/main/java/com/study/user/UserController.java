@@ -32,7 +32,7 @@ public class UserController {
   private UserService service;
   
   @PostMapping("/pwUpdate")
-  public String updatePw(HttpSession session, String upw, String newpw, Model model) {
+  public String updatePw(HttpSession session, String upw, String newpw, Model model, RedirectAttributes rttr) {
     String id = (String) session.getAttribute("uid");
     UserDTO dto = service.read(id);
     
@@ -50,8 +50,10 @@ public class UserController {
       int flag = service.pwUpdate(map);
       if(flag == 1) {
         session.invalidate();
-//        rttr.addFlashAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
-        return "redirect:/user/login";
+        model.addAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
+        return "/newpwMsg";
+//        rttr.addFlashAttribute("msg",true);
+//        return "redirect:/user/login";
 //        return "<script>"
 //            + " alert('비밀번호 수정이 완료되었습니다. 다시 로그인해주세요'); "
 //            + " location.replace('/user/login'); "
