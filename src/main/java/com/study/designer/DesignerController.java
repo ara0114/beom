@@ -487,17 +487,12 @@ public class DesignerController {
     map.put("sno", sno);
     map.put("eno", eno);
 
-    int total = dservice.total(map);
-
-    List<DesignerDTO> slist = dservice.list(map);
-
-    String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+    List<DesignerDTO> slist = dservice.searchList(map);
 
     request.setAttribute("slist", slist);
     request.setAttribute("nowPage", nowPage);
     request.setAttribute("col", col);
     request.setAttribute("word", word);
-    request.setAttribute("paging", paging);
 
     return "/search";
   }

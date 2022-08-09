@@ -70,5 +70,5 @@ public interface DesignerMapper {
   
   List<DesignerDTO> getList(DesignerDTO ddto);
   
-  List<DesignerDTO> slist(Map map);
+  List<DesignerDTO> searchList(Map map);
 }

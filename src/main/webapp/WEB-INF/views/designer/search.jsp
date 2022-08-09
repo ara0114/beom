@@ -59,7 +59,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2>디자이너 검색</h2>
+		<h2>디자이너 검색🔎</h2>
 		<form class="form-inline" action="/search">
 			<div class="form-group" id="search">
 				<select class="form-control" name="col">
@@ -85,35 +85,33 @@
 			</c:when>
 			<c:otherwise>
 		<c:forEach var="ddto" items="${slist }">
-<%-- 		<c:forEach var="innerdto" items="${ddto.reviewcount} ">	 --%>
 		<table class="table table-hover">
 				<tr>
 					<td rowspan="4" class="col-sm-2">
 					<img src="/designer/${ddto.dfilename}" class="img-rounded" width="150px" height="150px">
 					</td>
+					<th class="col-sm-2">❤️좋아요❤️</th>
+					<td class="col-sm-8">${ddto.likecnt } </td>
+				</tr>
+				<tr>
 					<th class="col-sm-2">이름</th>
 					<td class="col-sm-8"><a href="javascript:info('${ddto.did }')">${ddto.dname }</a></td>
 				</tr>
 				<tr>
-					<th class="col-sm-2">주소</th>
+					<th class="col-sm-2">가야할 주소</th>
 					<td class="col-sm-8">${ddto.address1 }</td>
 			    </tr>
 			    <tr>
 					<th class="col-sm-2">미용실</th>
 					<td class="col-sm-8">${ddto.hairshop }</td>
 				</tr>
-				<tr>	
-					<th class="col-sm-2">리뷰수</th>
-					<td class="col-sm-8">.. </td>
-				</tr>
 		</table>
-<%-- 			</c:forEach> --%>
 			</c:forEach>
 			</c:otherwise>
 			</c:choose>
-		<div class="text-center">
+<%-- 		<div class="text-center">
 			${paging }
-		</div>
+		</div> --%>
 	</div>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.study.designer;
 
 import java.util.List;
 
+import com.study.hairmenu.HairmenuDTO;
 import com.study.review.ReviewDTO;
 
 import lombok.Data;
@@ -23,5 +24,4 @@ public class DesignerDTO {
   private int likecnt;
   private String introduction;
   
-//  private List<ReviewDTO> reviewcount;
 }
