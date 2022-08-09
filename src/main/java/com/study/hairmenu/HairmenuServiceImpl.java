@@ -45,9 +45,9 @@ public class HairmenuServiceImpl implements HairmenuService {
   }
 
   @Override
-  public int overHairmenu(String menu) {
+  public int overHairmenu(Map map) {
     // TODO Auto-generated method stub
-    return mapper.overHairmenu(menu);
+    return mapper.overHairmenu(map);
   }
 
 

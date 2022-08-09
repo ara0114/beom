@@ -84,23 +84,7 @@
 		let url = "/hairmenu/" +did +"/cateno/"+ 1;
 		
 		location.href = url;
-	}
-	function perm(did){
-		let url = "/hairmenu/" +did +"/cateno/"+ 2;
-		location.href = url;
-	}
-	function color(did){
-		let url = "/hairmenu/" +did +"/cateno/"+ 3;
-		location.href = url;
-	}
-	function clinic(did){
-		let url = "/hairmenu/" +did +"/cateno/"+ 4;
-		location.href = url;
-	}
-	function etc(did){
-		let url = "/hairmenu/" +did +"/cateno/"+ 5;
-		location.href = url;
-	} */
+	}  */
 	
 	function del(menuno){
 		if(confirm("정말 삭제하시겠습니까?")==true){
@@ -197,14 +181,12 @@ nav a {
 				</div>
 			</div> <!-- 스타일 div -->
 
-			
 		<section class="vh-100">
 			<div class="container py-5 h-150" style="margin-left: 5%">
 				<div class="row d-flex justify-content-center align-items-center">
 					<div class="col col-lg-9 col-xl-12">
 						<div class="card rounded-3">
 							<div class="card-body p-4">
-
 
 								<table class="table mb-4">
 									<thead>

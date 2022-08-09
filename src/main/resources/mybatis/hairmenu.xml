@@ -5,12 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.study.hairmenu.HairmenuMapper">
 
-	<select id="overHairmenu" parameterType="String"
-		resultType="int">
-		select count(menu)
+	<select id="overHairmenu" parameterType="Map" resultType="int">
+		select count(*)
 		from hairmenu 
 		where price=#{price} and menu =#{menu} and did=#{did}
-		and cateno=#{cateno} and hgender=#{hgender};
+		and cateno=#{cateno} and hgender=#{hgender}
 	</select>
 	
 	<select id="hlist" parameterType="String" resultType="com.study.hairmenu.HairmenuDTO">

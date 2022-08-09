@@ -18,6 +18,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/320c5e3232.js" crossorigin="anonymous"></script>
 <script>
 	function dmypage_update(did) {
 		let url = "/dmypage_update";
@@ -72,13 +73,6 @@
 		    });
 		});
 	
-	
-//	function hairmenu(did){  //메뉴클릭시
-//		let url = "/hairmenu/";
-//		url += did;
-//		location.href = url;
-//	}
-	
 	//클릭 시 
 	function hairenrollCheck(f){
 		if (f.menu.value == ""){
@@ -97,7 +91,6 @@
 			location.href = url;
 		}
 	}
-	
 	
 </script>
 <style>
