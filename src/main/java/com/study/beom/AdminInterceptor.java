@@ -3,11 +3,15 @@ package com.study.beom;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
- 
+
 import com.study.utility.Utility;
- 
+
+import lombok.extern.slf4j.Slf4j;
+
 public class AdminInterceptor extends HandlerInterceptorAdapter {
 // URL 요청후 콘트롤러 작동전에 실행함.
   @Override     //prehandler 실행은 컨트롤러 요청전
@@ -32,7 +36,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
       ModelAndView modelAndView) throws Exception {
     System.out.println("postHandle executed.");
-    modelAndView.addObject("admin", "관리자 관련 기능을 출력합니다.");
+//    modelAndView.addObject("admin", "관리자 관련 기능을 출력합니다.");
   }
  
 // JSP등 View 페이지 출력전에 작동됨.

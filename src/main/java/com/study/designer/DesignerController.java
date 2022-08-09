@@ -251,7 +251,7 @@ public class DesignerController {
     if (cdto.getUniquecode1() != null || cdto.getUniquecode2() == null) {
       flag1 = dservice.dupdate(ddto);
       flag2 = dservice.lupdate1(cdto);
-    } else {
+    } else{
       flag1 = dservice.dupdate(ddto);
       flag2 = dservice.lupdate2(cdto);
     }
