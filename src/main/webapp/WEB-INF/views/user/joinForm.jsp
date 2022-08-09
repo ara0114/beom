@@ -155,7 +155,7 @@
         </table>
         <div> 
             <button type="submit" class="btn">등록</button>
-            <button class="btn" onclick="history.back()">뒤로가기</button>
+            <button type="button" class="btn" onclick="history.back()">뒤로가기</button>
         </div>
     </form>
 </body>

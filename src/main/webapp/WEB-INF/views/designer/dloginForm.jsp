@@ -18,6 +18,7 @@
             width: 60%;
             height: 46px;
             box-sizing: border-box;
+            border: solid gray 1px; 
             text-indent: 16px;
         }
         .login > ul li input::-webkit-input-placeholder {
