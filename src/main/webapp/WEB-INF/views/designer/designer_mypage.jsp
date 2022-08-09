@@ -73,8 +73,12 @@ textarea {
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
 					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
-				<button class="btn btn-outline-success" style="border: 1px solid;"
+				<button class="btn btn-outline-success" 
+					style="border: 1px solid; margin-bottom: 2px;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
+				<button class="btn btn-outline-success" 
+					style="border: 1px solid;"
+					onclick="dmypage_delete('${ddto.did}')">디자이너 탈퇴</button>
 			</div>
 		</div>
 

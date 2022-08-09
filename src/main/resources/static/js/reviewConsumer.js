@@ -72,7 +72,10 @@ modalModBtn.on("click", function(e) {
 		.then(result => {
 			
 			modal.modal("hide");
-         	window.location.reload();
+			setTimeout(function(){
+				location.reload();
+			},2000);
+         	//window.location.reload();
 
 		});
 
@@ -130,7 +133,10 @@ modalRegisterBtn.on("click", function(e) {
 			//alert(rfilename.files[0]);
 			
 			modal.modal("hide");
-			window.location.reload();
+		    setTimeout(function(){
+				location.reload('/review/list');
+			},2000);
+			//window.location.reload();
 
 		}); //end add
 

@@ -55,4 +55,14 @@
     <put-attribute name="body"
       value="/WEB-INF/views/designer/approve.jsp" />
   </definition>
+  <definition name="/dmypage_delete" extends="main">
+    <put-attribute name="title" value="디자이너탈퇴"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/withdrawl.jsp" />
+  </definition>
+  <definition name="/search" extends="main">
+    <put-attribute name="title" value="디자이너검색"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/designer/search.jsp" />
+  </definition>
 </tiles-definitions>

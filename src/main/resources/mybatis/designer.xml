@@ -232,6 +232,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
+
 	<update id="rconfig" parameterType="int">
 		update reserve
 		set rconfig =
@@ -239,6 +240,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where reserveno = #{reserveno}
 	</update>
 
+
+	<select id="getList" parameterType="com.study.designer.DesignerDTO"
+		resultType="com.study.designer.DesignerDTO">
+		SELECT hairshop, address1
+		FROM designer
+		<!-- 
+		<where>
+			<choose>
+				<when test="searchWrd != null">
+					address1 like concat('%',#{searchWrd},'%') or
+					hairshop like concat('%',#{searchWrd},'%')
+				</when>
+				<when test="searchWrd != ''">
+					address1 like concat('%',#{searchWrd},'%') or
+					hairshop like concat('%',#{searchWrd},'%')
+				</when>
+			</choose>
+		</where>
+		 -->
+	</select>
+	
 	<select id="total" parameterType="Map" resultType="int">
 		SELECT count(*)
 		FROM designer
@@ -284,6 +306,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		limit #{sno}, #{eno}
 	</select>
 
+
 	<update id="updateValidation"
 		parameterType="com.study.designer.DesignerDTO">
 		UPDATE designer
@@ -305,10 +328,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE certification
 		SET uniquecode2 = #{uniquecode2}
 		WHERE did = #{did}
-
 	</update>
 
-	
+	<delete id="delete" parameterType="String">
+		DELETE FROM designer
+		WHERE did = #{did}
+	</delete>
+
 	
 	<resultMap type="com.study.reserve.ReserveDTO"
 		id="r_detail">
@@ -337,5 +363,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join enroll e
 		on r.enrollno = e.enrollno
 		where reserveno = #{reserveno};
+	</select>
+	
+	<select id="searchList" parameterType="Map"
+		resultType="com.study.designer.DesignerDTO">
+		SELECT dfilename, did, dname, address1, hairshop, likecnt
+		FROM designer
+		WHERE
+			did IN (SELECT distinct did FROM enroll where enrolldate >= curdate()) 
+			<choose>
+				<when test="col=='address1'">
+					and address1 like concat('%',#{word},'%')
+				</when>
+				<when test="col=='hairshop'">
+					and hairshop like concat('%',#{word},'%')
+				</when>
+			</choose>		
+		order by likecnt desc
 	</select>
 </mapper>

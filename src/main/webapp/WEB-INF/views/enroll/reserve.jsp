@@ -55,7 +55,7 @@
 				style="width: 401px; height: 163px;"></textarea>
 		</div>
 		<button id="sub_mit" type="submit">예약신청</button>
-		<button id="goback" type="button" onclick="go_back()">뒤로가기</button>
+		<button id="goback" type="button" onclick="history.back()">뒤로가기</button>
 
 		<p>
 			예약 접수 정보는 등록된 <strong>@Email 주소 </strong>로 확인 할수있습니다.

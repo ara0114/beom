@@ -5,23 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
+    <link rel="stylesheet" href="/css/user.css" />
     <style>
-        .find {
-            width: 800px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .find > h2 {
-            padding: 0 0 20px;
-            font-size: 32px;
-            color: #111;
-            border-bottom: 2px solid #111;
-            text-align: center;
-            line-height: 1;
-        }
         .find > div input {
             width: 60%;
             height: 46px;
@@ -65,6 +50,8 @@
 	  				return;
 	  			}
 
+	  			alert("수초~수분이 소요됩니다. 다음 알림까지 기다려주세요");
+	  			
 		  		return fetch(`/dfindidmail?dname=\${dname}&demail=\${demail}`)
 					.then(response => response.text())
 		  			.then(text=> alert(text))//알림창 속도 느림

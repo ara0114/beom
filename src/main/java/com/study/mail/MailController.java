@@ -92,6 +92,62 @@ public class MailController {
     }
 
   }
+  
+  @GetMapping("/dfindidmail")
+  @ResponseBody
+  public String dsendIdByMail(@RequestParam Map<String, String> map) {
+
+    String did = dservice.findId(map);
+    String dname = map.get("dname");
+    String demail = map.get("demail");
+
+    if (did != null) {
+
+      SimpleMailMessage message = new SimpleMailMessage();
+
+      message.setTo(demail);// 받는사람 메일주소
+      message.setSubject("[Beom] " + dname + "님의 아이디 안내");// 메일제목
+      message.setText("해당 정보와 일치하는\n회원님의 아이디는 " + did + "입니다.");// 메일내용
+      message.setFrom(fromMail);
+      mailSender.send(message);
+
+      return "입력하신 이메일로 아이디가 전송되었습니다.";
+
+    } else {
+
+      return "해당 정보로 등록된 아이디는 존재하지 않습니다.";
+
+    }
+  }
+
+  @GetMapping("/dfindpwmail")
+  @ResponseBody
+  public String dsendPwByMail(@RequestParam Map<String, String> map) {
+
+    String dpw = dservice.findPw(map);
+    String did = map.get("did");
+    String demail = map.get("demail");
+
+    if (dpw != null) {
+
+      SimpleMailMessage message = new SimpleMailMessage();
+
+      message.setTo(demail);
+      message.setSubject("[Beom] " + did + "님의 비밀번호 안내");
+      message.setText("해당 정보와 일치하는\n회원님의 비밀번호는 " + dpw + "입니다.");
+      message.setFrom(fromMail);
+      mailSender.send(message);
+
+      return "입력하신 이메일로 비밀번호가 전송되었습니다.";
+
+    } else {
+
+      return "해당 정보로는 비밀번호를 찾을 수 없습니다. 다시 확인해주세요.";
+
+    }
+
+  }
+
 
   @Async
   @GetMapping("/rconfig/{reserveno}")

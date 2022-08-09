@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
@@ -64,8 +65,15 @@ public class HairmenuController {
   }
   
   @GetMapping("/hairmenu")
-  public String list(HttpSession session, Model model, HttpServletRequest request) {
-    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+  public String list(@RequestParam String did, HttpSession session, Model model, HttpServletRequest request) {
+    
+    String id = null;
+    if(session.getAttribute("did")!=null) {
+      id = (String)session.getAttribute("did");
+    }else if(session.getAttribute("did")==null && session.getAttribute("uid") != null) {
+      id = did;
+    }
+    DesignerDTO ddto = dservice.dmypage(id);
     model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
     
     Map map = new HashMap();

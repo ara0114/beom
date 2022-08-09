@@ -76,14 +76,27 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public List<EnrollDTO> reserveList(String id) {
-    // TODO Auto-generated method stub
     return mapper.reserveList(id);
   }
 
   @Override
-  public List<EnrollDTO> todayList(String id) {
-    // TODO Auto-generated method stub
-    return mapper.todayList(id);
+  public List<EnrollDTO> historyList(String id) {
+    return mapper.historyList(id);
   }
-  
+
+  @Override
+  public int delete(String uid) {
+    return mapper.delete(uid);
+  }
+
+  @Override
+  public List<EnrollDTO> configList(String id) {
+    return mapper.configList(id);
+  }
+
+  @Override
+  public int pwUpdate(Map map) {
+    return mapper.pwUpdate(map);
+  }
+
 }

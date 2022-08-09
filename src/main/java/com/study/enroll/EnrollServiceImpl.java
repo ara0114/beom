@@ -82,6 +82,12 @@ public class EnrollServiceImpl implements EnrollService {
     
     return mapper.checking(enrollno);
   }
+
+  @Override
+  public Set<EnrollDTO> asOfEnrollList(String did) {
+    // TODO Auto-generated method stub
+    return mapper.asOfEnrollList(did);
+  }
   
 
 }

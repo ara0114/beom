@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.study.enroll.EnrollDTO;
 import com.study.utility.Utility;
@@ -28,6 +30,82 @@ public class UserController {
   @Autowired
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
+  
+  @PostMapping("/pwUpdate")
+  public String updatePw(HttpSession session, String upw, String newpw, Model model, RedirectAttributes rttr) {
+    String id = (String) session.getAttribute("uid");
+    UserDTO dto = service.read(id);
+    
+    Map map = new HashMap();
+    map.put("uid", id);
+    map.put("newpw", newpw);
+    
+    if(!dto.getUpw().equals(upw)) {
+      model.addAttribute("msg","현재 비밀번호가 일치하지않습니다.");
+      return "/errorMsg";
+//      return "<script>"
+//          + "location.href('/errorMsg');"
+//          + "</script>";
+    } else {
+      int flag = service.pwUpdate(map);
+      if(flag == 1) {
+        session.invalidate();
+        model.addAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
+        return "/newpwMsg";
+//        rttr.addFlashAttribute("msg",true);
+//        return "redirect:/user/login";
+//        return "<script>"
+//            + " alert('비밀번호 수정이 완료되었습니다. 다시 로그인해주세요'); "
+//            + " location.replace('/user/login'); "
+//            + "</script>";
+      }else {
+        model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
+        return "/errorMsg";
+      }
+    }
+  }
+  
+  @GetMapping("/user/updatePwForm")
+  public String updatePwForm() {
+    return "/user/updatePw";
+  }
+  
+  @GetMapping("/user/delete")
+  public String delete(@RequestParam String uid, Model model) {
+    model.addAttribute("uid", uid);
+    return "/user/delete";
+  }
+  
+  @PostMapping("/user/delete")
+  public String delete(String upw, HttpSession session) {
+    
+    String id = (String)session.getAttribute("uid");
+    
+    UserDTO dto = service.read(id);
+    
+    if(!dto.getUpw().equals(upw)) {
+      return "/passwdError";
+    }else {
+      int flag = service.delete(id);
+      if(flag == 1) {
+        session.invalidate();
+        return "redirect:/";
+      }else {
+        return "error";
+      }
+    }
+  }
+  
+  @GetMapping("/admin/udelete/{uid}")
+  public String delete(@PathVariable String uid) {   
+    int flag = service.delete(uid);
+    
+    if(flag != 1) {
+      return "error";
+    }else {
+      return "redirect:/admin/user/list";
+    }
+  }
   
   @RequestMapping("/admin/user/list")
   public String list(HttpServletRequest request) {
@@ -113,7 +191,8 @@ public class UserController {
 
     String id = (String) session.getAttribute("uid");
     List<EnrollDTO> list = service.reserveList(id);
-    List<EnrollDTO> todayList = service.todayList(id);
+    List<EnrollDTO> configList = service.configList(id);
+    List<EnrollDTO> historyList = service.historyList(id);
     
     if (id == null) {
       return "redirect:/user/login";
@@ -122,7 +201,8 @@ public class UserController {
       UserDTO dto = service.mypage(id);
       model.addAttribute("dto", dto);
       model.addAttribute("reserveList", list);
-      model.addAttribute("todayList", todayList);
+      model.addAttribute("configList", configList);
+      model.addAttribute("historyList", historyList);
 
       return "/user/mypage";
     }
@@ -186,9 +266,9 @@ public class UserController {
 
   @GetMapping("/user/login")
   public String login(HttpServletRequest request) {
-
+    
     String chk_id = "";
-    String cookie_id_val = "";
+    String cookie_uid_val = "";
 
     Cookie[] cookies = request.getCookies();
     Cookie cookie = null;
@@ -199,15 +279,15 @@ public class UserController {
 
         if (cookie.getName().equals("chk_id")) {
           chk_id = cookie.getValue();
-        } else if (cookie.getName().equals("cookie_id_val")) {
-          cookie_id_val = cookie.getValue();
+        } else if (cookie.getName().equals("cookie_uid_val")) {
+          cookie_uid_val = cookie.getValue();
         }
       }
     }
 
     request.setAttribute("chk_id", chk_id);
-    request.setAttribute("cookie_id_val", cookie_id_val);
-
+    request.setAttribute("cookie_uid_val", cookie_uid_val);
+    
     return "/user/login";
   }
 
@@ -231,7 +311,7 @@ public class UserController {
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", map.get("uid"));
+        cookie = new Cookie("cookie_uid_val", map.get("uid"));
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
@@ -241,7 +321,7 @@ public class UserController {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 
-        cookie = new Cookie("cookie_id_val", "");
+        cookie = new Cookie("cookie_uid_val", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 

@@ -33,5 +33,12 @@ public interface UserMapper {
 
   List<EnrollDTO> reserveList(String id);
 
-  List<EnrollDTO> todayList(String id);
+  List<EnrollDTO> historyList(String id);
+  
+  int delete(String uid);
+  
+  List<EnrollDTO> configList(String id);
+  
+  int pwUpdate(Map map);
+  
 }

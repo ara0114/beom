@@ -5,23 +5,8 @@
 <head>
 <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/user.css" />
     <style>
-        .login {
-            width: 800px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .login > h2 {
-            padding: 0 0 20px;
-            font-size: 32px;
-            color: #111;
-            border-bottom: 2px solid #111;
-            text-align: center;
-            line-height: 1;
-        }
         ul, li {
             list-style: none;
         }
@@ -33,6 +18,7 @@
             width: 60%;
             height: 46px;
             box-sizing: border-box;
+            border: solid gray 1px; 
             text-indent: 16px;
         }
         .login > ul li input::-webkit-input-placeholder {
@@ -106,7 +92,7 @@
                 <input type="radio" name="selectuser" checked><label>디자이너</label>
             </div>
             <li><input type="text" id="did" name="did" placeholder="아이디" 
-            		   required="required" value="${cookie_id_val }"></li>
+            		   required="required" value="${cookie_did_val }"></li>
             <li><input type="password" id="dpw" name="dpw" placeholder="비밀번호" required="required"></li>
             <div>
             	<input type="checkbox" name="chk_id" id="chk_id" value="Y" checked="checked">
