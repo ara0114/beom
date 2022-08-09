@@ -370,7 +370,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT dfilename, did, dname, address1, hairshop, likecnt
 		FROM designer
 		WHERE
-			did IN (SELECT distinct did FROM enroll) 
+			did IN (SELECT distinct did FROM enroll where enrolldate >= curdate()) 
 			<choose>
 				<when test="col=='address1'">
 					and address1 like concat('%',#{word},'%')

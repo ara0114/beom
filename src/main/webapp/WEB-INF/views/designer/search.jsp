@@ -94,7 +94,7 @@
 					<td class="col-sm-8">${ddto.likecnt } </td>
 				</tr>
 				<tr>
-					<th class="col-sm-2">이름</th>
+					<th class="col-sm-2">디자이너</th>
 					<td class="col-sm-8"><a href="javascript:info('${ddto.did }')">${ddto.dname }</a></td>
 				</tr>
 				<tr>
@@ -109,9 +109,6 @@
 			</c:forEach>
 			</c:otherwise>
 			</c:choose>
-<%-- 		<div class="text-center">
-			${paging }
-		</div> --%>
 	</div>
 </body>
 </html>

@@ -82,7 +82,7 @@
                     	</c:when>
                     	<c:when test="${not empty sessionScope.uid }"> <!-- 고객 로그인했을때 -->
                     		<li><a href="${root }/user/mypage">Mypage</a></li>
-                    		<li><a href="${root }/search">Search Designer</a></li>
+                    		<li><a href="${root }/search">Reserve</a></li>
                     	</c:when>
                     	<c:when test="${not empty sessionScope.did }"> <!-- 고객 로그인했을때 -->
                     		<li><a href="/dmypage">Mypage</a></li>

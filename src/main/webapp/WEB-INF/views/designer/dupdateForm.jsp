@@ -116,7 +116,7 @@
 
 	}
 </script>
-<title>회원가입</title>
+<title>디자이너 정보수정</title>
 
 </head>
 <body>
