@@ -34,39 +34,42 @@
 		</div>
 	</section>
 
-	<form commandName="ddto" method="get" name="listForm" id="listForm"
-		action="/">
-		<div>
-			<input type="text" class="text" id="searchWrd" name="searchWrd"
-				placeholder="검색어를 입력해주세요" style="width: 300px;"
-				value="${ddto.searchWrd }" /> <a href="#"
-				onclick="fn_search();" class="btn-login"
-				style="width: 100px; height: 40px; margin-left: 5px;"><spring:message
-					code="btn.search" text="검색" /></a>
-		</div>
+	<div class="map_wrap">
+		<div id="map"
+			style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
-
-		<div>
-			<div class="map_wrap">
-				<div id="map"
-					style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-				<!-- 지도타입 컨트롤 div 입니다 -->
-				<div class="custom_typecontrol radius_border">
-					<span id="btnRoadmap" class="selected_btn"
-						onclick="setMapType('roadmap')">지도</span> <span id="btnSkyview"
-						class="btn" onclick="setMapType('skyview')">스카이뷰</span>
-				</div>
-				<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
-				<div class="custom_zoomcontrol radius_border">
-					<span onclick="zoomIn()"><img
-						src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png"
-						alt="확대"></span> <span onclick="zoomOut()"><img
-						src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png"
-						alt="축소"></span>
+		<div id="menu_wrap" class="bg_white">
+			<div class="option">
+				<div>
+					<form commandName="ddto" method="get" name="listForm" id="listForm"
+						action="/">
+						키워드 : <input type="text" class="text" id="searchWrd"
+							name="searchWrd" placeholder="검색어를 입력해주세요"
+							value="${ddto.searchWrd }" size="15">
+						<button type="submit">검색하기</button>
+					</form>
 				</div>
 			</div>
+			<hr>
+			<ul id="placesList"></ul>
+			<div id="pagination"></div>
 		</div>
-	</form>
+
+		<!-- 지도타입 컨트롤 div 입니다 -->
+		<div class="custom_typecontrol radius_border">
+			<span id="btnRoadmap" class="selected_btn"
+				onclick="setMapType('roadmap')">지도</span> <span id="btnSkyview"
+				class="btn" onclick="setMapType('skyview')">스카이뷰</span>
+		</div>
+		<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+		<div class="custom_zoomcontrol radius_border">
+			<span onclick="zoomIn()"><img
+				src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png"
+				alt="확대"></span> <span onclick="zoomOut()"><img
+				src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png"
+				alt="축소"></span>
+		</div>
+	</div>
 
 
 	<script type="text/javascript"
@@ -80,7 +83,7 @@
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
+
 		function setMapType(maptype) {
 			var roadmapControl = document.getElementById('btnRoadmap');
 			var skyviewControl = document.getElementById('btnSkyview');
@@ -93,7 +96,7 @@
 				skyviewControl.className = 'selected_btn';
 				roadmapControl.className = 'btn';
 			}
-			
+
 		}
 		function zoomIn() {
 			map.setLevel(map.getLevel() - 1);
@@ -103,66 +106,76 @@
 		function zoomOut() {
 			map.setLevel(map.getLevel() + 1);
 		}
-		
+
 		//주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
-		 
+
 		var addressList = new Array();
 		var hairshopList = new Array();
-		 
-		var ShopList =JSON.parse('${ShopListJson}');
-		
-		for(var k in ShopList){    
-		    var $obj = ShopList[k];
-		    var aa =  $obj.address1;
-		    var bb  =  $obj.hairshop;
-		    addressList.push(aa);
-		    hairshopList.push(bb);
-		   
+
+		var ShopList = JSON.parse('${ShopListJson}');
+
+		for ( var k in ShopList) {
+			var $obj = ShopList[k];
+			var aa = $obj.address1;
+			var bb = $obj.hairshop;
+			addressList.push(aa);
+			hairshopList.push(bb);
+
 		}
 
 		//주소 리스트 
-		addressList.forEach(function(addr, index){
-		    // 주소로 좌표를 검색합니다
-		    geocoder.addressSearch(addr, function(result, status) {
-		        // 정상적으로 검색이 완료됐으면 
-		         if (status === kakao.maps.services.Status.OK) {
-		    
-		            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		            
-		            // 결과값으로 받은 위치를 마커로 표시합니다
-		            var marker = new kakao.maps.Marker({
-		                map: map,
-		                position: coords
-		            });
-		            
-		            var content = '<div class="overlay_info">';
-		            content += '    <a><strong>' + hairshopList[index] +'</strong></a>';
-		            content += '    <div class="desc">';
-		            content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
-		            content += '        <span class="address">'+ addressList[index]  +'</span>';
-		            content += '    </div>';
-		            content += '</div>';
-		    
-		            // 인포윈도우로 장소에 대한 설명을 표시합니다
-		            var infowindow = new kakao.maps.InfoWindow({
-		                //  content: cmpnmList[index], 
-		                content: content,
-		                   disableAutoPan: true
-		                   
-		            });
-		            infowindow.open(map, marker);
-		    
-		            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		            if(index == 0){
-		                map.setCenter(coords);    
-		            }
-		            
-		        } 
-		         
-		    });    
-		    
-		}); 
+		addressList
+				.forEach(function(addr, index) {
+					// 주소로 좌표를 검색합니다
+					geocoder
+							.addressSearch(
+									addr,
+									function(result, status) {
+										// 정상적으로 검색이 완료됐으면 
+										if (status === kakao.maps.services.Status.OK) {
+
+											var coords = new kakao.maps.LatLng(
+													result[0].y, result[0].x);
+
+											// 결과값으로 받은 위치를 마커로 표시합니다
+											var marker = new kakao.maps.Marker(
+													{
+														map : map,
+														position : coords
+													});
+
+											var content = '<div class="overlay_info">';
+											content += '    <a><strong>'
+													+ hairshopList[index]
+													+ '</strong></a>';
+											content += '    <div class="desc">';
+											content += '        <span class="address">'
+													+ addressList[index]
+													+ '</span>';
+											content += '    </div>';
+											content += '</div>';
+
+											// 인포윈도우로 장소에 대한 설명을 표시합니다
+											var infowindow = new kakao.maps.InfoWindow(
+													{
+														//  content: cmpnmList[index], 
+														content : content,
+														disableAutoPan : true
+
+													});
+											infowindow.open(map, marker);
+
+											// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+											if (index == 0) {
+												map.setCenter(coords);
+											}
+
+										}
+
+									});
+
+				});
 	</script>
 </body>
 </html>
