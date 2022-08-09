@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="starAvg" resultType="double">
-		select avg(star) from review
+		select avg(star) from review where did=#{did}
 	</select>
 
 	<delete id="delete" parameterType="int">
@@ -44,8 +44,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="list" parameterType="Map"
 		resultType="com.study.review.ReviewDTO">
-		select rno, rtitle, rcontent, rdate, uid, star, rfilename, did
+		select *
 		from review
+		where did=#{did}
 		<where>
 			<choose>
 				<when test="col=='rtitle'">
@@ -68,7 +69,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		limit #{sno} , #{cnt}
 	</select>
 	<select id="total" resultType="int" parameterType="Map">
-		select count(*) from review
+		select count(*) 
+		from review
+		where did=#{did}
 		<where>
 			<choose>
 				<when test="col=='rtitle'">

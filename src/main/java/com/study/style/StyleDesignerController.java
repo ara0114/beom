@@ -56,7 +56,7 @@ public class StyleDesignerController {
 
     // String fileName = file.getOriginalFilename();
     String fileType = file.getContentType();
-    System.out.println("fileType : " + fileType );
+    //System.out.println("fileType : " + fileType );
     if(fileType.equals("application/octet-stream")){
       model.addAttribute("msg", "파일이 선택되지 않았습니다.");
       return "/errorMsg";

@@ -45,7 +45,7 @@ public class ReviewController {
     log.info("oldfile: " + oldfile);
     
     String upDir = UploadReview.getUploadDir();
-//    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+//  String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
     
       if (oldfile != null && !oldfile.equals("no.jpg")) { // 원본파일 삭제
 //      Utility.deleteFile(basePath, oldfile);
@@ -97,7 +97,7 @@ public class ReviewController {
     log.info("title: " + dto);
     //System.out.println("create: " + vo);
     
-//    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
+//  String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\review";
     String upDir = UploadReview.getUploadDir();
     if (dto.getAddfile() != null) {
       String fname = Utility.saveFileSpring(dto.getAddfile(), upDir);
@@ -128,9 +128,11 @@ public class ReviewController {
   }
   
   
-  @RequestMapping("/review/list")
-  private String list (HttpSession session, HttpServletRequest request, Model model) {  //리스트 페이지
-    DesignerDTO ddto = dservice.dmypage((String)session.getAttribute("did"));
+  @RequestMapping("/review/{did}/list")
+  private String list (HttpSession session, HttpServletRequest request, Model model, @PathVariable String did) {  //리스트 페이지
+    String id = did;
+    
+    DesignerDTO ddto = dservice.dmypage(id);
     model.addAttribute("ddto", ddto);
      //log.info("star: "+ service.starAvg());
     
@@ -158,6 +160,7 @@ public class ReviewController {
     map.put("word", word);
     map.put("sno", sno);
     map.put("cnt", recordPerPage);
+    map.put("did", id);
  
     int total = service.total(map);
  
@@ -171,12 +174,13 @@ public class ReviewController {
     request.setAttribute("col", col);
     request.setAttribute("word", word);
     request.setAttribute("paging", paging);
+    request.setAttribute("did", id);
     
     int cnt = service.starAvg0();
     if(cnt == 0) {
       request.setAttribute("starAvg", 0);
     } else {
-      request.setAttribute("starAvg", String.format("%.2f",service.starAvg()));  //평균 별점 소수점 2번째자리까지
+      request.setAttribute("starAvg", String.format("%.2f",service.starAvg(id)));  //평균 별점 소수점 2번째자리까지
     }
     
     

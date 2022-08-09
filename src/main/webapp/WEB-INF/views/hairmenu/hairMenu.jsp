@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://kit.fontawesome.com/320c5e3232.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +21,12 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
-function dmypage_update(did) {
-    let url = "/dmypage_update";
-    url += "?did=";
-    url += did;
-    location.href = url;
-}
+	function dmypage_update(did) {
+		let url = "/dmypage_update";
+	    url += "?did=";
+	    url += did;
+	    location.href = url;
+	}
 
 	function dmypage_photo_update() {
 		let url = "/designer/dupdateFileForm/";
@@ -74,40 +75,20 @@ function dmypage_update(did) {
 		    });
 		});
 	
-	function hairmenuEnroll(){  //헤어메뉴 등록하는 페이지로 이동
-		let url = "/hairmenuEnroll";
-		location.href = url;
-	}
-	function hairmenu(){  //헤어메뉴 등록하는 페이지로 이동
-		let url = "/hairmenu";
+	function hairmenuEnroll(){  //헤어메뉴버튼 클릭시
+		let url = "/hairmenuEnroll" ;
 		location.href = url;
 	}
 	
-	function cut(){
-		let url = "/hairmenu/cateno/"+ 1;
+/* 	function cut(did){
+		let url = "/hairmenu/" +did +"/cateno/"+ 1;
+		
 		location.href = url;
-	}
-	function perm(){
-		let url = "/hairmenu/cateno/" + 2;
-		location.href = url;
-	}
-	function color(){
-		let url = "/hairmenu/cateno/" + 3;
-		location.href = url;
-	}
-	function clinic(){
-		let url = "/hairmenu/cateno/" + 4;
-		location.href = url;
-	}
-	function etc(){
-		let url = "/hairmenu/cateno/" + 5;
-		location.href = url;
-	}
+	}  */
 	
 	function del(menuno){
 		if(confirm("정말 삭제하시겠습니까?")==true){
 			
-		//console.log(menuno);
 		let url = "/hairmenu/delete/" + menuno ;
 		location.href = url;
 		
@@ -138,6 +119,9 @@ a:link {
 
 a:hover, a:active {
 	background-color: #87CEFA;
+}
+nav a {
+	color:black;
 }
 </style>
 <title>My page</title>
@@ -176,32 +160,33 @@ a:hover, a:active {
 			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center;
 			 font-size: 20px; font-weight: bold; margin-left : 6%;">
 				<ul id="nav2" class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/hairmenu/${ddto.did }">메뉴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
-					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a></li>
+					<li class="nav-item"><a class="nav-link" href="/review/${ddto.did}/list">리뷰</a></li>
 				</ul>
 			</div>
 
 
 			<div style="text-align: center; font-size: 15px; font-weight: bold">
 				<div>
-					<nav class="nav nav-pills nav-justified" style="margin-left: 33%; margin-right: 20%; font-size:17px; width:80%">
-						<a class="nav-link" onclick="hairmenu()">전체메뉴</a>
-						<a class="nav-link" onclick="cut()">커트&드라이</a>
-						<a class="nav-link" onclick="perm()">펌</a> <a class="nav-link" onclick="color()">염색</a>
-						<a class="nav-link" onclick="clinic()">클리닉</a> <a class="nav-link" onclick="etc()">기타</a>
+					<nav class="nav nav-pills nav-justified" 
+					style="margin-left: 33%; margin-right: 20%; font-size:17px; width:80%;">
+						<a class="nav-link" href="/hairmenu/${ddto.did}">전체메뉴</a>
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/1">커트&드라이</a>
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/2">펌</a> 
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/3">염색</a>
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/4">클리닉</a> 
+						<a class="nav-link" href="/hairmenu/${ddto.did}/cateno/5">기타</a>
 					</nav>
 				</div>
 			</div> <!-- 스타일 div -->
 
-			
 		<section class="vh-100">
 			<div class="container py-5 h-150" style="margin-left: 5%">
 				<div class="row d-flex justify-content-center align-items-center">
 					<div class="col col-lg-9 col-xl-12">
 						<div class="card rounded-3">
 							<div class="card-body p-4">
-
 
 								<table class="table mb-4">
 									<thead>
@@ -223,14 +208,14 @@ a:hover, a:active {
 										<c:otherwise>
 											<c:forEach var="dto" items="${list}">
 												<tr>
-													<td>${dto.menu }</td>
-													<td>${dto.price }</td>
-													<td>${dto.hgender }</td>
-													<td>${dto.did }</td>
-													<c:if test="${not empty sessionScope.did}">
-													<td><button class="btn btn-outline-success"
-													onclick="del(${dto.menuno})">삭제</button></td>
-													</c:if>
+														<td>${dto.menu }</td>
+														<td>${dto.price }</td>
+														<td>${dto.hgender }</td>
+														<td>${dto.did }</td>
+														<c:if test="${not empty sessionScope.did}">
+															<td><button class="btn btn-outline-success"
+															onclick="del(${dto.menuno})">삭제</button></td>
+														</c:if>
 												</tr>
 											</c:forEach>
 										</c:otherwise>
@@ -253,5 +238,6 @@ a:hover, a:active {
 	</div> <!-- 오른쪽 구역 div -->
 	<div style="width: 20%; float: right;"></div>
 	</div> <!-- 맨 윗줄 div -->
+<script src="/js/heart.js"></script>
 </body>
 </html>

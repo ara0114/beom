@@ -167,7 +167,7 @@ public class DesignerController {
   @GetMapping("/dmypage")
   public String designer_mypage(HttpSession session, Model model) {
     if (session.getAttribute("did") == null) {
-      model.addAttribute("msg", "디자이너 권한이 없습니다. 디자이너로 로그인하세요");
+      model.addAttribute("msg", "디자이너 권한이 없습니다. 디자이너로 로그인하세요.");
 
       return "/errorMsg";
     }
@@ -280,6 +280,7 @@ public class DesignerController {
   }
 
   @PostMapping("/designer/dupdateFile")
+  @ResponseBody
   public String updateFile(MultipartFile dfilenameMF, String oldfile, HttpSession session) throws IOException {
 //    String basePath = UploadDesignerFile.getUploadDir();
 //    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\designer";
@@ -298,7 +299,11 @@ public class DesignerController {
     int cnt = dservice.dupdateFile(map);
 
     if (cnt == 1) {
-      return "redirect:/dmypage";
+      return "<script>"
+          + " setTimeout(function(){\r\n"
+          + "    location.replace('/dmypage');\r\n"
+          + "  },2000);"
+          +"</script>";
     } else {
       return "./error";
     }

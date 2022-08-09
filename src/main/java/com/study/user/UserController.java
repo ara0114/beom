@@ -50,10 +50,10 @@ public class UserController {
       int flag = service.pwUpdate(map);
       if(flag == 1) {
         session.invalidate();
+
         model.addAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
         return "/newpwMsg";
-//        rttr.addFlashAttribute("msg",true);
-//        return "redirect:/user/login";
+
 //        return "<script>"
 //            + " alert('비밀번호 수정이 완료되었습니다. 다시 로그인해주세요'); "
 //            + " location.replace('/user/login'); "
