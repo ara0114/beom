@@ -114,7 +114,6 @@ public class EnrollController {
     map.put("enrollno", enrollno);
     map.put("uid", (String)session.getAttribute("uid"));
     map.put("message", message);
-    //session.setAttribute("uid", uid); //session 으로 유저아이디가 넘어온다면 지금코드는 따로할필요없다
     //  insert 하고
     int cnt = service.userInsert(map);
     if (cnt == 1) {

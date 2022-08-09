@@ -89,7 +89,7 @@ $("#reviewCreate").on("click", function(e) {
 	modalInputRfilename.hide();  
 	
 	modalInputUid.val(uid);
-	modalInputDid.val("");
+	modalInputDid.val(did);
 	modalInputRtitle.val("");
 	modalInputRcontent.val("");
 	modal.find("button[id !='modalCloseBtn']").hide();

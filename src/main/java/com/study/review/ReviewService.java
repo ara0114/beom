@@ -11,7 +11,7 @@ public interface ReviewService {
   int create(ReviewDTO vo);
   int update(ReviewDTO vo);
   int delete(int rno);
-  double starAvg();
+  double starAvg(String id);
   int starAvg0();
 
 

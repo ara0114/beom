@@ -50,9 +50,7 @@
     </style>
     <script>
 		function info(did){
-			let url = "/hairmenu";
-			url += "?did=";
-			url += did;
+			let url = "/hairmenu/"+did;
 		    location.href = url;
 		}    
     </script>
@@ -81,7 +79,7 @@
 		</form>
 		<c:choose>
 			<c:when test="${empty slist }">
-				<tr><td colspan="4">등록된 디자이너가 없습니다.</td></tr>
+				<tr><td colspan="4">예약 가능한 시간을 등록한 디자이너가 없습니다.</td></tr>
 			</c:when>
 			<c:otherwise>
 		<c:forEach var="ddto" items="${slist }">

@@ -21,11 +21,13 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
-	function dmypage_update() {
+	function dmypage_update(did) {
 		let url = "/dmypage_update";
-		location.href = url;
+	    url += "?did=";
+	    url += did;
+	    location.href = url;
 	}
-
+	
 	function dmypage_photo_update() {
 		let url = "/designer/dupdateFileForm/";
 		location.href = url;
@@ -37,6 +39,11 @@
 	}
 	function delete_enroll(enrollno) {
 		let url = "/designer/deleteEnroll/" + enrollno;
+		location.href = url;
+	}
+	function reserve(){
+		let url = "/reserve";
+		url += "?did=${ddto.did}";
 		location.href = url;
 	}
 </script>
@@ -68,7 +75,7 @@ td button {
 				<button class="btn btn-outline-success"
 					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
 				<c:if test="${not empty sessionScope.uid}">
-					<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
                 </c:if>
 			</div>
@@ -93,11 +100,9 @@ td button {
 			<!-- 윗 목록 메뉴/스타일/리뷰 -->
 			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold">
 				<ul id="nav2" class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="/hairmenu">메뉴</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
-					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active" href="/hairmenu/${ddto.did }">메뉴</a></li>
+					<li class="nav-item"><a class="nav-link" href="/style/designer/${ddto.did }">스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="/review/${ddto.did}/list">리뷰</a></li>
 				</ul>
 			</div>
 			<!-- 윗 목록 END -->
@@ -156,7 +161,7 @@ td button {
 				<div class="contents">
 					<c:forEach var='dto' items="${list }">
 						<div class="row">
-							<c:if test="${dto.rfilename != 'no.jpg'  }">
+							<c:if test="${dto.rfilename != 'no.jpg'}">
 								<div class="review-img">
 									<a><img class='chat' data-rno="${dto.rno }"
 										src="/hairReview/storage/${dto.rfilename}"
@@ -224,8 +229,7 @@ td button {
 								<label>아이디</label> 
 								<input class="form-control" name='uid' id="uid" disabled> 
 								<label>담당디자이너</label> 
-									<input class="form-control" name='did' id="did"><br>
-								<!-- 나중에 disabled -->
+									<input class="form-control" name='did' id="did" disabled><br>
 								<div id="rating">
 									<label>평점</label>&nbsp&nbsp <select name="star">
 										<option value="5">아주 좋아요 &nbsp ★★★★★</option>
@@ -247,8 +251,6 @@ td button {
 								<label>내용</label>
 								<textarea cols="10" rows="10" class="form-control"
 									name='rcontent' id="rcontent" ></textarea>
-								<!--  <label class="rdate" id="rdate">작성날짜</label>
-						<input class="form-control" name='rdate' id="rdate" disabled>-->
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -274,6 +276,7 @@ td button {
 
 	<!-- 맨처음 div -->
 <script>let uid = '${sessionScope.uid}'</script>
+<script>let did = '${ddto.did}'</script>
 <script src="/js/reviewProducer.js"></script>
 <script src="/js/reviewConsumer.js"></script>
 </body>

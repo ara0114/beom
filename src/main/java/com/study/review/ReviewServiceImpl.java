@@ -49,9 +49,9 @@ public class ReviewServiceImpl implements ReviewService {
   }
 
   @Override
-  public double starAvg() {
+  public double starAvg(String id) {
     // TODO Auto-generated method stub
-    return mapper.starAvg();
+    return mapper.starAvg(id);
   }
 
   @Override

@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.study.designer.DesignerDTO;
+
 @Service("com.study.hairmenu.HairmenuServiceImpl")
 public class HairmenuServiceImpl implements HairmenuService {
   @Autowired
@@ -25,9 +27,9 @@ public class HairmenuServiceImpl implements HairmenuService {
 
 
   @Override
-  public List<HairmenuDTO> itemlist(int cateno) {
+  public List<HairmenuDTO> itemlist(Map map) {
     // TODO Auto-generated method stub
-    return mapper.itemlist(cateno);
+    return mapper.itemlist(map);
   }
 
   @Override
@@ -36,8 +38,19 @@ public class HairmenuServiceImpl implements HairmenuService {
     return mapper.delete(menuno);
   }
 
+  @Override
+  public List<HairmenuDTO> hlist(String id) {
+    // TODO Auto-generated method stub
+    return mapper.hlist(id);
+  }
+
+  @Override
+  public int overHairmenu(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.overHairmenu(map);
+  }
+
+
 
   
-
-
 }
