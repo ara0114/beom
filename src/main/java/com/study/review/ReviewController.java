@@ -176,7 +176,7 @@ public class ReviewController {
     request.setAttribute("paging", paging);
     request.setAttribute("did", id);
     
-    int cnt = service.starAvg0();
+    int cnt = service.starAvg0(id);
     if(cnt == 0) {
       request.setAttribute("starAvg", 0);
     } else {
