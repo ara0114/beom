@@ -38,7 +38,7 @@ button {
 	float: right;
 }
 </style>
-<title>My page</title>
+<title>Style</title>
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
