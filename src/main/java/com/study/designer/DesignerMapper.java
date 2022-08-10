@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.study.hairmenu.HairmenuDTO;
+import com.study.heart.HeartDTO;
 import com.study.reserve.ReserveDTO;
 
 public interface DesignerMapper {
@@ -69,4 +70,6 @@ public interface DesignerMapper {
   int delete(String did);
   
   List<DesignerDTO> getList(DesignerDTO ddto);
+  
+  
 }

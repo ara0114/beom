@@ -11,12 +11,6 @@ public class HeartServiceImpl implements HeartService {
   @Autowired
   private HeartMapper mapper;
 
-  @Override
-  public DesignerDTO plusheart(String did) {
-    // TODO Auto-generated method stub
-    return mapper.plusheart(did);
-  }
-
 
 
 }

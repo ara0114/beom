@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.study.hairmenu.HairmenuDTO;
-
+import com.study.heart.HeartDTO;
 import com.study.reserve.ReserveDTO;
 
 public interface DesignerService {
@@ -67,7 +67,7 @@ public interface DesignerService {
   
   ReserveDTO reserve_detail(int reserveno);
 
-
   List<DesignerDTO> getList(DesignerDTO ddto);
+
 
 }
