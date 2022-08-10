@@ -87,7 +87,7 @@
                     	<c:when test="${not empty sessionScope.did }"> <!-- 디자이너 로그인했을때 -->
                     		<li><a href="/dmypage">Mypage</a></li>
       						<li><a href="/hairmenu/${sessionScope.did }">Hairmenu</a></li>
-                    		<li><a href="#">Style</a></li>
+                    		<li><a href="/style/designer/${sessionScope.did }">Style</a></li>
                     		<li><a href="/review/${sessionScope.did}/list">Review</a></li>
                     	</c:when>
                     </c:choose>             

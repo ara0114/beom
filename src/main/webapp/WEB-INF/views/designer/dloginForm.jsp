@@ -88,8 +88,8 @@
         <h2>디자이너 로그인</h2>
         <ul>
             <div>
-            	<input type="radio" name="selectuser" onclick="javascript:moveForm()" id="id"><label for ="id">고객</label>
-                <input type="radio" name="selectuser" id="id2" checked><label for ="id2">디자이너</label>
+            	<input type="radio" name="selectuser" id="id" onclick="javascript:moveForm()"><label for="id">고객</label>
+                <input type="radio" name="selectuser" id="id2" checked><label for="id2">디자이너</label>
             </div>
             <li><input type="text" id="did" name="did" placeholder="아이디" 
             		   required="required" value="${cookie_did_val }"></li>

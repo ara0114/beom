@@ -31,15 +31,20 @@ public class StyleDesignerController {
   @Qualifier("com.study.designer.DesignerServiceImpl")
   private DesignerService dservice;
 
-  @GetMapping("/style/designer")
-  public String style(Model model, HttpSession session) {
+  @GetMapping("/style/designer/{did}")
+  public String style(Model model, HttpSession session, @PathVariable String did ) {
     String uid = "";
     if(session.getAttribute("uid") != null) {
       uid = (String)session.getAttribute("uid");
     }
-    String did = "test";//메인페이지에서 받아와야함
+    String id = null;
+    if(session.getAttribute("did") != null) {
+      id = (String)session.getAttribute("did"); 
+    }else{
+      id = did;
+    }
     
-    DesignerDTO ddto = dservice.dmypage(did);
+    DesignerDTO ddto = dservice.dmypage(id);
     model.addAttribute("ddto", ddto);
     model.addAttribute("uid", uid);
     
@@ -73,7 +78,7 @@ public class StyleDesignerController {
 
     int cnt = service.create(dto);
     if(cnt == 1) {
-      return "redirect:/style/designer";
+      return "redirect:/style/designer/dto.did";
     }else {
       return "error";
     }
