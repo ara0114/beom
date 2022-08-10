@@ -132,8 +132,22 @@ nav a {
 			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
-				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+			
+			<c:choose>
+				<c:when test="${not empty sessionScope.uid }">
+					<button class="btn btn-outline-success" id="heart" 
+						style="width: 100%; border: 1px solid;">🤍좋아요(${ddto.likecnt })</button>
+					<button class="btn btn-outline-success" id="heart_fill" 
+						style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt})</button>
+				</c:when>
+				
+				<c:otherwise>
+					<button class="btn btn-outline-success" id="heart"
+						style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
+				</c:otherwise>
+
+			</c:choose>
+
 				<c:if test="${not empty sessionScope.uid}">
 					<button type=button onclick="javascript:reserve('${ddto.did}')" class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
@@ -142,6 +156,7 @@ nav a {
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname } 헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
+			<div style="font-weight:bold">연락처 : ${ddto.dphone }</div>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
@@ -239,5 +254,7 @@ nav a {
 	<div style="width: 20%; float: right;"></div>
 	</div> <!-- 맨 윗줄 div -->
 <script src="/js/heart.js"></script>
+<script>let uid = '${sessionScope.uid}'</script>
+<script>let did = '${ddto.did}'</script>
 </body>
 </html>

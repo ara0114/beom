@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.hairmenu.HairmenuDTO;
+import com.study.heart.HeartDTO;
 import com.study.reserve.ReserveDTO;
 
 @Service("com.study.designer.DesignerServiceImpl")

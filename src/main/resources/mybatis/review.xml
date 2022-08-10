@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.study.review.ReviewMapper">
 
 	<select id="starAvg0" resultType="int">
-		select count(*) from review where did = #{did}
+		select count(*) from review where did=#{did}
 	</select>
 
 	<select id="starAvg" resultType="double">

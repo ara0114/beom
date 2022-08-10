@@ -83,6 +83,7 @@ td button {
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
+			<div style="font-weight:bold">연락처 : ${ddto.dphone }</div>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
