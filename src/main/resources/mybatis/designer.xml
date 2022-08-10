@@ -243,6 +243,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="total" parameterType="Map" resultType="int">
 		SELECT count(*)
 		FROM designer
+	</select>
+	
+	<select id="getList" parameterType="String"
+		resultType="com.study.designer.DesignerDTO">
+		SELECT hairshop, address1, dname, did
+		FROM designer
+
 		<where>
 			<choose>
 				<when test="col=='dname'">

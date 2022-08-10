@@ -67,7 +67,7 @@ public interface DesignerService {
   
   ReserveDTO reserve_detail(int reserveno);
 
-  List<DesignerDTO> getList(DesignerDTO ddto);
+  List<DesignerDTO> getList(String searchWrd);
 
   List<DesignerDTO> searchList(Map map);
 
