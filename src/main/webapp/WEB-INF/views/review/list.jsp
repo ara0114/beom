@@ -69,7 +69,7 @@ td button {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 17%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
@@ -108,7 +108,7 @@ td button {
 			<!-- 윗 목록 END -->
 
 
-			<div class="container" style="width:100%">
+			<div class="container">
 				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>
