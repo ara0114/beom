@@ -418,13 +418,18 @@ public class DesignerController {
   }
 
   @GetMapping("/admin/ddelete/{did}")
-  public String delete(@PathVariable String did) {
-    int flag = dservice.delete(did);
-
-    if (flag != 1) {
-      return "error";
-    } else {
-      return "redirect:/admin/designer/list";
+  public String deletebyad(@PathVariable String did, Model model) {
+    try {
+      int flag = dservice.delete(did);
+      if(flag == 1) {
+        return "redirect:/admin/designer/list";
+      }else {
+        model.addAttribute("msg","고객 예약내역이 있어 삭제가 불가능합니다.");
+        return "/errorMsg";
+      }
+    } catch(Exception e) {
+      model.addAttribute("msg","탈퇴가 불가능합니다. 등록한 예약이나 신청된 내역이 있을 수 있습니다.");
+      return "/errorMsg";
     }
   }
 
