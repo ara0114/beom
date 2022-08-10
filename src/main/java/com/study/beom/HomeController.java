@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
-import com.study.notice.NoticeDTO;
 import com.study.utility.Utility;
 
 import net.sf.json.JSONArray;
@@ -31,10 +30,14 @@ public class HomeController {
   @GetMapping("/")
   public String home(HttpServletRequest request, ModelMap model, DesignerDTO ddto ) throws Exception{
     
+    
     try {
       String searchWrd = request.getParameter("searchWrd");
+      
       List<DesignerDTO> test = service.getList(searchWrd);
       model.addAttribute("ShopListJson", JSONArray.fromObject(test));
+      model.addAttribute("test", test);
+      
       
     }catch(Exception e) {
       System.out.println(e.toString());

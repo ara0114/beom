@@ -210,7 +210,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getList" parameterType="String"
 		resultType="com.study.designer.DesignerDTO">
-		SELECT hairshop, address1
+		SELECT hairshop, address1, dname, did
 		FROM designer
 		 
 		<where>
