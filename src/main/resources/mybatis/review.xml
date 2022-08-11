@@ -47,24 +47,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from review
 		where did=#{did}
-		<where>
 			<choose>
 				<when test="col=='rtitle'">
-					rtitle like CONCAT('%',#{word},'%')
+					and rtitle like CONCAT('%',#{word},'%')
 				</when>
 				<when test="col=='rcontent'">
-					rcontent like CONCAT('%',#{word},'%')
+					and rcontent like CONCAT('%',#{word},'%')
 				</when>
 				<when test="col=='uid'">
-					uid like CONCAT('%',#{word},'%')
+					and uid like CONCAT('%',#{word},'%')
 				</when>
 				<when test="col=='title_content'">
-					rtitle like CONCAT('%',#{word},'%')
+					and
+					(rtitle like CONCAT('%',#{word},'%')
 					or
-					rcontent like CONCAT('%',#{word},'%')
+					rcontent like CONCAT('%',#{word},'%'))
 				</when>
 			</choose>
-		</where>
 		order by rno desc
 		limit #{sno} , #{cnt}
 	</select>
@@ -72,23 +71,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) 
 		from review
 		where did=#{did}
-		<where>
 			<choose>
 				<when test="col=='rtitle'">
-					rtitle like CONCAT('%',#{word},'%')
+					and rtitle like CONCAT('%',#{word},'%')
 				</when>
 				<when test="col=='rcontent'">
-					rcontent like CONCAT('%',#{word},'%')
+					and rcontent like CONCAT('%',#{word},'%')
 				</when>
 				<when test="col=='uid'">
-					uid like CONCAT('%',#{word},'%')
+					and uid like CONCAT('%',#{word},'%')
 				</when>
 				<when test="col=='title_content'">
-					rtitle like CONCAT('%',#{word},'%')
+					and
+					(rtitle like CONCAT('%',#{word},'%')
 					or
-					rcontent like CONCAT('%',#{word},'%')
+					rcontent like CONCAT('%',#{word},'%'))
 				</when>
 			</choose>
-		</where>
 	</select>
 </mapper>
