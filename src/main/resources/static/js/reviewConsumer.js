@@ -19,6 +19,7 @@ let modalInputRfilename = modal.find("img[name='rfilename']");  //모달 이미�
 
 let addFile = modal.find("input[name='addfile']");  // 모달 파일선택 버튼
 let labelImg = $(".modal-img");   // 모달 '이미지'글자 부분
+let labelDid = $("#lableDid");   // 모달 '이미지'글자 부분
 
 
 let modalModBtn = $("#modalModBtn");
@@ -93,6 +94,8 @@ $("#reviewCreate").on("click", function(e) {
 	modalInputRtitle.val("");
 	modalInputRcontent.val("");
 	modal.find("button[id !='modalCloseBtn']").hide();
+	modalInputDid.hide();// 디자이너부분 숨기기
+	labelDid.hide();
 
 	modalRegisterBtn.show();
 
@@ -164,6 +167,8 @@ $(".chat").on("click", function (e) {
 			modalInputRfilename.val(review.rfilename);
 			modal.data("rno", review.rno);
 			modal.find("button[id !='modalCloseBtn']").hide();
+			modalInputDid.hide();  // 디자이너부분 숨기기
+			labelDid.hide();
 			
 			if (review.rfilename == "no.jpg" && uid == review.uid ) {   // 올린 이미지 없이 조회할때 이미지구역 숨기기
 				
@@ -181,6 +186,14 @@ $(".chat").on("click", function (e) {
 				
 				modalModBtn.show();
 				modalRemoveBtn.show();
+			}
+			
+			if (uid != review.uid) {    // 리뷰쓴 id랑 세션아이디랑 다를때 
+				
+				addFile.hide();
+				$("#rtitle").attr('disabled',true);
+				modalInputRcontent.attr('disabled', true);
+				modalInputStar.attr('disabled', true);
 			}
 			
 			//modalModBtn.show();
