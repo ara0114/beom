@@ -19,5 +19,7 @@ public interface HeartMapper {
   void heartMinus(Map map);
   
   void checkMinus(Map map);
+
+  int getheartchk(Map map);
   
 }

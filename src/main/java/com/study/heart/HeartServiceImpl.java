@@ -56,6 +56,12 @@ public class HeartServiceImpl implements HeartService {
     mapper.checkMinus(map);
   }
 
+  @Override
+  public int getheartchk(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.getheartchk(map);
+  }
+
 
 
 }

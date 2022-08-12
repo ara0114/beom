@@ -20,4 +20,6 @@ public interface HeartService {
 
   void checkMinus(Map map);
 
+  int getheartchk(Map map);
+
 }

@@ -50,6 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from designer
 		where did=#{did}
 	</select>
+	
+	<select id="getheartchk" parameterType="Map" resultType="int">
+		select heart_chk
+		from heart
+		where uid = #{uid} and did = #{did}
+	</select>
 
 </mapper>
 
