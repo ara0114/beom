@@ -131,7 +131,10 @@ nav a {
 				<c:when test="${not empty sessionScope.uid }">
 					<button class="btn btn-outline-success" id="heart" 
 						style="width: 100%; border: 1px solid;">
-						<lable id="hcolor">🤍</lable>좋아요(${ddto.likecnt })</button>
+						🤍좋아요(${ddto.likecnt })</button>
+					<button class="btn btn-outline-success" id="heart_filled" 
+						style="width: 100%; border: 1px solid;">
+						❤️좋아요(${ddto.likecnt })</button>
 				</c:when>
 				
 				<c:otherwise>

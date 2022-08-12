@@ -67,7 +67,7 @@ public class HeartController {
     
     System.out.println("FLAGGG : " + flag);
     
-    model.addAttribute("hdto", hdto);
+    //model.addAttribute("hdto", hdto);
 
 //    return null;
     //log.info("PLUS : " + ddto);

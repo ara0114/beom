@@ -18,12 +18,12 @@ function update(uid,did) {   // 좋아요 추가
 }
 
 whiteHeart.on("click", function(e){   // 좋아요 추가
-	alert(uid);
+	//alert(uid);
 		
 	update(uid, did)
 		.then(result => {
-		
-		
+		location.href = "hairmenu/" + did;
+		$("heart_filled").hide();
 		
 	});
 		
