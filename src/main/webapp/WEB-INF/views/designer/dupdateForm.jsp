@@ -18,7 +18,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <script>
 	function emailCheck(email) {
 		if (email == '') {
@@ -249,7 +249,7 @@
 
 											<c:choose>
 												<c:when test="${empty cdto.uniquecode2}">
-													<div style="font-weight: bold; font-size: large;">수첩형
+													<div class="mb-4 pb-2" style="font-weight: bold; font-size: large;">수첩형
 														자격증</div>
 
 													<div class="mb-4 pb-3" id="div1">
@@ -309,7 +309,7 @@
 												</c:when>
 
 												<c:otherwise>
-													<div style="font-weight: bold; font-size: large;">상장형
+													<div class="mb-4 pb-2" style="font-weight: bold; font-size: large;">상장형
 														자격증</div>
 													<div class="mb-4 pb-4" id="div4">
 														<div class="form-outline form-white">
