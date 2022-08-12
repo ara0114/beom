@@ -11,11 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE uid=#{uid} and did=#{did}
 	</select>
 
-	<!-- 테이블에 있는지 체크 -->
-	<select id="selectCheck" parameterType="Map" resultType="int">
-		select count(*) from heart
-		where uid=#{uid} and did=#{did}
-	</select>
 	<insert id="addCheck" parameterType="Map">
 		insert into heart(uid, did)
 		values(#{uid}, #{did})
@@ -53,6 +48,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getheartchk" parameterType="Map" resultType="int">
 		select heart_chk
+		from heart
+		where uid = #{uid} and did = #{did}
+	</select>
+	
+	<select id="col_chk" parameterType="Map" resultType="int">
+		select count(*)
 		from heart
 		where uid = #{uid} and did = #{did}
 	</select>

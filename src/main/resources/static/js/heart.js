@@ -17,7 +17,7 @@ let redHeart = $("#redHeart");
 	 update(uid, did)
 		 .then(result => {
  
-		 location.href = "/hairmenu/" + did;
+		 location.reload();
 		 
 	 });
 		 
@@ -39,7 +39,7 @@ let redHeart = $("#redHeart");
 	 update2(uid, did)
 		 .then(result => {
 			 
-		location.href = "/hairmenu/" + did;
+		location.reload();
 		 
 	 });
 	 

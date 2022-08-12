@@ -42,17 +42,14 @@ public class HeartController {
     DesignerDTO ddto = dservice.dmypage(did);
     UserDTO udto = uservice.read(uid);
     
-    int cnt = hservice.selectCheck(hdto);  // 컬럼이 있는지 확인
+    
     
     Map map = new HashMap();
     map.put("did", did);
     map.put("uid", uid);
     
-    System.out.println("CNTTT : " + cnt);
     
-    if (cnt == 0) {  //컬럼이 없으면 새로 만든다
-      hservice.addCheck(map);
-    } 
+    
     hdto = hservice.read(map);
     System.out.println("HDTOOO : " + hdto);
     
