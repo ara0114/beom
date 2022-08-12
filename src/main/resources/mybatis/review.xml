@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.study.review.ReviewMapper">
 
 	<select id="starAvg0" resultType="int">
-        select count(*) from review where did=#{did}
-    </select>
+		select count(*) from review where did=#{did}
+	</select>
 
 	<select id="starAvg" resultType="double">
 		select avg(star) from review where did=#{did}
@@ -48,22 +48,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from review
 		where did=#{did}
 			<choose>
-				<when test="col=='rtitle'">
-					and rtitle like CONCAT('%',#{word},'%')
-				</when>
-				<when test="col=='rcontent'">
-					and rcontent like CONCAT('%',#{word},'%')
-				</when>
-				<when test="col=='uid'">
-					and uid like CONCAT('%',#{word},'%')
-				</when>
-				<when test="col=='title_content'">
-					and
-					(rtitle like CONCAT('%',#{word},'%')
-					or
-					rcontent like CONCAT('%',#{word},'%'))
-				</when>
-			</choose>
+                <when test="col=='rtitle'">
+                    and rtitle like CONCAT('%',#{word},'%')
+                </when>
+                <when test="col=='rcontent'">
+                    and rcontent like CONCAT('%',#{word},'%')
+                </when>
+                <when test="col=='uid'">
+                    and uid like CONCAT('%',#{word},'%')
+                </when>
+                <when test="col=='title_content'">
+                    and
+                    (rtitle like CONCAT('%',#{word},'%')
+                    or
+                    rcontent like CONCAT('%',#{word},'%'))
+                </when>
+            </choose>
 		order by rno desc
 		limit #{sno} , #{cnt}
 	</select>
@@ -72,21 +72,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from review
 		where did=#{did}
 			<choose>
-				<when test="col=='rtitle'">
-					and rtitle like CONCAT('%',#{word},'%')
-				</when>
-				<when test="col=='rcontent'">
-					and rcontent like CONCAT('%',#{word},'%')
-				</when>
-				<when test="col=='uid'">
-					and uid like CONCAT('%',#{word},'%')
-				</when>
-				<when test="col=='title_content'">
-					and
-					(rtitle like CONCAT('%',#{word},'%')
-					or
-					rcontent like CONCAT('%',#{word},'%'))
-				</when>
-			</choose>
+                <when test="col=='rtitle'">
+                    and rtitle like CONCAT('%',#{word},'%')
+                </when>
+                <when test="col=='rcontent'">
+                    and rcontent like CONCAT('%',#{word},'%')
+                </when>
+                <when test="col=='uid'">
+                    and uid like CONCAT('%',#{word},'%')
+                </when>
+                <when test="col=='title_content'">
+                    and
+                    (rtitle like CONCAT('%',#{word},'%')
+                    or
+                    rcontent like CONCAT('%',#{word},'%'))
+                </when>
+            </choose>
 	</select>
 </mapper>

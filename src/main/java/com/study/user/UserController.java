@@ -48,6 +48,7 @@ public class UserController {
       int flag = service.pwUpdate(map);
       if(flag == 1) {
         session.invalidate();
+
         model.addAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
         return "/newpwMsg";
 

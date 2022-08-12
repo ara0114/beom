@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.designer.DesignerMapper">
+
 	<insert id="dcreate"
 		parameterType="com.study.designer.DesignerDTO">
 		insert into designer(
@@ -232,7 +233,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-
 	<update id="rconfig" parameterType="int">
 		update reserve
 		set rconfig =
@@ -240,30 +240,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where reserveno = #{reserveno}
 	</update>
 
-
-	<select id="getList" parameterType="com.study.designer.DesignerDTO"
-		resultType="com.study.designer.DesignerDTO">
-		SELECT hairshop, address1
-		FROM designer
-		<!-- 
-		<where>
-			<choose>
-				<when test="searchWrd != null">
-					address1 like concat('%',#{searchWrd},'%') or
-					hairshop like concat('%',#{searchWrd},'%')
-				</when>
-				<when test="searchWrd != ''">
-					address1 like concat('%',#{searchWrd},'%') or
-					hairshop like concat('%',#{searchWrd},'%')
-				</when>
-			</choose>
-		</where>
-		 -->
-	</select>
-	
 	<select id="total" parameterType="Map" resultType="int">
 		SELECT count(*)
 		FROM designer
+	</select>
+	
+	<select id="getList" parameterType="String"
+		resultType="com.study.designer.DesignerDTO">
+		SELECT hairshop, address1, dname, did
+		FROM designer
+
 		<where>
 			<choose>
 				<when test="col=='dname'">
@@ -328,6 +314,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE certification
 		SET uniquecode2 = #{uniquecode2}
 		WHERE did = #{did}
+
 	</update>
 
 	<delete id="delete" parameterType="String">
@@ -381,4 +368,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</choose>		
 		order by likecnt desc
 	</select>
+
 </mapper>

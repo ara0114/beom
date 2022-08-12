@@ -1,9 +1,9 @@
 package com.study.style;
 
 import java.io.IOException;
-import java.util.Base64;
-import java.util.Base64.Encoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -61,7 +61,7 @@ public class StyleDesignerController {
 
     // String fileName = file.getOriginalFilename();
     String fileType = file.getContentType();
-    System.out.println("fileType : " + fileType );
+    //System.out.println("fileType : " + fileType );
     if(fileType.equals("application/octet-stream")){
       model.addAttribute("msg", "파일이 선택되지 않았습니다.");
       return "/errorMsg";
@@ -78,18 +78,18 @@ public class StyleDesignerController {
 
     int cnt = service.create(dto);
     if(cnt == 1) {
-      return "redirect:/style/designer/dto.did";
+      return "redirect:/style/designer/" + (String)session.getAttribute("did");
     }else {
       return "error";
     }
   }
 
   // 사진전체 리스트 or 성별 로 구분해서보여주기
-  @GetMapping("/style/list/{gender}")
+  @GetMapping("/style/list/{gender}/{style_did}")
   @ResponseBody
-  public List<StyleDTO> list(@PathVariable("gender") String gender, Model model) {
-    System.out.println(gender); //사진 성별 radio value
-    List<StyleDTO> list = service.list(gender);
+  public List<StyleDTO> list(@PathVariable Map map) {
+    System.out.println(map.get("gender")); //사진 성별 radio value
+    List<StyleDTO> list = service.list(map);
     return list;
   }
 

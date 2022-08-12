@@ -122,13 +122,13 @@
 <body>
 	<form action="/dupdate" method="post" name="frm"
 		onsubmit="return inCheck(this)">
-		<section class="h-100 h-custom gradient-custom-2">
+		<section class="h-100 h-custom gradient-custom-2" style="background:skyblue">
 			<div class="container py-5 h-100">
 				<div
 					class="row d-flex justify-content-center align-items-center h-100">
 					<div class="col-12">
 						<div class="card card-registration card-registration-2"
-							style="border-radius: 15px;">
+							style="border-radius: 2%;">
 							<div class="card-body p-0">
 								<div class="row g-0">
 									<div class="col-lg-6">

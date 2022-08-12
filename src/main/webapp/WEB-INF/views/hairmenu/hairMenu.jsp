@@ -128,12 +128,26 @@ nav a {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 40%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
-				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+			
+			<c:choose>
+				<c:when test="${not empty sessionScope.uid }">
+					<button class="btn btn-outline-success" id="heart" 
+						style="width: 100%; border: 1px solid;">🤍좋아요(${ddto.likecnt })</button>
+					<button class="btn btn-outline-success" id="heart_fill" 
+						style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt})</button>
+				</c:when>
+				
+				<c:otherwise>
+					<button class="btn btn-outline-success" id="heart"
+						style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
+				</c:otherwise>
+
+			</c:choose>
+
 				<c:if test="${not empty sessionScope.uid}">
 					<button type=button onclick="javascript:reserve('${ddto.did}')" class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
@@ -142,6 +156,7 @@ nav a {
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname } 헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
+			<div style="font-weight:bold">연락처 : ${ddto.dphone }</div>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
@@ -186,22 +201,21 @@ nav a {
 				<div class="row d-flex justify-content-center align-items-center">
 					<div class="col col-lg-9 col-xl-12">
 						<div class="card rounded-3">
-							<div class="card-body p-4">
+							<div class="card-body p-3">
 
 								<table class="table mb-4">
 									<thead>
 										<tr style="font-weight: bold">
-											<th scope="col">시술</th>
+											<th scope="col">시술명</th>
 											<th scope="col">가격</th>
 											<th scope="col">성별</th>
-											<th scope="col">디자이너</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:choose>
 										<c:when test="${empty list}">
 											<tr>
-												<td colspan="6">등록된 메뉴가 없습니다.</td>
+												<td colspan="3">등록된 메뉴가 없습니다.</td>
 											</tr>
 										</c:when>
 		
@@ -211,7 +225,6 @@ nav a {
 														<td>${dto.menu }</td>
 														<td>${dto.price }</td>
 														<td>${dto.hgender }</td>
-														<td>${dto.did }</td>
 														<c:if test="${not empty sessionScope.did}">
 															<td><button class="btn btn-outline-success"
 															onclick="del(${dto.menuno})">삭제</button></td>
@@ -239,5 +252,7 @@ nav a {
 	<div style="width: 20%; float: right;"></div>
 	</div> <!-- 맨 윗줄 div -->
 <script src="/js/heart.js"></script>
+<script>let uid = '${sessionScope.uid}'</script>
+<script>let did = '${ddto.did}'</script>
 </body>
 </html>

@@ -11,13 +11,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{imagetype},#{imagecode},#{did},#{gender})
 	</insert>
 	
-	<select id="list" parameterType="String" resultType="com.study.style.StyleDTO">
+	<select id="list" parameterType="Map" resultType="com.study.style.StyleDTO">
 		select * from style
 		<where>
 				<if test=' gender != "all" '>
 					gender = #{gender}
 				</if>
+				and did = #{style_did}
 		</where>
+		
 	</select>
 	
 	<delete id="delete" parameterType="int">

@@ -23,7 +23,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <script>
 	$(function() {
 		$('#selectBox').change(function() {

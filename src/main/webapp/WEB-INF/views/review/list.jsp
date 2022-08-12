@@ -69,7 +69,7 @@ td button {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 17%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
 			<div>
 				<button class="btn btn-outline-success"
@@ -83,6 +83,7 @@ td button {
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
+			<div style="font-weight:bold">연락처 : ${ddto.dphone }</div>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
@@ -108,7 +109,7 @@ td button {
 			<!-- 윗 목록 END -->
 
 
-			<div class="container" style="width:100%">
+			<div class="container">
 				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>
@@ -228,7 +229,7 @@ td button {
 							<div class="form-group">
 								<label>아이디</label> 
 								<input class="form-control" name='uid' id="uid" disabled> 
-								<label>담당디자이너</label> 
+								 <label id="lableDid">담당디자이너</label> 
 									<input class="form-control" name='did' id="did" disabled><br>
 								<div id="rating">
 									<label>평점</label>&nbsp&nbsp <select name="star">

@@ -1,6 +1,7 @@
 package com.study.style;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,9 @@ public class StyleServiceImpl implements StyleService {
   }
 
   @Override
-  public List<StyleDTO> list(String gender) {
+  public List<StyleDTO> list(Map map) {
 
-    return mapper.list(gender);
+    return mapper.list(map);
   }
 
   @Override

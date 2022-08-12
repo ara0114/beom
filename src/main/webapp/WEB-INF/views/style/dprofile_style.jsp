@@ -38,11 +38,12 @@ button {
 	float: right;
 }
 </style>
-<title>My page</title>
+<title>Style</title>
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 18%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div
+			style="width: 19.2%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<div style="width: 100%; height: 100%;">
 				<img src="/designer/${ddto.dfilename }"
 					style="width: 100%; height: 80%;">
@@ -110,7 +111,7 @@ button {
 							</div>
 
 							<button>
-								UP LOAD <i class="fa-solid fa-cloud-arrow-up"></i>
+								UPLOAD <i class="fa-solid fa-cloud-arrow-up"></i>
 							</button>
 						</form>
 					</div>
@@ -149,6 +150,12 @@ button {
 
 	<script>
 		let did = "${sessionScope.did}";
+		let style_did = "";
+		if(did != "") {
+			style_did = "${sessionScope.did}";
+		}else{
+			style_did = "${ddto.did}";
+		}
 	</script>
 
 	<script src="/js/styleUpload.js"></script>

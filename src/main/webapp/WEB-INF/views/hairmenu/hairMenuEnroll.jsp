@@ -129,8 +129,8 @@ a:hover, a:active {
 			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
-				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+			<button class="btn btn-outline-success"
+				style="width: 100%; border: 1px solid;" id="heart">❤️좋아요(${ddto.likecnt })</button>
 				<c:if test="${not empty sessionScope.uid}">
 					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
                 	<button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>

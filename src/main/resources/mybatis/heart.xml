@@ -5,4 +5,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.study.heart.HeartMapper">
 
+	<update id="checkPlus" parameterType="Map">
+		update heart
+		set heart_chk = heart_chk + 1
+		where did=#{did} and uid=#{uid}
+	</update>
+	<update id="heartPlus" parameterType="Map">
+		update designer
+		set likecnt = likecnt+1
+		where did=#{did}
+	</update>
+	
+	
+	<update id="checkMinus" parameterType="Map">
+		update heart
+		set heart_chk = 0
+		where did=#{did} and uid=#{uid}
+	</update>
+	<update id="minusPlus" parameterType="Map">
+		update designer
+		set likecnt = likecnt-1
+		where did=#{did}
+	</update>
+	
+	
+	<select id="likecnt" parameterType="com.study.designer.DesignerDTO" resultType="com.study.designer.DesignerDTO">
+		select likecnt
+		from designer
+		where did=#{did}
+	</select>
+
 </mapper>
+

@@ -69,11 +69,10 @@
                 </c:when>
                 <c:when test="${not empty sessionScope.uid || not empty sessionScope.did}"> <!-- 로그인했을때 -->
                 	<div class="btn-group">
-                	<a href="${root }/logout" class="btn sign-in">Logout</a></li>
+                	<a href="${root }/logout" class="btn sign-in">Logout</a>
                 	</div>
                 </c:when>
-                </c:choose>
-                    
+                </c:choose>                 
                     <ul class="sub-menu">
                     <c:choose>
                     	<c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A' }"> <!-- 관리자 로그인했을때 -->
