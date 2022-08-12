@@ -110,10 +110,11 @@
 			<tbody>
 			<c:choose>
 			<c:when test="${empty list }">
-				<tr><td colspan="6">등록된 디자이너가 없습니다.</td>
+				<tr><td colspan="6">등록된 디자이너가 없습니다.</td></tr>
 			</c:when>
 			<c:otherwise>
 			<c:forEach var="ddto" items="${list }">		
+			<tr>
 					<td>${ddto.dname }</td>
 					<td>${ddto.did }</td>
 					<td>${ddto.address1 }</td>
@@ -136,7 +137,7 @@
 			</c:choose>
 			</tbody>
 		</table>
-
+		
 		<div class="text-center">
 			${paging }
 		</div>
