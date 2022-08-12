@@ -84,7 +84,7 @@ public class HairmenuController {
   }
   
   @GetMapping("/hairmenu/{did}")
-  public String list(HttpSession session, Model model, HttpServletRequest request, @PathVariable String did, HeartDTO hdto) {
+  public String list(HttpSession session, Model model, HttpServletRequest request, @PathVariable String did) {
     String id = null;
     
     if(session.getAttribute("did")!=null) {   // 디자이너 로그인했을 때
@@ -96,7 +96,6 @@ public class HairmenuController {
     DesignerDTO ddto = dservice.dmypage(id);
     model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
     
-    model.addAttribute("hdto", hdto);  // heart쪽 정보 가져오기
     
     List<HairmenuDTO> list = service.hlist(id);
     request.setAttribute("list", list);  //담기

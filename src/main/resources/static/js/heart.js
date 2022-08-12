@@ -25,8 +25,6 @@ whiteHeart.on("click", function(e){   // 좋아요 추가
 	update(uid, did)
 		.then(result => {
 
-		redHeart.show();
-		whiteHeart.hide();
 		
 	});
 		
@@ -49,8 +47,6 @@ redHeart.on("click", function(e){  // 좋아요 취소
 	update2(uid, did)
 		.then(result => {
 			
-		redHeart.hide();
-		whiteHeart.show();
 		
 	});
 	
