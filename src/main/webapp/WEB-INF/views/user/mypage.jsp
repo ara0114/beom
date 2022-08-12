@@ -30,7 +30,7 @@ h3 {
 }
 
 table {
-	width: 90%;
+	width: 100%;
 	border-top: 1px solid black;
 	border-collapse: collapse;
 }
@@ -55,6 +55,11 @@ th, td {
 		let url = "/user/delete";
 		url += "?uid=${dto.uid}";
 		location.href = url;
+	}
+	
+	function review(did){
+		let url = "/review/" + did + "/list";
+		location.href=url;
 	}
 </script>
 </head>
@@ -171,6 +176,7 @@ th, td {
 								<th>시간</th>
 								<th>시술명</th>
 								<th>시술가격</th>
+								<th>리뷰</th>
 							</tr>
 						</thead>
 						
@@ -178,7 +184,7 @@ th, td {
 			<c:choose>
 				<c:when test="${empty historyList}">
 					<tbody>
-						<td colspan="6">등록된 사용내역이 없습니다.</td>
+						<td colspan="7">등록된 사용내역이 없습니다.</td>
 					</tbody>
 				</c:when>
 				<c:otherwise>
@@ -192,6 +198,8 @@ th, td {
 										<td>${dto.enrolltime}</td>
 										<td>${dto.emenu}</td>
 										<td>${dto.eprice}</td>
+										<td><button class="btn btn-outline-success"
+										type = "button" onclick="javascript:review('${innerdto.did}')">등록</button></td>
 									</tr>
 								</c:forEach>
 							</c:forEach>
