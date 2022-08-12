@@ -104,17 +104,18 @@
 			<tbody>
 			<c:choose>
 			<c:when test="${empty list }">
-				<tr><td colspan="6">등록된 회원이 없습니다.</td>
+				<tr><td colspan="6">등록된 회원이 없습니다.</td></tr>
 			</c:when>
 			<c:otherwise>
 			<c:forEach var="dto" items="${list }">		
+			<tr>
 					<td>${dto.uname }</td>
 					<td>${dto.uid }</td>
 					<td>${dto.uemail }</td>
 					<td>${dto.uphone }</td>
 					<td><button type="button" class="btn" onclick="javascript:update('${dto.uid}')">수정</button>
 						<button type="button" class="btn" onclick="javascript:del('${dto.uid}')">삭제</button></td>
-				</tr> 
+			</tr>
 			</c:forEach>
 			</c:otherwise>
 			</c:choose>

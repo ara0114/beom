@@ -39,31 +39,31 @@
 						value="JAVA에 대해서 알려주세요." style="width: 90%;"> --%>
 						<select id="msg" class="form-control" style="width: 90%;">
 							<option value="">--질문을 선택하세요--</option>
-							<option value="">- - - - - - - - 페이지 안내 - - - - - - - -</option>
+							<option value="" disabled>- - - - - - - - 페이지 안내 - - - - - - - -</option>
 							<option value="메인(홈)페이지 안내">메인(홈)페이지 안내</option>
 							<option value="메뉴 페이지가 궁금해요">메뉴 페이지가 궁금해요</option>
 							<option value="스타일 페이지가 궁금해요">스타일 페이지가 궁금해요</option>
 							<option value="리뷰 페이지가 궁금해요">리뷰 페이지가 궁금해요</option>
-							<option value="">- - - - - - - - 예   약 - - - - - - - -</option>
+							<option value="" disabled>- - - - - - - - 예   약 - - - - - - - -</option>
 							<option value="예약은 어떻게 하나요?">예약은 어떻게 하나요?</option>
 							<option value="고객이 예약 신청 하였을때 확정은 어떻게 하나요?">고객이 예약 신청 하였을때 확정은 어떻게 하나요?</option>
 							<option value="예약을 신청했습니다. 확인은 어떻게 하나요?">예약을 신청했습니다. 확인은 어떻게 하나요?</option>
 							<option value="예약을 취소하려면 어떻게 해야되나요?">예약을 취소하려면 어떻게 해야되나요?</option>
 							<option value="예약 가능한 시간 및 정보는 어떻게 등록 하나요?">예약 가능한 시간 및 정보는 어떻게 등록 하나요?</option>
 							<option value="예약 등록한 정보를 지우고 싶습니다.">예약 등록한 정보를 지우고 싶습니다.</option>
-							<option value="">- - - - - - - - 회원/디자이너 정보 - - - - - - - -</option>
+							<option value="" disabled>- - - - - - - - 회원/디자이너 정보 - - - - - - - -</option>
 							<option value="회원 정보 수정/비밀번호 수정 방법">회원 정보 수정/비밀번호 수정 방법</option>
 							<option value="디자이너 정보 수정/사진 수정 방법">디자이너 정보 수정/사진 수정 방법</option>							
 							<option value="디자이너 정보는 어떻게 볼 수 있나요?">디자이너 정보는 어떻게 볼 수 있나요?</option>
-							<option value="">- - - - - - - - 회원가입/탈퇴 - - - - - - - -</option>
+							<option value="" disabled>- - - - - - - - 회원가입/탈퇴 - - - - - - - -</option>
 							<option value="회원가입 방법">회원가입 방법</option>
 							<option value="회원탈퇴 방법">회원탈퇴 방법</option>
 							<option value="디자이너 탈퇴 방법">디자이너 탈퇴 방법</option>
-							<option value="">- - - - - - - - 로그인 / 로그아웃 - - - - - - - -</option>
+							<option value="" disabled>- - - - - - - - 로그인 / 로그아웃 - - - - - - - -</option>
 							<option value="로그인은 어떻게 하나요">로그인은 어떻게 하나요</option>
 							<option value="로그인이 되지 않습니다.">로그인이 되지 않습니다.</option>
 							<option value="로그아웃 방법">로그아웃 방법</option>
-							<option value="">- - - - - - - - 아이디 / 비밀번호찾기 - - - - - - - -</option>
+							<option value="" disabled>- - - - - - - - 아이디 / 비밀번호찾기 - - - - - - - -</option>
 							<option value="아이디 찾는 방법">아이디 찾는 방법</option>
 							<option value="비밀번호 찾는 방법">비밀번호 찾는 방법</option>
 						</select>
