@@ -1,9 +1,9 @@
 package com.study.style;
 
 import java.io.IOException;
-import java.util.Base64;
-import java.util.Base64.Encoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
+import com.study.heart.HeartService;
 
 @Controller
 public class StyleDesignerController {
@@ -30,16 +31,32 @@ public class StyleDesignerController {
   @Autowired
   @Qualifier("com.study.designer.DesignerServiceImpl")
   private DesignerService dservice;
+  @Autowired
+  @Qualifier("com.study.heart.HeartServiceImpl")
+  private HeartService hservice;
 
-  @GetMapping("/style/designer")
-  public String style(Model model, HttpSession session) {
+  @GetMapping("/style/designer/{did}")
+  public String style(Model model, HttpSession session, @PathVariable String did ) {
     String uid = "";
     if(session.getAttribute("uid") != null) {
       uid = (String)session.getAttribute("uid");
     }
-    String did = "test";//메인페이지에서 받아와야함
+    String id = null;
+    if(session.getAttribute("did") != null) {
+      id = (String)session.getAttribute("did"); 
+    }else{
+      id = did;
+    }
     
-    DesignerDTO ddto = dservice.dmypage(did);
+    if(session.getAttribute("uid") != null) {
+      Map map2 = new HashMap();
+      map2.put("uid", (String)session.getAttribute("uid"));
+      map2.put("did", id);
+      int heart_chk = hservice.getheartchk((map2));
+      model.addAttribute("heart_chk", heart_chk);  // heart쪽 정보 가져오기
+    }
+    
+    DesignerDTO ddto = dservice.dmypage(id);
     model.addAttribute("ddto", ddto);
     model.addAttribute("uid", uid);
     
@@ -73,18 +90,18 @@ public class StyleDesignerController {
 
     int cnt = service.create(dto);
     if(cnt == 1) {
-      return "redirect:/style/designer";
+      return "redirect:/style/designer/" + (String)session.getAttribute("did");
     }else {
       return "error";
     }
   }
 
   // 사진전체 리스트 or 성별 로 구분해서보여주기
-  @GetMapping("/style/list/{gender}")
+  @GetMapping("/style/list/{gender}/{style_did}")
   @ResponseBody
-  public List<StyleDTO> list(@PathVariable("gender") String gender, Model model) {
-    System.out.println(gender); //사진 성별 radio value
-    List<StyleDTO> list = service.list(gender);
+  public List<StyleDTO> list(@PathVariable Map map) {
+    System.out.println(map.get("gender")); //사진 성별 radio value
+    List<StyleDTO> list = service.list(map);
     return list;
   }
 

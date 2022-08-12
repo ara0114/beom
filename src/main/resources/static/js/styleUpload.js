@@ -91,7 +91,7 @@ function fetchAPI(genderTag, gender) {
 
 }
 function styleGet(gender) {
-	return fetch(`/style/list/${gender}`).then((res) => res.json()).catch((error) => console.log(error));
+	return fetch(`/style/list/${gender}/${style_did}`).then((res) => res.json()).catch((error) => console.log(error));
 }
 function deleteStyle(imgno) {
 	return fetch(`/style/delete/${imgno}`).then(res => res.text()).catch(error => console.log(error));

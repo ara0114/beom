@@ -69,11 +69,29 @@ td button {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 17%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
 			<div>
-				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				<c:choose>
+				<c:when test="${not empty sessionScope.uid }">
+				
+					<c:choose>
+						<c:when test="${heart_chk == 0 }">
+						<button class="btn btn-outline-success" id="whiteHeart" 
+							style="width: 100%; border: 1px solid;"> 🤍좋아요(${ddto.likecnt })</button>
+						</c:when>
+						<c:when test="${heart_chk == 1 }">
+							<button class="btn btn-outline-success" id="redHeart" 
+							style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+						</c:when>
+					</c:choose>
+				</c:when>
+				
+				<c:otherwise>
+					<button class="btn btn-outline-success" 
+						style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
+				</c:otherwise>
+			</c:choose>
 				<c:if test="${not empty sessionScope.uid}">
 					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
@@ -102,14 +120,14 @@ td button {
 			<div style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight:bold">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active" href="/hairmenu/${ddto.did }">메뉴</a></li>
-					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="/style/designer/${ddto.did }">스타일</a></li>
 					<li class="nav-item"><a class="nav-link" href="/review/${ddto.did}/list">리뷰</a></li>
 				</ul>
 			</div>
 			<!-- 윗 목록 END -->
 
 
-			<div class="container" style="width:100%">
+			<div class="container">
 				<div class="head">
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>
@@ -280,5 +298,6 @@ td button {
 <script>let did = '${ddto.did}'</script>
 <script src="/js/reviewProducer.js"></script>
 <script src="/js/reviewConsumer.js"></script>
+<script src="/js/heart.js"></script>
 </body>
 </html>

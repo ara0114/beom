@@ -181,11 +181,16 @@ public class DesignerServiceImpl implements DesignerService {
   }
 
   @Override
-  public List<DesignerDTO> getList(DesignerDTO ddto) {
+  public List<DesignerDTO> getList(String searchWrd) {
     // TODO Auto-generated method stub
-    return mapper.getList(ddto);
+    return mapper.getList(searchWrd);
   }
 
+  @Override
+  public List<DesignerDTO> searchList(Map map) {
+    // TODO Auto-generated method stub
+    return mapper.searchList(map);
+  }
 
 
 }

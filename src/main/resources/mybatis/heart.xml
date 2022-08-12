@@ -44,11 +44,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where did=#{did}
 	</update>
 	
-	
 	<select id="likecnt" parameterType="com.study.designer.DesignerDTO" resultType="com.study.designer.DesignerDTO">
 		select likecnt
 		from designer
 		where did=#{did}
+	</select>
+	
+	<select id="getheartchk" parameterType="Map" resultType="int">
+		select heart_chk
+		from heart
+		where uid = #{uid} and did = #{did}
+	</select>
+	
+	<select id="col_chk" parameterType="Map" resultType="int">
+		select count(*)
+		from heart
+		where uid = #{uid} and did = #{did}
 	</select>
 
 </mapper>

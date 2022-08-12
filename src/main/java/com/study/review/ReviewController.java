@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
+import com.study.heart.HeartService;
 import com.study.utility.Utility;
 
 @Controller
@@ -37,6 +38,9 @@ public class ReviewController {
   @Autowired
   @Qualifier("com.study.designer.DesignerServiceImpl")
   private DesignerService dservice;
+  @Autowired
+  @Qualifier("com.study.heart.HeartServiceImpl")
+  private HeartService hservice;
 
   
   @DeleteMapping("/review/{rno}/{oldfile}")
@@ -163,6 +167,14 @@ public class ReviewController {
     map.put("did", id);
  
     int total = service.total(map);
+    
+    if(session.getAttribute("uid") != null) {
+      Map map2 = new HashMap();
+      map2.put("uid", (String)session.getAttribute("uid"));
+      map2.put("did", id);
+      int heart_chk = hservice.getheartchk((map2));
+      model.addAttribute("heart_chk", heart_chk);  // heart쪽 정보 가져오기
+    }
  
     List<ReviewDTO> list = service.list(map);
  

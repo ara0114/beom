@@ -118,8 +118,8 @@ public class DesignerController {
   }
 
   @PostMapping("/dlogin")
-  public String dlogin(@RequestParam Map<String, String> map, HttpSession session, Model model, HttpServletRequest request,
-      HttpServletResponse response) {
+  public String dlogin(@RequestParam Map<String, String> map, HttpSession session, Model model,
+      HttpServletRequest request, HttpServletResponse response) {
     int flag = dservice.dlogin(map);
 
     if (flag > 0) {
@@ -150,7 +150,7 @@ public class DesignerController {
         cookie.setMaxAge(60 * 60 * 24 * 90);
         response.addCookie(cookie);
 
-      } else if(chk_id == null || !validation) {
+      } else if (chk_id == null || !validation) {
 
         cookie = new Cookie("chk_id", "");
         cookie.setMaxAge(0);
@@ -161,7 +161,7 @@ public class DesignerController {
         response.addCookie(cookie);
       }
       return "redirect:/";
-      
+
     } else {
       model.addAttribute("msg", "아이디 또는 비밀번호를 잘못 입력했거나<br>회원이 아닙니다. 회원가입하세요");
       return "/errorMsg";
@@ -175,7 +175,7 @@ public class DesignerController {
 
       return "/errorMsg";
     }
-      
+
     DesignerDTO ddto = dservice.dmypage((String) session.getAttribute("did"));
     // List<EnrollDTO> enrollList2 =
     // dservice.enrollList((String)session.getAttribute("did"));
@@ -185,7 +185,8 @@ public class DesignerController {
     model.addAttribute("ddto", ddto);
     model.addAttribute("enrollList", dservice.enroll_list((String) session.getAttribute("did")));
     model.addAttribute("reserveList", dservice.reserve_list((String) session.getAttribute("did")));
-    //System.out.println(dservice.reserve_list((String) session.getAttribute("did")));
+    // System.out.println(dservice.reserve_list((String)
+    // session.getAttribute("did")));
     // model.addAttribute("enrollList2",dservice.enrollList((String)session.getAttribute("did")));
     // System.out.println(enrollList2);
     return "/dmypage";
@@ -216,7 +217,7 @@ public class DesignerController {
     if (flag > 0) {
       DesignerDTO ddto = dservice.dread(String.valueOf(map.get("did")));
       model.addAttribute("ddto", ddto);
-      
+
       return "redirect:/dmypage";
     } else {
       return "error";
@@ -224,22 +225,22 @@ public class DesignerController {
 
   }
 
-  @GetMapping(value={"/dmypage_update","/admin/dupdate"})
+  @GetMapping(value = { "/dmypage_update", "/admin/dupdate" })
   public String dmypage_update(@RequestParam String did, HttpServletRequest request, HttpSession session, Model model) {
     String id = null;
-    
-    if(request.getServletPath().equals("/dmypage_update")) {
+
+    if (request.getServletPath().equals("/dmypage_update")) {
       id = (String) session.getAttribute("did");
-    }else if(request.getServletPath().equals("/admin/dupdate")) {
+    } else if (request.getServletPath().equals("/admin/dupdate")) {
       id = did;
     }
-    
+
     DesignerDTO ddto = dservice.dmypage(id);
     LicenseDTO cdto = dservice.license(id);
 
     model.addAttribute("ddto", ddto);
     model.addAttribute("cdto", cdto);
-    
+
     return "/dmypage_update";
   }
 
@@ -248,28 +249,28 @@ public class DesignerController {
 
     int flag1 = 0;
     int flag2 = 0;
-    
+
     cdto.setDid(ddto.getDid());
-    
-    if(cdto.getUniquecode1() != null || cdto.getUniquecode2() == null) {
+
+    if (cdto.getUniquecode1() != null || cdto.getUniquecode2() == null) {
       flag1 = dservice.dupdate(ddto);
       flag2 = dservice.lupdate1(cdto);
-    }else {
+    } else{
       flag1 = dservice.dupdate(ddto);
       flag2 = dservice.lupdate2(cdto);
     }
 
     if (flag1 > 0 && flag2 > 0) {
-      
-      if(session.getAttribute("grade") != null){
-        model.addAttribute("did",(String)session.getAttribute("uid"));
+
+      if (session.getAttribute("grade") != null) {
+        model.addAttribute("did", (String) session.getAttribute("uid"));
         return "redirect:/admin/designer/list";
-      }else {
-        model.addAttribute("did",(String)session.getAttribute("did"));
+      } else {
+        model.addAttribute("did", (String) session.getAttribute("did"));
         return "redirect:/dmypage";
       }
 
-    }else {
+    } else {
       model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
       return "/errorMsg";
     }
@@ -288,7 +289,7 @@ public class DesignerController {
 //    String basePath = UploadDesignerFile.getUploadDir();
 //    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\designer";
     String basePath = System.getProperty("user.dir") + "root/deploy/designer";
-    
+
     if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
       Utility.deleteFile(basePath, oldfile);
     }
@@ -317,7 +318,7 @@ public class DesignerController {
 
     Map map = new HashMap();
     map.put("rnum", rnum);
-    map.put("did", (String)session.getAttribute("did"));
+    map.put("did", (String) session.getAttribute("did"));
     System.out.println(dservice.read_message(map));
     return new ResponseEntity<>(dservice.read_message(map), HttpStatus.OK);
   }
@@ -348,129 +349,167 @@ public class DesignerController {
   public String findpw() {
     return "/dfindpw";
   }
-  
 
   @GetMapping("/dmypage/rconfig/{reserveno}")
   @ResponseBody
   public String config_reserve(@PathVariable int reserveno, Model model) {
     int flag = dservice.rconfig(reserveno);
-    
-    if(flag > 0) {
+
+    if (flag > 0) {
       return "true";
-    }
-    else {
+    } else {
       return "false";
     }
   }
 
   @RequestMapping("/admin/designer/list")
   public String list(HttpServletRequest request) {
-    //검색
+    // 검색
     String col = Utility.checkNull(request.getParameter("col"));
     String word = Utility.checkNull(request.getParameter("word"));
-    
-    if(col.equals("total")) {
+
+    if (col.equals("total")) {
       word = "";
     }
-    //페이지
+    // 페이지
     int nowPage = 1;
-    if(request.getParameter("nowPage")!=null) {
+    if (request.getParameter("nowPage") != null) {
       nowPage = Integer.parseInt(request.getParameter("nowPage"));
     }
-    int recordPerPage = 5;//한페이지당 보여줄 레코드 수
-    
-    //DB에서 가져올 순번
-    int sno = (nowPage-1)*recordPerPage;
+    int recordPerPage = 5;// 한페이지당 보여줄 레코드 수
+
+    // DB에서 가져올 순번
+    int sno = (nowPage - 1) * recordPerPage;
     int eno = recordPerPage;
-    
+
     Map map = new HashMap();
     map.put("col", col);
     map.put("word", word);
     map.put("sno", sno);
     map.put("eno", eno);
-    
+
     int total = dservice.total(map);
-    
+
     List<DesignerDTO> list = dservice.list(map);
-    
+
     String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
-    
+
     request.setAttribute("list", list);
     request.setAttribute("nowPage", nowPage);
     request.setAttribute("col", col);
     request.setAttribute("word", word);
     request.setAttribute("paging", paging);
-    
+
     return "/dlist";
   }
-  
+
   @GetMapping("/admin/approve")
   public String approve(@RequestParam String did, Model model) {
     DesignerDTO ddto = dservice.dmypage(did);
     LicenseDTO cdto = dservice.license(did);
-    
-    model.addAttribute("ddto",ddto);
-    model.addAttribute("cdto",cdto);
-    
+
+    model.addAttribute("ddto", ddto);
+    model.addAttribute("cdto", cdto);
+
     return "/dapprove";
   }
+
   @PostMapping("/dapprove")
   public String approve(DesignerDTO ddto, Model model) {
     int flag = dservice.updateValidation(ddto);
-    if(flag>0) {
+    if (flag > 0) {
       return "redirect:/admin/designer/list";
-    }
-    else {
-      model.addAttribute("msg","[실패] 승인여부가 수정되지 않았습니다.");
+    } else {
+      model.addAttribute("msg", "[실패] 승인여부가 수정되지 않았습니다.");
       return "/errorMsg";
 
     }
   }
-  
+
   @GetMapping("/admin/ddelete/{did}")
-  public String delete(@PathVariable String did) {
-    int flag = dservice.delete(did);
-    
-    if(flag != 1) {
-      return "error";
-    }else {
-      return "redirect:/admin/designer/list";
+  public String deletebyad(@PathVariable String did, Model model) {
+    try {
+      int flag = dservice.delete(did);
+      if(flag == 1) {
+        return "redirect:/admin/designer/list";
+      }else {
+        model.addAttribute("msg","고객 예약내역이 있어 삭제가 불가능합니다.");
+        return "/errorMsg";
+      }
+    } catch(Exception e) {
+      model.addAttribute("msg","탈퇴가 불가능합니다. 등록한 예약이나 신청된 내역이 있을 수 있습니다.");
+      return "/errorMsg";
     }
   }
-  
+
   @GetMapping("/dmypage_delete")
   public String delete(@RequestParam String did, Model model) {
-    model.addAttribute("did",did);
+    model.addAttribute("did", did);
     return "/dmypage_delete";
   }
-  
+
   @PostMapping("/dmypage_delete")
   public String delete(String dpw, HttpSession session, Model model) {
 
-    String id = (String)session.getAttribute("did");
-    
+    String id = (String) session.getAttribute("did");
+
     DesignerDTO ddto = dservice.dmypage(id);
-    
-    if(!ddto.getDpw().equals(dpw)) {
+
+    if (!ddto.getDpw().equals(dpw)) {
       return "/passwdError";
-    }else {
-      try{
-          int flag = dservice.delete(id);
-          
-          if(flag == 1) {
-            session.invalidate();
-            return "redirect:/";
-          }else {
-            model.addAttribute("msg","고객예약이 있어 탈퇴가 불가능합니다.");
-            return "/errorMsg";
-          }
-      }catch(Exception e){
-          model.addAttribute("msg","탈퇴가 불가능합니다. 등록한 예약이나 신청된 내역이 있을 수 있습니다.");
+    } else {
+      try {
+        int flag = dservice.delete(id);
+
+        if (flag == 1) {
+          session.invalidate();
+          return "redirect:/";
+        } else {
+          model.addAttribute("msg", "고객예약이 있어 탈퇴가 불가능합니다.");
           return "/errorMsg";
+        }
+      } catch (Exception e) {
+        model.addAttribute("msg", "탈퇴가 불가능합니다. 등록한 예약이나 신청된 내역이 있을 수 있습니다.");
+        return "/errorMsg";
       }
     }
   }
 
-  
-  
+
+  @RequestMapping("/search")
+  public String searchList(HttpServletRequest request) {
+    // 검색
+    String col = Utility.checkNull(request.getParameter("col"));
+    String word = Utility.checkNull(request.getParameter("word"));
+
+    if (col.equals("total")) {
+      word = "";
+    }
+    // 페이지
+    int nowPage = 1;
+    if (request.getParameter("nowPage") != null) {
+      nowPage = Integer.parseInt(request.getParameter("nowPage"));
+    }
+    int recordPerPage = 5;// 한페이지당 보여줄 레코드 수
+
+    // DB에서 가져올 순번
+    int sno = (nowPage - 1) * recordPerPage;
+    int eno = recordPerPage;
+
+    Map map = new HashMap();
+    map.put("col", col);
+    map.put("word", word);
+    map.put("sno", sno);
+    map.put("eno", eno);
+
+    List<DesignerDTO> slist = dservice.searchList(map);
+
+    request.setAttribute("slist", slist);
+    request.setAttribute("nowPage", nowPage);
+    request.setAttribute("col", col);
+    request.setAttribute("word", word);
+
+    return "/search";
+  }
+
 }

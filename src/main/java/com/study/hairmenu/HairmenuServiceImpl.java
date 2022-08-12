@@ -51,6 +51,4 @@ public class HairmenuServiceImpl implements HairmenuService {
   }
 
 
-
-  
 }

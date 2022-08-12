@@ -129,11 +129,17 @@ nav a {
 			
 			<c:choose>
 				<c:when test="${not empty sessionScope.uid }">
-					
-					<button class="btn btn-outline-success" id="whiteHeart" 
-						style="width: 100%; border: 1px solid;"> 🤍좋아요(${ddto.likecnt })</button>
-						<button class="btn btn-outline-success" id="redHeart" 
-						style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				
+					<c:choose>
+						<c:when test="${heart_chk == 0 }">
+						<button class="btn btn-outline-success" id="whiteHeart" 
+							style="width: 100%; border: 1px solid;"> 🤍좋아요(${ddto.likecnt })</button>
+						</c:when>
+						<c:when test="${heart_chk == 1 }">
+							<button class="btn btn-outline-success" id="redHeart" 
+							style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+						</c:when>
+					</c:choose>
 				</c:when>
 				
 				<c:otherwise>
@@ -170,7 +176,7 @@ nav a {
 			 font-size: 20px; font-weight: bold; margin-left : 6%;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active" href="/hairmenu/${ddto.did }">메뉴</a></li>
-					<li class="nav-item"><a class="nav-link" href="/style/designer">스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="/style/designer/${ddto.did }">스타일</a></li>
 					<li class="nav-item"><a class="nav-link" href="/review/${ddto.did}/list">리뷰</a></li>
 				</ul>
 			</div>

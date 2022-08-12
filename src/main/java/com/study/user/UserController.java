@@ -43,20 +43,15 @@ public class UserController {
     if(!dto.getUpw().equals(upw)) {
       model.addAttribute("msg","현재 비밀번호가 일치하지않습니다.");
       return "/errorMsg";
-//      return "<script>"
-//          + "location.href('/errorMsg');"
-//          + "</script>";
+
     } else {
       int flag = service.pwUpdate(map);
       if(flag == 1) {
         session.invalidate();
-//        rttr.addFlashAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
+
         model.addAttribute("msg","비밀번호수정이 완료되었습니다. 다시 로그인해주세요");
         return "/newpwMsg";
-//        return "<script>"
-//            + " alert('비밀번호 수정이 완료되었습니다. 다시 로그인해주세요'); "
-//            + " location.replace('/user/login'); "
-//            + "</script>";
+
       }else {
         model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
         return "/errorMsg";

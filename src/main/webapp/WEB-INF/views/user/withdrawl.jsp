@@ -7,23 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원 탈퇴</title>
+    <link rel="stylesheet" href="/css/user.css" />
     <style>
-        .withdrawl {
-            width: 800px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .withdrawl h2 {
-            padding: 0 0 20px;
-            font-size: 32px;
-            color: #111;
-            border-bottom: 2px solid #111;
-            text-align: center;
-            line-height: 1;
-        }
         .withdrawl div{
             padding-top:10px;
         }

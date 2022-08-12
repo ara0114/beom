@@ -18,7 +18,7 @@
             font-size: 32px;
             color: #111;
             border-bottom: 2px solid #111;
-            text-align: center;
+            text-align: left;
             line-height: 1;
         }
         table {
@@ -64,7 +64,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2>일반회원목록</h2>
+		<h2>일반회원 목록</h2>
 		<form class="form-inline" action="/admin/user/list">
 			<div class="form-group" id="search">
 				<select class="form-control" name="col">

@@ -5,23 +5,8 @@
 <head>
 <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/user.css" />
     <style>
-        .login {
-            width: 800px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .login > h2 {
-            padding: 0 0 20px;
-            font-size: 32px;
-            color: #111;
-            border-bottom: 2px solid #111;
-            text-align: center;
-            line-height: 1;
-        }
         ul, li {
             list-style: none;
         }
@@ -33,6 +18,7 @@
             width: 60%;
             height: 46px;
             box-sizing: border-box;
+            border: solid gray 1px; 
             text-indent: 16px;
         }
         .login > ul li input::-webkit-input-placeholder {
@@ -102,8 +88,8 @@
         <h2>디자이너 로그인</h2>
         <ul>
             <div>
-            	<input type="radio" name="selectuser" onclick="javascript:moveForm()" id="id"><label for ="id">고객</label>
-                <input type="radio" name="selectuser" id="id2" checked><label for ="id2">디자이너</label>
+            	<input type="radio" name="selectuser" id="id" onclick="javascript:moveForm()"><label for="id">고객</label>
+                <input type="radio" name="selectuser" id="id2" checked><label for="id2">디자이너</label>
             </div>
             <li><input type="text" id="did" name="did" placeholder="아이디" 
             		   required="required" value="${cookie_did_val }"></li>

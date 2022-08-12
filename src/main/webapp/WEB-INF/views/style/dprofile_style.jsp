@@ -38,30 +38,55 @@ button {
 	float: right;
 }
 </style>
-<title>My page</title>
+<title>Style</title>
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
 		<div
-			style="width: 18%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+			style="width: 19.2%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<div style="width: 100%; height: 100%;">
 				<img src="/designer/${ddto.dfilename }"
 					style="width: 100%; height: 80%;">
 			</div>
 			<div>
-				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				<c:choose>
+				<c:when test="${not empty sessionScope.uid }">
+				
+					<c:choose>
+						<c:when test="${heart_chk == 0 }">
+						<button class="btn btn-outline-success" id="whiteHeart" 
+							style="width: 100%; border: 1px solid;"> 🤍좋아요(${ddto.likecnt })</button>
+						</c:when>
+						<c:when test="${heart_chk == 1 }">
+							<button class="btn btn-outline-success" id="redHeart" 
+							style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+						</c:when>
+					</c:choose>
+				</c:when>
+				
+				<c:otherwise>
+					<button class="btn btn-outline-success" 
+						style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
+				</c:otherwise>
+			</c:choose>
+				<c:if test="${not empty sessionScope.uid}">
+					<button type=button onclick="javascript:reserve('${ddto.did}')" class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
+	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
+                </c:if>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
+			<div style="font-weight:bold">연락처 : ${ddto.dphone }</div>
 			<div style="float: right">
+			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px;"
-					onclick="dmypage_update()">디자이너 정보 수정</button>
+					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" style="border: 1px solid;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
+			</c:if>
 			</div>
 		</div>
 
@@ -73,10 +98,10 @@ button {
 				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left: 10%;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="/hairmenu">메뉴</a></li>
+						href="/hairmenu/${ddto.did }">메뉴</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/style/designer">스타일</a></li>
-					<li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a>
+						href="/style/designer/${ddto.did }">스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="/review/${ddto.did}/list">리뷰</a>
 					</li>
 				</ul>
 			</div>
@@ -104,7 +129,7 @@ button {
 							</div>
 
 							<button>
-								UP LOAD <i class="fa-solid fa-cloud-arrow-up"></i>
+								UPLOAD <i class="fa-solid fa-cloud-arrow-up"></i>
 							</button>
 						</form>
 					</div>
@@ -143,8 +168,17 @@ button {
 
 	<script>
 		let did = "${sessionScope.did}";
+		let style_did = "";
+		if(did != "") {
+			style_did = "${sessionScope.did}";
+		}else{
+			style_did = "${ddto.did}";
+		}
 	</script>
 
-	<script src="/js/styleUpload.js"></script>
+<script src="/js/styleUpload.js"></script>
+<script src="/js/heart.js"></script>
+<script>let uid = '${sessionScope.uid}'</script>
+<script>let did = '${ddto.did}'</script>
 </body>
 </html>

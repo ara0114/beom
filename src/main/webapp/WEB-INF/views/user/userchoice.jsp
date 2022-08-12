@@ -5,23 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>가입유형선택</title>
+    <link rel="stylesheet" href="/css/user.css" />
     <style>
-        .userchoice {
-            width: 800px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .userchoice > h2 {
-            padding: 0 0 20px;
-            font-size: 32px;
-            color: #111;
-            border-bottom: 2px solid #111;
-            text-align: center;
-            line-height: 1;
-        }
         .userchoice > button {
             width: 60%; height: 56px;
             line-height: 56px;
