@@ -201,22 +201,21 @@ nav a {
 				<div class="row d-flex justify-content-center align-items-center">
 					<div class="col col-lg-9 col-xl-12">
 						<div class="card rounded-3">
-							<div class="card-body p-4">
+							<div class="card-body p-3">
 
 								<table class="table mb-4">
 									<thead>
 										<tr style="font-weight: bold">
-											<th scope="col">시술</th>
+											<th scope="col">시술명</th>
 											<th scope="col">가격</th>
 											<th scope="col">성별</th>
-											<th scope="col">디자이너</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:choose>
 										<c:when test="${empty list}">
 											<tr>
-												<td colspan="6">등록된 메뉴가 없습니다.</td>
+												<td colspan="3">등록된 메뉴가 없습니다.</td>
 											</tr>
 										</c:when>
 		
@@ -226,7 +225,6 @@ nav a {
 														<td>${dto.menu }</td>
 														<td>${dto.price }</td>
 														<td>${dto.hgender }</td>
-														<td>${dto.did }</td>
 														<c:if test="${not empty sessionScope.did}">
 															<td><button class="btn btn-outline-success"
 															onclick="del(${dto.menuno})">삭제</button></td>

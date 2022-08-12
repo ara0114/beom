@@ -63,7 +63,7 @@
                 <c:choose>
                 <c:when test="${empty sessionScope.uid && empty sessionScope.did}"> <!-- 로그인안했을때 -->
                     <div class="btn-group">
-                        <a href="${root }/user/login" class="btn sign-in">Sign in</a>
+                        <a href="${root }/user/login" class="btn sign-in">LogIn</a>
                         <a href="${root }/user/agree" class="btn sign-up">Sign up</a>
                     </div>
                 </c:when>

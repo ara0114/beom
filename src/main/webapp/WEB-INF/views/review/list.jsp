@@ -229,7 +229,7 @@ td button {
 							<div class="form-group">
 								<label>아이디</label> 
 								<input class="form-control" name='uid' id="uid" disabled> 
-								<label>담당디자이너</label> 
+								 <label id="lableDid">담당디자이너</label> 
 									<input class="form-control" name='did' id="did" disabled><br>
 								<div id="rating">
 									<label>평점</label>&nbsp&nbsp <select name="star">
