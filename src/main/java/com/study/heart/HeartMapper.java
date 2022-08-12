@@ -6,8 +6,6 @@ import com.study.designer.DesignerDTO;
 
 public interface HeartMapper {
 
-  int selectCheck(HeartDTO dto);
-  
   int addCheck(Map map);
   
   HeartDTO read(Map map);
@@ -21,7 +19,7 @@ public interface HeartMapper {
   void checkMinus(Map map);
 
   int getheartchk(Map map);
-  
+
   int col_chk(Map map);
   
 }

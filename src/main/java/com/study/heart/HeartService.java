@@ -6,8 +6,6 @@ import com.study.designer.DesignerDTO;
 
 public interface HeartService {
 
-  int selectCheck(HeartDTO dto);
-
   int addCheck(Map map);
 
   HeartDTO read(Map map);

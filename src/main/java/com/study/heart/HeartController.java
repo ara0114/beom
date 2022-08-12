@@ -41,7 +41,6 @@ public class HeartController {
     DesignerDTO ddto = dservice.dmypage(did);
     UserDTO udto = uservice.read(uid);
     
-    
     Map map = new HashMap();
     map.put("did", did);
     map.put("uid", uid);

@@ -133,7 +133,7 @@ nav a {
 					<c:choose>
 						<c:when test="${heart_chk == 0 }">
 						<button class="btn btn-outline-success" id="whiteHeart" 
-							style="width: 100%; border: 1px solid;"> 🤍좋아요(${ddto.likecnt })</button>
+							style="width: 100%; border: 1px solid;">🤍좋아요(${ddto.likecnt })</button>
 						</c:when>
 						<c:when test="${heart_chk == 1 }">
 							<button class="btn btn-outline-success" id="redHeart" 

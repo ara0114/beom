@@ -14,12 +14,6 @@ public class HeartServiceImpl implements HeartService {
   private HeartMapper mapper;
 
   @Override
-  public int selectCheck(HeartDTO dto) {
-    // TODO Auto-generated method stub
-    return mapper.selectCheck(dto);
-  }
-
-  @Override
   public int addCheck(Map map) {
     // TODO Auto-generated method stub
     return mapper.addCheck(map);
