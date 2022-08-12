@@ -69,12 +69,12 @@ public class HeartController {
     
     model.addAttribute("hdto", hdto);
 
-//    return null;
+    return null;
     //log.info("PLUS : " + ddto);
 
     // else 취소 아까꺼에 -1 check -- 
-    return flag == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
-        : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//    return flag == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+//        : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 // 
   }
 

@@ -1,10 +1,12 @@
  $(function() {
    //페이지가 로딩될때
 	whiteHeart.show();
+	redHeart.hide();
 
  });
 
-let whiteHeart = $("#heart");
+let whiteHeart = $("#whiteHeart");
+let redHeart = $("#redHeart");
 
 
 function update(uid,did) {   // 좋아요 추가
@@ -22,15 +24,16 @@ whiteHeart.on("click", function(e){   // 좋아요 추가
 		
 	update(uid, did)
 		.then(result => {
-		
-		
+
+		redHeart.show();
+		whiteHeart.hide();
 		
 	});
 		
 
 })
 
-function update2(uid,did) {   // 좋아요 삭제
+function update2(uid,did) {   // 좋아요 취소
 	return fetch(`/minusHeart/${uid}/${did}`, {
 		method: 'get',
 		//body: JSON.stringify(did),
@@ -40,14 +43,15 @@ function update2(uid,did) {   // 좋아요 삭제
 		.catch(console.log);
 }
 
-redHeart.on("click", function(e){  // 좋아요 삭제
+redHeart.on("click", function(e){  // 좋아요 취소
 	alert(did);
 	
 	update2(uid, did)
 		.then(result => {
+			
+		redHeart.hide();
+		whiteHeart.show();
 		
 	});
-	
-	whiteHeart.show();
 	
 })
