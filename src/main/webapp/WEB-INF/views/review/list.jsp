@@ -276,9 +276,9 @@ td button {
 	<div></div>
 
 	<!-- 맨처음 div -->
-<script>let uid = '${sessionScope.uid}'</script>
+<!--  <script>let uid = '${sessionScope.uid}'</script>
 <script>let did = '${ddto.did}'</script>
 <script src="/js/reviewProducer.js"></script>
-<script src="/js/reviewConsumer.js"></script>
+<script src="/js/reviewConsumer.js"></script>-->
 </body>
 </html>
