@@ -369,4 +369,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by likecnt desc
 	</select>
 
+	<select id="chkReserve" parameterType="String" resultType="int">
+		select count(*)
+		from reserve
+		where enrollno in 
+			(select enrollno from enroll where did=#{did})
+	</select>
+	<delete id="delReserve" parameterType="String">
+		delete from reserve
+		where enrollno in 
+			(select enrollno from enroll where did=#{did})
+	</delete>
 </mapper>

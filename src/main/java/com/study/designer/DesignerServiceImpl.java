@@ -192,5 +192,16 @@ public class DesignerServiceImpl implements DesignerService {
     return mapper.searchList(map);
   }
 
+  @Override
+  public int chkReserve(String did) {
+    // TODO Auto-generated method stub
+    return mapper.chkReserve(did);
+  }
+
+  @Override
+  public void delReserve(String did) {
+    mapper.delReserve(did);
+  }
+
 
 }

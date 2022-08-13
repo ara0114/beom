@@ -49,7 +49,7 @@ public class HairmenuController {
        
       } catch(Exception e) {
         e.printStackTrace();
-        model.addAttribute("msg", "예약신청 내역이 있어 삭제가 불가능합니다.");
+        model.addAttribute("msg", "예약등록/신청 내역이 있어 삭제가 불가능합니다.");
         return "/errorMsg";
       }
 
