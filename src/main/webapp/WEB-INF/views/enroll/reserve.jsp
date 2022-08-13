@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객예약신청페이지</title>
+<title>고객예약신청</title>
 <link rel="stylesheet" href="/css/reserve.css" />
 </head>
 <body>
