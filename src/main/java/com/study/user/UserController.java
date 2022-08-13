@@ -1,5 +1,6 @@
 package com.study.user;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.study.enroll.EnrollDTO;
 import com.study.utility.Utility;
@@ -144,18 +143,23 @@ public class UserController {
   
   @PostMapping("/user/update")
   public String update(UserDTO dto, HttpSession session, Model model) {
-    int flag = service.update(dto);
-    
-    if(flag>0) {
-      if(!dto.getUid().equals((String) session.getAttribute("uid"))) {
-        model.addAttribute("id",session.getAttribute("uid"));
-        return "redirect:/admin/user/list";
+    int flag = 0;
+    try {
+      flag = service.update(dto);
+      if(flag>0) {
+        if(!dto.getUid().equals((String) session.getAttribute("uid"))) {
+          model.addAttribute("id",session.getAttribute("uid"));
+          return "redirect:/admin/user/list";
+        }else {
+          model.addAttribute("id",dto.getUid());
+          return "redirect:/user/mypage";
+        }
       }else {
-        model.addAttribute("id",dto.getUid());
-        return "redirect:/user/mypage";
+        model.addAttribute("msg","[실패] 정보가 수정되지 않았습니다.");
+        return "/errorMsg";
       }
-    }else {
-      model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
+    }catch(Exception e) {
+      model.addAttribute("msg","[수정 실패] 정보가 수정되지 않았습니다. 중복된 이메일이 있을 수 있습니다.");
       return "/errorMsg";
     }
   }
