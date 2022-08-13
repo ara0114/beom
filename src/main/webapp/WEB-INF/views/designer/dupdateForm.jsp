@@ -11,14 +11,30 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
+<style>
+.bg-indigo {
+	background-color: #4835d4;
+}
+
+@media ( min-width : 992px) {
+	.card-registration-2 .bg-indigo {
+		border-top-right-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
+}
+
+@media ( max-width : 991px) {
+	.card-registration-2 .bg-indigo {
+		border-bottom-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
+}
+</style>
 <script>
 	function emailCheck(email) {
 		if (email == '') {
@@ -117,7 +133,6 @@
 	}
 </script>
 <title>디자이너 정보수정</title>
-
 </head>
 <body>
 	<form action="/dupdate" method="post" name="frm"
