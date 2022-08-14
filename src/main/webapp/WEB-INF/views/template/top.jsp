@@ -1,25 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
- <c:choose>
+<c:choose>
     <c:when test="${not empty sessionScope.uid && sessionScope.grade == 'A'}">
-        <c:set var="str">안녕하세요 관리자님!</c:set>
+        <c:set var="str"><img src="/images/desktop.png" /></c:set>
     </c:when>
     <c:when test="${not empty sessionScope.uid && sessionScope.grade != 'A'}">
-        <c:set var='str'>안녕하세요  ${sessionScope.uid} 님!</c:set>
+        <c:set var='str'><img src="/images/user.png" /></c:set>
     </c:when>
     <c:when test="${not empty sessionScope.dname}">
-		<c:set var='str'>안녕하세요  ${sessionScope.dname } 디자이너 님!</c:set>
+		<c:set var='str'><img src="/designer/${ddto.dfilename}" style="width:30px; height:30px;" /></c:set>
 	</c:when>
-    <c:otherwise>
-        <c:set var="str">기본 페이지 입니다.</c:set>
-    </c:otherwise>
 </c:choose>
 <!DOCTYPE html> 
 <html> 
 <head>
 <script src="https://kit.fontawesome.com/320c5e3232.js" crossorigin="anonymous"></script>
-  <title>hair</title>
+  <title>Beomhair</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/reset.css">
@@ -34,7 +31,6 @@
    color :black;
   }  
   </style>
-
 </head>
 <body> 
 <!--상단메뉴-->
@@ -59,7 +55,7 @@
                 </div>
 
                 <div class="sign-group float--right">
-                <li><a id="grade">${str }</a></li>
+                <div><a id="grade">${str }</a></div>
                 <c:choose>
                 <c:when test="${empty sessionScope.uid && empty sessionScope.did}"> <!-- 로그인안했을때 -->
                     <div class="btn-group">

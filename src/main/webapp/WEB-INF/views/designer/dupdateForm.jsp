@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/designer_createForm.css">
+<link rel="stylesheet" href="/css/designer_createForm.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -16,25 +16,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
-<style>
-.bg-indigo {
-	background-color: #4835d4;
-}
-
-@media ( min-width : 992px) {
-	.card-registration-2 .bg-indigo {
-		border-top-right-radius: 15px;
-		border-bottom-right-radius: 15px;
-	}
-}
-
-@media ( max-width : 991px) {
-	.card-registration-2 .bg-indigo {
-		border-bottom-left-radius: 15px;
-		border-bottom-right-radius: 15px;
-	}
-}
-</style>
 <script>
 	function emailCheck(email) {
 		if (email == '') {
