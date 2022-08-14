@@ -132,6 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="com.study.designer.DesignerDTO" id="designerInfoDTO">
 		<result property="hairshop" column="hairshop" />
 		<result property="dname" column="dname" />
+		<result property="did" column="did" />
 	</resultMap>
 	
 	<select id="reserveList" parameterType="String"
@@ -195,7 +196,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		e.enrolldate,
 		e.enrolltime,
 		e.emenu,
-		e.eprice
+		e.eprice,
+		d.did
 		FROM designer d 
 		LEFT JOIN enroll e ON d.did = e.did
 		LEFT JOIN reserve r ON r.enrollno = e.enrollno

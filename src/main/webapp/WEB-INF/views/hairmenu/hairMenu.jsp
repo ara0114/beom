@@ -80,12 +80,6 @@
 		location.href = url;
 	}
 	
-/* 	function cut(did){
-		let url = "/hairmenu/" +did +"/cateno/"+ 1;
-		
-		location.href = url;
-	}  */
-	
 	function del(menuno){
 		if(confirm("정말 삭제하시겠습니까?")==true){
 			
@@ -117,9 +111,6 @@ a:link {
 	border-radius:5px;
 }
 
-a:hover, a:active {
-	background-color: #87CEFA;
-}
 nav a {
 	color:black;
 }
@@ -135,17 +126,22 @@ nav a {
 			
 			<c:choose>
 				<c:when test="${not empty sessionScope.uid }">
-					<button class="btn btn-outline-success" id="heart" 
-						style="width: 100%; border: 1px solid;">🤍좋아요(${ddto.likecnt })</button>
-					<button class="btn btn-outline-success" id="heart_fill" 
-						style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt})</button>
+					<c:choose>
+						<c:when test="${heart_chk == 0 }">
+						<button class="btn btn-outline-success" id="whiteHeart" 
+							style="width: 100%; border: 1px solid;">🤍좋아요(${ddto.likecnt })</button>
+						</c:when>
+						<c:when test="${heart_chk == 1 }">
+							<button class="btn btn-outline-success" id="redHeart" 
+							style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+						</c:when>
+					</c:choose>
 				</c:when>
 				
 				<c:otherwise>
-					<button class="btn btn-outline-success" id="heart"
+					<button class="btn btn-outline-success" 
 						style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
 				</c:otherwise>
-
 			</c:choose>
 
 				<c:if test="${not empty sessionScope.uid}">

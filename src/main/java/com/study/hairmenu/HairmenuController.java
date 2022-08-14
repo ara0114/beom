@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
+import com.study.heart.HeartDTO;
+import com.study.heart.HeartService;
 
 @Controller
 public class HairmenuController { 
@@ -29,8 +31,10 @@ public class HairmenuController {
   @Autowired
   @Qualifier("com.study.designer.DesignerServiceImpl")
   private DesignerService dservice;
+  @Autowired
+  @Qualifier("com.study.heart.HeartServiceImpl")
+  private HeartService hservice;
   
-
   
   @GetMapping("/hairmenu/delete/{menuno}")
   public String delete(@PathVariable("menuno") int menuno, Model model, HttpSession session) {
@@ -91,6 +95,21 @@ public class HairmenuController {
     
     DesignerDTO ddto = dservice.dmypage(id);
     model.addAttribute("ddto", ddto);  // 디자이너 정보 가져오기
+    
+    if(session.getAttribute("uid") != null) {
+      Map map = new HashMap();
+      map.put("uid", (String)session.getAttribute("uid"));
+      map.put("did", id);
+      int flag = hservice.col_chk(map);//DB에 컬럼이 존재하는지 확인
+      if(flag == 0) {
+        hservice.addCheck(map);
+      }
+      
+      int heart_chk = hservice.getheartchk((map));
+      
+      model.addAttribute("heart_chk", heart_chk);  // heart쪽 정보 가져오기
+    }
+    
     
     List<HairmenuDTO> list = service.hlist(id);
     request.setAttribute("list", list);  //담기

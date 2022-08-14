@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.study.designer.DesignerDTO;
+import com.study.designer.DesignerService;
 import com.study.enroll.EnrollDTO;
 import com.study.utility.Utility;
 
