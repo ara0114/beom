@@ -75,4 +75,7 @@ public interface DesignerMapper {
 
   List<DesignerDTO> getList(String searchWrd);
 
+  int chkReserve(String did);
+  
+  void delReserve(String did);
 }

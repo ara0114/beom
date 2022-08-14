@@ -71,4 +71,8 @@ public interface DesignerService {
 
   List<DesignerDTO> searchList(Map map);
 
+  int chkReserve(String did);
+
+  void delReserve(String did);
+
 }

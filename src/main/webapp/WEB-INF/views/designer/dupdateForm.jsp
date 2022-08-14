@@ -11,12 +11,9 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <script>
@@ -117,7 +114,6 @@
 	}
 </script>
 <title>디자이너 정보수정</title>
-
 </head>
 <body>
 	<form action="/dupdate" method="post" name="frm"
@@ -249,7 +245,7 @@
 
 											<c:choose>
 												<c:when test="${empty cdto.uniquecode2}">
-													<div style="font-weight: bold; font-size: large;">수첩형
+													<div class="mb-4 pb-2" style="font-weight: bold; font-size: large;">수첩형
 														자격증</div>
 
 													<div class="mb-4 pb-3" id="div1">
@@ -309,7 +305,7 @@
 												</c:when>
 
 												<c:otherwise>
-													<div style="font-weight: bold; font-size: large;">상장형
+													<div class="mb-4 pb-2" style="font-weight: bold; font-size: large;">상장형
 														자격증</div>
 													<div class="mb-4 pb-4" id="div4">
 														<div class="form-outline form-white">

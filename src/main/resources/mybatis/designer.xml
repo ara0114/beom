@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="dread" parameterType="String"
 		resultType="com.study.designer.DesignerDTO">
-		select did, dname, validation
+		select did, dname, validation, dfilename
 		from designer
 		where did =
 		#{did}
@@ -243,6 +243,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="total" parameterType="Map" resultType="int">
 		SELECT count(*)
 		FROM designer
+				<where>
+			<choose>
+				<when test="col=='dname'">
+					dname like concat('%',#{word},'%')
+				</when>
+				<when test="col=='did'">
+					did like concat('%',#{word},'%')
+				</when>
+				<when test="col=='address1'">
+					address1 like concat('%',#{word},'%')
+				</when>
+				<when test="col=='hairshop'">
+					hairshop like concat('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+		ORDER BY dname
+		limit #{sno}, #{eno}
 	</select>
 	
 	<select id="getList" parameterType="String"
@@ -369,4 +387,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by likecnt desc
 	</select>
 
+	<select id="chkReserve" parameterType="String" resultType="int">
+		select count(*)
+		from reserve
+		where enrollno in 
+			(select enrollno from enroll where did=#{did})
+	</select>
+	<delete id="delReserve" parameterType="String">
+		delete from reserve
+		where enrollno in 
+			(select enrollno from enroll where did=#{did})
+	</delete>
 </mapper>

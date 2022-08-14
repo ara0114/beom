@@ -47,6 +47,7 @@
 							name="searchWrd" placeholder="검색어를 입력해주세요"
 							value="${ddto.searchWrd }" size="15">
 						<button type="submit">검색하기</button>
+						<button type="button" onclick="currentlocation()">현 위치</button>
 					</form>
 				</div>
 			</div>
@@ -93,7 +94,7 @@
                 	<c:forEach var="ddto" items="${test}">
                 	<div>
                 		<div class="writer">${ddto.dname}</div>
-                		<div class="num">${ddto.hairshop}</div>
+                		<div class="num"><a href="javascript:info('${ddto.did}')">${ddto.hairshop}</div>
                 		<div class="title">${ddto.address1}</div>
                 	</div>
                 	</c:forEach>
@@ -112,6 +113,10 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e434ef30388bc9bd7f3af763f071ff66&libraries=services"></script>
 	<script>
+	function info(did){
+        let url = "/hairmenu/"+did;
+        location.href = url;
+    }
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -143,13 +148,17 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 		var addressList = new Array();
 		var hairshopList = new Array();
+		var didList = new Array();
 		var ShopList = JSON.parse('${ShopListJson}');
 		for ( var k in ShopList) {
 			var $obj = ShopList[k];
 			var aa = $obj.address1;
 			var bb = $obj.hairshop;
+			var cc = $obj.did;
 			addressList.push(aa);
 			hairshopList.push(bb);
+			didList.push(cc);
+			console.log(didList);
 		}
 		//주소 리스트 
 		addressList
@@ -194,7 +203,7 @@
 										}
 									});
 				});
-		
+		function currentlocation() {
 		if (navigator.geolocation) {
 		    
 		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -242,7 +251,8 @@
 		    
 		    // 지도 중심좌표를 접속위치로 변경합니다
 		    map.setCenter(locPosition);      
-		}    
+		}   
+		}
 	</script>
 </body>
 </html>
