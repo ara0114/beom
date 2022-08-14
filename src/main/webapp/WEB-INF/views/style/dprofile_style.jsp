@@ -79,7 +79,7 @@ button {
 
 		<div style="width: 80%; float: right;">
 			<div
-				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left: 10%;">
+				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left: 14%;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
 						href="/hairmenu/${ddto.did }">메뉴</a></li>
