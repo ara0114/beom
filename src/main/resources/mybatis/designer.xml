@@ -259,8 +259,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</when>
 			</choose>
 		</where>
-		ORDER BY dname
-		limit #{sno}, #{eno}
 	</select>
 	
 	<select id="getList" parameterType="String"

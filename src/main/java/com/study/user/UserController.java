@@ -1,6 +1,5 @@
 package com.study.user;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
