@@ -9,7 +9,7 @@
         <c:set var='str'><img src="/images/user.png" /></c:set>
     </c:when>
     <c:when test="${not empty sessionScope.dname}">
-		<c:set var='str'><img src="/designer/${ddto.dfilename}" style="width:30px; height:30px;" /></c:set>
+		<c:set var='str'><img src="/designer/${dfilename}" style="width:30px; height:30px; border-radius: 70%;"" /></c:set>
 	</c:when>
 </c:choose>
 <!DOCTYPE html> 

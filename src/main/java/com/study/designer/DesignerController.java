@@ -134,7 +134,7 @@ public class DesignerController {
       session.setAttribute("did", ddto.getDid());
       session.setAttribute("dname", ddto.getDname());
       session.setAttribute("validation", ddto.isValidation());
-      //session.setAttribute("dfilename", ddto.getDfilename());
+      session.setAttribute("dfilename", ddto.getDfilename());
 
       //System.out.println(ddto.getDfilename());
       model.addAttribute("ddto", ddto);
