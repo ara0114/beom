@@ -118,6 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on e.menuno =
 		h.menuno
 		where e.did = #{did}
+		order by e.enrolldate desc
 	</select>
 
 
