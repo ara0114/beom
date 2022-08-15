@@ -72,8 +72,26 @@ td button {
 		<div style="width: 17%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }" style="width: 100%; height: 80%;">
 			<div>
-				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				<c:choose>
+				<c:when test="${not empty sessionScope.uid }">
+				
+					<c:choose>
+						<c:when test="${heart_chk == 0 }">
+						<button class="btn btn-outline-success" id="whiteHeart" 
+							style="width: 100%; border: 1px solid;"> 🤍좋아요(${ddto.likecnt })</button>
+						</c:when>
+						<c:when test="${heart_chk == 1 }">
+							<button class="btn btn-outline-success" id="redHeart" 
+							style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+						</c:when>
+					</c:choose>
+				</c:when>
+				
+				<c:otherwise>
+					<button class="btn btn-outline-success" 
+						style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
+				</c:otherwise>
+			</c:choose>
 				<c:if test="${not empty sessionScope.uid}">
 					<button class = "btn btn-outline-success" onclick="javascript:reserve('${ddto.did}')" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
@@ -88,7 +106,7 @@ td button {
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
-					style="border: 1px solid; margin-bottom: 2px; float: left;"
+					style="border: 1px solid; margin-bottom: 2px; float:left;"
 					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" 
 					style="border: 1px solid; margin-bottom: 2px; float: left;"
@@ -116,7 +134,7 @@ td button {
 					<div class="title" style="float:left; height:40px">
 						<p style="font-size:25px; font-weight:bold">Review</p>
 					</div>
-					<div class="star-row" style="float:left;  height:40px;">
+					<div class="star-row" style="float:left; height:40px;">
 						<div class="starsum">
 						<c:if test = "${not empty starAvg }">
 							<p style="font-size:25px; font-weight:bold">&nbsp ⭐ ${starAvg }&nbsp</p>
@@ -278,9 +296,10 @@ td button {
 	<div></div>
 
 	<!-- 맨처음 div -->
-<!--  <script>let uid = '${sessionScope.uid}'</script>
+<script>let uid = '${sessionScope.uid}'</script>
 <script>let did = '${ddto.did}'</script>
 <script src="/js/reviewProducer.js"></script>
-<script src="/js/reviewConsumer.js"></script>-->
+<script src="/js/reviewConsumer.js"></script>
+<script src="/js/heart.js"></script>
 </body>
 </html>

@@ -43,8 +43,6 @@ public class HairmenuController {
     DesignerDTO ddto = dservice.dmypage(did);
     model.addAttribute("ddto", ddto);
     
-   // System.out.println("QQQQQQQQQQQQQQQQ: " + did);
-    
       int cnt = 0;
       
       try {   
@@ -80,6 +78,20 @@ public class HairmenuController {
     List<HairmenuDTO> list = service.itemlist(map);  //카테번호별 리스트 가져오기
     request.setAttribute("list", list);  //담기
     
+    if(session.getAttribute("uid") != null) {
+      Map map2 = new HashMap();
+      map2.put("uid", (String)session.getAttribute("uid"));
+      map2.put("did", id);
+      
+      int flag = hservice.col_chk(map2);//DB에 컬럼이 존재하는지 확인
+      if(flag == 0) {
+        hservice.addCheck(map2);
+      }
+      
+      int heart_chk = hservice.getheartchk((map2));
+      model.addAttribute("heart_chk", heart_chk);  // heart쪽 정보 가져오기
+    }
+    
     return "/hairmenu";
   }
   
@@ -100,16 +112,15 @@ public class HairmenuController {
       Map map = new HashMap();
       map.put("uid", (String)session.getAttribute("uid"));
       map.put("did", id);
+      
       int flag = hservice.col_chk(map);//DB에 컬럼이 존재하는지 확인
       if(flag == 0) {
         hservice.addCheck(map);
       }
       
       int heart_chk = hservice.getheartchk((map));
-      
       model.addAttribute("heart_chk", heart_chk);  // heart쪽 정보 가져오기
     }
-    
     
     List<HairmenuDTO> list = service.hlist(id);
     request.setAttribute("list", list);  //담기

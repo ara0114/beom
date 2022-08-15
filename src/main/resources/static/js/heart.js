@@ -1,7 +1,7 @@
 let whiteHeart = $("#whiteHeart");
 let redHeart = $("#redHeart");
- 
- 
+
+
  function update(uid,did) {   // 좋아요 추가
 	 return fetch(`/plusHeart/${uid}/${did}`, {
 		 method: 'get',
@@ -20,7 +20,6 @@ let redHeart = $("#redHeart");
 		 location.reload();
 		 
 	 });
-		 
  
  })
  

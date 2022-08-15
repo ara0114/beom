@@ -39,7 +39,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where did=#{did}
 	</update>
 	
-	
 	<select id="likecnt" parameterType="com.study.designer.DesignerDTO" resultType="com.study.designer.DesignerDTO">
 		select likecnt
 		from designer
