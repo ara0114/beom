@@ -286,9 +286,9 @@ public class DesignerController {
   @PostMapping("/designer/dupdateFile")
   @ResponseBody
   public String updateFile(MultipartFile dfilenameMF, String oldfile, HttpSession session) throws IOException {
-//    String basePath = UploadDesignerFile.getUploadDir();
+      String basePath = UploadDesignerFile.getUploadDir();
 //    String basePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\designer";
-    String basePath = System.getProperty("user.dir") + "root/deploy/designer";
+//    String basePath = System.getProperty("user.dir") + "root/deploy/designer";
 
     if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
       Utility.deleteFile(basePath, oldfile);

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/css/reserve.css" />
 </head>
 <body>
-	<div class="container" style = "width : 30%;">
+	<div class="container" style = "width : 40%;">
 		<h3>예약가능 리스트</h3>
 		<input type="hidden" id="hiddenUid" value="${sessionScope.uid}" />
 		<table>
@@ -52,7 +52,7 @@
 		<div class="area-box">
 			<p>고객요청사항</p>
 			<textarea name="textArea" id="message"
-				style="width: 401px; height: 163px;"></textarea>
+				style="width: 100%; height: 163px;"></textarea>
 		</div>
 		<button id="sub_mit" type="submit">예약신청</button>
 		<button id="goback" type="button" onclick="history.back()">뒤로가기</button>

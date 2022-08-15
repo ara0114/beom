@@ -78,7 +78,7 @@ button {
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
-			<div style="font-weight:bold">연락처 : ${ddto.dphone }</div>
+			<div style="font-weight:bold">문의📞 ${ddto.dphone }</div>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
@@ -95,7 +95,7 @@ button {
 
 		<div style="width: 80%; float: right;">
 			<div
-				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left: 10%;">
+				style="padding-top: 3%; padding-bottom: 3%; text-align: center; font-size: 20px; font-weight: bold; margin-left: 14%;">
 				<ul id="nav2" class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
 						href="/hairmenu/${ddto.did }">메뉴</a></li>

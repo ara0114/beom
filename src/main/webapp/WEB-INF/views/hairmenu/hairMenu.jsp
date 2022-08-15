@@ -111,9 +111,6 @@ a:link {
 	border-radius:5px;
 }
 
-a:hover, a:active {
-	background-color: #87CEFA;
-}
 nav a {
 	color:black;
 }
@@ -122,7 +119,7 @@ nav a {
 </head>
 <body>
 	<div style="width: 100%; height: 100%; display: flex;">
-		<div style="width: 30%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
+		<div style="width: 40%; height: 100%; padding-left: 2%; padding-top: 3%; float: left;">
 			<img src="/designer/${ddto.dfilename }"
 				style="width: 100%; height: 80%;">
 			<div>
@@ -156,13 +153,13 @@ nav a {
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname } 헤어 디자이너</div>
 			<div>${ddto.introduction }</div>
-			<div style="font-weight:bold">연락처 : ${ddto.dphone }</div>
+			<div style="font-weight:bold">문의📞 ${ddto.dphone }</div>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
-					style="border: 1px solid; margin-bottom: 2px;"
+					style="border: 1px solid; margin-bottom: 2px; float: left;"
 					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
-				<button class="btn btn-outline-success" style="border: 1px solid;"
+				<button class="btn btn-outline-success" style="border: 1px solid; margin-bottom: 2px; float: left;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 			</c:if>
 			</div>
