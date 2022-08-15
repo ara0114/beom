@@ -175,7 +175,7 @@ public class ReviewController {
       
       int flag = hservice.col_chk(map2);//DB에 컬럼이 존재하는지 확인
       if(flag == 0) {
-        hservice.addCheck(map2);
+        hservice.addCheck(map2);  //컬럼 추가
       }
       
       int heart_chk = hservice.getheartchk((map2));

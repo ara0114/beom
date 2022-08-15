@@ -5,12 +5,6 @@
 
 <tiles-definitions>
 	<!-- main -->
-	<definition name="main"
-		template="/WEB-INF/views/template/template.jsp">
-		<put-attribute name="header"
-			value="/WEB-INF/views/template/top.jsp" />
-	</definition>
-
 	<definition name="/enroll/designer" extends="main">
 		<put-attribute name="title" value="디자이너예약페이지"></put-attribute>
 		<put-attribute name="body"

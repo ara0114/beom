@@ -2,7 +2,7 @@ let whiteHeart = $("#whiteHeart");
 let redHeart = $("#redHeart");
 
 
- function update(uid,did) {   // 좋아요 추가
+ function update1(uid,did) {   // 좋아요 추가
 	 return fetch(`/plusHeart/${uid}/${did}`, {
 		 method: 'get',
 		 //body: JSON.stringify(uid, did),
@@ -14,7 +14,7 @@ let redHeart = $("#redHeart");
  
  whiteHeart.on("click", function(e){   // 좋아요 추가
 		 
-	 update(uid, did)
+	 update1(uid, did)
 		 .then(result => {
  
 		 location.reload();
