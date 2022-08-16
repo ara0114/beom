@@ -43,14 +43,17 @@
 			<div class="option">
 				<div>
 					<form commandName="ddto" method="get" name="listForm" id="listForm"
-						action="javascript:test()">
+						action="/">
 						키워드 : <input type="text" class="text" id="searchWrd"
 							name="searchWrd" placeholder="검색어를 입력해주세요"
 							value="${ddto.searchWrd }" size="15">
-						<button type="submit">검색하기</button>
+						<button type="submit" onclick="test()">검색하기</button>
 						<br>
 						<button type="button" onclick="currentlocation()">현 위치</button>
 					</form>
+					<script>
+						test();
+					</script>
 				</div>
 			</div>
 			<hr>
@@ -199,7 +202,7 @@
 				});
 			});
 		}
-
+		test();
 		function currentlocation() {
 			if (navigator.geolocation) {
 

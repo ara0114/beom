@@ -33,7 +33,7 @@ public class HomeController {
     
     try {
       String searchWrd = request.getParameter("searchWrd");
-      
+      System.out.println(searchWrd);
       List<DesignerDTO> test = service.getList(searchWrd);
       model.addAttribute("ShopListJson", JSONArray.fromObject(test));
       model.addAttribute("test", test);

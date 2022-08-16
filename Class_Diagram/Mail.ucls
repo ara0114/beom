@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.study.mail.MailController" project="beom" 
     file="/beom/src/main/java/com/study/mail/MailController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="250" width="278" x="256" y="38"/>    
+    <position height="250" width="278" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

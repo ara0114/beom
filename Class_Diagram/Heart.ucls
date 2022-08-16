@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.study.heart.HeartController" project="beom" 
     file="/beom/src/main/java/com/study/heart/HeartController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="493" x="128" y="39"/>    
+    <position height="178" width="493" x="236" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.study.heart.HeartDTO" project="beom" 
     file="/beom/src/main/java/com/study/heart/HeartDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1290" y="228"/>    
+    <position height="376" width="175" x="769" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="com.study.heart.HeartMapper" project="beom" 
     file="/beom/src/main/java/com/study/heart/HeartMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="155" x="857" y="50"/>    
+    <position height="214" width="155" x="41" y="453"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <interface id="4" language="java" name="com.study.heart.HeartService" project="beom" 
     file="/beom/src/main/java/com/study/heart/HeartService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="375" y="591"/>    
+    <position height="214" width="155" x="236" y="453"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="com.study.heart.HeartServiceImpl" project="beom" 
     file="/beom/src/main/java/com/study/heart/HeartServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="935" y="589"/>    
+    <position height="232" width="155" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

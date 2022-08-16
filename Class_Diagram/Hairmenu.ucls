@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.study.hairmenu.HairmenuController" project="beom" 
     file="/beom/src/main/java/com/study/hairmenu/HairmenuController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="280" y="135"/>    
+    <position height="232" width="468" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.study.hairmenu.HairmenuDTO" project="beom" 
     file="/beom/src/main/java/com/study/hairmenu/HairmenuDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1244" y="280"/>    
+    <position height="592" width="245" x="812" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="com.study.hairmenu.HairmenuMapper" project="beom" 
     file="/beom/src/main/java/com/study/hairmenu/HairmenuMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="223" x="242" y="378"/>    
+    <position height="178" width="223" x="549" y="669"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <interface id="4" language="java" name="com.study.hairmenu.HairmenuService" project="beom" 
     file="/beom/src/main/java/com/study/hairmenu/HairmenuService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="813" y="137"/>    
+    <position height="178" width="223" x="286" y="669"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="com.study.hairmenu.HairmenuServiceImpl" project="beom" 
     file="/beom/src/main/java/com/study/hairmenu/HairmenuServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="818" y="464"/>    
+    <position height="196" width="223" x="549" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
