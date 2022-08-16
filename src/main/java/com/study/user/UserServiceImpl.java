@@ -99,4 +99,10 @@ public class UserServiceImpl implements UserService {
     return mapper.pwUpdate(map);
   }
 
+  @Override
+  public int minusLikecnt(String id) {
+    // TODO Auto-generated method stub
+    return mapper.minusLikecnt(id);
+  }
+
 }

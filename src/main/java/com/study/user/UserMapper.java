@@ -41,4 +41,6 @@ public interface UserMapper {
   
   int pwUpdate(Map map);
   
+  int minusLikecnt(String id);
+  
 }

@@ -103,6 +103,7 @@
 					<th>아이디</th>
 					<th>주소</th>
 					<th>미용실명</th>
+					<th>좋아요</th>
 					<th>자격승인여부</th>
 					<th>상세정보 / 삭제</th>
 				</tr>
@@ -110,7 +111,7 @@
 			<tbody>
 			<c:choose>
 			<c:when test="${empty list }">
-				<tr><td colspan="6">등록된 디자이너가 없습니다.</td></tr>
+				<tr><td colspan="7">등록된 디자이너가 없습니다.</td></tr>
 			</c:when>
 			<c:otherwise>
 			<c:forEach var="ddto" items="${list }">		
@@ -119,6 +120,7 @@
 					<td>${ddto.did }</td>
 					<td>${ddto.address1 }</td>
 					<td>${ddto.hairshop }</td>
+					<td>${ddto.likecnt }</td>
 					<td>
 					<c:choose>
 						<c:when test="${ddto.validation}">

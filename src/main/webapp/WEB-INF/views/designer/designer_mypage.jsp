@@ -155,7 +155,7 @@ textarea {
 						</tbody>
 					</table>
 					<div style="height: 50px;">
-						<button class="btn btn-outline-success" onclick="enroll()">예약
+						<button class="btn btn-outline-success" onclick="enroll()" style = "border : 1px solid">예약
 							등록</button>
 					</div>
 				</div>

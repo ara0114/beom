@@ -41,4 +41,6 @@ public interface UserService {
 
   int pwUpdate(Map map);
 
+  int minusLikecnt(String id);
+
 }

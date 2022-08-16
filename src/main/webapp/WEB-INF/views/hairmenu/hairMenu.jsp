@@ -126,6 +126,7 @@ nav a {
 			
 			<c:choose>
 				<c:when test="${not empty sessionScope.uid }">
+				
 					<c:choose>
 						<c:when test="${heart_chk == 0 }">
 						<button class="btn btn-outline-success" id="whiteHeart" 
@@ -236,6 +237,7 @@ nav a {
 
 							</div>
 						</div>
+						<br>
 						<c:if test="${not empty sessionScope.did}">
 							<div style="float: right;">
 								<button class="btn btn-outline-success" onclick="hairmenuEnroll()" style="border: 1px solid">메뉴 등록</button>

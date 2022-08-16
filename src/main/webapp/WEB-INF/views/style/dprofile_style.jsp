@@ -49,8 +49,26 @@ button {
 					style="width: 100%; height: 80%;">
 			</div>
 			<div>
-				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+				<c:choose>
+				<c:when test="${not empty sessionScope.uid }">
+				
+					<c:choose>
+						<c:when test="${heart_chk == 0 }">
+						<button class="btn btn-outline-success" id="whiteHeart" 
+							style="width: 100%; border: 1px solid;"> 🤍좋아요(${ddto.likecnt })</button>
+						</c:when>
+						<c:when test="${heart_chk == 1 }">
+							<button class="btn btn-outline-success" id="redHeart" 
+							style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+						</c:when>
+					</c:choose>
+				</c:when>
+				
+				<c:otherwise>
+					<button class="btn btn-outline-success" 
+						style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
+				</c:otherwise>
+			</c:choose>
 				<c:if test="${not empty sessionScope.uid}">
 					<button type=button onclick="javascript:reserve('${ddto.did}')" class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">예약하기</button>
 	                <button class = "btn btn-outline-success" style="width: 50%; border: 1px solid;">1:1 문의</button>
@@ -160,6 +178,9 @@ button {
 		}
 	</script>
 
-	<script src="/js/styleUpload.js"></script>
+<script src="/js/styleUpload.js"></script>
+<script src="/js/heart.js"></script>
+<script>let uid = '${sessionScope.uid}'</script>
+<script>did = '${ddto.did}'</script>
 </body>
 </html>

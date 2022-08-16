@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
+import com.study.heart.HeartService;
 
 @Controller
 public class StyleDesignerController {
@@ -30,6 +31,9 @@ public class StyleDesignerController {
   @Autowired
   @Qualifier("com.study.designer.DesignerServiceImpl")
   private DesignerService dservice;
+  @Autowired
+  @Qualifier("com.study.heart.HeartServiceImpl")
+  private HeartService hservice;
 
   @GetMapping("/style/designer/{did}")
   public String style(Model model, HttpSession session, @PathVariable String did ) {
@@ -42,6 +46,20 @@ public class StyleDesignerController {
       id = (String)session.getAttribute("did"); 
     }else{
       id = did;
+    }
+    
+    if(session.getAttribute("uid") != null) {
+      Map map2 = new HashMap();
+      map2.put("uid", (String)session.getAttribute("uid"));
+      map2.put("did", id);
+      
+      int flag = hservice.col_chk(map2);//DB에 컬럼이 존재하는지 확인
+      if(flag == 0) {
+        hservice.addCheck(map2);
+      }
+      
+      int heart_chk = hservice.getheartchk((map2));
+      model.addAttribute("heart_chk", heart_chk);  // heart쪽 정보 가져오기
     }
     
     DesignerDTO ddto = dservice.dmypage(id);

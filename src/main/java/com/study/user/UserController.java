@@ -1,6 +1,5 @@
 package com.study.user;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
 import com.study.enroll.EnrollDTO;
+import com.study.heart.HeartService;
 import com.study.utility.Utility;
 
 @Controller
@@ -31,7 +31,7 @@ public class UserController {
   @Autowired
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
-  
+ 
   @PostMapping("/pwUpdate")
   public String updatePw(HttpSession session, String upw, String newpw, Model model) {
     String id = (String) session.getAttribute("uid");
@@ -75,24 +75,24 @@ public class UserController {
   public String delete(String upw, HttpSession session) {
     
     String id = (String)session.getAttribute("uid");
-    
     UserDTO dto = service.read(id);
     
     if(!dto.getUpw().equals(upw)) {
       return "/passwdError";
+    }
+    service.minusLikecnt(id);
+    int flag = service.delete(id);
+    if(flag == 1) {
+      session.invalidate();
+      return "redirect:/";
     }else {
-      int flag = service.delete(id);
-      if(flag == 1) {
-        session.invalidate();
-        return "redirect:/";
-      }else {
-        return "error";
-      }
+      return "error";
     }
   }
   
   @GetMapping("/admin/udelete/{uid}")
-  public String delete(@PathVariable String uid) {   
+  public String delete(@PathVariable String uid) {
+    service.minusLikecnt(uid);
     int flag = service.delete(uid);
     
     if(flag != 1) {

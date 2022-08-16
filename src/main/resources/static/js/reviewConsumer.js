@@ -157,6 +157,7 @@ $(".chat").on("click", function (e) {
   get(rno)  //조회
     .then(review => { 
 			//alert(modalInputUid.val(review.uid));
+			//alert(modalInputDid.val(review.did));
 			
 			$("#rtitle").val(review.rtitle);
 			modalInputRcontent.val(review.rcontent);

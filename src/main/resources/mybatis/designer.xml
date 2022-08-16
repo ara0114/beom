@@ -118,6 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on e.menuno =
 		h.menuno
 		where e.did = #{did}
+		order by e.enrolldate desc
 	</select>
 
 
@@ -259,8 +260,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</when>
 			</choose>
 		</where>
-		ORDER BY dname
-		limit #{sno}, #{eno}
 	</select>
 	
 	<select id="getList" parameterType="String"
