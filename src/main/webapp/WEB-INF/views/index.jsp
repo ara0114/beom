@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>기본페이지</title>
+<title>BeomHair</title>
 <script src="/js/slide.js"></script>
 
 
