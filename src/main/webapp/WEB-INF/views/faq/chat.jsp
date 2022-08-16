@@ -28,6 +28,7 @@
 			<div class="board_title">
 				<strong>FAQ</strong>
 				<p>자주 묻는 질문입니다.</p>
+				<p style="align:right";><a href="https://cut-toucan-5da.notion.site/BeomHair-3bb2c884c94d4a80941db4d8789934b4">*기타 문의하기</a></p>
 			</div>
 			
 			<form class="form-inline">

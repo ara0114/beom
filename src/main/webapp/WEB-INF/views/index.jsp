@@ -1,5 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:choose>
+	<c:when test="${not empty sessionScope.did}">
+		<c:set var='str'>안녕하세요  ${sessionScope.did } 님!</c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="str">기본 페이지 입니다.</c:set>
+	</c:otherwise>
+</c:choose>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +36,7 @@
 	</section>
 	<br>
 	<div class="map_wrap">
-		<div id="map" style="width: 100%; height: 300px; position: relative; overflow: hidden;"></div>
+		<div id="map" style="width: 100%; height: 500px; position: relative; overflow: hidden;"></div>
 
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
@@ -170,7 +179,7 @@
 														position : coords
 													});
 											var content = '<div class="overlay_info">';
-											content += '    <a><strong>'
+											content += '  <a href="javascript:info(\'' + didList[index] + '\')"><strong>  '
 													+ hairshopList[index]
 													+ '</strong></a>';
 											content += '    <div class="desc">';
