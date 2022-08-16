@@ -22,7 +22,7 @@
 			alert("email를 입력하세요");
 			document.frm.email.focus();
 		} else {
-			var url = "emailcheck";
+			var url = "/emailcheck";
 			url += "?email=" + email;
 
 			$.get(url, function(data, textStatus) {
@@ -87,6 +87,10 @@
 	}
 
 	function inCheck(f) {
+		if($("#emailcheck").text()==""){
+			alert("이메일 중복체크를 해주세요");
+			return false;
+		}
 		if (f.dname.value.length == 0) {
 			alert("이름을 입력하세요");
 			f.dname.focus();
