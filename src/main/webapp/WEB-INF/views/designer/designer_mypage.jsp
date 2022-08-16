@@ -62,7 +62,7 @@ textarea {
 
 			<div>
 				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+					style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
@@ -187,7 +187,7 @@ textarea {
 									<c:forEach var="dto" items="${reserveList}">
 
 										<tr>
-											<td><a onclick="modal(${dto.reserveno})">${dto.udto.uname }</a></td>
+											<td><a onclick="modal(${dto.reserveno})" style = "float : left; cursor:pointer;">${dto.udto.uname }</a></td>
 											<td>${dto.edto.hdto.hgender }</td>
 											<td>${dto.edto.enrolldate }</td>
 											<td>${dto.edto.enrolltime }</td>
