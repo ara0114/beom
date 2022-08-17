@@ -39,15 +39,10 @@
 
                 <div class="menu-group float--left">
                     <div class="logo">
-                        <a href="#">GitHub</a>
+                        <a href="${root}/">home</a>
                     </div>
                     <ul class="main-menu">
                         <li><a href="https://cut-toucan-5da.notion.site/f5d0b9d1af2f4ac0bb7a9ee3620105a7?v=a142a36a78dd44e2a520b3edea972c4b">TeamBEOM</a></li>
-                  <!-- 드롭다운 예정  
-                  		<li><a href="#">Story</a></li>
-                        <li><a href="#">Developer</a></li>
-                        <li><a href="#">Support</a></li> 
-                        									-->
                         <li><a href="${root}/">Home</a></li>									
                         <li><a href="${root }/notice/list">Notice</a></li>
                         <li><a href="${root }/faq/chat">FAQ</a></li>
