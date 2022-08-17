@@ -11,6 +11,7 @@ body{
 }
 img {
 	vertical-align: middle;
+	text-align: center;
 }
 
 .section--visual{	
@@ -26,7 +27,7 @@ img {
 .section--visual .inner .picture{
 	width: auto;
 	margin: 0 auto;
-	padding: 160px 0;
+	padding: 100px 0;
 	background-image: url("../images/hairmodel.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -35,7 +36,7 @@ img {
 .section--visual .inner .picture2{
 	width: auto;
 	margin: 0 auto;
-	padding: 160px 0;
+	padding: 100px 0;
 	background-image: url("../images/tree.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -44,7 +45,7 @@ img {
 .section--visual .inner .picture3{
 	width: auto;
 	margin: 0 auto;
-	padding: 160px 0;
+	padding: 100px 0;
 	background-image: url("../images/img_chania.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -52,7 +53,7 @@ img {
 
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:1000px;height:90px; align-items: center; margin:0 auto; margin-bottom: 200px; text-align:center;}
+.map_wrap {position:relative;width:1000px;height:90px; align-items: center; margin:0 auto; margin-bottom: 400px; text-align:center;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
@@ -103,7 +104,7 @@ html, body {width:100%;height:100%;margin:0;padding:0;}
 .custom_typecontrol .selected_btn:hover {color:#fff;}   
 .custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;} 
 .custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
-.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
+.custom_zoomcontrol span img {width:15px;height:15px; text-align: center; vertical-align: middle; margin-top: 12px; margin-right: 2px; border:none;}             
 .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
  
 /* overlay */
