@@ -39,7 +39,7 @@
 
                 <div class="menu-group float--left">
                     <div class="logo">
-                        <a href="#">GitHub</a>
+                        <a href="/">GitHub</a>
                     </div>
                     <ul class="main-menu">
                         <li><a href="https://cut-toucan-5da.notion.site/f5d0b9d1af2f4ac0bb7a9ee3620105a7?v=a142a36a78dd44e2a520b3edea972c4b">TeamBEOM</a></li>
