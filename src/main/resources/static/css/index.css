@@ -28,7 +28,7 @@ img {
 	width: auto;
 	margin: 0 auto;
 	padding: 100px 0;
-	background-image: url("../images/hairmodel.jpg");
+	background-image: url("../images/banner1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -37,7 +37,7 @@ img {
 	width: auto;
 	margin: 0 auto;
 	padding: 100px 0;
-	background-image: url("../images/tree.jpg");
+	background-image: url("../images/banner2.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -46,7 +46,7 @@ img {
 	width: auto;
 	margin: 0 auto;
 	padding: 100px 0;
-	background-image: url("../images/img_chania.jpg");
+	background-image: url("../images/banner3.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
