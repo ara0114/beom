@@ -303,6 +303,8 @@ public class DesignerController {
 
     // 디비에 파일명 변경
     int cnt = dservice.dupdateFile(map);
+    DesignerDTO ddto = dservice.dread((String) session.getAttribute("did"));
+    session.putValue("dfilename", ddto.getDfilename());
 
     if (cnt == 1) {
       return "<script>"
