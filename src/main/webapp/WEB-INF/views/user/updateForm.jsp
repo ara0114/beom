@@ -46,6 +46,11 @@
  				f.uname.focus();
  				return false;
  			}
+    		if(f.uemail.value.length==0){
+    			alert("이메일을 입력하세요");
+    			f.uemail.focus();
+    			return false;
+    		}
  			if(f.uphone.value.length==0){
  				alert("전화번호를 입력하세요");
  				f.uphone.focus();
@@ -77,7 +82,7 @@
 			</tr>
 			<tr>
 				<th><label for="uemail">이메일</label></th>
-				<td><input type="text" id="uemail" name="uemail" value="${dto.uemail }" readonly></td>
+				<td><input type="text" id="uemail" name="uemail" value="${dto.uemail }"></td>
 			</tr>
 			<tr>
 				<th><label for="uphone">전화번호</label></th>

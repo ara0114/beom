@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.study.designer.DesignerDTO;
 import com.study.designer.DesignerService;
 import com.study.enroll.EnrollDTO;
+import com.study.heart.HeartService;
 import com.study.utility.Utility;
 
 @Controller
@@ -30,7 +31,7 @@ public class UserController {
   @Autowired
   @Qualifier("com.study.user.UserServiceImpl")
   private UserService service;
-  
+ 
   @PostMapping("/pwUpdate")
   public String updatePw(HttpSession session, String upw, String newpw, Model model) {
     String id = (String) session.getAttribute("uid");
@@ -74,24 +75,24 @@ public class UserController {
   public String delete(String upw, HttpSession session) {
     
     String id = (String)session.getAttribute("uid");
-    
     UserDTO dto = service.read(id);
     
     if(!dto.getUpw().equals(upw)) {
       return "/passwdError";
+    }
+    service.minusLikecnt(id);
+    int flag = service.delete(id);
+    if(flag == 1) {
+      session.invalidate();
+      return "redirect:/";
     }else {
-      int flag = service.delete(id);
-      if(flag == 1) {
-        session.invalidate();
-        return "redirect:/";
-      }else {
-        return "error";
-      }
+      return "error";
     }
   }
   
   @GetMapping("/admin/udelete/{uid}")
-  public String delete(@PathVariable String uid) {   
+  public String delete(@PathVariable String uid) {
+    service.minusLikecnt(uid);
     int flag = service.delete(uid);
     
     if(flag != 1) {
@@ -144,18 +145,23 @@ public class UserController {
   
   @PostMapping("/user/update")
   public String update(UserDTO dto, HttpSession session, Model model) {
-    int flag = service.update(dto);
-    
-    if(flag>0) {
-      if(!dto.getUid().equals((String) session.getAttribute("uid"))) {
-        model.addAttribute("id",session.getAttribute("uid"));
-        return "redirect:/admin/user/list";
+    int flag = 0;
+    try {
+      flag = service.update(dto);
+      if(flag>0) {
+        if(!dto.getUid().equals((String) session.getAttribute("uid"))) {
+          model.addAttribute("id",session.getAttribute("uid"));
+          return "redirect:/admin/user/list";
+        }else {
+          model.addAttribute("id",dto.getUid());
+          return "redirect:/user/mypage";
+        }
       }else {
-        model.addAttribute("id",dto.getUid());
-        return "redirect:/user/mypage";
+        model.addAttribute("msg","[실패] 정보가 수정되지 않았습니다.");
+        return "/errorMsg";
       }
-    }else {
-      model.addAttribute("msg", "[실패] 정보가 수정되지 않았습니다.");
+    }catch(Exception e) {
+      model.addAttribute("msg","[수정 실패] 정보가 수정되지 않았습니다. 중복된 이메일이 있을 수 있습니다.");
       return "/errorMsg";
     }
   }

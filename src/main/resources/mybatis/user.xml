@@ -69,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="com.study.user.UserDTO">
 		UPDATE user 
 		SET uname = #{uname},
+			uemail= #{uemail},
 			uphone = #{uphone}
 		WHERE uid = #{uid}
 	</update>
@@ -209,4 +210,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 		ORDER BY e.enrolldate desc
 	</select>
+	
+	<update id="minusLikecnt" parameterType="String">
+		UPDATE designer
+		SET likecnt=likecnt-1
+		WHERE did in (SELECT did FROM heart WHERE uid=#{uid})
+	</update>
 </mapper>

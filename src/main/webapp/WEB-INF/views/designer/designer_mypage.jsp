@@ -62,21 +62,23 @@ textarea {
 
 			<div>
 				<button class="btn btn-outline-success"
-					style="width: 100%; border: 1px solid;">❤️좋아요(${ddto.likecnt })</button>
+					style="width: 100%; border: 1px solid;" disabled>❤️좋아요(${ddto.likecnt })</button>
 			</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
-			<div>${ddto.introduction }</div>
+			<div style="text-align: center;">${ddto.introduction }</div>
+			<div style="font-weight: bold; text-align: center;">문의📞 ${ddto.dphone }</div>
+			<br>
 			<div style="float: right">
 				<button class="btn btn-outline-success"
-					style="border: 1px solid; margin-bottom: 2px;"
+					style="border: 1px solid; margin-bottom: 2px; float: left;"
 					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
 				<button class="btn btn-outline-success" 
-					style="border: 1px solid; margin-bottom: 2px;"
+					style="border: 1px solid; margin-bottom: 2px; float: left;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 				<button class="btn btn-outline-success" 
-					style="border: 1px solid;"
+					style="border: 1px solid; margin-bottom: 2px; float: left;"
 					onclick="dmypage_delete('${ddto.did}')">디자이너 탈퇴</button>
 			</div>
 		</div>
@@ -153,7 +155,7 @@ textarea {
 						</tbody>
 					</table>
 					<div style="height: 50px;">
-						<button class="btn btn-outline-success" onclick="enroll()">예약
+						<button class="btn btn-outline-success" onclick="enroll()" style = "border : 1px solid">예약
 							등록</button>
 					</div>
 				</div>
@@ -185,7 +187,7 @@ textarea {
 									<c:forEach var="dto" items="${reserveList}">
 
 										<tr>
-											<td><a onclick="modal(${dto.reserveno})">${dto.udto.uname }</a></td>
+											<td><a onclick="modal(${dto.reserveno})" style = "float : left; cursor:pointer;">${dto.udto.uname }</a></td>
 											<td>${dto.edto.hdto.hgender }</td>
 											<td>${dto.edto.enrolldate }</td>
 											<td>${dto.edto.enrolltime }</td>

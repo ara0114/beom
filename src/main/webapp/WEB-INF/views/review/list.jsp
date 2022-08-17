@@ -100,15 +100,16 @@ td button {
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.hairshop }</div>
 			<div style="font-size: 20px; font-weight: bold; text-align: center;">${ddto.dname }
 				헤어 디자이너</div>
-			<div  style="text-align: center;">${ddto.introduction }</div>
-			<div style="font-weight:bold; text-align: center;">문의📞 ${ddto.dphone }</div>
+			<div style="text-align: center;">${ddto.introduction }</div>
+			<div style="font-weight: bold; text-align: center;">문의📞 ${ddto.dphone }</div>
 			<br>
 			<div style="float: right">
 			<c:if test="${not empty sessionScope.did}">
 				<button class="btn btn-outline-success"
 					style="border: 1px solid; margin-bottom: 2px; float:left;"
 					onclick="dmypage_update('${ddto.did}')">디자이너 정보 수정</button>
-				<button class="btn btn-outline-success" style="border: 1px solid; margin-bottom: 2px; float: left;"
+				<button class="btn btn-outline-success" 
+					style="border: 1px solid; margin-bottom: 2px; float: left;"
 					onclick="dmypage_photo_update()">디자이너 사진 수정</button>
 			</c:if>
 			</div>

@@ -6,22 +6,22 @@
 <tiles-definitions>
   <!-- main -->
   <definition name="/dcreate" extends="main">
-    <put-attribute name="title" value="디자이너회원가입"></put-attribute>
+    <put-attribute name="title" value="디자이너 회원가입"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/dcreateForm.jsp" />
   </definition>
   <definition name="/dmypage" extends="main">
-    <put-attribute name="title" value="디자이너마이페이지"></put-attribute>
+    <put-attribute name="title" value="마이페이지"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/designer_mypage.jsp" />
   </definition>
   <definition name="/dlogin" extends="main">
-    <put-attribute name="title" value="디자이너로그인"></put-attribute>
+    <put-attribute name="title" value="디자이너 로그인"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/dloginForm.jsp" />
   </definition>
   <definition name="/dmypage_intro_update" extends="main">
-    <put-attribute name="title" value="디자이너소개수정"></put-attribute>
+    <put-attribute name="title" value="디자이너 소개 수정"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/designer_introduction_updateForm.jsp" />
   </definition>
@@ -36,17 +36,17 @@
       value="/WEB-INF/views/designer/dupdateFileForm.jsp" />
   </definition>
   <definition name="/dfindid" extends="main">
-    <put-attribute name="title" value="디자이너아이디찾기"></put-attribute>
+    <put-attribute name="title" value="아이디 찾기"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/findidForm.jsp" />
   </definition>
   <definition name="/dfindpw" extends="main">
-    <put-attribute name="title" value="디자이너비밀번호찾기"></put-attribute>
+    <put-attribute name="title" value="비밀번호 찾기"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/findpwForm.jsp" />
   </definition>
   <definition name="/dlist" extends="main">
-    <put-attribute name="title" value="디자이너목록"></put-attribute>
+    <put-attribute name="title" value="디자이너 목록"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/list.jsp" />
   </definition>
@@ -56,12 +56,12 @@
       value="/WEB-INF/views/designer/approve.jsp" />
   </definition>
   <definition name="/dmypage_delete" extends="main">
-    <put-attribute name="title" value="디자이너탈퇴"></put-attribute>
+    <put-attribute name="title" value="디자이너 탈퇴"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/withdrawl.jsp" />
   </definition>
   <definition name="/search" extends="main">
-    <put-attribute name="title" value="디자이너검색"></put-attribute>
+    <put-attribute name="title" value="디자이너 검색"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/designer/search.jsp" />
   </definition>

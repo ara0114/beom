@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객예약신청페이지</title>
+<title>고객예약신청</title>
 <link rel="stylesheet" href="/css/reserve.css" />
 </head>
 <body>
@@ -51,14 +51,13 @@
 		</table>
 		<div class="area-box">
 			<p>고객요청사항</p>
-			<textarea name="textArea" id="message"
-				style="width: 100%; height: 163px;"></textarea>
+			<textarea name="textArea" id="message" style="width: 100%; height: 100%;"></textarea>
 		</div>
 		<button id="sub_mit" type="submit">예약신청</button>
 		<button id="goback" type="button" onclick="history.back()">뒤로가기</button>
 
 		<p>
-			예약 접수 정보는 등록된 <strong>@Email 주소 </strong>로 확인 할수있습니다.
+			예약 확정시 정보는 등록된 <strong>@Email 주소 </strong>로 확인 할수있습니다.
 		</p>
 
 	</div>

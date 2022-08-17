@@ -7,25 +7,22 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/designer_createForm.css">
+<link rel="stylesheet" href="/css/designer_createForm.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <script>
 	function emailCheck(email) {
 		if (email == '') {
 			alert("email를 입력하세요");
 			document.frm.email.focus();
 		} else {
-			var url = "emailcheck";
+			var url = "/emailcheck";
 			url += "?email=" + email;
 
 			$.get(url, function(data, textStatus) {
@@ -90,6 +87,10 @@
 	}
 
 	function inCheck(f) {
+		if($("#emailcheck").text()==""){
+			alert("이메일 중복체크를 해주세요");
+			return false;
+		}
 		if (f.dname.value.length == 0) {
 			alert("이름을 입력하세요");
 			f.dname.focus();
@@ -117,7 +118,6 @@
 	}
 </script>
 <title>디자이너 정보수정</title>
-
 </head>
 <body>
 	<form action="/dupdate" method="post" name="frm"
@@ -249,7 +249,7 @@
 
 											<c:choose>
 												<c:when test="${empty cdto.uniquecode2}">
-													<div style="font-weight: bold; font-size: large;">수첩형
+													<div class="mb-4 pb-2" style="font-weight: bold; font-size: large;">수첩형
 														자격증</div>
 
 													<div class="mb-4 pb-3" id="div1">
@@ -309,7 +309,7 @@
 												</c:when>
 
 												<c:otherwise>
-													<div style="font-weight: bold; font-size: large;">상장형
+													<div class="mb-4 pb-2" style="font-weight: bold; font-size: large;">상장형
 														자격증</div>
 													<div class="mb-4 pb-4" id="div4">
 														<div class="form-outline form-white">
