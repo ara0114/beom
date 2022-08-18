@@ -264,10 +264,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getList" parameterType="String"
         resultType="com.study.designer.DesignerDTO">
-        SELECT hairshop, address1, dname, did
+        SELECT hairshop, address1, dname, did, likecnt
         FROM designer
 
         <where>
+        	did IN (SELECT distinct did FROM enroll where enrolldate >= curdate())
+        	and
             <choose>
                 <when test="searchWrd != null">
                     address1 like concat('%',#{searchWrd},'%') or
@@ -279,6 +281,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 </when>
             </choose>
         </where>
+        order by likecnt desc
 
     </select>
 
